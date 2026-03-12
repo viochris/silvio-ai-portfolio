@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { ExternalLink, ChevronRight, Brain, Sparkles, FolderOpen } from 'lucide-react';
+import { ExternalLink, ChevronRight, Brain, Sparkles } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -61,7 +61,7 @@ export default function ProjectsPage() {
             <h2 className="text-5xl font-headline font-black uppercase tracking-tighter text-foreground">
               Featured <span className="text-primary">Projects</span>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
+            <p className="text-muted-foreground text-lg max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
           </div>
           <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary">
             Explore Repository <ChevronRight className="w-4 h-4" />
@@ -88,7 +88,7 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 <CardTitle className="text-3xl font-headline font-bold text-foreground group-hover:text-primary transition-colors">{p.title}</CardTitle>
-                <CardDescription className="text-base text-muted-foreground mt-2 line-clamp-2">{p.desc}</CardDescription>
+                <CardDescription className="text-base text-muted-foreground mt-2 line-clamp-2 font-medium">{p.desc}</CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8 pt-0">
                 <Dialog>
@@ -113,13 +113,13 @@ export default function ProjectsPage() {
                           <h4 className="text-sm font-bold uppercase text-primary mb-3 flex items-center gap-2 tracking-[0.2em]">
                             <Brain className="w-4 h-4" /> The Problem
                           </h4>
-                          <p className="text-muted-foreground text-lg leading-relaxed">{p.problem}</p>
+                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.problem}</p>
                         </div>
                         <div>
                           <h4 className="text-sm font-bold uppercase text-primary mb-3 flex items-center gap-2 tracking-[0.2em]">
                             <Sparkles className="w-4 h-4" /> The Solution
                           </h4>
-                          <p className="text-muted-foreground text-lg leading-relaxed">{p.solution}</p>
+                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.solution}</p>
                         </div>
                         <Separator className="bg-border/50" />
                         <Button className="w-full rounded-2xl font-headline font-bold h-14" asChild>

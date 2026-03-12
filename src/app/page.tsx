@@ -58,12 +58,12 @@ export default function Home() {
                     </h1>
                   </div>
                   
-                  <div className="text-xl md:text-2xl font-headline text-muted-foreground flex items-center gap-3">
+                  <div className="text-xl md:text-2xl font-headline text-foreground flex items-center gap-3">
                     <span>I </span>
                     <TypewriterEffect />
                   </div>
                   
-                  <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                  <p className="text-lg text-muted-foreground max-w-xl leading-relaxed font-medium">
                     Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
                   </p>
                 </div>

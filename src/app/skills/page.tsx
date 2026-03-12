@@ -30,19 +30,19 @@ export default function SkillsPage() {
           <h2 className="text-5xl font-headline font-black uppercase tracking-tighter text-foreground">
             Skill <span className="text-primary">Architecture</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg font-medium">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="p-10 glass rounded-[2.5rem] relative border border-primary/10 shadow-2xl">
-            <div className="absolute top-6 left-6 text-[10px] font-bold opacity-40 uppercase tracking-[0.3em] text-foreground">Expertise Radar Map</div>
+            <div className="absolute top-6 left-6 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-foreground">Expertise Radar Map</div>
             <RadarChart skills={skills} theme="dark" />
           </div>
           
           <div className="grid gap-10">
             {skills.map((s) => (
               <div key={s.name} className="space-y-3">
-                <div className="flex justify-between items-center font-headline font-bold text-xs uppercase tracking-widest text-foreground">
+                <div className="flex justify-between items-center font-headline font-bold text-sm uppercase tracking-widest text-foreground">
                   <span className="flex items-center gap-3">
                     {s.name === 'NLP' && <Languages className="w-4 h-4 text-primary" />}
                     {s.name === 'GenAI' && <Sparkles className="w-4 h-4 text-primary" />}
@@ -54,7 +54,7 @@ export default function SkillsPage() {
                   </span>
                   <span className="text-primary">{s.value}%</span>
                 </div>
-                <Progress value={s.value} className="h-2 bg-muted border border-border/50" />
+                <Progress value={s.value} className="h-3 bg-muted border border-border/50" />
               </div>
             ))}
           </div>
