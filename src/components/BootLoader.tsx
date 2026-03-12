@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -26,7 +25,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
     "Loaded React Components .... 13%",
     "Loaded Framer Motion ....... 25%",
     "Loaded Tailwind CSS ........ 38%",
-    "Loaded Supabase Client ..... 50%",
+    "Loaded Genkit Engine ....... 50%",
     "Loaded AI Neural Assets .... 75%",
     "Finalizing Environment ..... 100%",
   ];
@@ -40,7 +39,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
       } else {
         clearInterval(logInterval);
       }
-    }, 150);
+    }, 120);
 
     const progressInterval = setInterval(() => {
       setProgress(prev => {
@@ -54,7 +53,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
         }
         return prev + 2;
       });
-    }, 50);
+    }, 40);
 
     return () => {
       clearInterval(logInterval);
@@ -74,32 +73,38 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
       {!isFinished && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+          exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center p-6 font-code"
         >
-          <div className="max-w-2xl w-full space-y-2">
-            <div className="text-white/80 text-sm md:text-base leading-relaxed h-[400px] overflow-hidden flex flex-col justify-end">
+          <div className="max-w-2xl w-full">
+            {/* Terminal Window with explicit top-to-bottom flow */}
+            <div className="text-white/90 text-sm md:text-base leading-relaxed h-[450px] overflow-hidden flex flex-col justify-start">
               {logs.map((log, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -5 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.1 }}
+                  transition={{ duration: 0.05 }}
                   className={log === "" ? "h-4" : ""}
                 >
                   {log}
                 </motion.div>
               ))}
-              <div className="mt-6 text-primary font-bold">
-                {progressBar()}
-              </div>
-              <div className="mt-4 text-white font-bold animate-pulse">
-                {progress === 100 ? "SYSTEM STATUS: READY" : "SYSTEM STATUS: INITIALIZING..."}
-              </div>
+              
+              {logs.length === fullLogs.length && (
+                <>
+                  <div className="mt-8 text-primary font-bold">
+                    {progressBar()}
+                  </div>
+                  <div className="mt-4 text-white font-bold animate-pulse">
+                    {progress === 100 ? "SYSTEM STATUS: READY" : "SYSTEM STATUS: INITIALIZING..."}
+                  </div>
+                </>
+              )}
             </div>
             
-            <div className="mt-12 flex justify-between items-center text-[10px] text-white/30 uppercase tracking-[0.3em]">
+            <div className="mt-12 flex justify-between items-center text-[10px] text-white/30 uppercase tracking-[0.3em] border-t border-white/10 pt-4">
               <div>Kernel_V7.2.0</div>
               <div>Root_Access_Granted</div>
               <div>Port_9002_Active</div>
