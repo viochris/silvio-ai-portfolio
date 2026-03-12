@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Download, Terminal, ChevronRight } from 'lucide-react';
+import { Terminal, ChevronRight } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { CodeWindow } from '@/components/CodeWindow';
@@ -26,7 +26,7 @@ export default function Home() {
             {/* Left Content: Text and Profile First */}
             <div className="flex-1 space-y-8 order-1">
               <div className="flex flex-col md:flex-row md:items-center gap-10">
-                {/* Profile Image with AI ENGINEER Tag */}
+                {/* Profile Image */}
                 <div className="relative group shrink-0">
                   <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-pulse-glow" />
                   <div className="relative z-10 w-48 h-48 md:w-64 md:h-64">
@@ -40,7 +40,7 @@ export default function Home() {
                     </div>
                     {/* AI ENGINEER Badge Tag */}
                     <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20">
-                      <Badge className="bg-primary text-primary-foreground px-6 py-1.5 shadow-2xl font-headline font-black text-[10px] tracking-[0.2em] uppercase border-none">
+                      <Badge className="bg-primary text-primary-foreground px-6 py-1.5 shadow-2xl font-headline font-black text-[10px] tracking-[0.2em] uppercase border-none whitespace-nowrap">
                         AI Engineer
                       </Badge>
                     </div>
@@ -63,7 +63,7 @@ export default function Home() {
                     <TypewriterEffect />
                   </div>
                   
-                  <p className="text-lg text-muted-foreground max-w-xl leading-relaxed font-medium">
+                  <p className="text-lg text-muted-foreground max-w-xl leading-relaxed font-bold">
                     Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
                   </p>
                 </div>

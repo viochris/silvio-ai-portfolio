@@ -5,19 +5,19 @@
 @layer base {
   :root {
     --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --foreground: 0 0% 0%; /* Hitam Murni */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 0 0% 0%;
     --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary-foreground: 0 0% 0%;
     --muted: 210 40% 96.1%;
-    --muted-foreground: 222 47% 35%;
+    --muted-foreground: 0 0% 40%;
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
@@ -27,24 +27,24 @@
   }
 
   .dark {
-    --background: 240 15% 12%; /* Lebih pekat dari sebelumnya */
-    --foreground: 0 0% 100%; /* Putih murni untuk teks utama */
-    --card: 240 15% 10%;
+    --background: 240 20% 8%; /* Gelap Pekat */
+    --foreground: 0 0% 100%; /* Putih Murni */
+    --card: 240 20% 10%;
     --card-foreground: 0 0% 100%;
-    --popover: 240 15% 10%;
+    --popover: 240 20% 10%;
     --popover-foreground: 0 0% 100%;
     --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 240 10% 20%;
+    --secondary: 240 10% 15%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 240 10% 20%;
-    --muted-foreground: 215 25% 85%; /* Lebih terang untuk keterbacaan di dark mode */
-    --accent: 240 10% 20%;
+    --muted: 240 10% 15%;
+    --muted-foreground: 0 0% 90%; /* Sangat Terang */
+    --accent: 240 10% 15%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 10% 25%;
-    --input: 240 10% 25%;
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
     --ring: 217 91% 60%;
   }
 }

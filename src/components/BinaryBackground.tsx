@@ -26,23 +26,23 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    // Kecepatan sangat lambat: 10 FPS untuk efek "hujan di kaca"
-    const fps = 10; 
+    // Kecepatan sangat lambat: 8 FPS untuk efek "hujan di kaca"
+    const fps = 8; 
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
     const getColors = () => {
       if (theme === 'dark') {
         return {
-          bg: 'rgb(33, 33, 44)', // Sesuai #21212c
-          fade: 'rgba(33, 33, 44, 0.15)', 
-          text: 'rgba(59, 130, 246, 0.2)' // Biru lembut
+          bg: 'rgb(16, 17, 22)', // Sesuai background pekat di CSS
+          fade: 'rgba(16, 17, 22, 0.2)', // Trail effect
+          text: 'rgba(59, 130, 246, 0.25)' // Biru lembut
         };
       }
       return {
-        bg: 'rgb(248, 250, 252)', // Sesuai #f8fafc
-        fade: 'rgba(248, 250, 252, 0.15)',
-        text: 'rgba(59, 130, 246, 0.15)'
+        bg: 'rgb(248, 250, 252)', // Sesuai background light di CSS
+        fade: 'rgba(248, 250, 252, 0.2)',
+        text: 'rgba(59, 130, 246, 0.2)'
       };
     };
 
@@ -82,7 +82,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.98) {
             drops[i] = 0;
-            speeds[i] = 0.3 + Math.random() * 0.5; // Sangat lambat
+            speeds[i] = 0.2 + Math.random() * 0.4; // Sangat lambat
           }
         }
       }
@@ -90,7 +90,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (isInitialDrop && allHitBottom) {
         isInitialDrop = false;
         for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.3 + Math.random() * 0.5;
+          speeds[i] = 0.2 + Math.random() * 0.4;
         }
       }
     };
