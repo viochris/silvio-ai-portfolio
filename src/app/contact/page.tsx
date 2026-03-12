@@ -1,65 +1,73 @@
-
 "use client"
 
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageSquare, Linkedin, Github, Twitter } from 'lucide-react';
 import { Chatbot } from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-24 px-4">
-      <section id="contact" className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+    <div className="pt-32 pb-24 px-4 min-h-screen">
+      <section id="contact" className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24">
         <div className="space-y-12">
           <div className="space-y-4">
-            <h2 className="text-5xl font-headline font-black uppercase tracking-tighter">
+            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase">Connect</Badge>
+            <h2 className="text-5xl font-headline font-black uppercase tracking-tighter text-foreground">
               Get In <span className="text-primary">Touch</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
+            <p className="text-muted-foreground text-xl leading-relaxed max-w-md">
               Interested in collaboration or have a project in mind? Reach out via contact details or chat with my AI assistant.
             </p>
           </div>
 
-          <div className="space-y-8">
-            <div className="flex items-center gap-6 group">
-              <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                <Mail className="w-6 h-6" />
+          <div className="space-y-10">
+            <div className="flex items-center gap-8 group">
+              <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-xl border border-border/50">
+                <Mail className="w-7 h-7" />
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Email Me</div>
-                <div className="text-lg font-headline font-bold">silvio.christian@example.com</div>
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Email Inquiry</div>
+                <div className="text-xl font-headline font-bold text-foreground">silvio.christian@example.com</div>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 group">
-              <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                <Phone className="w-6 h-6" />
+            <div className="flex items-center gap-8 group">
+              <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-xl border border-border/50">
+                <Phone className="w-7 h-7" />
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Call Me</div>
-                <div className="text-lg font-headline font-bold">+62 812-3456-7890</div>
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Voice Call</div>
+                <div className="text-xl font-headline font-bold text-foreground">+62 812-3456-7890</div>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 group">
-              <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                <MapPin className="w-6 h-6" />
+            <div className="flex items-center gap-8 group">
+              <div className="w-16 h-16 rounded-2xl bg-muted flex items-center justify-center text-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-xl border border-border/50">
+                <MapPin className="w-7 h-7" />
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Location</div>
-                <div className="text-lg font-headline font-bold">Jakarta, Indonesia</div>
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Base Location</div>
+                <div className="text-xl font-headline font-bold text-foreground">Jakarta, Indonesia</div>
               </div>
             </div>
           </div>
 
-          <div className="pt-10 border-t border-border flex gap-4">
-            <Button variant="outline" size="lg" className="rounded-xl px-10 font-headline font-bold">LinkedIn</Button>
-            <Button variant="outline" size="lg" className="rounded-xl px-10 font-headline font-bold">GitHub</Button>
+          <div className="pt-12 border-t border-border/50 flex flex-wrap gap-4">
+            <Button variant="outline" size="lg" className="rounded-2xl px-10 font-headline font-bold hover:bg-primary/5 border-primary/20 text-foreground">
+              <Linkedin className="mr-2 w-4 h-4 text-primary" /> LinkedIn
+            </Button>
+            <Button variant="outline" size="lg" className="rounded-2xl px-10 font-headline font-bold hover:bg-primary/5 border-primary/20 text-foreground">
+              <Github className="mr-2 w-4 h-4 text-primary" /> GitHub
+            </Button>
+             <Button variant="outline" size="lg" className="rounded-2xl px-10 font-headline font-bold hover:bg-primary/5 border-primary/20 text-foreground">
+              <Twitter className="mr-2 w-4 h-4 text-primary" /> Twitter
+            </Button>
           </div>
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-4 bg-primary/5 blur-3xl rounded-full" />
+          <div className="absolute -inset-10 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
           <div className="relative">
              <Chatbot />
           </div>

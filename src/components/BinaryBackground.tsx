@@ -26,22 +26,21 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    // FPS DIBUAT SANGAT LAMBAT: 10 FPS untuk efek "hujan di kaca" yang tenang
+    // Kecepatan sangat lambat: 10 FPS untuk efek "hujan di kaca"
     const fps = 10; 
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    // SINKRONISASI WARNA: Menggunakan warna solid yang identik dengan globals.css
     const getColors = () => {
       if (theme === 'dark') {
         return {
-          bg: 'rgb(33, 33, 44)', // Presisi dengan HSL(240, 15, 15)
-          fade: 'rgba(33, 33, 44, 0.15)', // Trail tipis agar tetap hitam pekat
-          text: 'rgba(6, 182, 212, 0.25)'
+          bg: 'rgb(33, 33, 44)', // Sesuai #21212c
+          fade: 'rgba(33, 33, 44, 0.15)', 
+          text: 'rgba(59, 130, 246, 0.2)' // Biru lembut
         };
       }
       return {
-        bg: 'rgb(248, 250, 252)', // Presisi dengan HSL(210, 40, 98)
+        bg: 'rgb(248, 250, 252)', // Sesuai #f8fafc
         fade: 'rgba(248, 250, 252, 0.15)',
         text: 'rgba(59, 130, 246, 0.15)'
       };
@@ -49,7 +48,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
 
     let colors = getColors();
 
-    // HARD RESET: Membersihkan kanvas total dengan warna solid saat tema berubah
+    // Pembersihan total saat tema berubah untuk mencegah efek abu-abu
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, width, height);
 
@@ -65,7 +64,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = colors.text;
-      ctx.font = `bold ${fontSize}px monospace`;
+      ctx.font = `${fontSize}px monospace`;
 
       let allHitBottom = true;
 
@@ -77,15 +76,13 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
         ctx.fillText(text, x, y);
 
         if (isInitialDrop) {
-          // PHASE 1: JATUH SERENTAK
           drops[i] += 1; 
           if (y < height) allHitBottom = false;
         } else {
-          // PHASE 2: HUJAN ACAK
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.98) {
             drops[i] = 0;
-            speeds[i] = 0.4 + Math.random() * 0.6; // Kecepatan lambat
+            speeds[i] = 0.3 + Math.random() * 0.5; // Sangat lambat
           }
         }
       }
@@ -93,7 +90,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (isInitialDrop && allHitBottom) {
         isInitialDrop = false;
         for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.4 + Math.random() * 0.6;
+          speeds[i] = 0.3 + Math.random() * 0.5;
         }
       }
     };

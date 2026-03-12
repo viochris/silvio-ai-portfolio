@@ -23,17 +23,17 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 240 15% 15%;
+    --background: 240 15% 15%; /* #21212c - Grayish Dark Blue */
     --foreground: 210 40% 98%;
     --card: 240 15% 10%;
     --card-foreground: 210 40% 98%;
     --popover: 240 15% 10%;
     --popover-foreground: 210 40% 98%;
-    --primary: 240 70% 55%;
+    --primary: 217 91% 60%;
     --primary-foreground: 210 40% 98%;
     --secondary: 240 10% 20%;
     --secondary-foreground: 210 40% 98%;
@@ -45,19 +45,16 @@
     --destructive-foreground: 210 40% 98%;
     --border: 240 10% 25%;
     --input: 240 10% 25%;
-    --ring: 210 90% 65%;
+    --ring: 217 91% 60%;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-opacity-60 backdrop-blur-md border border-white border-opacity-20;
+    @apply bg-background/60 backdrop-blur-md border border-border;
   }
-  .dark .glass {
-    @apply bg-opacity-40 backdrop-blur-md border-opacity-10 border-white;
-  }
-  .neon-text {
-    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  .animate-typing {
+    @apply border-r-2 border-primary;
   }
 }
 
@@ -66,5 +63,10 @@
 }
 
 body {
-  @apply bg-background text-foreground selection:bg-primary/30;
+  @apply bg-background text-foreground selection:bg-primary/30 font-body antialiased;
+}
+
+/* Fix: Removed .font-headline from this block to avoid circular dependency with @apply font-headline */
+h1, h2, h3, h4 {
+  @apply font-headline;
 }
