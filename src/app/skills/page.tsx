@@ -76,7 +76,7 @@ export default function SkillsPage() {
                   {c.icon}
                 </div>
                 <div className="min-w-0 overflow-hidden">
-                  <div className="text-base md:text-lg font-headline font-bold leading-tight text-white truncate">{c.title}</div>
+                  <div className="text-base md:text-lg font-headline font-bold leading-tight text-white break-words">{c.title}</div>
                   <div className="text-[10px] md:text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-1.5">{c.issuer} Professional</div>
                 </div>
               </div>
