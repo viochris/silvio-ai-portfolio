@@ -128,7 +128,8 @@ export default function Home() {
       <section id="home" className="pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="flex-1 space-y-8 order-2 lg:order-1">
+            {/* Column 1: Text & Photo side-by-side */}
+            <div className="flex-1 space-y-8 order-1">
               <div className="space-y-2">
                 <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1 border-primary/30">
                   Data Scientist & AI Engineer
@@ -147,7 +148,7 @@ export default function Home() {
                     </p>
                   </div>
                   
-                  {/* Photo Profile Placed Next to Text */}
+                  {/* Photo Profile Next to Text */}
                   <div className="relative group shrink-0">
                     <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-pulse-glow" />
                     <div className="relative z-10 w-48 h-48 md:w-56 md:h-56">
@@ -190,7 +191,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-1 w-full order-1 lg:order-2">
+            {/* Column 2: Code Window */}
+            <div className="flex-1 w-full order-2">
               <CodeWindow />
             </div>
           </div>

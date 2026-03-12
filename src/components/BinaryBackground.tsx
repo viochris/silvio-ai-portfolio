@@ -22,21 +22,24 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     const fontSize = 16;
     const columns = Math.floor(width / fontSize);
     
-    // State for animation phases
+    // Initial state
     let drops: number[] = new Array(columns).fill(0);
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
-    let frameCount = 0;
-    const fps = 18; // Slow, elegant speed like rain on glass
+    
+    // FPS control for "Rain on Glass" effect (Slow & Elegant)
+    const fps = 18;
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    // Color sync to prevent greyish haze
-    const bgColor = theme === 'dark' ? 'rgb(33, 33, 44)' : 'rgb(248, 250, 252)';
-    const textColor = theme === 'dark' ? 'rgba(6, 182, 212, 0.35)' : 'rgba(59, 130, 246, 0.25)';
-    const fadeColor = theme === 'dark' ? 'rgba(33, 33, 44, 0.15)' : 'rgba(248, 250, 252, 0.15)';
+    // Precise color matching with globals.css to eliminate "greyish" haze
+    // Dark: hsl(240, 15%, 15%) -> rgb(33, 33, 43)
+    // Light: hsl(210, 40%, 98%) -> rgb(248, 250, 252)
+    const bgColor = theme === 'dark' ? 'rgb(33, 33, 43)' : 'rgb(248, 250, 252)';
+    const fadeColor = theme === 'dark' ? 'rgba(33, 33, 43, 0.15)' : 'rgba(248, 250, 252, 0.15)';
+    const textColor = theme === 'dark' ? 'rgba(6, 182, 212, 0.4)' : 'rgba(59, 130, 246, 0.3)';
 
-    // Reset canvas to solid background on theme change to prevent "greyish" ghosting
+    // HARD RESET: Clear canvas with solid color on theme change
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, width, height);
 
@@ -64,13 +67,13 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
         ctx.fillText(text, x, y);
 
         if (isInitialDrop) {
-          // Phase 1: Simultaneous Drop
-          drops[i] += 1;
+          // Phase 1: Simultaneous Drop (The Wave)
+          drops[i] += 1.5; // Slightly faster for the initial drop
           if (y < height) {
             allHitBottom = false;
           }
         } else {
-          // Phase 2: Randomized Rain
+          // Phase 2: Randomized Rain (The Matrix)
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.975) {
             drops[i] = 0;
