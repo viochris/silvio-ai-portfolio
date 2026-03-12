@@ -26,7 +26,6 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    // Kecepatan sangat lambat: 8 FPS untuk efek "hujan di kaca"
     const fps = 8; 
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
@@ -34,21 +33,21 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     const getColors = () => {
       if (theme === 'dark') {
         return {
-          bg: 'rgb(16, 17, 22)', // Sesuai background pekat di CSS
-          fade: 'rgba(16, 17, 22, 0.2)', // Trail effect
-          text: 'rgba(59, 130, 246, 0.25)' // Biru lembut
+          bg: 'rgb(16, 17, 22)',
+          fade: 'rgba(16, 17, 22, 0.4)', // Peningkatan alpha agar background lebih cepat bersih
+          text: 'rgba(59, 130, 246, 0.25)' 
         };
       }
       return {
-        bg: 'rgb(248, 250, 252)', // Sesuai background light di CSS
-        fade: 'rgba(248, 250, 252, 0.2)',
+        bg: 'rgb(248, 250, 252)',
+        fade: 'rgba(248, 250, 252, 0.4)', // Peningkatan alpha agar background lebih cepat bersih
         text: 'rgba(59, 130, 246, 0.2)'
       };
     };
 
     let colors = getColors();
 
-    // Pembersihan total saat tema berubah untuk mencegah efek abu-abu
+    // Pembersihan total instan saat tema berubah untuk memastikan background pekat/bersih
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, width, height);
 
@@ -59,7 +58,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (elapsed < fpsInterval) return;
       lastTime = currentTime - (elapsed % fpsInterval);
 
-      // Trail effect
+      // Trail effect dengan alpha yang lebih tinggi mencegah penumpukan kabut abu-abu
       ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
@@ -82,7 +81,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.98) {
             drops[i] = 0;
-            speeds[i] = 0.2 + Math.random() * 0.4; // Sangat lambat
+            speeds[i] = 0.2 + Math.random() * 0.4;
           }
         }
       }
