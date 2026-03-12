@@ -35,15 +35,15 @@ export default function SkillsPage() {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Radar Chart Container - Improved for Mobile */}
-          <div className="p-6 md:p-10 glass rounded-[2.5rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden">
-            <div className="absolute top-6 left-6 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white">Expertise Radar Map</div>
-            <div className="w-full max-w-[300px] flex justify-center">
+          <div className="p-6 md:p-10 glass rounded-[2.5rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[500px] mx-auto">
+            <div className="absolute top-6 left-6 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
+            <div className="w-full flex justify-center scale-90 sm:scale-100">
               <RadarChart skills={skills} />
             </div>
           </div>
           
           {/* Skills List - Better Spacing for Mobile */}
-          <div className="grid gap-8 md:gap-10">
+          <div className="grid gap-8 md:gap-10 w-full">
             {skills.map((s) => (
               <div key={s.name} className="space-y-4">
                 <div className="flex justify-between items-center font-headline font-bold text-xs md:text-sm uppercase tracking-widest text-white">
@@ -58,7 +58,9 @@ export default function SkillsPage() {
                   </span>
                   <span className="text-primary">{s.value}%</span>
                 </div>
-                <Progress value={s.value} className="h-2.5 md:h-3 bg-white/5 border border-white/10" />
+                <div className="relative pt-1">
+                  <Progress value={s.value} className="h-2.5 md:h-3 bg-white/5 border border-white/10" />
+                </div>
               </div>
             ))}
           </div>
@@ -73,7 +75,7 @@ export default function SkillsPage() {
                 <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner shrink-0">
                   {c.icon}
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 overflow-hidden">
                   <div className="text-base md:text-lg font-headline font-bold leading-tight text-white truncate">{c.title}</div>
                   <div className="text-[10px] md:text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-1.5">{c.issuer} Professional</div>
                 </div>
