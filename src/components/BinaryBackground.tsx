@@ -19,42 +19,92 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const fontSize = 14;
+    const fontSize = 16;
     const columns = Math.floor(width / fontSize);
-    const drops: number[] = new Array(columns).fill(1);
+    
+    // State for animation phases
+    let drops: number[] = new Array(columns).fill(0);
+    let speeds: number[] = new Array(columns).fill(1);
+    let isInitialDrop = true;
+    let frameCount = 0;
+    const fps = 18; // Slow, elegant speed like rain on glass
+    const fpsInterval = 1000 / fps;
+    let lastTime = performance.now();
 
-    const draw = () => {
-      // Semi-transparent background to create trail effect
-      ctx.fillStyle = theme === 'dark' ? 'rgba(33, 33, 44, 0.1)' : 'rgba(248, 250, 252, 0.1)';
+    // Color sync to prevent greyish haze
+    const bgColor = theme === 'dark' ? 'rgb(33, 33, 44)' : 'rgb(248, 250, 252)';
+    const textColor = theme === 'dark' ? 'rgba(6, 182, 212, 0.35)' : 'rgba(59, 130, 246, 0.25)';
+    const fadeColor = theme === 'dark' ? 'rgba(33, 33, 44, 0.15)' : 'rgba(248, 250, 252, 0.15)';
+
+    // Reset canvas to solid background on theme change to prevent "greyish" ghosting
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, width, height);
+
+    const draw = (currentTime: number) => {
+      const elapsed = currentTime - lastTime;
+      requestAnimationFrame(draw);
+
+      if (elapsed < fpsInterval) return;
+      lastTime = currentTime - (elapsed % fpsInterval);
+
+      // Create trail effect
+      ctx.fillStyle = fadeColor;
       ctx.fillRect(0, 0, width, height);
 
-      ctx.fillStyle = theme === 'dark' ? '#06b6d4' : '#3b82f6';
-      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = textColor;
+      ctx.font = `bold ${fontSize}px monospace`;
+
+      let allHitBottom = true;
 
       for (let i = 0; i < drops.length; i++) {
         const text = Math.random() > 0.5 ? '0' : '1';
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        if (drops[i] * fontSize > height && Math.random() > 0.975) {
-          drops[i] = 0;
+        ctx.fillText(text, x, y);
+
+        if (isInitialDrop) {
+          // Phase 1: Simultaneous Drop
+          drops[i] += 1;
+          if (y < height) {
+            allHitBottom = false;
+          }
+        } else {
+          // Phase 2: Randomized Rain
+          drops[i] += speeds[i];
+          if (drops[i] * fontSize > height && Math.random() > 0.975) {
+            drops[i] = 0;
+            speeds[i] = 0.5 + Math.random() * 1.5;
+          }
         }
+      }
 
-        drops[i]++;
+      if (isInitialDrop && allHitBottom) {
+        isInitialDrop = false;
+        // Initialize randomized speeds for Phase 2
+        for (let i = 0; i < speeds.length; i++) {
+          speeds[i] = 0.5 + Math.random() * 1.5;
+        }
       }
     };
 
-    const interval = setInterval(draw, 50);
+    const animationId = requestAnimationFrame(draw);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      // Re-initialize drops on resize if needed
+      const newColumns = Math.floor(width / fontSize);
+      drops = new Array(newColumns).fill(0);
+      speeds = new Array(newColumns).fill(1);
+      isInitialDrop = true;
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, width, height);
     };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
-      clearInterval(interval);
+      cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
   }, [theme]);
@@ -62,7 +112,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none opacity-20 transition-opacity duration-1000"
+      className="fixed inset-0 -z-20 pointer-events-none"
     />
   );
 };

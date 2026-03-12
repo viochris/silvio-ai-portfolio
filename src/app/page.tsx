@@ -19,7 +19,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { ImagePlaceholder, PlaceHolderImages } from '@/lib/placeholder-images';
 
 const projects = [
   { 
@@ -81,7 +80,7 @@ const certifications = [
 
 export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const avatarImage = PlaceHolderImages.find(img => img.id === 'avatar')?.imageUrl;
+  const avatarImage = "/vio-photo.png";
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -127,66 +126,71 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 px-4">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-2">
-              <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1 border-primary/30">
-                Data Scientist & AI Engineer
-              </Badge>
-              <h1 className="text-5xl md:text-7xl font-headline font-black leading-tight tracking-tighter">
-                Silvio Christian <span className="text-primary">Joe</span>
-              </h1>
-              <div className="text-2xl md:text-3xl font-headline text-muted-foreground flex items-center gap-3">
-                <span>I </span>
-                <TypewriterEffect />
-              </div>
-            </div>
-
-            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="rounded-full px-8 font-headline uppercase font-bold tracking-widest" asChild>
-                <a href="#projects">View Projects</a>
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-8 font-headline uppercase font-bold tracking-widest" asChild>
-                <a href="#contact">Chat with AI</a>
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
-              <div>
-                <div className="text-3xl font-headline font-black text-primary">15+</div>
-                <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Projects</div>
-              </div>
-              <div>
-                <div className="text-3xl font-headline font-black text-primary">4+</div>
-                <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Awards</div>
-              </div>
-              <div>
-                <div className="text-3xl font-headline font-black text-primary">99%</div>
-                <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Precision</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative group">
-            <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full animate-pulse-glow" />
-            <div className="relative z-10 space-y-8">
-              <div className="relative w-64 h-64 mx-auto mb-10">
-                <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary animate-[spin_20s_linear_infinite]" />
-                <div className="absolute inset-4 rounded-full border border-primary/20" />
-                <div className="absolute inset-[10px] rounded-full p-2 bg-background shadow-2xl">
-                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={avatarImage} 
-                    alt="Silvio Christian Joe" 
-                    className="w-full h-full object-cover rounded-full border-4 border-primary/10"
-                    data-ai-hint="professional man"
-                  />
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 space-y-8 order-2 lg:order-1">
+              <div className="space-y-2">
+                <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1 border-primary/30">
+                  Data Scientist & AI Engineer
+                </Badge>
+                <div className="flex flex-col md:flex-row md:items-center gap-8">
+                  <div className="space-y-4">
+                    <h1 className="text-5xl md:text-7xl font-headline font-black leading-tight tracking-tighter">
+                      Silvio Christian <span className="text-primary">Joe</span>
+                    </h1>
+                    <div className="text-2xl md:text-3xl font-headline text-muted-foreground flex items-center gap-3">
+                      <span>I </span>
+                      <TypewriterEffect />
+                    </div>
+                    <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                      Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
+                    </p>
+                  </div>
+                  
+                  {/* Photo Profile Placed Next to Text */}
+                  <div className="relative group shrink-0">
+                    <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-pulse-glow" />
+                    <div className="relative z-10 w-48 h-48 md:w-56 md:h-56">
+                      <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary animate-[spin_20s_linear_infinite]" />
+                      <div className="absolute inset-3 rounded-full border border-primary/20" />
+                      <div className="absolute inset-[8px] rounded-full p-1.5 bg-background shadow-2xl">
+                        <img 
+                          src={avatarImage} 
+                          alt="Silvio Christian Joe" 
+                          className="w-full h-full object-cover rounded-full border-4 border-primary/10"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" className="rounded-full px-8 font-headline uppercase font-bold tracking-widest" asChild>
+                  <a href="#projects">View Projects</a>
+                </Button>
+                <Button size="lg" variant="outline" className="rounded-full px-8 font-headline uppercase font-bold tracking-widest" asChild>
+                  <a href="#contact">Chat with AI</a>
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
+                <div>
+                  <div className="text-3xl font-headline font-black text-primary">15+</div>
+                  <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Projects</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-headline font-black text-primary">4+</div>
+                  <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Awards</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-headline font-black text-primary">99%</div>
+                  <div className="text-xs uppercase font-bold opacity-60 tracking-widest">Precision</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1 w-full order-1 lg:order-2">
               <CodeWindow />
             </div>
           </div>
@@ -244,7 +248,6 @@ export default function Home() {
             {projects.map((p) => (
               <Card key={p.id} className="group overflow-hidden border-border bg-card/50 hover:bg-card transition-all duration-300 hover:shadow-2xl">
                 <div className="relative h-64 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                     <div className="flex gap-4">
@@ -276,7 +279,6 @@ export default function Home() {
                       </DialogHeader>
                       <div className="grid md:grid-cols-2 gap-10">
                         <div className="space-y-6">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={p.image} alt={p.title} className="w-full rounded-xl shadow-lg" />
                           <div className="flex flex-wrap gap-2">
                             {p.tech.map(t => <Badge key={t} variant="secondary">{t}</Badge>)}
