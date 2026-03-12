@@ -81,7 +81,7 @@ const certifications = [
 export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [mounted, setMounted] = useState(false);
-  const avatarImage = "/vio-photo.png";
+  const avatarImage = "/vio-image.png";
 
   useEffect(() => {
     setMounted(true);
@@ -90,14 +90,14 @@ export default function Home() {
 
   const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
 
-  // Prevent hydration mismatch
-  if (!mounted) return <div className="min-h-screen bg-[#21212c]" />;
+  if (!mounted) {
+    return <div className="min-h-screen bg-[#21212c]" />;
+  }
 
   return (
     <div className={`min-h-screen selection:bg-primary/30 transition-colors duration-500`}>
       <BinaryBackground theme={theme} />
       
-      {/* Navbar */}
       <nav className="fixed top-0 w-full z-50 glass border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="font-headline font-bold text-xl tracking-tighter flex items-center gap-2">
@@ -129,11 +129,9 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            {/* Column 1: Text & Photo side-by-side */}
             <div className="flex-1 space-y-8 order-1">
               <div className="space-y-2">
                 <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1 border-primary/30">
@@ -153,7 +151,6 @@ export default function Home() {
                     </p>
                   </div>
                   
-                  {/* Photo Profile Next to Text */}
                   <div className="relative group shrink-0">
                     <div className="absolute inset-0 bg-primary/20 blur-[60px] rounded-full animate-pulse-glow" />
                     <div className="relative z-10 w-48 h-48 md:w-56 md:h-56">
@@ -196,7 +193,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Column 2: Code Window */}
             <div className="flex-1 w-full order-2">
               <CodeWindow />
             </div>
@@ -206,7 +202,6 @@ export default function Home() {
 
       <TechMarquee />
 
-      {/* About Section */}
       <section id="about" className="py-24 px-4 bg-muted/20">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
           <div className="space-y-8">
@@ -236,7 +231,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
@@ -319,7 +313,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section */}
       <section id="skills" className="py-24 px-4 bg-muted/20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -375,7 +368,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-24 px-4 bg-background">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
           <div className="space-y-12">
@@ -435,7 +427,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-10 px-4 border-t border-border bg-muted/20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground">
           <div className="font-headline font-bold tracking-tighter">
