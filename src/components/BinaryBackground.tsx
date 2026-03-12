@@ -26,30 +26,30 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    // FPS DIBUAT LAMBAT: 10 FPS untuk efek "hujan di kaca" yang elegan
+    // FPS DIBUAT SANGAT LAMBAT: 10 FPS untuk efek "hujan di kaca" yang tenang
     const fps = 10; 
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    // SINKRONISASI WARNA: Menggunakan warna solid agar tidak ada efek greyish/abu-abu
+    // SINKRONISASI WARNA: Menggunakan warna solid yang identik dengan globals.css
     const getColors = () => {
       if (theme === 'dark') {
         return {
           bg: 'rgb(33, 33, 44)', // Presisi dengan HSL(240, 15, 15)
-          fade: 'rgba(33, 33, 44, 0.2)', // Trail tipis
-          text: 'rgba(6, 182, 212, 0.3)'
+          fade: 'rgba(33, 33, 44, 0.15)', // Trail tipis agar tetap hitam pekat
+          text: 'rgba(6, 182, 212, 0.25)'
         };
       }
       return {
         bg: 'rgb(248, 250, 252)', // Presisi dengan HSL(210, 40, 98)
-        fade: 'rgba(248, 250, 252, 0.2)',
-        text: 'rgba(59, 130, 246, 0.2)'
+        fade: 'rgba(248, 250, 252, 0.15)',
+        text: 'rgba(59, 130, 246, 0.15)'
       };
     };
 
     let colors = getColors();
 
-    // HARD RESET: Membersihkan kanvas total dengan warna solid setiap kali tema berubah
+    // HARD RESET: Membersihkan kanvas total dengan warna solid saat tema berubah
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, width, height);
 
@@ -77,15 +77,15 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
         ctx.fillText(text, x, y);
 
         if (isInitialDrop) {
-          // PHASE 1: JATUH SERENTAK (The Wave)
+          // PHASE 1: JATUH SERENTAK
           drops[i] += 1; 
           if (y < height) allHitBottom = false;
         } else {
-          // PHASE 2: HUJAN ACAK (The Matrix)
+          // PHASE 2: HUJAN ACAK
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.98) {
             drops[i] = 0;
-            speeds[i] = 0.5 + Math.random() * 0.7; // Kecepatan tenang
+            speeds[i] = 0.4 + Math.random() * 0.6; // Kecepatan lambat
           }
         }
       }
@@ -93,7 +93,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (isInitialDrop && allHitBottom) {
         isInitialDrop = false;
         for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.5 + Math.random() * 0.7;
+          speeds[i] = 0.4 + Math.random() * 0.6;
         }
       }
     };

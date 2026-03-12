@@ -163,6 +163,11 @@ export default function Home() {
                           className="w-full h-full object-cover rounded-full border-4 border-primary/10"
                         />
                       </div>
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20">
+                        <Badge className="bg-primary text-white border-none px-4 py-1 shadow-xl font-headline font-bold text-[10px] tracking-widest uppercase whitespace-nowrap">
+                          AI Engineer
+                        </Badge>
+                      </div>
                     </div>
                   </div>
                 </div>
