@@ -2,11 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-interface BinaryBackgroundProps {
-  theme: 'dark' | 'light';
-}
-
-export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => {
+export const BinaryBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,28 +22,18 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    const fps = 8; 
+    const fps = 8; // Slower, more elegant rain
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    const getColors = () => {
-      if (theme === 'dark') {
-        return {
-          bg: 'rgb(16, 17, 22)',
-          fade: 'rgba(16, 17, 22, 0.4)', // Peningkatan alpha agar background lebih cepat bersih
-          text: 'rgba(59, 130, 246, 0.25)' 
-        };
-      }
-      return {
-        bg: 'rgb(248, 250, 252)',
-        fade: 'rgba(248, 250, 252, 0.4)', // Peningkatan alpha agar background lebih cepat bersih
-        text: 'rgba(59, 130, 246, 0.2)'
-      };
+    // Dark Mode colors (Pure Dark)
+    const colors = {
+      bg: 'rgb(16, 17, 22)',
+      fade: 'rgba(16, 17, 22, 0.4)',
+      text: 'rgba(59, 130, 246, 0.25)' 
     };
 
-    let colors = getColors();
-
-    // Pembersihan total instan saat tema berubah untuk memastikan background pekat/bersih
+    // Hard reset canvas to solid black
     ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, width, height);
 
@@ -58,7 +44,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (elapsed < fpsInterval) return;
       lastTime = currentTime - (elapsed % fpsInterval);
 
-      // Trail effect dengan alpha yang lebih tinggi mencegah penumpukan kabut abu-abu
+      // Trailing effect
       ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
@@ -108,7 +94,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [theme]);
+  }, []);
 
   return (
     <canvas

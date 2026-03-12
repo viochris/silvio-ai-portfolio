@@ -4,31 +4,8 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 0 0% 0%; /* Hitam Murni */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 0 0% 15%; /* Jauh lebih gelap untuk keterbacaan di mode terang */
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221 83% 53%;
-    --radius: 1rem;
-  }
-
-  .dark {
-    --background: 240 20% 8%; /* Gelap Pekat */
-    --foreground: 0 0% 100%; /* Putih Murni */
+    --background: 240 20% 8%; /* Deep Dark Background */
+    --foreground: 0 0% 100%; /* Pure White Text */
     --card: 240 20% 10%;
     --card-foreground: 0 0% 100%;
     --popover: 240 20% 10%;
@@ -38,7 +15,7 @@
     --secondary: 240 10% 15%;
     --secondary-foreground: 0 0% 100%;
     --muted: 240 10% 15%;
-    --muted-foreground: 0 0% 90%; /* Putih cerah untuk mode gelap */
+    --muted-foreground: 0 0% 90%; /* Very bright for readability */
     --accent: 240 10% 15%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
@@ -46,6 +23,7 @@
     --border: 240 10% 20%;
     --input: 240 10% 20%;
     --ring: 217 91% 60%;
+    --radius: 1rem;
   }
 }
 

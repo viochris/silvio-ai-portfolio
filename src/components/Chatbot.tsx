@@ -1,10 +1,9 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Loader2, Globe, MessageSquare } from 'lucide-react';
+import { Send, Bot, User, Loader2, Globe } from 'lucide-react';
 import { chatWithAIAssistant } from '@/ai/flows/chat-with-ai-assistant';
 import { cn } from '@/lib/utils';
-import { Badge } from '@/components/ui/badge';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -27,7 +26,7 @@ const parseMarkdown = (text: string) => {
 export const Chatbot: React.FC = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! I'm Silvio's AI assistant. How can I help you today? I can answer questions about Silvio's projects, skills, and background." }
+    { role: 'assistant', content: "Hello! I'm Silvio's AI assistant. How can I help you today?" }
   ]);
   const [language, setLanguage] = useState<'English' | 'Indonesian'>('English');
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +63,7 @@ export const Chatbot: React.FC = () => {
 
       setMessages(prev => [...prev, { role: 'assistant', content: res.response }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now. Please try again later." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now." }]);
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +73,6 @@ export const Chatbot: React.FC = () => {
     <div className="flex flex-col h-[650px] w-full max-w-xl mx-auto border border-border/50 rounded-[2rem] overflow-hidden bg-card/80 backdrop-blur-xl shadow-2xl relative">
       <div className="absolute inset-0 bg-primary/[0.02] pointer-events-none" />
       
-      {/* Header */}
       <div className="p-6 border-b border-border bg-muted/40 flex items-center justify-between relative z-10">
         <div className="flex items-center gap-4">
           <div className="relative">
@@ -99,7 +97,6 @@ export const Chatbot: React.FC = () => {
         </button>
       </div>
 
-      {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary/10 relative z-10">
         {messages.map((m, i) => (
           <div key={i} className={cn("flex items-end gap-3", m.role === 'user' ? 'flex-row-reverse' : 'flex-row')}>
@@ -134,13 +131,12 @@ export const Chatbot: React.FC = () => {
         )}
       </div>
 
-      {/* Input */}
       <form onSubmit={handleSend} className="p-6 border-t border-border bg-muted/20 relative z-10">
         <div className="flex gap-3">
           <input 
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me anything about Silvio..."
+            placeholder="Ask me anything..."
             className="flex-1 bg-background border border-border rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all text-foreground placeholder:text-muted-foreground/50 shadow-inner"
           />
           <button 
