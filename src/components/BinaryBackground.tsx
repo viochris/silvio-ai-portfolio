@@ -22,25 +22,37 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     const fontSize = 16;
     const columns = Math.floor(width / fontSize);
     
-    // Initial state
+    // State animasi
     let drops: number[] = new Array(columns).fill(0);
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    // FPS control for "Rain on Glass" effect (Slow & Elegant)
-    const fps = 18;
+    // FPS Control (Lambat & Elegan seperti hujan di kaca)
+    const fps = 15; 
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    // Precise color matching with globals.css to eliminate "greyish" haze
-    // Dark: hsl(240, 15%, 15%) -> rgb(33, 33, 43)
-    // Light: hsl(210, 40%, 98%) -> rgb(248, 250, 252)
-    const bgColor = theme === 'dark' ? 'rgb(33, 33, 43)' : 'rgb(248, 250, 252)';
-    const fadeColor = theme === 'dark' ? 'rgba(33, 33, 43, 0.15)' : 'rgba(248, 250, 252, 0.15)';
-    const textColor = theme === 'dark' ? 'rgba(6, 182, 212, 0.4)' : 'rgba(59, 130, 246, 0.3)';
+    // Warna presisi sesuai globals.css untuk mencegah efek greyish
+    // Dark: rgb(33, 33, 43) | Light: rgb(248, 250, 252)
+    const getColors = () => {
+      if (theme === 'dark') {
+        return {
+          bg: 'rgb(33, 33, 43)',
+          fade: 'rgba(33, 33, 43, 0.18)',
+          text: 'rgba(6, 182, 212, 0.35)'
+        };
+      }
+      return {
+        bg: 'rgb(248, 250, 252)',
+        fade: 'rgba(248, 250, 252, 0.18)',
+        text: 'rgba(59, 130, 246, 0.25)'
+      };
+    };
 
-    // HARD RESET: Clear canvas with solid color on theme change
-    ctx.fillStyle = bgColor;
+    let colors = getColors();
+
+    // HARD RESET: Bersihkan total dengan warna solid saat mount atau ganti tema
+    ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, width, height);
 
     const draw = (currentTime: number) => {
@@ -50,11 +62,11 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
       if (elapsed < fpsInterval) return;
       lastTime = currentTime - (elapsed % fpsInterval);
 
-      // Create trail effect
-      ctx.fillStyle = fadeColor;
+      // Trail effect
+      ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
-      ctx.fillStyle = textColor;
+      ctx.fillStyle = colors.text;
       ctx.font = `bold ${fontSize}px monospace`;
 
       let allHitBottom = true;
@@ -67,26 +79,24 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
         ctx.fillText(text, x, y);
 
         if (isInitialDrop) {
-          // Phase 1: Simultaneous Drop (The Wave)
-          drops[i] += 1.5; // Slightly faster for the initial drop
-          if (y < height) {
-            allHitBottom = false;
-          }
+          // Fase 1: Jatuh Serentak (The Wave)
+          drops[i] += 1; 
+          if (y < height) allHitBottom = false;
         } else {
-          // Phase 2: Randomized Rain (The Matrix)
+          // Fase 2: Hujan Acak (The Matrix)
           drops[i] += speeds[i];
           if (drops[i] * fontSize > height && Math.random() > 0.975) {
             drops[i] = 0;
-            speeds[i] = 0.5 + Math.random() * 1.5;
+            speeds[i] = 0.4 + Math.random() * 0.8; // Kecepatan lambat
           }
         }
       }
 
       if (isInitialDrop && allHitBottom) {
         isInitialDrop = false;
-        // Initialize randomized speeds for Phase 2
+        // Reset kecepatan untuk fase acak
         for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.5 + Math.random() * 1.5;
+          speeds[i] = 0.4 + Math.random() * 0.8;
         }
       }
     };
@@ -96,16 +106,11 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      const newColumns = Math.floor(width / fontSize);
-      drops = new Array(newColumns).fill(0);
-      speeds = new Array(newColumns).fill(1);
-      isInitialDrop = true;
-      ctx.fillStyle = bgColor;
+      ctx.fillStyle = colors.bg;
       ctx.fillRect(0, 0, width, height);
     };
 
     window.addEventListener('resize', handleResize);
-
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
@@ -116,6 +121,7 @@ export const BinaryBackground: React.FC<BinaryBackgroundProps> = ({ theme }) => 
     <canvas
       ref={canvasRef}
       className="fixed inset-0 -z-20 pointer-events-none"
+      style={{ filter: 'contrast(1.1)' }}
     />
   );
 };

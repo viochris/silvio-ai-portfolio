@@ -80,13 +80,18 @@ const certifications = [
 
 export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [mounted, setMounted] = useState(false);
   const avatarImage = "/vio-photo.png";
 
   useEffect(() => {
+    setMounted(true);
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+
+  // Prevent hydration mismatch
+  if (!mounted) return <div className="min-h-screen bg-[#21212c]" />;
 
   return (
     <div className={`min-h-screen selection:bg-primary/30 transition-colors duration-500`}>
