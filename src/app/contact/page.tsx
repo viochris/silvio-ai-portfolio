@@ -57,19 +57,19 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Social Links - Ensuring Horizontal Flex */}
-          <div className="pt-12 border-t border-white/10 flex flex-wrap gap-5 justify-center lg:justify-start">
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[160px] transition-all" asChild>
+          {/* Social Links - Fixed Horizontal Flex */}
+          <div className="pt-12 border-t border-white/10 flex flex-wrap items-center gap-5 justify-center lg:justify-start">
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-3 w-5 h-5 text-primary" /> LinkedIn
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[160px] transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
               <a href="https://github.com" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-3 w-5 h-5 text-primary" /> GitHub
               </a>
             </Button>
-             <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[160px] transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                 <Instagram className="mr-3 w-5 h-5 text-primary" /> Instagram
               </a>
