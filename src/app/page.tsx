@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -56,13 +57,13 @@ export default function Home() {
                   </h1>
                 </div>
                 
-                <div className="text-xl md:text-2xl lg:text-3xl font-headline text-white flex items-center gap-3 min-h-[40px] justify-center lg:justify-start">
-                  <span className="hidden sm:inline">I </span>
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white min-h-[40px]">
+                  <span>I</span>
                   <TypewriterEffect />
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
+                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment.
                 </p>
               </div>
 

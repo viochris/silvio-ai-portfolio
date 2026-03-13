@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -5,9 +6,8 @@ import React, { useState, useEffect } from 'react';
 const words = [
   "analyze Tabular Data.",
   "build AI Chatbots.",
-  "engineer LLM Pipelines.",
-  "deploy Scalable ML APIs.",
-  "optimize NLP Models."
+  "engineer ML Models.",
+  "develop Stunting APIs."
 ];
 
 export const TypewriterEffect: React.FC = () => {
@@ -41,7 +41,7 @@ export const TypewriterEffect: React.FC = () => {
   }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
   return (
-    <span className="text-primary font-code inline-block min-w-[200px]">
+    <span className="text-primary font-code inline-block">
       {currentText}
       <span className="animate-typing border-r-2 border-primary ml-1" />
     </span>
