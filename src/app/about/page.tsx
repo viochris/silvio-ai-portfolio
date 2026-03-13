@@ -32,14 +32,20 @@ export default function AboutPage() {
             </div>
 
             <div className="flex gap-6 pt-4">
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all">
-                <Github className="w-6 h-6" />
+              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
+                <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-6 h-6" />
+                </a>
               </Button>
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all">
-                <Linkedin className="w-6 h-6" />
+              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
+                <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-6 h-6" />
+                </a>
               </Button>
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all">
-                <Mail className="w-6 h-6" />
+              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
+                <a href="mailto:viochristian12@gmail.com">
+                  <Mail className="w-6 h-6" />
+                </a>
               </Button>
             </div>
           </div>
