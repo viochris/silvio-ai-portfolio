@@ -18,6 +18,8 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  const cvLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
+
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -53,8 +55,10 @@ export const Navbar: React.FC = () => {
 
         {/* Right Actions (CV & Mobile Menu) */}
         <div className="flex items-center gap-4">
-          <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6">
-            <Download className="w-4 h-4" /> CV
+          <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6" asChild>
+            <a href={cvLink} target="_blank" rel="noopener noreferrer">
+              <Download className="w-4 h-4" /> CV
+            </a>
           </Button>
 
           {/* Mobile Menu Trigger */}
@@ -87,8 +91,10 @@ export const Navbar: React.FC = () => {
                     </Link>
                   ))}
                   <div className="pt-6 border-t border-border mt-4">
-                    <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest" onClick={() => setIsOpen(false)}>
-                      <Download className="w-4 h-4" /> Download CV
+                    <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest" asChild onClick={() => setIsOpen(false)}>
+                      <a href={cvLink} target="_blank" rel="noopener noreferrer">
+                        <Download className="w-4 h-4" /> Download CV
+                      </a>
                     </Button>
                   </div>
                 </div>

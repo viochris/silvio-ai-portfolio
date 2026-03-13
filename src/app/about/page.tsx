@@ -1,12 +1,16 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3 } from 'lucide-react';
 import { Timeline } from '@/components/Timeline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 export default function AboutPage() {
+  const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
+  const cvRawLink = "https://github.com/viochris/viochris/raw/main/CV_Silvio_Christian_Joe_Data_Scientist.pdf";
+
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="about" className="max-w-7xl mx-auto">
@@ -93,8 +97,35 @@ export default function AboutPage() {
           ))}
         </div>
 
+        {/* Section: GitHub Performance */}
+        <div className="mb-32 space-y-16">
+          <div className="text-center space-y-4">
+            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
+            <h3 className="text-3xl md:text-4xl font-headline font-black uppercase tracking-tighter text-white flex items-center justify-center gap-4">
+              <BarChart3 className="text-primary w-8 h-8" /> GitHub Performance
+            </h3>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="p-6 md:p-8 glass rounded-[2.5rem] border-white/10 flex items-center justify-center bg-white/[0.02] overflow-hidden shadow-2xl">
+              <img 
+                src="https://github-readme-streak-stats.herokuapp.com/?user=viochris&theme=radical&hide_border=true" 
+                alt="GitHub Streak" 
+                className="w-full h-auto max-w-lg object-contain"
+              />
+            </div>
+            <div className="p-6 md:p-8 glass rounded-[2.5rem] border-white/10 flex items-center justify-center bg-white/[0.02] overflow-hidden shadow-2xl">
+              <img 
+                src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=viochris&theme=radical" 
+                alt="Productive Time" 
+                className="w-full h-auto max-w-lg object-contain"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Section: Beyond The Code */}
-        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden">
+        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-24">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 text-center lg:text-left">
@@ -107,10 +138,10 @@ export default function AboutPage() {
                   When I'm not architecting neural networks or optimizing ETL pipelines, I enjoy contributing to the open-source community and participating in AI hackathons. 
                 </p>
                 <p>
-                  I'm a firm believer in lifelong learning and often spend my weekends experimenting with new LLM frameworks or exploring the intersections of AI and human psychology. 
+                  I'm a firm believer in lifelong learning and often spend my weekends experimenting with new LLM frameworks atau menjelajahi persimpangan antara AI dan psikologi manusia. 
                 </p>
                 <p>
-                  My goal is to create technology that is not just powerful, but truly beneficial and intuitive for human users.
+                  Tujuan saya adalah menciptakan teknologi yang tidak hanya kuat, tetapi benar-benar bermanfaat dan intuitif bagi pengguna manusia.
                 </p>
               </div>
             </div>
@@ -127,6 +158,29 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Section: Connect & Resume Badges */}
+        <div className="text-center space-y-12">
+          <div className="space-y-4">
+            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Connect & Resume</h3>
+            <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
+          </div>
+          
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a href={cvRawLink} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+              <img src="https://img.shields.io/badge/Download_CV_(PDF)-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
+            </a>
+            <a href={cvDriveLink} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+              <img src="https://img.shields.io/badge/View_on_Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white" alt="View CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
+            </a>
+            <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform">
+              <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
+            </a>
+            <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+              <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-10 md:h-12 shadow-xl rounded-lg" />
+            </a>
           </div>
         </div>
       </section>
