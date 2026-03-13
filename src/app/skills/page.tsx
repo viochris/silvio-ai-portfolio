@@ -1,10 +1,13 @@
+
 "use client"
 
-import React from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
+import { AllCredentialsPage } from '@/components/AllCredentialsPage';
 
 const skills = [
   { name: "NLP", value: 90 },
@@ -13,12 +16,6 @@ const skills = [
   { name: "Data", value: 95 },
   { name: "ML", value: 88 },
   { name: "Cloud", value: 75 }
-];
-
-const certifications = [
-  { title: "Oracle AI Vector Search", issuer: "Oracle", icon: <Award className="w-6 h-6" /> },
-  { title: "IBM Regression Specialist", issuer: "IBM", icon: <Award className="w-6 h-6" /> },
-  { title: "IBM Classification Certification", issuer: "IBM", icon: <Award className="w-6 h-6" /> },
 ];
 
 const techStacks = [
@@ -91,6 +88,12 @@ const techStacks = [
 ];
 
 export default function SkillsPage() {
+  const [activeTab, setActiveTab] = useState('Skills');
+
+  if (activeTab === 'Credentials') {
+    return <AllCredentialsPage setActiveTab={setActiveTab} />;
+  }
+
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="skills" className="max-w-7xl mx-auto overflow-hidden">
@@ -163,30 +166,55 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Certifications Section */}
-        <div className="mt-20">
-          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Certifications & Accreditations</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-            {certifications.map((c, i) => (
-              <div key={i} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5 min-w-0 h-full">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner shrink-0">
-                  {c.icon}
+        {/* Professional Certifications Preview */}
+        <div className="mb-40">
+          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {professionalCertifications.slice(0, 4).map((c) => (
+              <div key={c.id} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group shadow-xl h-full">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <Award className="w-6 h-6" />
                 </div>
-                <div className="min-w-0 flex-1 overflow-hidden">
-                  <div className="text-lg md:text-xl font-headline font-bold leading-tight text-white break-words whitespace-normal">{c.title}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight">{c.title}</div>
                   <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer} Professional</div>
                 </div>
               </div>
             ))}
-            <div className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5 min-w-0 h-full border-dashed">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary/30 shrink-0">
-                <ShieldCheck className="w-6 h-6" />
+          </div>
+          <div className="flex justify-center mt-12">
+            <button 
+              onClick={() => setActiveTab('Credentials')} 
+              className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
+            >
+              Explore All Certifications <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Course Badges Preview */}
+        <div className="mt-20">
+          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {courseBadges.slice(0, 4).map((b) => (
+              <div key={b.id} className="p-6 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col gap-4 hover:border-primary/50 transition-all group shadow-xl">
+                <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-sm font-bold text-white mb-2 leading-tight">{b.title}</div>
+                  <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer} Specialized</div>
+                </div>
               </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-lg font-headline font-bold text-white/40 italic">Continuous Learning...</div>
-                <div className="text-[10px] font-bold uppercase text-white/20 tracking-widest mt-2">More Coming Soon</div>
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className="flex justify-center mt-12">
+            <button 
+              onClick={() => setActiveTab('Credentials')} 
+              className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
+            >
+              Explore All Badges <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
