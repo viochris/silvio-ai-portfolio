@@ -1,7 +1,7 @@
 
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
@@ -92,8 +92,25 @@ export default function SkillsPage() {
   const { 
     activeTab, setActiveTab, 
     credentialTab, setCredentialTab,
-    setIsReturning 
+    isReturning, setIsReturning 
   } = useNavigation();
+
+  // Smart Auto-Scroll logic when returning from Credentials
+  useEffect(() => {
+    if (isReturning) {
+      const timer = setTimeout(() => {
+        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
+        const element = document.getElementById(targetId);
+        if (element) {
+          const yOffset = -100; // Adjust for sticky navbar
+          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        setIsReturning(false); // Reset the flag after scrolling
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isReturning, credentialTab, setIsReturning]);
 
   if (activeTab === 'Credentials') {
     return (
