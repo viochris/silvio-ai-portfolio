@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState, useMemo } from 'react';
-import { Github, ExternalLink, Code2, Search, Filter, ChevronDown } from 'lucide-react';
+import { Github, ExternalLink, Code2, Search, Filter, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -13,6 +13,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from 'next/link';
+import { useNavigation } from '@/app/layout';
 
 type Category = "All" | "GenAI" | "Backend" | "Automation" | "Data Science" | "Analytics" | "Fun";
 
@@ -74,6 +76,7 @@ const categories: Category[] = ["All", "GenAI", "Backend", "Automation", "Data S
 export default function RepositoryPage() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const { setActiveTab } = useNavigation();
 
   const filteredRepos = useMemo(() => {
     return repos.filter(repo => {
@@ -87,6 +90,17 @@ export default function RepositoryPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="repository" className="max-w-7xl mx-auto">
+        {/* Back Button */}
+        <div className="mb-12">
+          <Link 
+            href="/projects" 
+            onClick={() => setActiveTab('Projects')}
+            className="flex items-center gap-2 text-primary font-headline font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all w-fit"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to Projects
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="space-y-8 mb-16 text-center lg:text-left">
           <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Github</Badge>
