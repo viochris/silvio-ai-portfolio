@@ -46,6 +46,33 @@ export default function RootLayout({
     document.documentElement.classList.add('dark');
   }, []);
 
+  // CENTRALIZED SCROLL LOGIC
+  useEffect(() => {
+    if (activeTab === 'Skills' && isReturning) {
+      // We are returning from Credentials to Skills. Scroll to the specific section.
+      const timer = setTimeout(() => {
+        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
+        const element = document.getElementById(targetId);
+        if (element) {
+          const yOffset = -100; // Adjust for navbar
+          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        setIsReturning(false); // Reset flag after scrolling
+      }, 150); // Slightly longer delay to ensure DOM is fully rendered
+      return () => clearTimeout(timer);
+    } else {
+      // For ANY OTHER tab change (including clicking Skills from Navbar), FORCE scroll to top immediately.
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      
+      // Fallback: Force it again after a tiny delay in case React rendering overrides it
+      const fallbackTimer = setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 50);
+      return () => clearTimeout(fallbackTimer);
+    }
+  }, [activeTab, isReturning, credentialTab]);
+
   if (!mounted) {
     return (
       <html lang="en" className="dark">
@@ -119,7 +146,6 @@ export default function RootLayout({
                               if (item.name === 'Skills') {
                                 setIsReturning(false);
                                 setActiveTab('Skills');
-                                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                               }
                             }}
                             className="text-slate-400 hover:text-primary transition-colors w-fit text-sm font-medium"

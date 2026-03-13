@@ -123,7 +123,6 @@ export const Navbar: React.FC = () => {
                 if (link.name === 'Skills') {
                   setIsReturning(false);
                   setActiveTab('Skills');
-                  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                 }
               }}
               className={cn(
@@ -175,7 +174,6 @@ export const Navbar: React.FC = () => {
                         if (link.name === 'Skills') {
                           setIsReturning(false);
                           setActiveTab('Skills');
-                          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
                         }
                       }}
                       className={cn(

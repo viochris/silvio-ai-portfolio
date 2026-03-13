@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
@@ -91,29 +91,9 @@ const techStacks = [
 export default function SkillsPage() {
   const { 
     activeTab, setActiveTab, 
-    isReturning, setIsReturning, 
-    credentialTab, setCredentialTab 
+    credentialTab, setCredentialTab,
+    setIsReturning 
   } = useNavigation();
-
-  useEffect(() => {
-    if (isReturning) {
-      // ONLY scroll down if explicitly returning from the All Credentials page
-      const timer = setTimeout(() => {
-        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
-        const element = document.getElementById(targetId);
-        if (element) {
-          const yOffset = -100; // Offset by 100px to prevent the sticky navbar from hiding the title
-          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-        setIsReturning(false); // Reset flag immediately after scrolling
-      }, 100);
-      return () => clearTimeout(timer);
-    } else {
-      // If opening normally from Navbar, FORCE scroll to the absolute top
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }
-  }, [isReturning, credentialTab, setIsReturning]);
 
   if (activeTab === 'Credentials') {
     return (
