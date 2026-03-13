@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { ExternalLink, ChevronRight, Brain, Sparkles, Terminal, Cpu } from 'lucide-react';
+import { ExternalLink, ChevronRight, Brain, Sparkles } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -74,8 +74,9 @@ export default function ProjectsPage() {
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
-            <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2.5rem]">
-              <div className="relative h-80 overflow-hidden">
+            <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2.5rem] flex flex-col h-full">
+              {/* Image Container */}
+              <div className="relative h-72 lg:h-80 overflow-hidden shrink-0">
                 <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
                   <Button size="lg" className="rounded-full font-bold shadow-xl px-10" asChild>
@@ -85,16 +86,30 @@ export default function ProjectsPage() {
                   </Button>
                 </div>
               </div>
-              <CardHeader className="p-10">
+
+              {/* Card Body */}
+              <CardHeader className="p-10 flex-1 flex flex-col">
                 <div className="flex flex-wrap gap-2 mb-6">
                   {p.tech.slice(0, 3).map(t => (
                     <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1">{t}</Badge>
                   ))}
                 </div>
-                <CardTitle className="text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors">{p.title}</CardTitle>
-                <CardDescription className="text-lg text-muted-foreground mt-4 line-clamp-2 font-medium leading-relaxed">{p.desc}</CardDescription>
+                
+                {/* Title with fixed minimum height for alignment */}
+                <div className="min-h-[4rem] lg:min-h-[5rem]">
+                  <CardTitle className="text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                    {p.title}
+                  </CardTitle>
+                </div>
+
+                {/* Description with fixed clamp height */}
+                <CardDescription className="text-lg text-muted-foreground mt-4 font-medium leading-relaxed line-clamp-2 h-14">
+                  {p.desc}
+                </CardDescription>
               </CardHeader>
-              <CardContent className="px-10 pb-10 pt-0">
+
+              {/* Card Footer / Action */}
+              <CardContent className="px-10 pb-10 pt-0 mt-auto">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full rounded-2xl font-headline font-bold uppercase tracking-widest text-xs h-14 hover:bg-primary hover:text-primary-foreground transition-all">
