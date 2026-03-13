@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Download, Menu, X } from 'lucide-react';
+import { Download, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 glass border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="font-headline font-bold text-xl tracking-tighter flex items-center gap-2 text-foreground">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">S</div>
@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-headline font-bold uppercase tracking-widest">
+        <div className="hidden md:flex items-center gap-10 text-sm font-headline font-bold uppercase tracking-widest">
           {navLinks.map((link) => (
             <Link 
               key={link.href} 
@@ -53,7 +53,7 @@ export const Navbar: React.FC = () => {
 
         {/* Right Actions (CV & Mobile Menu) */}
         <div className="flex items-center gap-4">
-          <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest">
+          <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6">
             <Download className="w-4 h-4" /> CV
           </Button>
 

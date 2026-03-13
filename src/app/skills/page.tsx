@@ -23,61 +23,61 @@ const certifications = [
 
 export default function SkillsPage() {
   return (
-    <div className="pt-32 pb-24 px-4 min-h-screen">
+    <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="skills" className="max-w-7xl mx-auto overflow-hidden">
-        <div className="text-center mb-16 md:mb-20 space-y-4">
-          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase">Core Capabilities</Badge>
-          <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+        <div className="text-center mb-24 space-y-6">
+          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Core Capabilities</Badge>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
             Skill <span className="text-primary">Architecture</span>
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto text-base md:text-lg font-medium">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
+          <p className="text-white/70 max-w-2xl mx-auto text-lg lg:text-xl font-medium">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Radar Chart Container - Improved for Mobile */}
-          <div className="p-6 md:p-10 glass rounded-[2.5rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[500px] mx-auto">
-            <div className="absolute top-6 left-6 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
-            <div className="w-full flex justify-center scale-90 sm:scale-100">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Radar Chart Container */}
+          <div className="p-10 lg:p-14 glass rounded-[3rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[550px] mx-auto">
+            <div className="absolute top-8 left-8 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
+            <div className="w-full flex justify-center">
               <RadarChart skills={skills} />
             </div>
           </div>
           
-          {/* Skills List - Better Spacing for Mobile */}
-          <div className="grid gap-8 md:gap-10 w-full">
+          {/* Skills List */}
+          <div className="grid gap-10 md:gap-12 w-full">
             {skills.map((s) => (
-              <div key={s.name} className="space-y-4">
-                <div className="flex justify-between items-center font-headline font-bold text-xs md:text-sm uppercase tracking-widest text-white">
-                  <span className="flex items-center gap-3">
-                    {s.name === 'NLP' && <Languages className="w-4 h-4 text-primary" />}
-                    {s.name === 'GenAI' && <Sparkles className="w-4 h-4 text-primary" />}
-                    {s.name === 'Backend' && <Code className="w-4 h-4 text-primary" />}
-                    {s.name === 'Data' && <Database className="w-4 h-4 text-primary" />}
-                    {s.name === 'ML' && <Brain className="w-4 h-4 text-primary" />}
-                    {s.name === 'Cloud' && <Cloud className="w-4 h-4 text-primary" />}
+              <div key={s.name} className="space-y-5">
+                <div className="flex justify-between items-center font-headline font-bold text-sm md:text-base uppercase tracking-widest text-white">
+                  <span className="flex items-center gap-4">
+                    {s.name === 'NLP' && <Languages className="w-5 h-5 text-primary" />}
+                    {s.name === 'GenAI' && <Sparkles className="w-5 h-5 text-primary" />}
+                    {s.name === 'Backend' && <Code className="w-5 h-5 text-primary" />}
+                    {s.name === 'Data' && <Database className="w-5 h-5 text-primary" />}
+                    {s.name === 'ML' && <Brain className="w-5 h-5 text-primary" />}
+                    {s.name === 'Cloud' && <Cloud className="w-5 h-5 text-primary" />}
                     {s.name}
                   </span>
                   <span className="text-primary">{s.value}%</span>
                 </div>
                 <div className="relative pt-1">
-                  <Progress value={s.value} className="h-2.5 md:h-3 bg-white/5 border border-white/10" />
+                  <Progress value={s.value} className="h-3.5 bg-white/5 border border-white/10" />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Certifications Section - Improved Spacing */}
-        <div className="mt-24 md:mt-32">
-          <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-widest text-center mb-12 md:mb-16 text-white">Certifications & Accreditations</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Certifications Section */}
+        <div className="mt-32 lg:mt-40">
+          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Certifications & Accreditations</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {certifications.map((c, i) => (
-              <div key={i} className="p-6 md:p-8 glass rounded-3xl border border-white/10 flex items-center gap-5 md:gap-6 hover:border-primary/50 transition-all group cursor-default shadow-lg hover:shadow-primary/5">
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner shrink-0">
+              <div key={i} className="p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner shrink-0">
                   {c.icon}
                 </div>
                 <div className="min-w-0 overflow-hidden">
-                  <div className="text-base md:text-lg font-headline font-bold leading-tight text-white break-words">{c.title}</div>
-                  <div className="text-[10px] md:text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-1.5">{c.issuer} Professional</div>
+                  <div className="text-lg md:text-xl font-headline font-bold leading-tight text-white break-words">{c.title}</div>
+                  <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer} Professional</div>
                 </div>
               </div>
             ))}

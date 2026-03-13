@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Brain, Cpu, Database, Sparkles, BarChart3, Rocket } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -18,12 +18,12 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <div className="pt-24 lg:pt-32 min-h-screen">
-      <section id="home" className="pb-20 px-4 md:px-8">
+    <div className="pt-32 lg:pt-40 min-h-screen">
+      <section id="home" className="pb-20 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
           
           {/* Row 1: Hero Content (Photo & Intro) */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
             
             {/* Left Column: Profile Image */}
             <div className="flex justify-center">
@@ -83,25 +83,25 @@ export default function Home() {
           </div>
 
           {/* Row 2: Stats Block - Full Width under Photo & Intro */}
-          <div className="w-full mb-24">
-            <div className="grid grid-cols-3 gap-8 md:gap-12 py-12 border-t border-b border-white/10 w-full max-w-5xl mx-auto">
+          <div className="w-full mb-32">
+            <div className="grid grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full max-w-5xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">15+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Projects Completed</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Projects Completed</div>
               </div>
               <div className="text-center border-x border-white/10">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">4+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Awards & Honors</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Awards & Honors</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">99%</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Model Precision</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Model Precision</div>
               </div>
             </div>
           </div>
 
           {/* Row 3: Core Expertise (Replacing CodeWindow) */}
-          <div className="space-y-12">
+          <div className="space-y-16 pb-12">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Expertise</Badge>
               <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
@@ -109,7 +109,7 @@ export default function Home() {
               </h2>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-10">
               {[
                 {
                   title: "Natural Language Processing",
@@ -130,13 +130,13 @@ export default function Home() {
                   label: "GenAI"
                 }
               ].map((skill, idx) => (
-                <div key={idx} className="p-8 glass rounded-[2rem] border-white/5 hover:border-primary/30 transition-all duration-500 group">
+                <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group">
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                     {skill.icon}
                   </div>
-                  <Badge className="bg-primary/10 text-primary border-none mb-4 uppercase text-[10px] font-bold tracking-widest">{skill.label}</Badge>
+                  <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest">{skill.label}</Badge>
                   <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4">{skill.title}</h3>
-                  <p className="text-sm text-white/60 leading-relaxed">{skill.desc}</p>
+                  <p className="text-sm text-white/60 leading-relaxed font-medium">{skill.desc}</p>
                 </div>
               ))}
             </div>
