@@ -70,7 +70,7 @@ export default function ContactPage() {
               </a>
             </Button>
             <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" target="_blank" rel="noopener noreferrer">
                 <Instagram className="mr-3 w-5 h-5 text-primary" /> Instagram
               </a>
             </Button>
