@@ -2,11 +2,17 @@
 "use client"
 
 import React, { useState, useMemo } from 'react';
-import { Github, Star, GitFork, ExternalLink, Code2, Search, Filter } from 'lucide-react';
+import { Github, ExternalLink, Code2, Search, Filter, ChevronDown } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Category = "All" | "GenAI" | "Backend" | "Automation" | "Data Science" | "Analytics" | "Fun";
 
@@ -80,37 +86,44 @@ export default function RepositoryPage() {
           </p>
         </div>
 
-        {/* Search & Filter Controls */}
-        <div className="flex flex-col gap-8 mb-16 bg-white/5 p-8 rounded-[2.5rem] border border-white/10 shadow-xl">
-          <div className="relative w-full">
+        {/* Search & Filter Controls - Horizontal Layout */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-16 bg-white/5 p-4 rounded-3xl border border-white/10 shadow-xl items-stretch">
+          <div className="relative flex-1">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
             <Input 
-              placeholder="Search projects by name or description..." 
+              placeholder="Search projects..." 
               className="pl-14 h-14 bg-black/40 border-white/10 rounded-2xl focus:ring-primary text-white placeholder:text-white/30"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="flex flex-wrap gap-3 items-center">
-            <Filter className="w-5 h-5 text-primary mr-2" />
-            {categories.map((cat) => (
-              <Button
-                key={cat}
-                variant={activeCategory === cat ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveCategory(cat)}
-                className={`rounded-full px-6 font-bold uppercase tracking-widest text-[10px] h-10 transition-all ${
-                  activeCategory === cat ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'border-white/10 text-white/60 hover:bg-white/5'
-                }`}
-              >
-                {cat}
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="h-14 px-6 rounded-2xl border-white/10 bg-black/40 hover:bg-white/5 text-white font-headline font-bold uppercase tracking-widest text-[10px] flex gap-3 shadow-lg">
+                <Filter className="w-4 h-4 text-primary" />
+                <span>{activeCategory}</span>
+                <ChevronDown className="w-4 h-4 opacity-50" />
               </Button>
-            ))}
-          </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 bg-card border-border rounded-xl p-1 z-[100]">
+              {categories.map((cat) => (
+                <DropdownMenuItem 
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`cursor-pointer font-headline font-bold uppercase tracking-widest text-[10px] px-4 py-3 rounded-lg transition-colors ${
+                    activeCategory === cat ? 'bg-primary text-white' : 'hover:bg-white/5 text-white/70'
+                  }`}
+                >
+                  {cat}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Results Info */}
-        <div className="mb-8 text-sm text-white/40 font-bold uppercase tracking-widest">
+        <div className="mb-8 text-sm text-white/40 font-bold uppercase tracking-widest px-2">
           Showing {filteredRepos.length} Projects
         </div>
 
