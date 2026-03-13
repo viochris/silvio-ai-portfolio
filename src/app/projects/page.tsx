@@ -89,10 +89,16 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-10 flex-1 flex flex-col">
-                <div className="flex flex-wrap gap-2 mb-6">
+                {/* Horizontal Tech Tags - flex-nowrap with overflow-hidden to prevent wrapping */}
+                <div className="flex flex-nowrap items-center gap-2 mb-6 overflow-hidden">
                   {p.tech.slice(0, 3).map(t => (
-                    <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1">{t}</Badge>
+                    <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap">
+                      {t}
+                    </Badge>
                   ))}
+                  {p.tech.length > 3 && (
+                    <span className="text-[10px] font-bold text-muted-foreground whitespace-nowrap">+{p.tech.length - 3}</span>
+                  )}
                 </div>
                 
                 {/* Title with fixed minimum height for alignment */}
