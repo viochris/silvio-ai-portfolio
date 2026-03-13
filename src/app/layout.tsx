@@ -55,17 +55,12 @@ export default function RootLayout({
               <main className="min-h-screen">
                 {children}
               </main>
-              <footer className="py-10 px-4 border-t border-border bg-muted/20">
+              <footer className="py-10 px-6 border-t border-border bg-muted/20">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white">
-                  <div className="font-headline font-bold tracking-tighter">
+                  <div className="font-headline font-bold tracking-tighter uppercase">
                     © {new Date().getFullYear()} SILVIO.AI PORTFOLIO
                   </div>
-                  <div className="flex gap-8 font-bold uppercase text-[10px] tracking-widest">
-                    <a href="#" className="hover:text-primary transition-colors">Privacy</a>
-                    <a href="#" className="hover:text-primary transition-colors">Terms</a>
-                    <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
-                  </div>
-                  <div className="text-[10px] font-code opacity-50 uppercase tracking-widest">
+                  <div className="text-[10px] font-code opacity-50 uppercase tracking-[0.3em] text-center md:text-right">
                     Handcrafted with Next.js & Genkit
                   </div>
                 </div>
