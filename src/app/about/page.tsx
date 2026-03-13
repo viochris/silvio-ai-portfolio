@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye } from 'lucide-react';
 import { Timeline } from '@/components/Timeline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -173,73 +173,65 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Connect & Resume Badges */}
+        {/* Section: Connect & Resume */}
         <div className="text-center space-y-12">
           <div className="space-y-4">
             <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Connect & Resume</h3>
             <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
           </div>
           
-          <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-12 max-w-2xl mx-auto items-center justify-items-center">
-            {/* Baris 1 Kolom 1: Download CV */}
-            <div className="w-full flex justify-center">
-              <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
-                <img 
-                  src="https://img.shields.io/badge/Download_CV-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" 
-                  alt="Download CV" 
-                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
-                />
-              </a>
-            </div>
+          <div className="w-full max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8">
+            {/* Row 1: Download & View */}
+            <a 
+              href={cvRawLink} 
+              download="vio-cv.pdf" 
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
+              style={{ backgroundColor: '#ED2224' }}
+            >
+              <Download className="w-5 h-5" /> DOWNLOAD CV
+            </a>
 
-            {/* Baris 1 Kolom 2: View CV */}
-            <div className="w-full flex justify-center">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="hover:scale-110 transition-transform cursor-pointer border-none bg-transparent p-0 outline-none w-full max-w-[180px] md:max-w-[220px]">
-                    <img 
-                      src="https://img.shields.io/badge/View_CV-4285F4?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" 
-                      alt="View CV" 
-                      className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
-                    />
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
-                  <DialogHeader className="pb-4 border-b border-border">
-                    <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
-                  </DialogHeader>
-                  <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
-                    <iframe 
-                      src={`${cvRawLink}#view=FitH&toolbar=0`} 
-                      className="w-full h-full border-none"
-                      title="CV Preview"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 text-left"
+                  style={{ backgroundColor: '#4285F4' }}
+                >
+                  <Eye className="w-5 h-5" /> VIEW CV
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
+                <DialogHeader className="pb-4 border-b border-border">
+                  <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
+                </DialogHeader>
+                <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
+                  <iframe 
+                    src={`${cvRawLink}#view=FitH&toolbar=0`} 
+                    className="w-full h-full border-none"
+                    title="CV Preview"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
 
-            {/* Baris 2 Kolom 1: Gmail */}
-            <div className="w-full flex justify-center">
-              <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
-                <img 
-                  src="https://img.shields.io/badge/Gmail_Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white" 
-                  alt="Email" 
-                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
-                />
-              </a>
-            </div>
+            {/* Row 2: Gmail & LinkedIn */}
+            <a 
+              href="mailto:viochristian12@gmail.com"
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
+              style={{ backgroundColor: '#D14836' }}
+            >
+              <Mail className="w-5 h-5" /> GMAIL CONTACT
+            </a>
 
-            {/* Baris 2 Kolom 2: LinkedIn */}
-            <div className="w-full flex justify-center">
-              <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
-                <img 
-                  src="https://img.shields.io/badge/LinkedIn_Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" 
-                  alt="LinkedIn" 
-                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
-                />
-              </a>
-            </div>
+            <a 
+              href="https://www.linkedin.com/in/silvio-christian-joe" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
+              style={{ backgroundColor: '#0077B5' }}
+            >
+              <Linkedin className="w-5 h-5" /> LINKEDIN PROFILE
+            </a>
           </div>
         </div>
       </section>
