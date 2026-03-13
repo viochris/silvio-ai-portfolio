@@ -39,14 +39,26 @@ const repos = [
   { name: "NovaCal AI (Stateful Telegram)", type: "Automation", tech: "LangChain, SQL", desc: "SQL-backed Telegram bot for natural multi-turn calendar management.", link: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
   { name: "NovaCal AI (Ephemeral)", type: "Automation", tech: "LangChain, RAM", desc: "Slot-filling calendar assistant using RAM-based memory to save tokens.", link: "https://github.com/viochris/NovaCal-Ephemeral-AI.git" },
   { name: "NovaCal AI (Stateless)", type: "Automation", tech: "LangChain, PTB", desc: "Fast, stateless Telegram bot for quick single-turn calendar tasks.", link: "https://github.com/viochris/NovaCal-AI-Telegram.git" },
+  { name: "NovaCal AI (Streamlit Edition)", type: "Automation", tech: "Streamlit, LangChain", desc: "Web-based visual interface for intelligent calendar management with dynamic UI.", link: "https://github.com/viochris/NovaCal-AI-Streamlit.git" },
+  { name: "NovaTasks AI (Ephemeral)", type: "Automation", tech: "LangChain, RAM", desc: "Conversational Telegram bot for Google Tasks with ephemeral memory.", link: "https://github.com/viochris/NovaTasks-AI-Telegram.git" },
   { name: "NovaMail AI (Gmail Bot)", type: "Automation", tech: "Gmail API, Gemini", desc: "Autonomous assistant that responds to emails and reports to Telegram.", link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
   { name: "Daily Agenda Broadcaster", type: "Automation", tech: "Python, GCalendar", desc: "Scheduled engine fetching calendar briefing for Telegram.", link: "https://github.com/viochris/auto-daily-scheduler.git" },
+  { name: "AI Vision Generator", type: "Automation", tech: "PTB, Hugging Face", desc: "Text-to-Image Telegram bot using SDXL for high-quality rendering.", link: "https://github.com/viochris/telegram-image-generator.git" },
+  { name: "Conversational AI Interface", type: "Automation", tech: "PTB, Gemini", desc: "Interactive bridge between Telegram and Google Gemini model.", link: "https://github.com/viochris/qna-telegram-bot-ptb.git" },
   { name: "AI News Digest", type: "Automation", tech: "Prefect, Gemini", desc: "Pipeline that scrapes news and delivers daily digests to Telegram.", link: "https://github.com/viochris/daily-ai-news-digest" },
+  { name: "Automated Image Pipeline", type: "Automation", tech: "Prefect, HF", desc: "ETL pipeline that generates AI art from GSheets prompts and posts to Telegram.", link: "https://github.com/viochris/automated-image-pipeline" },
+  { name: "Daily Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Daily producer bot that crafts prompts and logs to GSheets.", link: "https://github.com/viochris/daily-prompt-generator-bot" },
+  { name: "Batch Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Bulk producer bot crafting 3 prompts per run for queue filling.", link: "https://github.com/viochris/daily-batch-prompt-bot" },
+  { name: "Daily Quote Automator", type: "Automation", tech: "Prefect, Gemini", desc: "Lightweight HTTP bot that synthesizes daily developer motivation.", link: "https://github.com/viochris/trial-simple-quote-bot" },
+  { name: "Daily Quote Bot (PTB)", type: "Automation", tech: "Prefect, PTB", desc: "Official library implementation for the Daily Quote bot.", link: "https://github.com/viochris/daily-quote-bot-ptb" },
   
   // Data Science
   { name: "SpendSense (Finance AI)", type: "Data Science", tech: "Streamlit, Vision", desc: "Conversational finance app with OCR receipt scanning and Pandas Agent.", link: "https://github.com/viochris/Streamlit-SpendSense" },
+  { name: "Streamlit Resume Scanner", type: "Data Science", tech: "SBERT, NLP", desc: "Dual-Engine CV analyzer for ATS logic and semantic fit calculation.", link: "https://github.com/viochris/streamlit-resume-scanner" },
   { name: "Diabetes Prediction (Robust)", type: "Data Science", tech: "Scikit-Learn, SMOTE", desc: "ML model with proper pre-processing after split to avoid data leakage.", link: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
+  { name: "Stunting Analysis", type: "Data Science", tech: "SMOTENC, Viz", desc: "Handling categorical imbalance and visualizing decision paths for interpretability.", link: "https://github.com/viochris/Stunting-prediction-project" },
   { name: "Review Sentiment Analyzer", type: "Data Science", tech: "Transformers", desc: "NLP model classifying text sentiment using pre-trained Hugging Face models.", link: "https://github.com/viochris/Simple-Sentiment-Analysis" },
+  { name: "Diabetes Paper Replication", type: "Data Science", tech: "Python, Pandas", desc: "Academic study replicating research methodology for comparative analysis.", link: "https://github.com/viochris/Diabetes-prediction-project" },
   
   // Analytics
   { name: "Supermarket Sales Dashboard", type: "Analytics", tech: "Tableau Public", desc: "Operations dashboard monitoring COGS and customer ratings in retail.", link: "https://public.tableau.com/views/SupermarketSalesDashboard_17081427139270/Dashboard1" },
@@ -100,10 +112,10 @@ export default function RepositoryPage() {
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="h-14 px-6 rounded-2xl border-white/10 bg-black/40 hover:bg-white/5 text-white font-headline font-bold uppercase tracking-widest text-[10px] flex gap-3 shadow-lg">
+              <Button variant="outline" className="h-14 px-6 rounded-2xl border-white/10 bg-black/40 hover:bg-white/5 text-white font-headline font-bold uppercase tracking-widest text-[10px] flex gap-3 shadow-lg min-w-[160px]">
                 <Filter className="w-4 h-4 text-primary" />
                 <span>{activeCategory}</span>
-                <ChevronDown className="w-4 h-4 opacity-50" />
+                <ChevronDown className="w-4 h-4 opacity-50 ml-auto" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-card border-border rounded-xl p-1 z-[100]">
