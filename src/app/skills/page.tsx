@@ -90,23 +90,28 @@ const techStacks = [
 export default function SkillsPage() {
   const [activeTab, setActiveTab] = useState('Skills');
   const [credentialTab, setCredentialTab] = useState<'Certifications' | 'Badges'>('Certifications');
+  const [isReturning, setIsReturning] = useState(false);
 
   useEffect(() => {
     if (activeTab === 'Skills') {
-      const timer = setTimeout(() => {
-        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
-        const element = document.getElementById(targetId);
-        if (element) {
-          // Offset by 100px to prevent the sticky navbar from hiding the title
-          const yOffset = -100; 
-          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }, 100); // 100ms delay to ensure DOM paints first
-
-      return () => clearTimeout(timer);
+      if (isReturning) {
+        const timer = setTimeout(() => {
+          const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
+          const element = document.getElementById(targetId);
+          if (element) {
+            const yOffset = -100;
+            const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+          setIsReturning(false); // Reset flag after scroll
+        }, 100);
+        return () => clearTimeout(timer);
+      } else {
+        // If opening normally (e.g. from Navbar), start at the very top
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
     }
-  }, [activeTab, credentialTab]);
+  }, [activeTab, isReturning, credentialTab]);
 
   if (activeTab === 'Credentials') {
     return (
@@ -114,6 +119,7 @@ export default function SkillsPage() {
         setActiveTab={setActiveTab} 
         credentialTab={credentialTab} 
         setCredentialTab={setCredentialTab} 
+        setIsReturning={setIsReturning}
       />
     );
   }
@@ -130,7 +136,6 @@ export default function SkillsPage() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-40">
-          {/* Radar Chart Container */}
           <div className="p-8 lg:p-14 glass rounded-[3rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[550px] mx-auto aspect-square sm:aspect-auto">
             <div className="absolute top-8 left-8 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
             <div className="w-full flex justify-center">
@@ -138,7 +143,6 @@ export default function SkillsPage() {
             </div>
           </div>
           
-          {/* Skills List */}
           <div className="grid gap-10 md:gap-12 w-full">
             {skills.map((s) => (
               <div key={s.name} className="space-y-4">
@@ -162,7 +166,6 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Tech Stack Section */}
         <div className="mb-40 space-y-20">
           <div className="text-center space-y-4">
             <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white flex items-center justify-center gap-4">
@@ -190,7 +193,6 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Professional Certifications Preview */}
         <div id="certifications-section" className="mb-40">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -219,7 +221,6 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Course Badges Preview */}
         <div id="badges-section" className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
