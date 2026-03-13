@@ -1,7 +1,8 @@
+
 "use client"
 
 import React from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles } from 'lucide-react';
+import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,67 @@ const certifications = [
   { title: "IBM Classification Certification", issuer: "IBM", icon: <Award className="w-6 h-6" /> },
 ];
 
+const techStacks = [
+  {
+    category: "Languages",
+    badges: [
+      { name: "Python", url: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" },
+      { name: "SQL", url: "https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" }
+    ]
+  },
+  {
+    category: "Data Science & ML",
+    badges: [
+      { name: "Pandas", url: "https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" },
+      { name: "NumPy", url: "https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" },
+      { name: "Scikit-Learn", url: "https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" },
+      { name: "TensorFlow", url: "https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" }
+    ]
+  },
+  {
+    category: "NLP, GenAI & VectorDB",
+    badges: [
+      { name: "Google Gemini", url: "https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" },
+      { name: "Hugging Face", url: "https://img.shields.io/badge/-HuggingFace-FDEE21?style=for-the-badge&logo=HuggingFace&logoColor=black" },
+      { name: "LangChain", url: "https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=LangChain&logoColor=white" },
+      { name: "FAISS", url: "https://img.shields.io/badge/FAISS-092E20?style=for-the-badge&logo=meta&logoColor=white" }
+    ]
+  },
+  {
+    category: "Web Frameworks & UI",
+    badges: [
+      { name: "Streamlit", url: "https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" },
+      { name: "FastAPI", url: "https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" },
+      { name: "Flask", url: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" }
+    ]
+  },
+  {
+    category: "Automation & DevOps",
+    badges: [
+      { name: "Telegram", url: "https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" },
+      { name: "Prefect", url: "https://img.shields.io/badge/Prefect-0052FF?style=for-the-badge" },
+      { name: "Docker", url: "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" }
+    ]
+  },
+  {
+    category: "Visualization",
+    badges: [
+      { name: "Tableau", url: "https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white" },
+      { name: "Matplotlib", url: "https://img.shields.io/badge/Matplotlib-ffffff?style=for-the-badge&logo=Matplotlib&logoColor=black" },
+      { name: "Seaborn", url: "https://img.shields.io/badge/Seaborn-444876?style=for-the-badge&logo=python&logoColor=white" }
+    ]
+  },
+  {
+    category: "Databases & Tools",
+    badges: [
+      { name: "MySQL", url: "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" },
+      { name: "Git", url: "https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" },
+      { name: "Google Colab", url: "https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" },
+      { name: "Kaggle", url: "https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" }
+    ]
+  }
+];
+
 export default function SkillsPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
@@ -33,7 +95,7 @@ export default function SkillsPage() {
           <p className="text-white/70 max-w-2xl mx-auto text-lg lg:text-xl font-medium">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-40">
           {/* Radar Chart Container */}
           <div className="p-8 lg:p-14 glass rounded-[3rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[550px] mx-auto aspect-square sm:aspect-auto">
             <div className="absolute top-8 left-8 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
@@ -66,8 +128,36 @@ export default function SkillsPage() {
           </div>
         </div>
 
+        {/* Tech Stack Section */}
+        <div className="mb-40 space-y-20">
+          <div className="text-center space-y-4">
+            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white flex items-center justify-center gap-4">
+              <Wrench className="text-primary w-8 h-8" /> Tech Stack & Tools
+            </h3>
+            <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {techStacks.map((stack, idx) => (
+              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6">{stack.category}</h4>
+                <div className="flex flex-wrap gap-3">
+                  {stack.badges.map((badge, bIdx) => (
+                    <img 
+                      key={bIdx} 
+                      src={badge.url} 
+                      alt={badge.name} 
+                      className="h-7 md:h-8 hover:scale-110 hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(59,130,246,0.1)]" 
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Certifications Section */}
-        <div className="mt-32 lg:mt-40">
+        <div className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Certifications & Accreditations</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {certifications.map((c, i) => (
