@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
@@ -91,6 +91,23 @@ export default function SkillsPage() {
   const [activeTab, setActiveTab] = useState('Skills');
   const [credentialTab, setCredentialTab] = useState<'Certifications' | 'Badges'>('Certifications');
 
+  useEffect(() => {
+    if (activeTab === 'Skills') {
+      const timer = setTimeout(() => {
+        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
+        const element = document.getElementById(targetId);
+        if (element) {
+          // Offset by 100px to prevent the sticky navbar from hiding the title
+          const yOffset = -100; 
+          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100); // 100ms delay to ensure DOM paints first
+
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab, credentialTab]);
+
   if (activeTab === 'Credentials') {
     return (
       <AllCredentialsPage 
@@ -174,7 +191,7 @@ export default function SkillsPage() {
         </div>
 
         {/* Professional Certifications Preview */}
-        <div className="mb-40">
+        <div id="certifications-section" className="mb-40">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {professionalCertifications.slice(0, 4).map((c) => (
@@ -203,7 +220,7 @@ export default function SkillsPage() {
         </div>
 
         {/* Course Badges Preview */}
-        <div className="mt-20">
+        <div id="badges-section" className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {courseBadges.slice(0, 4).map((b) => (
