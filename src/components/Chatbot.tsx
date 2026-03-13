@@ -31,7 +31,28 @@ export const Chatbot: React.FC = () => {
   const [apiHistory, setApiHistory] = useState<[string, string][]>([]);
   const [language, setLanguage] = useState<'English' | 'Indonesian'>('English');
   const [isLoading, setIsLoading] = useState(false);
+  const [engineStatus, setEngineStatus] = useState<'checking' | 'active' | 'sleeping'>('checking');
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic status check for the AI Engine (HF Space)
+  useEffect(() => {
+    const checkStatus = async () => {
+      try {
+        // Pinging the HF Space endpoint to check if it's awake
+        const response = await fetch('https://silvio0-silvio-portfolio-api.hf.space/', { 
+          method: 'GET',
+          mode: 'no-cors' // Standard spaces might block direct cross-origin GETs but the catch will handle it
+        });
+        setEngineStatus('active');
+      } catch (error) {
+        setEngineStatus('sleeping');
+      }
+    };
+
+    checkStatus();
+    const interval = setInterval(checkStatus, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -82,17 +103,30 @@ export const Chatbot: React.FC = () => {
       {/* Header */}
       <div className="p-4 sm:p-6 border-b border-border bg-muted/40 flex items-center justify-between relative z-10">
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="relative">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
-              <Bot className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
-            </div>
-            <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-card rounded-full animate-pulse" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-2xl flex items-center justify-center">
+            <Bot className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
           </div>
           <div>
             <h3 className="text-sm sm:text-lg font-headline font-black uppercase tracking-widest text-foreground">Silvio.AI Assistant</h3>
-            <p className="text-[9px] sm:text-[10px] font-bold text-muted-foreground flex items-center gap-1.5 uppercase tracking-tighter">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full" /> NEURAL ENGINE ACTIVE
-            </p>
+            <div className="flex items-center gap-2 mt-1">
+              {/* Blinking Dot */}
+              <div className={`w-2 h-2 rounded-full animate-pulse ${
+                engineStatus === 'active' ? 'bg-green-500 shadow-[0_0_8px_#22c55e]' : 
+                engineStatus === 'checking' ? 'bg-yellow-500 shadow-[0_0_8px_#eab308]' : 
+                'bg-red-500 shadow-[0_0_8px_#ef4444]'
+              }`}></div>
+              
+              {/* Dynamic Text */}
+              <span className={`text-[9px] sm:text-[10px] font-bold tracking-widest uppercase ${
+                engineStatus === 'active' ? 'text-green-500' : 
+                engineStatus === 'checking' ? 'text-yellow-500' : 
+                'text-red-500'
+              }`}>
+                {engineStatus === 'active' ? 'NEURAL ENGINE ACTIVE' : 
+                 engineStatus === 'checking' ? 'CHECKING ENGINE...' : 
+                 'ENGINE SLEEPING (WAKING UP)'}
+              </span>
+            </div>
           </div>
         </div>
         <button 
