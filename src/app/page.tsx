@@ -186,14 +186,28 @@ export default function Home() {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group flex flex-col h-full">
-                  <div className="absolute -top-10 -right-10 text-9xl font-headline font-black text-white/[0.03] select-none group-hover:text-primary/[0.05] transition-colors">{item.step}</div>
-                  <div className="text-primary mb-8">{item.icon}</div>
-                  <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[4rem]">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/60 font-medium leading-relaxed flex-1">
-                    {item.desc}
-                  </p>
+                  {/* Giant Watermark Number */}
+                  <div className="absolute -top-4 -right-2 text-8xl md:text-9xl font-black text-slate-200/50 dark:text-slate-700/30 z-0 select-none pointer-events-none transition-transform group-hover:scale-110">
+                    {item.step}
+                  </div>
+
+                  {/* Content Wrapper */}
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Step Badge & Icon */}
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="text-primary">{item.icon}</div>
+                      <span className="text-primary font-mono text-sm font-bold tracking-widest uppercase">
+                        STEP {item.step}
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[4rem]">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/60 font-medium leading-relaxed flex-1">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
