@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Brain, Database, Sparkles } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -22,10 +22,8 @@ export default function Home() {
       <section id="home" className="pb-20 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
           
-          {/* Row 1: Hero Content (Photo & Intro) */}
+          {/* Row 1: Hero Content */}
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
-            
-            {/* Left Column: Profile Image */}
             <div className="flex justify-center">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
@@ -47,7 +45,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Text Content & Buttons */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-10">
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -82,7 +79,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 2: Stats Block - Full Width under Photo & Intro */}
+          {/* Row 2: Stats Block */}
           <div className="w-full mb-32">
             <div className="grid grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full max-w-5xl mx-auto">
               <div className="text-center">
@@ -100,8 +97,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 3: Core Expertise (Replacing CodeWindow) */}
-          <div className="space-y-16 pb-12">
+          {/* Row 3: Core Focus */}
+          <div className="space-y-16 mb-40">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Expertise</Badge>
               <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
@@ -139,6 +136,66 @@ export default function Home() {
                   <p className="text-sm text-white/60 leading-relaxed font-medium">{skill.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Row 4: My Workflow (New Section) */}
+          <div className="mb-40 space-y-16">
+            <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Philosophy</Badge>
+              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                How I <span className="text-primary">Work</span>
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Research & Design",
+                  desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.",
+                  icon: <Terminal className="w-6 h-6" />,
+                  step: "01"
+                },
+                {
+                  title: "Architect & Build",
+                  desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.",
+                  icon: <Cpu className="w-6 h-6" />,
+                  step: "02"
+                },
+                {
+                  title: "Deploy & Scale",
+                  desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.",
+                  icon: <Layers className="w-6 h-6" />,
+                  step: "03"
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group">
+                  <div className="absolute -top-10 -right-10 text-9xl font-headline font-black text-white/[0.03] select-none group-hover:text-primary/[0.05] transition-colors">{item.step}</div>
+                  <div className="text-primary mb-8">{item.icon}</div>
+                  <h3 className="text-2xl font-headline font-bold text-white mb-4">{item.title}</h3>
+                  <p className="text-white/60 font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 5: CTA Section (New Section) */}
+          <div className="mb-20">
+            <div className="relative p-16 lg:p-24 rounded-[4rem] bg-primary overflow-hidden text-center space-y-10 shadow-2xl shadow-primary/30">
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10 space-y-6">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
+                  Ready to Build the <span className="text-black">Future?</span>
+                </h2>
+                <p className="text-xl text-white/90 font-medium max-w-2xl mx-auto">
+                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
+                </p>
+              </div>
+              <div className="relative z-10 pt-4">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl" asChild>
+                  <Link href="/contact">Start a Project</Link>
+                </Button>
+              </div>
             </div>
           </div>
 
