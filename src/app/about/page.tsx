@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3 } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users } from 'lucide-react';
 import { Timeline } from '@/components/Timeline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -67,7 +67,7 @@ export default function AboutPage() {
         </div>
 
         {/* Section: Professional Pillars */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32">
           {[
             {
               title: "Innovation First",
@@ -83,14 +83,19 @@ export default function AboutPage() {
               title: "Scalable Systems",
               desc: "Developing solutions that don't just work locally, but are architected to scale globally under high production loads.",
               icon: <ShieldCheck className="w-10 h-10 text-primary" />
+            },
+            {
+              title: "User Centric",
+              desc: "Creating AI experiences that are intuitive and truly beneficial, bridging the gap between math and human needs.",
+              icon: <Users className="w-10 h-10 text-primary" />
             }
           ].map((pillar, idx) => (
-            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all">
-              <div className="w-20 h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center">
+            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all flex flex-col h-full">
+              <div className="w-20 h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center shrink-0">
                 {pillar.icon}
               </div>
-              <div className="space-y-4">
-                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight">{pillar.title}</h4>
+              <div className="space-y-4 flex-1">
+                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
                 <p className="text-muted-foreground font-medium leading-relaxed">{pillar.desc}</p>
               </div>
             </div>

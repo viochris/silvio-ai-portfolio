@@ -1,8 +1,7 @@
-
 "use client"
 
 import React from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench } from 'lucide-react';
+import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -80,6 +79,14 @@ const techStacks = [
       { name: "Google Colab", url: "https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" },
       { name: "Kaggle", url: "https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" }
     ]
+  },
+  {
+    category: "Cloud & MLOps",
+    badges: [
+      { name: "AWS", url: "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" },
+      { name: "GCP", url: "https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" },
+      { name: "HuggingFace", url: "https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" }
+    ]
   }
 ];
 
@@ -137,9 +144,9 @@ export default function SkillsPage() {
             <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
             {techStacks.map((stack, idx) => (
-              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group">
+              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group flex flex-col h-full">
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6">{stack.category}</h4>
                 <div className="flex flex-wrap gap-3">
                   {stack.badges.map((badge, bIdx) => (
@@ -159,9 +166,9 @@ export default function SkillsPage() {
         {/* Certifications Section */}
         <div className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Certifications & Accreditations</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
             {certifications.map((c, i) => (
-              <div key={i} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5 min-w-0">
+              <div key={i} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5 min-w-0 h-full">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shadow-inner shrink-0">
                   {c.icon}
                 </div>
@@ -171,6 +178,15 @@ export default function SkillsPage() {
                 </div>
               </div>
             ))}
+            <div className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group cursor-default shadow-xl hover:shadow-primary/5 min-w-0 h-full border-dashed">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary/30 shrink-0">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-lg font-headline font-bold text-white/40 italic">Continuous Learning...</div>
+                <div className="text-[10px] font-bold uppercase text-white/20 tracking-widest mt-2">More Coming Soon</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

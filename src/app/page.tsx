@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, BarChart4, RefreshCw } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -22,7 +22,7 @@ export default function Home() {
       <section id="home" className="pb-20 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
           
-          {/* Row 1: Hero Content (2 Columns on Desktop) */}
+          {/* Row 1: Hero Content */}
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
             <div className="flex justify-center lg:justify-end">
               <div className="relative group shrink-0">
@@ -79,7 +79,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 2: Stats Block (Full Width) */}
+          {/* Row 2: Stats Block */}
           <div className="w-full mb-32">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full">
               <div className="text-center">
@@ -106,7 +106,7 @@ export default function Home() {
               </h2>
             </div>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
               {[
                 {
                   title: "Natural Language Processing",
@@ -125,14 +125,20 @@ export default function Home() {
                   desc: "Designing intelligent agents and LLM-powered applications focused on user experience and efficiency.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "GenAI"
+                },
+                {
+                  title: "Predictive Analytics",
+                  desc: "Utilizing robust machine learning models to forecast trends and deliver actionable business insights.",
+                  icon: <BarChart4 className="w-8 h-8 text-primary" />,
+                  label: "Analytic"
                 }
               ].map((skill, idx) => (
-                <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group">
+                <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group flex flex-col h-full">
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                     {skill.icon}
                   </div>
-                  <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest">{skill.label}</Badge>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4">{skill.title}</h3>
+                  <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight">{skill.title}</h3>
                   <p className="text-sm text-white/60 leading-relaxed font-medium">{skill.desc}</p>
                 </div>
               ))}
@@ -148,7 +154,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
               {[
                 {
                   title: "Research & Design",
@@ -167,12 +173,18 @@ export default function Home() {
                   desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.",
                   icon: <Layers className="w-6 h-6" />,
                   step: "03"
+                },
+                {
+                  title: "Optimization",
+                  desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.",
+                  icon: <RefreshCw className="w-6 h-6" />,
+                  step: "04"
                 }
               ].map((item, idx) => (
-                <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group">
+                <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group flex flex-col h-full">
                   <div className="absolute -top-10 -right-10 text-9xl font-headline font-black text-white/[0.03] select-none group-hover:text-primary/[0.05] transition-colors">{item.step}</div>
                   <div className="text-primary mb-8">{item.icon}</div>
-                  <h3 className="text-2xl font-headline font-bold text-white mb-4">{item.title}</h3>
+                  <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight">{item.title}</h3>
                   <p className="text-white/60 font-medium leading-relaxed">{item.desc}</p>
                 </div>
               ))}
