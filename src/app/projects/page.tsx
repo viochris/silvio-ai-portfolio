@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 const projects = [
   { 
@@ -63,8 +64,10 @@ export default function ProjectsPage() {
             </h2>
             <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
           </div>
-          <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all">
-            Explore Repository <ChevronRight className="w-4 h-4" />
+          <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
+            <Link href="/repository">
+              Explore Repository <ChevronRight className="w-4 h-4" />
+            </Link>
           </Button>
         </div>
 
