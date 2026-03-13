@@ -22,42 +22,48 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="space-y-10 lg:space-y-12">
+          <div className="space-y-8 lg:space-y-10">
             {/* Email Contact Item */}
-            <div className="flex items-start gap-6 sm:gap-8 group">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
+            <a 
+              href="mailto:viochristian12@gmail.com" 
+              className="flex items-center gap-6 sm:gap-8 group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-2 -ml-2 rounded-3xl"
+            >
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/50 transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
                 <Mail className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2 flex-1">
-                <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Email Inquiry</div>
-                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-all whitespace-normal">viochristian12@gmail.com</div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Email Inquiry</div>
+                <div className="text-lg font-semibold text-white break-all whitespace-normal">viochristian12@gmail.com</div>
               </div>
-            </div>
+            </a>
 
             {/* Phone Contact Item */}
-            <div className="flex items-start gap-6 sm:gap-8 group">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
+            <a 
+              href="tel:+62895342637871" 
+              className="flex items-center gap-6 sm:gap-8 group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-2 -ml-2 rounded-3xl"
+            >
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/50 transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
                 <Phone className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2 flex-1">
-                <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Voice Call</div>
-                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-all whitespace-normal">62895342637871</div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Voice Call</div>
+                <div className="text-lg font-semibold text-white break-all whitespace-normal">+62 895-3426-37871</div>
               </div>
-            </div>
+            </a>
 
             {/* Location Contact Item */}
-            <div className="flex items-start gap-6 sm:gap-8 group">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
+            <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0">
                 <MapPin className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2 flex-1">
-                <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Base Location</div>
-                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-words">Indonesia</div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Base Location</div>
+                <div className="text-lg font-semibold text-white break-words">Semarang, Central Java, Indonesia</div>
               </div>
             </div>
           </div>
 
-          {/* Social Links - Fixed Horizontal Flex */}
+          {/* Social Links */}
           <div className="pt-12 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center lg:justify-start">
             <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
               <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
