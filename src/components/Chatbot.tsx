@@ -114,7 +114,7 @@ export const Chatbot: React.FC = () => {
               {m.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
             </div>
             <div className={cn(
-              "max-w-[75%] rounded-[1.5rem] p-4 text-sm shadow-sm leading-relaxed",
+              "max-w-[75%] rounded-[1.5rem] p-4 text-sm shadow-sm leading-relaxed break-words overflow-hidden",
               m.role === 'user' 
                 ? 'bg-primary text-primary-foreground rounded-br-none' 
                 : 'bg-muted/80 text-foreground border border-border/50 rounded-bl-none'
