@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, BarChart2, Users, Download, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -144,11 +144,15 @@ export default function AboutPage() {
 
         {/* Section: GitHub Performance */}
         <div className="mb-32 space-y-16">
-          <div className="text-center space-y-4">
-            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
-            <h3 className="text-3xl md:text-4xl font-headline font-black uppercase tracking-tighter text-white flex items-center justify-center gap-4">
-              <BarChart3 className="text-primary w-8 h-8" /> GitHub Performance
-            </h3>
+          <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
+            <div className="flex flex-col items-center justify-center gap-2 w-full">
+              <span className="px-4 py-1 rounded-full border border-slate-700 bg-slate-800/50 text-primary text-xs font-bold tracking-widest uppercase">Activity</span>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
+                <BarChart2 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">GitHub Performance</h2>
+              </div>
+            </div>
           </div>
           
           <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
@@ -190,16 +194,16 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="w-full grid grid-cols-2 gap-3 sm:gap-6 px-4 sm:px-0">
+            <div className="w-full grid grid-cols-2 gap-3 sm:gap-6 px-2 sm:px-0">
               {[
                 { label: "Open Source", val: "Contributor" },
                 { label: "Hackathons", val: "Winner" },
                 { label: "Mentorship", val: "Enthusiast" },
                 { label: "Tech Blog", val: "Writer" }
               ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-3xl bg-slate-900/50 border border-slate-800 w-full text-center overflow-hidden">
-                  <div className="text-sm sm:text-lg font-bold text-primary break-words w-full">{item.val}</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-white/50">{item.label}</div>
+                <div key={idx} className="flex flex-col items-center justify-center p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-900/50 border border-slate-800 w-full text-center">
+                  <h3 className="text-sm sm:text-xl font-bold text-primary w-full whitespace-nowrap sm:whitespace-normal">{item.val}</h3>
+                  <p className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-400 mt-1 sm:mt-2 uppercase">{item.label}</p>
                 </div>
               ))}
             </div>
