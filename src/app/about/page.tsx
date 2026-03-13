@@ -182,40 +182,64 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-12 max-w-2xl mx-auto items-center justify-items-center">
             {/* Baris 1 Kolom 1: Download CV */}
-            <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/Download_CV-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
-            </a>
+            <div className="w-full flex justify-center">
+              <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
+                <img 
+                  src="https://img.shields.io/badge/Download_CV-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" 
+                  alt="Download CV" 
+                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
+                />
+              </a>
+            </div>
 
             {/* Baris 1 Kolom 2: View CV */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="hover:scale-110 transition-transform cursor-pointer border-none bg-transparent p-0 outline-none">
-                  <img src="https://img.shields.io/badge/View_CV-4285F4?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="View CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
-                <DialogHeader className="pb-4 border-b border-border">
-                  <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
-                </DialogHeader>
-                <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
-                  <iframe 
-                    src={`${cvRawLink}#view=FitH&toolbar=0`} 
-                    className="w-full h-full border-none"
-                    title="CV Preview"
-                  />
-                </div>
-              </DialogContent>
-            </Dialog>
+            <div className="w-full flex justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="hover:scale-110 transition-transform cursor-pointer border-none bg-transparent p-0 outline-none w-full max-w-[180px] md:max-w-[220px]">
+                    <img 
+                      src="https://img.shields.io/badge/View_CV-4285F4?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" 
+                      alt="View CV" 
+                      className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
+                    />
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
+                  <DialogHeader className="pb-4 border-b border-border">
+                    <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
+                    <iframe 
+                      src={`${cvRawLink}#view=FitH&toolbar=0`} 
+                      className="w-full h-full border-none"
+                      title="CV Preview"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
 
             {/* Baris 2 Kolom 1: Gmail */}
-            <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/Gmail_Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
-            </a>
+            <div className="w-full flex justify-center">
+              <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
+                <img 
+                  src="https://img.shields.io/badge/Gmail_Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white" 
+                  alt="Email" 
+                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
+                />
+              </a>
+            </div>
 
             {/* Baris 2 Kolom 2: LinkedIn */}
-            <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/LinkedIn_Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-10 md:h-12 shadow-xl rounded-lg" />
-            </a>
+            <div className="w-full flex justify-center">
+              <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform w-full max-w-[180px] md:max-w-[220px]">
+                <img 
+                  src="https://img.shields.io/badge/LinkedIn_Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" 
+                  alt="LinkedIn" 
+                  className="w-full h-10 md:h-12 shadow-xl rounded-lg object-contain" 
+                />
+              </a>
+            </div>
           </div>
         </div>
       </section>
