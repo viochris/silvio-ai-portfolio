@@ -14,7 +14,8 @@ type MessageUI = {
  * Safe markdown parser for basic formatting.
  * Replaces **text** with <strong>text</strong>, *text* with <em>text</em>, and \n with <br/>.
  */
-const renderMarkdown = (text: string) => {
+const renderMarkdown = (text?: string) => {
+  if (!text) return '';
   return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -57,10 +58,11 @@ export const Chatbot: React.FC = () => {
       });
 
       // Add bot response to UI
-      setMessages(prev => [...prev, { role: 'assistant', content: res.answer }]);
+      const botAnswer = res?.answer || "I received an empty response. Please try again.";
+      setMessages(prev => [...prev, { role: 'assistant', content: botAnswer }]);
       
       // Update internal API history with the new pair
-      setApiHistory(prev => [...prev, [userText, res.answer]]);
+      setApiHistory(prev => [...prev, [userText, botAnswer]]);
     } catch (error) {
       // Error handling: append standard bot failure message
       setMessages(prev => [
