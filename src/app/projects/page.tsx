@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { ExternalLink, ChevronRight, Brain, Sparkles } from 'lucide-react';
+import { ExternalLink, ChevronRight, Brain, Sparkles, Info } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,7 +14,7 @@ const featuredProjects = [
   { 
     id: 1, 
     title: "InsightSQL (LangGraph Engine)", 
-    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities.",
+    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
     tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
     problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency.",
@@ -24,7 +24,7 @@ const featuredProjects = [
   { 
     id: 2, 
     title: "NovaCal AI (Stateful Telegram)", 
-    desc: "Advanced Telegram bot featuring an SQL-backed conversational memory for intelligent Google Calendar management.",
+    desc: "Advanced Telegram bot featuring an SQL-backed conversational memory architecture. Enables natural, multi-turn dialogue for Google Calendar management (CRUD) without losing context between messages.",
     tech: ["LangChain", "SQL", "Gemini Flash", "Google Calendar API"],
     link: "https://github.com/viochris/telegram-calendar-ai-bot.git",
     problem: "Most chat bots lack persistent memory, making multi-turn scheduling conversations impossible.",
@@ -34,7 +34,7 @@ const featuredProjects = [
   { 
     id: 3, 
     title: "Resume Scanner API", 
-    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis.",
+    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features a dual-engine offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise matching.",
     tech: ["FastAPI", "SBERT", "TF-IDF", "NLP"],
     link: "https://github.com/viochris/resume-scanner-api",
     problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
@@ -44,7 +44,7 @@ const featuredProjects = [
   { 
     id: 4, 
     title: "InsightData (AI Analyst)", 
-    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization.",
+    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Built as a ReAct agent that autonomously writes and executes Python code for cleaning and analysis.",
     tech: ["Pandas Agent", "Gemini 2.5 Flash", "Python", "Matplotlib"],
     link: "https://github.com/viochris/insight-data-ai-analyst",
     problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
@@ -66,7 +66,7 @@ export default function ProjectsPage() {
           <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
         </div>
 
-        {/* Explore Repository Link - Repositioned closer to the projects grid */}
+        {/* Explore Repository Link - Repositioned near the projects */}
         <div className="flex justify-end mb-8 pr-4">
           <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
             <Link href="/repository">
@@ -93,16 +93,13 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-10 flex-1 flex flex-col">
-                {/* Horizontal Tech Tags - Limited to 3 to prevent overlap/wrap, with +N counter */}
-                <div className="flex items-center gap-2 mb-6 flex-wrap lg:flex-nowrap overflow-hidden">
-                  {p.tech.slice(0, 3).map(t => (
+                {/* Horizontal Tech Tags - Fixed no-wrap and removed counter as requested */}
+                <div className="flex items-center gap-2 mb-6 flex-nowrap overflow-hidden">
+                  {p.tech.map(t => (
                     <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap shrink-0">
                       {t}
                     </Badge>
                   ))}
-                  {p.tech.length > 3 && (
-                    <span className="text-[10px] font-bold text-muted-foreground whitespace-nowrap shrink-0">+{p.tech.length - 3} more</span>
-                  )}
                 </div>
                 
                 {/* Title with fixed minimum height for alignment */}
@@ -112,7 +109,7 @@ export default function ProjectsPage() {
                   </CardTitle>
                 </div>
 
-                {/* Description with fixed clamp height */}
+                {/* Description - Same text as Case Study, but clamped here */}
                 <CardDescription className="text-lg text-muted-foreground mt-4 font-medium leading-relaxed line-clamp-2 h-14">
                   {p.desc}
                 </CardDescription>
@@ -138,6 +135,14 @@ export default function ProjectsPage() {
                         </div>
                       </div>
                       <div className="space-y-10">
+                        {/* Full Description in Case Study */}
+                        <div>
+                          <h4 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-3 tracking-[0.2em]">
+                            <Info className="w-4 h-4" /> Overview
+                          </h4>
+                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.desc}</p>
+                        </div>
+
                         <div>
                           <h4 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-3 tracking-[0.2em]">
                             <Brain className="w-4 h-4" /> The Problem
