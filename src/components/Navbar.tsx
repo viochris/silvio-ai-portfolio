@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
   const [isCVOpen, setIsCVOpen] = useState(false);
 
   const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
-  const cvRawLink = "https://github.com/viochris/viochris/raw/main/CV_Silvio_Christian_Joe_Data_Scientist.pdf";
+  const cvRawLink = "/vio-cv.pdf";
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -49,7 +49,7 @@ export const Navbar: React.FC = () => {
       </DialogHeader>
       <div className="flex flex-col gap-4 py-4">
         <Button className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs shadow-lg shadow-primary/20" asChild>
-          <a href={cvRawLink} target="_blank" rel="noopener noreferrer">
+          <a href={cvRawLink} download="vio-cv.pdf">
             <Download className="w-5 h-5" /> Download PDF Version
           </a>
         </Button>

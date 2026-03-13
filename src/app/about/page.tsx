@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -9,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 
 export default function AboutPage() {
   const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
-  const cvRawLink = "https://github.com/viochris/viochris/raw/main/CV_Silvio_Christian_Joe_Data_Scientist.pdf";
+  const cvRawLink = "/vio-cv.pdf";
 
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
@@ -85,8 +86,8 @@ export default function AboutPage() {
               icon: <ShieldCheck className="w-10 h-10 text-primary" />
             },
             {
-              title: "User Centric",
-              desc: "Creating AI experiences that are intuitive and truly beneficial, bridging the gap between math and human needs.",
+              title: "Collaborative Spirit",
+              desc: "Thriving in cross-functional environments to transform complex data insights into shared business successes.",
               icon: <Users className="w-10 h-10 text-primary" />
             }
           ].map((pillar, idx) => (
@@ -143,10 +144,10 @@ export default function AboutPage() {
                   When I'm not architecting neural networks or optimizing ETL pipelines, I enjoy contributing to the open-source community and participating in AI hackathons. 
                 </p>
                 <p>
-                  I'm a firm believer in lifelong learning and often spend my weekends experimenting with new LLM frameworks atau menjelajahi persimpangan antara AI dan psikologi manusia. 
+                  I'm a firm believer in lifelong learning and often spend my weekends experimenting with new LLM frameworks or exploring the intersection between AI and human psychology.
                 </p>
                 <p>
-                  Tujuan saya adalah menciptakan teknologi yang tidak hanya kuat, tetapi benar-benar bermanfaat dan intuitif bagi pengguna manusia.
+                  My goal is to create technology that is not only powerful, but truly useful and intuitive for human users.
                 </p>
               </div>
             </div>
@@ -174,7 +175,7 @@ export default function AboutPage() {
           </div>
           
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <a href={cvRawLink} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+            <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/Download_CV_(PDF)-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
             <a href={cvDriveLink} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
