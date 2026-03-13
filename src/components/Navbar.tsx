@@ -1,9 +1,10 @@
+
 "use client"
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Download, Menu } from 'lucide-react';
+import { Download, Menu, ExternalLink, FileText, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
@@ -13,12 +14,22 @@ import {
   SheetTitle,
   SheetHeader,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isCVOpen, setIsCVOpen] = useState(false);
 
-  const cvLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
+  const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
+  const cvRawLink = "https://github.com/viochris/viochris/raw/main/CV_Silvio_Christian_Joe_Data_Scientist.pdf";
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -27,6 +38,32 @@ export const Navbar: React.FC = () => {
     { name: 'Skills', href: '/skills' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const CVDialogContent = () => (
+    <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border rounded-[2rem]">
+      <DialogHeader>
+        <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae</DialogTitle>
+        <DialogDescription className="text-muted-foreground font-medium">
+          Choose how you would like to access Silvio's professional profile.
+        </DialogDescription>
+      </DialogHeader>
+      <div className="flex flex-col gap-4 py-4">
+        <Button className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs shadow-lg shadow-primary/20" asChild>
+          <a href={cvRawLink} target="_blank" rel="noopener noreferrer">
+            <Download className="w-5 h-5" /> Download PDF Version
+          </a>
+        </Button>
+        <Button variant="outline" className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs border-white/10 hover:bg-white/5" asChild>
+          <a href={cvDriveLink} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="w-5 h-5 text-primary" /> View on Google Drive
+          </a>
+        </Button>
+      </div>
+      <div className="text-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-50">
+        Last updated: January 2024
+      </div>
+    </DialogContent>
+  );
 
   return (
     <nav className="fixed top-0 w-full z-50 glass border-b border-border">
@@ -55,11 +92,14 @@ export const Navbar: React.FC = () => {
 
         {/* Right Actions (CV & Mobile Menu) */}
         <div className="flex items-center gap-4">
-          <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6" asChild>
-            <a href={cvLink} target="_blank" rel="noopener noreferrer">
-              <Download className="w-4 h-4" /> CV
-            </a>
-          </Button>
+          <Dialog open={isCVOpen} onOpenChange={setIsCVOpen}>
+            <DialogTrigger asChild>
+              <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6 h-10 rounded-xl shadow-lg shadow-primary/10">
+                <Download className="w-4 h-4" /> CV
+              </Button>
+            </DialogTrigger>
+            <CVDialogContent />
+          </Dialog>
 
           {/* Mobile Menu Trigger */}
           <div className="md:hidden">
@@ -91,11 +131,14 @@ export const Navbar: React.FC = () => {
                     </Link>
                   ))}
                   <div className="pt-6 border-t border-border mt-4">
-                    <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest" asChild onClick={() => setIsOpen(false)}>
-                      <a href={cvLink} target="_blank" rel="noopener noreferrer">
-                        <Download className="w-4 h-4" /> Download CV
-                      </a>
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest h-14 rounded-2xl" onClick={() => setIsOpen(false)}>
+                          <Download className="w-4 h-4" /> Download CV
+                        </Button>
+                      </DialogTrigger>
+                      <CVDialogContent />
+                    </Dialog>
                   </div>
                 </div>
               </SheetContent>
