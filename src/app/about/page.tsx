@@ -3,7 +3,6 @@
 
 import React from 'react';
 import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye } from 'lucide-react';
-import { Timeline } from '@/components/Timeline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -14,6 +13,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+const educationData = [
+  {
+    period: "Aug 2023 - Sep 2027",
+    degree: "Bachelor of Informatics Engineering",
+    institution: "Universitas Dian Nuswantoro (UDINUS)",
+    description: "IPK: 3.95/4.00 (Cumulative GPA in 5th Semester). Activities: UKM Dian Nuswantoro Computer Club - DNCC. Focusing on Data Science, specifically NLP and Tabular Data processing."
+  },
+  {
+    period: "Jul 2020 - May 2023",
+    degree: "High School Diploma, Science",
+    institution: "SMA Kristen YSKI",
+    description: "Activities: Photography, Entrepreneurship, and Scout."
+  }
+];
 
 export default function AboutPage() {
   const cvRawLink = "/vio-cv.pdf";
@@ -64,10 +78,29 @@ export default function AboutPage() {
           <div className="space-y-12">
             <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] space-y-10 border-primary/10 shadow-2xl">
               <div>
-                <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-widest mb-10 flex items-center gap-4 text-foreground">
-                  <GraduationCap className="text-primary w-7 h-7" /> Education Roadmap
-                </h3>
-                <Timeline />
+                <div className="flex items-center gap-3 mb-8">
+                  <GraduationCap className="text-blue-500" size={28} />
+                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Education Roadmap</h2>
+                </div>
+
+                <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
+                  {educationData.map((edu, index) => (
+                    <div key={index} className="mb-10 ml-8 relative group">
+                      {/* The Blue Dot Marker */}
+                      <span className="absolute flex items-center justify-center w-4 h-4 bg-blue-500 rounded-full -left-[35px] top-1 ring-4 ring-slate-50 dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></span>
+
+                      {/* Content */}
+                      <div className="flex flex-col">
+                        <span className="text-blue-500 dark:text-blue-400 font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">{edu.degree}</h3>
+                        <h4 className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-medium mb-3">{edu.institution}</h4>
+                        <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
+                          {edu.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -181,7 +214,6 @@ export default function AboutPage() {
           </div>
           
           <div className="w-full max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8">
-            {/* Row 1: Download & View */}
             <a 
               href={cvRawLink} 
               download="vio-cv.pdf" 
@@ -214,7 +246,6 @@ export default function AboutPage() {
               </DialogContent>
             </Dialog>
 
-            {/* Row 2: Gmail & LinkedIn */}
             <a 
               href="mailto:viochristian12@gmail.com"
               className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
