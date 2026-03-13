@@ -1,13 +1,14 @@
 
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
 import { AllCredentialsPage } from '@/components/AllCredentialsPage';
+import { useNavigation } from '@/app/layout';
 
 const skills = [
   { name: "NLP", value: 90 },
@@ -88,30 +89,31 @@ const techStacks = [
 ];
 
 export default function SkillsPage() {
-  const [activeTab, setActiveTab] = useState('Skills');
-  const [credentialTab, setCredentialTab] = useState<'Certifications' | 'Badges'>('Certifications');
-  const [isReturning, setIsReturning] = useState(false);
+  const { 
+    activeTab, setActiveTab, 
+    isReturning, setIsReturning, 
+    credentialTab, setCredentialTab 
+  } = useNavigation();
 
   useEffect(() => {
-    if (activeTab === 'Skills') {
-      if (isReturning) {
-        const timer = setTimeout(() => {
-          const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
-          const element = document.getElementById(targetId);
-          if (element) {
-            const yOffset = -100;
-            const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
-          setIsReturning(false); // Reset flag after scroll
-        }, 100);
-        return () => clearTimeout(timer);
-      } else {
-        // If opening normally (e.g. from Navbar), start at the very top
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }
+    if (isReturning) {
+      // ONLY scroll down if explicitly returning from the All Credentials page
+      const timer = setTimeout(() => {
+        const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
+        const element = document.getElementById(targetId);
+        if (element) {
+          const yOffset = -100; // Offset by 100px to prevent the sticky navbar from hiding the title
+          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        setIsReturning(false); // Reset flag immediately after scrolling
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // If opening normally from Navbar, FORCE scroll to the absolute top
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
-  }, [activeTab, isReturning, credentialTab]);
+  }, [isReturning, credentialTab, setIsReturning]);
 
   if (activeTab === 'Credentials') {
     return (

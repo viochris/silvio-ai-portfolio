@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Download, Menu, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useNavigation } from '@/app/layout';
 import {
   Sheet,
   SheetContent,
@@ -28,6 +29,9 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCVOpen, setIsCVOpen] = useState(false);
   const [showViewer, setShowViewer] = useState(false);
+  
+  // Use global navigation context
+  const { setIsReturning, setActiveTab } = useNavigation();
 
   const cvRawLink = "/vio-cv.pdf";
 
@@ -115,6 +119,13 @@ export const Navbar: React.FC = () => {
             <Link 
               key={link.href} 
               href={link.href}
+              onClick={() => {
+                if (link.name === 'Skills') {
+                  setIsReturning(false);
+                  setActiveTab('Skills');
+                  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                }
+              }}
               className={cn(
                 "hover:text-primary transition-colors",
                 pathname === link.href ? "text-primary" : "text-foreground/80"
@@ -159,7 +170,14 @@ export const Navbar: React.FC = () => {
                     <Link 
                       key={link.href} 
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        setIsOpen(false);
+                        if (link.name === 'Skills') {
+                          setIsReturning(false);
+                          setActiveTab('Skills');
+                          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+                        }
+                      }}
                       className={cn(
                         "text-lg font-headline font-bold uppercase tracking-widest transition-colors py-2",
                         pathname === link.href ? "text-primary border-l-4 border-primary pl-4" : "text-foreground/70 pl-4 hover:text-primary"
