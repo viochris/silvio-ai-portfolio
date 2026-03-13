@@ -35,30 +35,30 @@ const repos = [
   { name: "Insightify API (NLP)", type: "Backend", tech: "FastAPI, RoBERTa", desc: "Dual-lingual sentiment analytics for English & Indonesian text.", link: "https://github.com/viochris/Insightify-Sentiment-API" },
   { name: "Stunting Prediction API (Flask)", type: "Backend", tech: "Flask, Python", desc: "RESTful API for real-time stunting prediction inference.", link: "https://github.com/viochris/API-Stuntify" },
 
-  // Automation
-  { name: "NovaCal AI (Stateful Telegram)", type: "Automation", tech: "LangChain, SQL", desc: "SQL-backed Telegram bot for natural multi-turn calendar management.", link: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
-  { name: "NovaCal AI (Ephemeral)", type: "Automation", tech: "LangChain, RAM", desc: "Slot-filling calendar assistant using RAM-based memory to save tokens.", link: "https://github.com/viochris/NovaCal-Ephemeral-AI.git" },
-  { name: "NovaCal AI (Stateless)", type: "Automation", tech: "LangChain, PTB", desc: "Fast, stateless Telegram bot for quick single-turn calendar tasks.", link: "https://github.com/viochris/NovaCal-AI-Telegram.git" },
-  { name: "NovaCal AI (Streamlit Edition)", type: "Automation", tech: "Streamlit, LangChain", desc: "Web-based visual interface for intelligent calendar management with dynamic UI.", link: "https://github.com/viochris/NovaCal-AI-Streamlit.git" },
-  { name: "NovaTasks AI (Ephemeral)", type: "Automation", tech: "LangChain, RAM", desc: "Conversational Telegram bot for Google Tasks with ephemeral memory.", link: "https://github.com/viochris/NovaTasks-AI-Telegram.git" },
-  { name: "NovaMail AI (Gmail Bot)", type: "Automation", tech: "Gmail API, Gemini", desc: "Autonomous assistant that responds to emails and reports to Telegram.", link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
-  { name: "Daily Agenda Broadcaster", type: "Automation", tech: "Python, GCalendar", desc: "Scheduled engine fetching calendar briefing for Telegram.", link: "https://github.com/viochris/auto-daily-scheduler.git" },
-  { name: "AI Vision Generator", type: "Automation", tech: "PTB, Hugging Face", desc: "Text-to-Image Telegram bot using SDXL for high-quality rendering.", link: "https://github.com/viochris/telegram-image-generator.git" },
-  { name: "Conversational AI Interface", type: "Automation", tech: "PTB, Gemini", desc: "Interactive bridge between Telegram and Google Gemini model.", link: "https://github.com/viochris/qna-telegram-bot-ptb.git" },
-  { name: "AI News Digest", type: "Automation", tech: "Prefect, Gemini", desc: "Pipeline that scrapes news and delivers daily digests to Telegram.", link: "https://github.com/viochris/daily-ai-news-digest" },
-  { name: "Automated Image Pipeline", type: "Automation", tech: "Prefect, HF", desc: "ETL pipeline that generates AI art from GSheets prompts and posts to Telegram.", link: "https://github.com/viochris/automated-image-pipeline" },
-  { name: "Daily Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Daily producer bot that crafts prompts and logs to GSheets.", link: "https://github.com/viochris/daily-prompt-generator-bot" },
-  { name: "Batch Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Bulk producer bot crafting 3 prompts per run for queue filling.", link: "https://github.com/viochris/daily-batch-prompt-bot" },
-  { name: "Daily Quote Automator", type: "Automation", tech: "Prefect, Gemini", desc: "Lightweight HTTP bot that synthesizes daily developer motivation.", link: "https://github.com/viochris/trial-simple-quote-bot" },
-  { name: "Daily Quote Bot (PTB)", type: "Automation", tech: "Prefect, PTB", desc: "Official library implementation for the Daily Quote bot.", link: "https://github.com/viochris/daily-quote-bot-ptb" },
+  // Automation & Orchestration (LENGKAP)
+  { name: "NovaCal AI (Stateful Telegram)", type: "Automation", tech: "LangChain, SQL", desc: "Advanced Telegram bot with SQL-backed conversational memory for multi-turn calendar management.", link: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
+  { name: "NovaCal AI (Ephemeral Telegram)", type: "Automation", tech: "LangChain, RAM", desc: "Slot-filling calendar assistant using RAM-based memory to save tokens and prevent hallucinations.", link: "https://github.com/viochris/NovaCal-Ephemeral-AI.git" },
+  { name: "NovaCal AI (Stateless Telegram)", type: "Automation", tech: "LangChain, PTB", desc: "Fast, stateless Telegram bot for quick single-turn calendar tasks with maximum token efficiency.", link: "https://github.com/viochris/NovaCal-AI-Telegram.git" },
+  { name: "NovaCal AI (Streamlit Edition)", type: "Automation", tech: "Streamlit, LangChain", desc: "Web-based visual interface for intelligent calendar management with dynamic UI and session buffer memory.", link: "https://github.com/viochris/NovaCal-AI-Streamlit.git" },
+  { name: "NovaTasks AI (Ephemeral Telegram)", type: "Automation", tech: "LangChain, RAM", desc: "Conversational Telegram bot for Google Tasks management using ephemeral RAM-based memory.", link: "https://github.com/viochris/NovaTasks-AI-Telegram.git" },
+  { name: "NovaMail AI (Gmail Autoresponder)", type: "Automation", tech: "Gmail API, Gemini", desc: "Autonomous inbox assistant that reads emails and sends professional AI-generated replies.", link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
+  { name: "Daily Agenda Broadcaster", type: "Automation", tech: "Python, GCalendar", desc: "Automated workflow that fetches upcoming events and dispatches clean briefings to Telegram.", link: "https://github.com/viochris/auto-daily-scheduler.git" },
+  { name: "AI Vision Generator", type: "Automation", tech: "PTB, Hugging Face", desc: "Text-to-Image Telegram bot using SDXL to render high-quality images from user prompts.", link: "https://github.com/viochris/telegram-image-generator.git" },
+  { name: "Conversational AI Interface", type: "Automation", tech: "PTB, Gemini", desc: "Interactive bridge between Telegram and Google Gemini model for intelligent chat responses.", link: "https://github.com/viochris/qna-telegram-bot-ptb.git" },
+  { name: "Daily AI News Digest", type: "Automation", tech: "Prefect, Gemini", desc: "Autonomous pipeline that scrapes real-time news and delivers daily digests to Telegram.", link: "https://github.com/viochris/daily-ai-news-digest" },
+  { name: "Automated Image Pipeline", type: "Automation", tech: "Prefect, HF", desc: "ETL pipeline that generates AI art from GSheets prompts and publishes to Telegram.", link: "https://github.com/viochris/automated-image-pipeline" },
+  { name: "Daily Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Producer bot that crafts daily prompts and logs them to GSheets for the image pipeline.", link: "https://github.com/viochris/daily-prompt-generator-bot" },
+  { name: "Batch Prompt Generator", type: "Automation", tech: "Prefect, Gemini", desc: "Bulk producer bot crafting 3 prompts per run for fast queue filling in GSheets.", link: "https://github.com/viochris/daily-batch-prompt-bot" },
+  { name: "Daily Quote Automator", type: "Automation", tech: "Prefect, Gemini", desc: "Simple HTTP bot that synthesizes daily developer motivation via direct requests.", link: "https://github.com/viochris/trial-simple-quote-bot" },
+  { name: "Daily Quote Bot (PTB)", type: "Automation", tech: "Prefect, PTB", desc: "Official library implementation for the Daily Quote bot using python-telegram-bot.", link: "https://github.com/viochris/daily-quote-bot-ptb" },
   
-  // Data Science
-  { name: "SpendSense (Finance AI)", type: "Data Science", tech: "Streamlit, Vision", desc: "Conversational finance app with OCR receipt scanning and Pandas Agent.", link: "https://github.com/viochris/Streamlit-SpendSense" },
-  { name: "Streamlit Resume Scanner", type: "Data Science", tech: "SBERT, NLP", desc: "Dual-Engine CV analyzer for ATS logic and semantic fit calculation.", link: "https://github.com/viochris/streamlit-resume-scanner" },
-  { name: "Diabetes Prediction (Robust)", type: "Data Science", tech: "Scikit-Learn, SMOTE", desc: "ML model with proper pre-processing after split to avoid data leakage.", link: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
-  { name: "Stunting Analysis", type: "Data Science", tech: "SMOTENC, Viz", desc: "Handling categorical imbalance and visualizing decision paths for interpretability.", link: "https://github.com/viochris/Stunting-prediction-project" },
-  { name: "Review Sentiment Analyzer", type: "Data Science", tech: "Transformers", desc: "NLP model classifying text sentiment using pre-trained Hugging Face models.", link: "https://github.com/viochris/Simple-Sentiment-Analysis" },
-  { name: "Diabetes Paper Replication", type: "Data Science", tech: "Python, Pandas", desc: "Academic study replicating research methodology for comparative analysis.", link: "https://github.com/viochris/Diabetes-prediction-project" },
+  // Data Science (LENGKAP)
+  { name: "SpendSense (Financial AI)", type: "Data Science", tech: "Streamlit, Vision", desc: "Conversational finance app with OCR receipt scanning and natural language expense queries.", link: "https://github.com/viochris/Streamlit-SpendSense" },
+  { name: "Streamlit Resume Scanner", type: "Data Science", tech: "SBERT, NLP", desc: "Dual-Engine CV analyzer for ATS logic and semantic fit calculation with Streamlit UI.", link: "https://github.com/viochris/streamlit-resume-scanner" },
+  { name: "Diabetes Prediction (Robust)", type: "Data Science", tech: "Scikit-Learn, SMOTE", desc: "ML model with proper pre-processing after split to avoid data leakage and handle imbalance.", link: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
+  { name: "Stunting Analysis", type: "Data Science", tech: "SMOTENC, Viz", desc: "Handling categorical imbalance and visualizing decision paths for model interpretability.", link: "https://github.com/viochris/Stunting-prediction-project" },
+  { name: "Review Sentiment Analyzer", type: "Data Science", tech: "Transformers", desc: "NLP model classifying text sentiment using Hugging Face pre-trained transformers.", link: "https://github.com/viochris/Simple-Sentiment-Analysis" },
+  { name: "Diabetes Paper Replication", type: "Data Science", tech: "Python, Pandas", desc: "Academic study replicating research methodology for comparative analysis and validation.", link: "https://github.com/viochris/Diabetes-prediction-project" },
   
   // Analytics
   { name: "Supermarket Sales Dashboard", type: "Analytics", tech: "Tableau Public", desc: "Operations dashboard monitoring COGS and customer ratings in retail.", link: "https://public.tableau.com/views/SupermarketSalesDashboard_17081427139270/Dashboard1" },
@@ -66,7 +66,7 @@ const repos = [
   
   // Fun
   { name: "Conversational Persona", type: "Fun", tech: "Streamlit, Gemini", desc: "Roleplay chatbot with persistent memory and dynamic adaptation.", link: "https://github.com/viochris/Simple-AI-Girlfriend" },
-  { name: "Real-time Chat Socket", type: "Fun", tech: "Python Socket", desc: "Casual project exploring networking and socket programming.", link: "https://github.com/viochris/chat-group.git" }
+  { name: "Real-time Chat Socket", type: "Fun", tech: "Python Socket", desc: "Casual project exploring networking and socket programming principles.", link: "https://github.com/viochris/chat-group.git" }
 ];
 
 const categories: Category[] = ["All", "GenAI", "Backend", "Automation", "Data Science", "Analytics", "Fun"];
