@@ -56,7 +56,8 @@ export default function Home() {
                   </h1>
                 </div>
                 
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white min-h-[40px]">
+                {/* Fixed Typewriter Subtitle Container */}
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white/90 min-h-[40px] animate-fade-in" style={{ animationDelay: '0.2s' }}>
                   <span>I</span>
                   <TypewriterEffect />
                 </div>
@@ -213,20 +214,22 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 5: CTA Section */}
+          {/* Row 5: Fixed CTA Section with Responsive Flex Layout */}
           <div className="mb-20">
-            <div className="relative p-12 md:p-16 lg:p-24 rounded-[4rem] bg-primary overflow-hidden text-center space-y-10 shadow-2xl shadow-primary/30">
+            <div className="relative flex flex-col items-center justify-center text-center p-8 md:p-12 lg:p-16 gap-8 md:gap-10 rounded-[3rem] bg-primary overflow-hidden shadow-2xl shadow-primary/30 w-full h-auto">
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
-              <div className="relative z-10 space-y-6">
+              
+              <div className="relative z-10 space-y-6 max-w-3xl">
                 <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
                   Ready to Build the <span className="text-black">Future?</span>
                 </h2>
-                <p className="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-white/90 font-medium mx-auto">
                   Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
                 </p>
               </div>
-              <div className="relative z-10 pt-4">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl" asChild>
+              
+              <div className="relative z-10 w-full flex justify-center">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl transition-transform active:scale-95" asChild>
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </div>
