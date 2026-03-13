@@ -57,14 +57,17 @@ export default function ProjectsPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="projects" className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
-          <div className="space-y-6">
-            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Portfolio</Badge>
-            <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
-              Featured <span className="text-primary">Projects</span>
-            </h2>
-            <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
-          </div>
+        {/* Header Section */}
+        <div className="space-y-6 mb-12">
+          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Portfolio</Badge>
+          <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
+            Featured <span className="text-primary">Projects</span>
+          </h2>
+          <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
+        </div>
+
+        {/* Explore Repository Link - Repositioned closer to the projects grid */}
+        <div className="flex justify-end mb-8 pr-4">
           <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
             <Link href="/repository">
               Explore Repository <ChevronRight className="w-4 h-4" />
@@ -72,6 +75,7 @@ export default function ProjectsPage() {
           </Button>
         </div>
 
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
             <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2.5rem] flex flex-col h-full">
@@ -89,15 +93,15 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-10 flex-1 flex flex-col">
-                {/* Horizontal Tech Tags - flex-nowrap with overflow-hidden to prevent wrapping */}
-                <div className="flex flex-nowrap items-center gap-2 mb-6 overflow-hidden">
+                {/* Horizontal Tech Tags - Limited to 3 to prevent overlap/wrap, with +N counter */}
+                <div className="flex items-center gap-2 mb-6 flex-wrap lg:flex-nowrap overflow-hidden">
                   {p.tech.slice(0, 3).map(t => (
-                    <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap">
+                    <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap shrink-0">
                       {t}
                     </Badge>
                   ))}
                   {p.tech.length > 3 && (
-                    <span className="text-[10px] font-bold text-muted-foreground whitespace-nowrap">+{p.tech.length - 3}</span>
+                    <span className="text-[10px] font-bold text-muted-foreground whitespace-nowrap shrink-0">+{p.tech.length - 3} more</span>
                   )}
                 </div>
                 
