@@ -1,10 +1,9 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Brain, Cpu, Database, Sparkles, BarChart3, Rocket } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
-import { CodeWindow } from '@/components/CodeWindow';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -23,11 +22,11 @@ export default function Home() {
       <section id="home" className="pb-20 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           
-          {/* Row 1: Hero Content (2 Columns on Desktop) */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-16 lg:mb-24">
+          {/* Row 1: Hero Content (Photo & Intro) */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center mb-16">
             
             {/* Left Column: Profile Image */}
-            <div className="flex justify-center lg:justify-center">
+            <div className="flex justify-center">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
@@ -39,7 +38,6 @@ export default function Home() {
                       className="w-full h-full object-cover rounded-full"
                     />
                   </div>
-                  {/* AI ENGINEER Badge Tag */}
                   <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
                     <Badge className="bg-primary text-white px-8 py-2 shadow-2xl font-headline font-black text-[10px] md:text-xs tracking-[0.2em] uppercase border-none whitespace-nowrap rounded-full">
                       AI Engineer
@@ -49,7 +47,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Text Content, Buttons, & Stats */}
+            {/* Right Column: Text Content & Buttons */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-10">
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -71,7 +69,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
                 <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20" asChild>
                   <Link href="/projects">
@@ -82,32 +79,66 @@ export default function Home() {
                   <Link href="/contact">Contact Me</Link>
                 </Button>
               </div>
+            </div>
+          </div>
 
-              {/* Stats Block */}
-              <div className="grid grid-cols-3 gap-8 md:gap-12 py-10 border-t border-b border-white/10 w-full max-w-xl">
-                <div className="text-center lg:text-left">
-                  <div className="text-2xl md:text-4xl font-headline font-black text-primary">15+</div>
-                  <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-widest mt-2">Projects</div>
-                </div>
-                <div className="text-center border-x border-white/10">
-                  <div className="text-2xl md:text-4xl font-headline font-black text-primary">4+</div>
-                  <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-widest mt-2">Awards</div>
-                </div>
-                <div className="text-center lg:text-right">
-                  <div className="text-2xl md:text-4xl font-headline font-black text-primary">99%</div>
-                  <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-widest mt-2">Precision</div>
-                </div>
+          {/* Row 2: Stats Block - Full Width under Photo & Intro */}
+          <div className="w-full mb-24">
+            <div className="grid grid-cols-3 gap-8 md:gap-12 py-12 border-t border-b border-white/10 w-full max-w-5xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl md:text-5xl font-headline font-black text-primary">15+</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Projects Completed</div>
+              </div>
+              <div className="text-center border-x border-white/10">
+                <div className="text-3xl md:text-5xl font-headline font-black text-primary">4+</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Awards & Honors</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-5xl font-headline font-black text-primary">99%</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-3">Model Precision</div>
               </div>
             </div>
           </div>
 
-          {/* Row 2: Code Section (Placed Below) */}
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="relative">
-              <div className="absolute -inset-10 bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
-              <div className="relative z-10 scale-95 md:scale-100 transition-transform duration-500">
-                <CodeWindow />
-              </div>
+          {/* Row 3: Core Expertise (Replacing CodeWindow) */}
+          <div className="space-y-12">
+            <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Expertise</Badge>
+              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                Core <span className="text-primary">Focus</span>
+              </h2>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Natural Language Processing",
+                  desc: "Advanced text analysis, sentiment extraction, and language modeling using state-of-the-art architectures.",
+                  icon: <Brain className="w-8 h-8 text-primary" />,
+                  label: "NLP"
+                },
+                {
+                  title: "Data Engineering",
+                  desc: "Building scalable pipelines for tabular data processing, feature engineering, and high-performance APIs.",
+                  icon: <Database className="w-8 h-8 text-primary" />,
+                  label: "DATA"
+                },
+                {
+                  title: "Generative AI Systems",
+                  desc: "Designing intelligent agents and LLM-powered applications focused on user experience and efficiency.",
+                  icon: <Sparkles className="w-8 h-8 text-primary" />,
+                  label: "GenAI"
+                }
+              ].map((skill, idx) => (
+                <div key={idx} className="p-8 glass rounded-[2rem] border-white/5 hover:border-primary/30 transition-all duration-500 group">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                    {skill.icon}
+                  </div>
+                  <Badge className="bg-primary/10 text-primary border-none mb-4 uppercase text-[10px] font-bold tracking-widest">{skill.label}</Badge>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4">{skill.title}</h3>
+                  <p className="text-sm text-white/60 leading-relaxed">{skill.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
 
