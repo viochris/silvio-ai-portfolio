@@ -183,7 +183,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-12 max-w-2xl mx-auto items-center justify-items-center">
             {/* Baris 1 Kolom 1: Download CV */}
             <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/Download_CV_(PDF)-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
+              <img src="https://img.shields.io/badge/Download_CV-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
 
             {/* Baris 1 Kolom 2: View CV */}
@@ -209,12 +209,12 @@ export default function AboutPage() {
 
             {/* Baris 2 Kolom 1: Gmail */}
             <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
+              <img src="https://img.shields.io/badge/Gmail_Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
 
             {/* Baris 2 Kolom 2: LinkedIn */}
             <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-10 md:h-12 shadow-xl rounded-lg" />
+              <img src="https://img.shields.io/badge/LinkedIn_Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
           </div>
         </div>
