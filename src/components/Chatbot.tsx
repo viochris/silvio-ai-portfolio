@@ -5,29 +5,28 @@ import { Send, Bot, User, Loader2, Globe } from 'lucide-react';
 import { chatWithAIAssistant } from '@/ai/flows/chat-with-ai-assistant';
 import { cn } from '@/lib/utils';
 
-type Message = {
+type MessageUI = {
   role: 'user' | 'assistant';
   content: string;
 };
 
-const parseMarkdown = (text: string) => {
-  let html = text
+/**
+ * Safe markdown parser for basic formatting.
+ * Replaces **text** with <strong>text</strong>, *text* with <em>text</em>, and \n with <br/>.
+ */
+const renderMarkdown = (text: string) => {
+  return text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n/g, '<br/>')
-    .replace(/^- (.*)/gm, '<li>$1</li>');
-  
-  if (html.includes('<li>')) {
-    html = `<ul className="list-disc pl-4 space-y-1">${html}</ul>`;
-  }
-  return html;
+    .replace(/\n/g, '<br/>');
 };
 
 export const Chatbot: React.FC = () => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<MessageUI[]>([
     { role: 'assistant', content: "Hello! I'm Silvio's AI assistant. How can I help you today?" }
   ]);
+  const [apiHistory, setApiHistory] = useState<[string, string][]>([]);
   const [language, setLanguage] = useState<'English' | 'Indonesian'>('English');
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -42,28 +41,32 @@ export const Chatbot: React.FC = () => {
     e?.preventDefault();
     if (!input.trim() || isLoading) return;
 
-    const userMessage = input.trim();
+    const userText = input.trim();
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    
+    // Immediately add user message to UI
+    setMessages(prev => [...prev, { role: 'user', content: userText }]);
     setIsLoading(true);
 
     try {
-      const history: [string, string][] = [];
-      for (let i = 0; i < messages.length - 1; i += 2) {
-        if (messages[i].role === 'user' && messages[i+1]?.role === 'assistant') {
-          history.push([messages[i].content, messages[i+1].content]);
-        }
-      }
-
+      // Execute call to the Server Flow (which acts as a proxy to the HF API)
       const res = await chatWithAIAssistant({
-        text: userMessage,
+        text: userText,
         language,
-        history
+        history: apiHistory
       });
 
-      setMessages(prev => [...prev, { role: 'assistant', content: res.response }]);
+      // Add bot response to UI
+      setMessages(prev => [...prev, { role: 'assistant', content: res.answer }]);
+      
+      // Update internal API history with the new pair
+      setApiHistory(prev => [...prev, [userText, res.answer]]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting right now." }]);
+      // Error handling: append standard bot failure message
+      setMessages(prev => [
+        ...prev, 
+        { role: 'assistant', content: "My AI server is currently sleeping or unreachable. Please try again later." }
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -73,6 +76,7 @@ export const Chatbot: React.FC = () => {
     <div className="flex flex-col h-[650px] w-full max-w-xl mx-auto border border-border/50 rounded-[2rem] overflow-hidden bg-card/80 backdrop-blur-xl shadow-2xl relative">
       <div className="absolute inset-0 bg-primary/[0.02] pointer-events-none" />
       
+      {/* Header */}
       <div className="p-6 border-b border-border bg-muted/40 flex items-center justify-between relative z-10">
         <div className="flex items-center gap-4">
           <div className="relative">
@@ -97,6 +101,7 @@ export const Chatbot: React.FC = () => {
         </button>
       </div>
 
+      {/* Messages Area */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary/10 relative z-10">
         {messages.map((m, i) => (
           <div key={i} className={cn("flex items-end gap-3", m.role === 'user' ? 'flex-row-reverse' : 'flex-row')}>
@@ -112,9 +117,13 @@ export const Chatbot: React.FC = () => {
                 ? 'bg-primary text-primary-foreground rounded-br-none' 
                 : 'bg-muted/80 text-foreground border border-border/50 rounded-bl-none'
             )}>
-              <div 
-                dangerouslySetInnerHTML={{ __html: m.role === 'assistant' ? parseMarkdown(m.content) : m.content }} 
-              />
+              {m.role === 'assistant' ? (
+                <div 
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(m.content) }} 
+                />
+              ) : (
+                <div>{m.content}</div>
+              )}
             </div>
           </div>
         ))}
@@ -131,6 +140,7 @@ export const Chatbot: React.FC = () => {
         )}
       </div>
 
+      {/* Input Form */}
       <form onSubmit={handleSend} className="p-6 border-t border-border bg-muted/20 relative z-10">
         <div className="flex gap-3">
           <input 

@@ -24,7 +24,7 @@ export type ChatWithAIAssistantInput = z.infer<
 >;
 
 const ChatWithAIAssistantOutputSchema = z.object({
-  response: z.string().describe('The AI assistant\s response.'),
+  answer: z.string().describe('The AI assistant\'s response.'),
 });
 export type ChatWithAIAssistantOutput = z.infer<
   typeof ChatWithAIAssistantOutputSchema
@@ -67,12 +67,12 @@ const chatWithAIAssistantFlow = ai.defineFlow(
 
       const data = await apiResponse.json();
 
-      // Assuming the external API returns the response in a field named 'response'
-      if (!data || typeof data.response !== 'string') {
+      // The API returns the response in a field named 'answer'
+      if (!data || typeof data.answer !== 'string') {
         throw new Error('Invalid response format from external AI API.');
       }
 
-      return {response: data.response};
+      return {answer: data.answer};
     } catch (error: any) {
       console.error('Error in chatWithAIAssistantFlow:', error);
       throw new Error(
