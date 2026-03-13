@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -139,8 +138,12 @@ export default function Home() {
                     {skill.icon}
                   </div>
                   <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight">{skill.title}</h3>
-                  <p className="text-sm text-white/60 leading-relaxed font-medium">{skill.desc}</p>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[4rem] md:min-h-[5rem]">
+                    {skill.title}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1">
+                    {skill.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -185,8 +188,12 @@ export default function Home() {
                 <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group flex flex-col h-full">
                   <div className="absolute -top-10 -right-10 text-9xl font-headline font-black text-white/[0.03] select-none group-hover:text-primary/[0.05] transition-colors">{item.step}</div>
                   <div className="text-primary mb-8">{item.icon}</div>
-                  <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight">{item.title}</h3>
-                  <p className="text-white/60 font-medium leading-relaxed">{item.desc}</p>
+                  <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[4rem]">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/60 font-medium leading-relaxed flex-1">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
