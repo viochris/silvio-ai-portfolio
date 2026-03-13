@@ -26,7 +26,7 @@ const featuredProjects = [
     title: "SpendSense (Financial AI)", 
     desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning and automated ETL with Google Sheets.",
     tech: ["Streamlit", "LangChain", "Gemini Vision", "Pandas"],
-    link: "https://github.com/viochris/Streamlit-SpendSense",
+    link: "https://app-spend-sense.streamlit.app/",
     problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
     solution: "Built an intelligent finance assistant that combines Gemini Vision for receipt processing and LangChain for conversational data analysis.",
     image: "https://picsum.photos/seed/spendsense/600/400"
