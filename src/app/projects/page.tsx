@@ -16,27 +16,27 @@ const featuredProjects = [
     title: "InsightSQL (LangGraph Engine)", 
     desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
     tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
-    link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
+    link: "https://insightsql-langgraph-engine-web.streamlit.app/",
     problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency.",
     solution: "Implemented Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
     image: "https://picsum.photos/seed/insight-sql/600/400"
   },
   { 
     id: 2, 
-    title: "NovaCal AI (Stateful Telegram)", 
-    desc: "Advanced Telegram bot featuring an SQL-backed conversational memory architecture. Enables natural, multi-turn dialogue for Google Calendar management (CRUD) without losing context between messages.",
-    tech: ["LangChain", "SQL", "Gemini Flash", "Google Calendar API"],
-    link: "https://github.com/viochris/telegram-calendar-ai-bot.git",
-    problem: "Most chat bots lack persistent memory, making multi-turn scheduling conversations impossible.",
-    solution: "Created an SQL-backed memory architecture enabling natural dialogue for CRUD operations on calendar events.",
-    image: "https://picsum.photos/seed/novacal/600/400"
+    title: "SpendSense (Financial AI)", 
+    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning and automated ETL with Google Sheets.",
+    tech: ["Streamlit", "LangChain", "Gemini Vision", "Pandas"],
+    link: "https://github.com/viochris/Streamlit-SpendSense",
+    problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
+    solution: "Built an intelligent finance assistant that combines Gemini Vision for receipt processing and LangChain for conversational data analysis.",
+    image: "https://picsum.photos/seed/spendsense/600/400"
   },
   { 
     id: 3, 
     title: "Resume Scanner API", 
     desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features a dual-engine offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise matching.",
     tech: ["FastAPI", "SBERT", "TF-IDF", "NLP"],
-    link: "https://github.com/viochris/resume-scanner-api",
+    link: "https://silvio0-resume-scanner.hf.space/docs",
     problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
     solution: "Developed a dual-engine API offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise job-resume matching.",
     image: "https://picsum.photos/seed/resume-api/600/400"
@@ -46,7 +46,7 @@ const featuredProjects = [
     title: "InsightData (AI Analyst)", 
     desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Built as a ReAct agent that autonomously writes and executes Python code for cleaning and analysis.",
     tech: ["Pandas Agent", "Gemini 2.5 Flash", "Python", "Matplotlib"],
-    link: "https://github.com/viochris/insight-data-ai-analyst",
+    link: "https://insight-data-ai-analyst.streamlit.app/",
     problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
     solution: "Built a ReAct agent that autonomously writes and executes Python code for cleaning, analysis, and instant visualization.",
     image: "https://picsum.photos/seed/ai-analyst/600/400"
