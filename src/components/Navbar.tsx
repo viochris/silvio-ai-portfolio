@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Download, Menu, ExternalLink, FileText, Globe } from 'lucide-react';
+import { Download, Menu, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import {
@@ -27,8 +27,8 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isCVOpen, setIsCVOpen] = useState(false);
+  const [showViewer, setShowViewer] = useState(false);
 
-  const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
   const cvRawLink = "/vio-cv.pdf";
 
   const navLinks = [
@@ -40,28 +40,63 @@ export const Navbar: React.FC = () => {
   ];
 
   const CVDialogContent = () => (
-    <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border rounded-[2rem]">
-      <DialogHeader>
-        <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae</DialogTitle>
-        <DialogDescription className="text-muted-foreground font-medium">
-          Choose how you would like to access Silvio's professional profile.
-        </DialogDescription>
+    <DialogContent className={cn(
+      "bg-card/95 backdrop-blur-xl border-border rounded-[2rem] transition-all duration-300 overflow-hidden",
+      showViewer ? "sm:max-w-4xl w-[95vw] h-[90vh] flex flex-col" : "sm:max-w-md"
+    )}>
+      <DialogHeader className={showViewer ? "pb-4 border-b border-border" : ""}>
+        <div className="flex items-center justify-between pr-8">
+          <DialogTitle className="text-2xl font-headline font-bold text-foreground">
+            {showViewer ? "Curriculum Vitae Preview" : "Curriculum Vitae"}
+          </DialogTitle>
+          {showViewer && (
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => setShowViewer(false)}
+              className="flex items-center gap-2 text-primary hover:bg-primary/10"
+            >
+              <ArrowLeft className="w-4 h-4" /> Back
+            </Button>
+          )}
+        </div>
+        {!showViewer && (
+          <DialogDescription className="text-muted-foreground font-medium">
+            Choose how you would like to access Silvio's professional profile.
+          </DialogDescription>
+        )}
       </DialogHeader>
-      <div className="flex flex-col gap-4 py-4">
-        <Button className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs shadow-lg shadow-primary/20" asChild>
-          <a href={cvRawLink} download="vio-cv.pdf">
-            <Download className="w-5 h-5" /> Download PDF Version
-          </a>
-        </Button>
-        <Button variant="outline" className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs border-white/10 hover:bg-white/5" asChild>
-          <a href={cvDriveLink} target="_blank" rel="noopener noreferrer">
-            <ExternalLink className="w-5 h-5 text-primary" /> View on Google Drive
-          </a>
-        </Button>
-      </div>
-      <div className="text-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-50">
-        Last updated: January 2024
-      </div>
+      
+      {showViewer ? (
+        <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
+          <iframe 
+            src={`${cvRawLink}#view=FitH&toolbar=0`} 
+            className="w-full h-full border-none"
+            title="CV Preview"
+          />
+        </div>
+      ) : (
+        <div className="flex flex-col gap-4 py-4">
+          <Button className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs shadow-lg shadow-primary/20" asChild>
+            <a href={cvRawLink} download="vio-cv.pdf">
+              <Download className="w-5 h-5" /> Download PDF Version
+            </a>
+          </Button>
+          <Button 
+            variant="outline" 
+            className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs border-white/10 hover:bg-white/5"
+            onClick={() => setShowViewer(true)}
+          >
+            <ExternalLink className="w-5 h-5 text-primary" /> View CV
+          </Button>
+        </div>
+      )}
+      
+      {!showViewer && (
+        <div className="text-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-50">
+          Last updated: January 2024
+        </div>
+      )}
     </DialogContent>
   );
 
@@ -92,7 +127,10 @@ export const Navbar: React.FC = () => {
 
         {/* Right Actions (CV & Mobile Menu) */}
         <div className="flex items-center gap-4">
-          <Dialog open={isCVOpen} onOpenChange={setIsCVOpen}>
+          <Dialog open={isCVOpen} onOpenChange={(open) => {
+            setIsCVOpen(open);
+            if (!open) setShowViewer(false);
+          }}>
             <DialogTrigger asChild>
               <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6 h-10 rounded-xl shadow-lg shadow-primary/10">
                 <Download className="w-4 h-4" /> CV
@@ -131,9 +169,12 @@ export const Navbar: React.FC = () => {
                     </Link>
                   ))}
                   <div className="pt-6 border-t border-border mt-4">
-                    <Dialog>
+                    <Dialog open={isCVOpen} onOpenChange={(open) => {
+                      setIsCVOpen(open);
+                      if (!open) setShowViewer(false);
+                    }}>
                       <DialogTrigger asChild>
-                        <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest h-14 rounded-2xl" onClick={() => setIsOpen(false)}>
+                        <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest h-14 rounded-2xl">
                           <Download className="w-4 h-4" /> Download CV
                         </Button>
                       </DialogTrigger>

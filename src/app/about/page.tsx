@@ -7,9 +7,15 @@ import { Timeline } from '@/components/Timeline';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function AboutPage() {
-  const cvDriveLink = "https://drive.google.com/file/d/1RiqkgvDZP4c1MoXTp2-8ZTnnVTo8fen5/view?usp=sharing";
   const cvRawLink = "/vio-cv.pdf";
 
   return (
@@ -178,9 +184,27 @@ export default function AboutPage() {
             <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/Download_CV_(PDF)-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
-            <a href={cvDriveLink} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.shields.io/badge/View_on_Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white" alt="View CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
-            </a>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="hover:scale-110 transition-transform cursor-pointer border-none bg-transparent p-0 outline-none">
+                  <img src="https://img.shields.io/badge/View_CV-4285F4?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="View CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
+                <DialogHeader className="pb-4 border-b border-border">
+                  <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
+                </DialogHeader>
+                <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
+                  <iframe 
+                    src={`${cvRawLink}#view=FitH&toolbar=0`} 
+                    className="w-full h-full border-none"
+                    title="CV Preview"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+
             <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
