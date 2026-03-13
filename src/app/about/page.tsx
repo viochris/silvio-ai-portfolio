@@ -142,7 +142,7 @@ export default function AboutPage() {
           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 text-center lg:text-left">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Personal Interests</Badge>
-              <h3 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+              <h3 className="text-4xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                 Beyond The <span className="text-primary">Code</span>
               </h3>
               <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
@@ -180,11 +180,13 @@ export default function AboutPage() {
             <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-6">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-12 max-w-2xl mx-auto items-center justify-items-center">
+            {/* Baris 1 Kolom 1: Download CV */}
             <a href={cvRawLink} download="vio-cv.pdf" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/Download_CV_(PDF)-ED2224?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white" alt="Download CV" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
 
+            {/* Baris 1 Kolom 2: View CV */}
             <Dialog>
               <DialogTrigger asChild>
                 <button className="hover:scale-110 transition-transform cursor-pointer border-none bg-transparent p-0 outline-none">
@@ -205,9 +207,12 @@ export default function AboutPage() {
               </DialogContent>
             </Dialog>
 
+            {/* Baris 2 Kolom 1: Gmail */}
             <a href="mailto:viochristian12@gmail.com" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
+
+            {/* Baris 2 Kolom 2: LinkedIn */}
             <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
               <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" className="h-10 md:h-12 shadow-xl rounded-lg" />
             </a>
