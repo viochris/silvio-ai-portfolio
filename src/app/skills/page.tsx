@@ -89,9 +89,16 @@ const techStacks = [
 
 export default function SkillsPage() {
   const [activeTab, setActiveTab] = useState('Skills');
+  const [credentialTab, setCredentialTab] = useState<'Certifications' | 'Badges'>('Certifications');
 
   if (activeTab === 'Credentials') {
-    return <AllCredentialsPage setActiveTab={setActiveTab} />;
+    return (
+      <AllCredentialsPage 
+        setActiveTab={setActiveTab} 
+        credentialTab={credentialTab} 
+        setCredentialTab={setCredentialTab} 
+      />
+    );
   }
 
   return (
@@ -184,7 +191,10 @@ export default function SkillsPage() {
           </div>
           <div className="flex justify-center mt-12">
             <button 
-              onClick={() => setActiveTab('Credentials')} 
+              onClick={() => {
+                setCredentialTab('Certifications');
+                setActiveTab('Credentials');
+              }} 
               className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
             >
               Explore All Certifications <ChevronRight className="w-4 h-4" />
@@ -210,7 +220,10 @@ export default function SkillsPage() {
           </div>
           <div className="flex justify-center mt-12">
             <button 
-              onClick={() => setActiveTab('Credentials')} 
+              onClick={() => {
+                setCredentialTab('Badges');
+                setActiveTab('Credentials');
+              }} 
               className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
             >
               Explore All Badges <ChevronRight className="w-4 h-4" />

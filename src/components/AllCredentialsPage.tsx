@@ -1,9 +1,8 @@
 
 "use client"
 
-import React, { useState } from 'react';
-import { ArrowLeft, Award, GraduationCap, ChevronRight, ShieldCheck } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect } from 'react';
+import { ArrowLeft, Award, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
 import { cn } from '@/lib/utils';
@@ -11,10 +10,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface AllCredentialsPageProps {
   setActiveTab: (tab: string) => void;
+  credentialTab: 'Certifications' | 'Badges';
+  setCredentialTab: (tab: 'Certifications' | 'Badges') => void;
 }
 
-export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({ setActiveTab }) => {
-  const [view, setView] = useState<'Certifications' | 'Badges'>('Certifications');
+export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({ 
+  setActiveTab, 
+  credentialTab, 
+  setCredentialTab 
+}) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
 
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
@@ -39,19 +46,19 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({ setActiv
           {/* Tab Switcher */}
           <div className="flex p-1 bg-white/5 rounded-2xl border border-white/10 w-fit">
             <button 
-              onClick={() => setView('Certifications')}
+              onClick={() => setCredentialTab('Certifications')}
               className={cn(
                 "px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-                view === 'Certifications' ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/40 hover:text-white"
+                credentialTab === 'Certifications' ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/40 hover:text-white"
               )}
             >
               Certifications ({professionalCertifications.length})
             </button>
             <button 
-              onClick={() => setView('Badges')}
+              onClick={() => setCredentialTab('Badges')}
               className={cn(
                 "px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all",
-                view === 'Badges' ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/40 hover:text-white"
+                credentialTab === 'Badges' ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/40 hover:text-white"
               )}
             >
               Course Badges ({courseBadges.length})
@@ -62,13 +69,13 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({ setActiv
         {/* Content Area */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={view}
+            key={credentialTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            {view === 'Certifications' ? (
+            {credentialTab === 'Certifications' ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {professionalCertifications.map((c) => (
                   <div key={c.id} className="p-8 md:p-10 glass rounded-[2.5rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group shadow-xl">
