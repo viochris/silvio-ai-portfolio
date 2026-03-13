@@ -24,52 +24,52 @@ export default function ContactPage() {
 
           <div className="space-y-10 lg:space-y-12">
             {/* Email Contact Item */}
-            <div className="flex items-start gap-8 group">
+            <div className="flex items-start gap-6 sm:gap-8 group">
               <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
                 <Mail className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2">
+              <div className="min-w-0 overflow-hidden pt-2 flex-1">
                 <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Email Inquiry</div>
-                <div className="text-xl lg:text-2xl font-headline font-bold text-white break-all md:break-words">viochristian12@gmail.com</div>
+                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-all whitespace-normal">viochristian12@gmail.com</div>
               </div>
             </div>
 
             {/* Phone Contact Item */}
-            <div className="flex items-start gap-8 group">
+            <div className="flex items-start gap-6 sm:gap-8 group">
               <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
                 <Phone className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2">
+              <div className="min-w-0 overflow-hidden pt-2 flex-1">
                 <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Voice Call</div>
-                <div className="text-xl lg:text-2xl font-headline font-bold text-white break-all md:break-words">62895342637871</div>
+                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-all whitespace-normal">62895342637871</div>
               </div>
             </div>
 
             {/* Location Contact Item */}
-            <div className="flex items-start gap-8 group">
+            <div className="flex items-start gap-6 sm:gap-8 group">
               <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-2xl border border-white/10 shrink-0">
                 <MapPin className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
-              <div className="min-w-0 overflow-hidden pt-2">
+              <div className="min-w-0 overflow-hidden pt-2 flex-1">
                 <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/50 mb-2">Base Location</div>
-                <div className="text-xl lg:text-2xl font-headline font-bold text-white break-words">Indonesia</div>
+                <div className="text-lg sm:text-xl lg:text-2xl font-headline font-bold text-white break-words">Indonesia</div>
               </div>
             </div>
           </div>
 
           {/* Social Links - Fixed Horizontal Flex */}
-          <div className="pt-12 border-t border-white/10 flex flex-wrap items-center gap-5 justify-center lg:justify-start">
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
+          <div className="pt-12 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
               <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-3 w-5 h-5 text-primary" /> LinkedIn
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
               <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-3 w-5 h-5 text-primary" /> GitHub
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
               <a href="https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" target="_blank" rel="noopener noreferrer">
                 <Instagram className="mr-3 w-5 h-5 text-primary" /> Instagram
               </a>

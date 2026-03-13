@@ -22,9 +22,9 @@ export default function Home() {
       <section id="home" className="pb-20 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
           
-          {/* Row 1: Hero Content */}
+          {/* Row 1: Hero Content (2 Columns on Desktop) */}
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
-            <div className="flex justify-center">
+            <div className="flex justify-center lg:justify-end">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
@@ -45,7 +45,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-10">
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
               <div className="space-y-6">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
@@ -61,7 +61,7 @@ export default function Home() {
                   <TypewriterEffect />
                 </div>
                 
-                <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-2xl">
+                <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
                   Specializing in NLP and Tabular Data processing, I build and deploy production-grade AI systems that bridge the gap between complex research and scalable user applications.
                 </p>
               </div>
@@ -79,14 +79,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 2: Stats Block */}
+          {/* Row 2: Stats Block (Full Width) */}
           <div className="w-full mb-32">
-            <div className="grid grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full">
               <div className="text-center">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">15+</div>
                 <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Projects Completed</div>
               </div>
-              <div className="text-center border-x border-white/10">
+              <div className="text-center border-y sm:border-y-0 sm:border-x border-white/10 py-8 sm:py-0">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">4+</div>
                 <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Awards & Honors</div>
               </div>
@@ -100,13 +100,13 @@ export default function Home() {
           {/* Row 3: Core Focus */}
           <div className="space-y-16 mb-40">
             <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Expertise</Badge>
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
               <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
                 Core <span className="text-primary">Focus</span>
               </h2>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   title: "Natural Language Processing",
@@ -139,16 +139,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 4: My Workflow (New Section) */}
+          {/* Row 4: My Workflow */}
           <div className="mb-40 space-y-16">
             <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1">Philosophy</Badge>
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
               <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
                 How I <span className="text-primary">Work</span>
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   title: "Research & Design",
@@ -179,15 +179,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 5: CTA Section (New Section) */}
+          {/* Row 5: CTA Section */}
           <div className="mb-20">
-            <div className="relative p-16 lg:p-24 rounded-[4rem] bg-primary overflow-hidden text-center space-y-10 shadow-2xl shadow-primary/30">
+            <div className="relative p-12 md:p-16 lg:p-24 rounded-[4rem] bg-primary overflow-hidden text-center space-y-10 shadow-2xl shadow-primary/30">
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
               <div className="relative z-10 space-y-6">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
                   Ready to Build the <span className="text-black">Future?</span>
                 </h2>
-                <p className="text-xl text-white/90 font-medium max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto">
                   Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
                 </p>
               </div>

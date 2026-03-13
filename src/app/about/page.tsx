@@ -14,7 +14,7 @@ export default function AboutPage() {
           <div className="space-y-12">
             <div className="space-y-6">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Journey</Badge>
-              <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
                 About <span className="text-primary">Experience</span>
               </h2>
             </div>
@@ -31,7 +31,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="flex gap-6 pt-4">
+            <div className="flex gap-4 sm:gap-6 pt-4">
               <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
                 <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
                   <Github className="w-6 h-6" />
@@ -51,7 +51,7 @@ export default function AboutPage() {
           </div>
 
           <div className="space-y-12">
-            <div className="p-10 lg:p-12 glass rounded-[2.5rem] space-y-10 border-primary/10 shadow-2xl">
+            <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] space-y-10 border-primary/10 shadow-2xl">
               <div>
                 <h3 className="text-xl md:text-2xl font-headline font-bold uppercase tracking-widest mb-10 flex items-center gap-4 text-foreground">
                   <GraduationCap className="text-primary w-7 h-7" /> Education Roadmap
@@ -62,8 +62,8 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Professional Pillars (New) */}
-        <div className="grid md:grid-cols-3 gap-10 mb-32">
+        {/* Section: Professional Pillars */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-32">
           {[
             {
               title: "Innovation First",
@@ -81,7 +81,7 @@ export default function AboutPage() {
               icon: <ShieldCheck className="w-10 h-10 text-primary" />
             }
           ].map((pillar, idx) => (
-            <div key={idx} className="p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all">
+            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all">
               <div className="w-20 h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center">
                 {pillar.icon}
               </div>
@@ -93,11 +93,11 @@ export default function AboutPage() {
           ))}
         </div>
 
-        {/* Section: Beyond The Code (New) */}
-        <div className="p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden">
+        {/* Section: Beyond The Code */}
+        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Personal Interests</Badge>
               <h3 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
                 Beyond The <span className="text-primary">Code</span>
@@ -114,15 +114,15 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               {[
                 { label: "Open Source", val: "Contributor" },
                 { label: "Hackathons", val: "Winner" },
                 { label: "Mentorship", val: "Enthusiast" },
                 { label: "Tech Blog", val: "Writer" }
               ].map((item, idx) => (
-                <div key={idx} className="p-8 bg-white/5 rounded-[2rem] border border-white/5 text-center space-y-2">
-                  <div className="text-primary font-headline font-bold text-xl">{item.val}</div>
+                <div key={idx} className="p-6 sm:p-8 bg-white/5 rounded-[2rem] border border-white/5 text-center space-y-2">
+                  <div className="text-primary font-headline font-bold text-lg sm:text-xl">{item.val}</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/50">{item.label}</div>
                 </div>
               ))}

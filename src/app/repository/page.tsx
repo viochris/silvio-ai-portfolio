@@ -13,7 +13,7 @@ const repos = [
     forks: 8,
     lang: "Python",
     desc: "Production-grade sentiment analysis pipeline using RoBERTa models.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   },
   {
     name: "stuntify-prediction-api",
@@ -21,7 +21,7 @@ const repos = [
     forks: 4,
     lang: "FastAPI",
     desc: "ML model deployment for child stunting risk assessment.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   },
   {
     name: "multimodal-recipe-vision",
@@ -29,7 +29,7 @@ const repos = [
     forks: 12,
     lang: "Python",
     desc: "Ingredient identification system using Gemini Vision API.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   },
   {
     name: "langchain-girlfriend-core",
@@ -37,7 +37,7 @@ const repos = [
     forks: 18,
     lang: "Python",
     desc: "Emotional intelligence framework for conversational AI companions.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   },
   {
     name: "tabular-data-pipeline",
@@ -45,7 +45,7 @@ const repos = [
     forks: 3,
     lang: "SQL",
     desc: "Highly efficient ETL pipelines for processing tabular research data.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   },
   {
     name: "fastapi-ml-boilerplate",
@@ -53,7 +53,7 @@ const repos = [
     forks: 10,
     lang: "Python",
     desc: "Standardized boilerplate for deploying Scikit-Learn models.",
-    link: "https://github.com"
+    link: "https://github.com/viochris"
   }
 ];
 
@@ -73,18 +73,18 @@ export default function RepositoryPage() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {repos.map((repo, i) => (
-            <Card key={i} className="bg-card/40 border-white/5 hover:border-primary/30 transition-all duration-500 rounded-[2rem] overflow-hidden group">
+            <Card key={i} className="bg-card/40 border-white/5 hover:border-primary/30 transition-all duration-500 rounded-[2rem] overflow-hidden group min-w-0">
               <CardHeader className="p-8">
                 <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                     <Code2 className="w-6 h-6" />
                   </div>
-                  <div className="flex gap-4 text-xs font-bold text-white/40">
+                  <div className="flex gap-4 text-xs font-bold text-white/40 ml-4">
                     <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5" /> {repo.stars}</span>
                     <span className="flex items-center gap-1.5"><GitFork className="w-3.5 h-3.5" /> {repo.forks}</span>
                   </div>
                 </div>
-                <CardTitle className="text-xl md:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl md:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words">
                   {repo.name}
                 </CardTitle>
                 <div className="mt-4">
