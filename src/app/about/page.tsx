@@ -151,19 +151,19 @@ export default function AboutPage() {
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-6 md:p-8 glass rounded-[2.5rem] border-white/10 flex items-center justify-center bg-white/[0.02] overflow-hidden shadow-2xl">
+          <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 p-6 rounded-3xl bg-[#0d1117] border border-slate-800 w-full shadow-2xl">
               <img 
                 src="https://github-readme-streak-stats.herokuapp.com/?user=viochris&theme=radical&hide_border=true" 
                 alt="GitHub Streak" 
                 className="w-full h-auto max-w-lg object-contain"
               />
             </div>
-            <div className="p-6 md:p-8 glass rounded-[2.5rem] border-white/10 flex items-center justify-center bg-white/[0.02] overflow-hidden shadow-2xl">
+            <div className="w-full p-4 sm:p-6 rounded-3xl bg-[#0d1117] border border-slate-800 overflow-x-auto shadow-2xl">
               <img 
                 src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=viochris&theme=radical" 
                 alt="Productive Time" 
-                className="w-full h-auto max-w-lg object-contain"
+                className="min-w-full h-auto object-contain"
               />
             </div>
           </div>
@@ -190,15 +190,15 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="w-full grid grid-cols-2 gap-3 sm:gap-6 px-4 sm:px-0">
               {[
                 { label: "Open Source", val: "Contributor" },
                 { label: "Hackathons", val: "Winner" },
                 { label: "Mentorship", val: "Enthusiast" },
                 { label: "Tech Blog", val: "Writer" }
               ].map((item, idx) => (
-                <div key={idx} className="p-6 sm:p-8 bg-white/5 rounded-[2rem] border border-white/5 text-center space-y-2">
-                  <div className="text-primary font-headline font-bold text-lg sm:text-xl">{item.val}</div>
+                <div key={idx} className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-3xl bg-slate-900/50 border border-slate-800 w-full text-center overflow-hidden">
+                  <div className="text-sm sm:text-lg font-bold text-primary break-words w-full">{item.val}</div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/50">{item.label}</div>
                 </div>
               ))}
