@@ -115,7 +115,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                       </div>
                       
                       {/* Text Block: Title + Issuer Badge */}
-                      <div className="min-w-0 flex-1 flex flex-col items-start text-left">
+                      <div className="min-w-0 flex-1 flex flex-col items-start justify-start text-left">
                         <div className={cn(
                           "text-lg font-headline font-bold leading-tight text-white mb-2",
                           credentialTab === 'Badges' && "text-sm"
