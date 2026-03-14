@@ -5,13 +5,13 @@ import MainLayout from "@/components/MainLayout";
 export const metadata: Metadata = {
   metadataBase: new URL("https://silvio-ai-portfolio.vercel.app"),
   title: {
-    default: "Silvio.AI | Silvio Christian - Data Scientist & AI Engineer",
+    default: "Silvio.AI | Silvio Christian, Joe - Data Scientist & AI Engineer",
     template: "%s | Silvio.AI",
   },
   description:
-    "Portfolio of Silvio Christian (Vio), an Informatics Undergraduate, Data Scientist, and AI Engineer specializing in Machine Learning, NLP, and production-ready AI solutions. Transforming unstructured data into intelligence.",
+    "Portfolio of Silvio Christian, Joe (Vio), an Informatics Undergraduate, Data Scientist, and AI Engineer specializing in Machine Learning, NLP, and production-ready AI solutions. Transforming unstructured data into intelligence.",
   keywords: [
-    "Silvio Christian",
+    "Silvio Christian Joe",
     "Vio",
     "viochris",
     "Data Scientist",
@@ -27,28 +27,28 @@ export const metadata: Metadata = {
     "Predictive Modeling",
     "Tabular Data Analysis",
   ],
-  authors: [{ name: "Silvio Christian", url: "https://github.com/viochris" }],
-  creator: "Silvio Christian",
+  authors: [{ name: "Silvio Christian, Joe", url: "https://github.com/viochris" }],
+  creator: "Silvio Christian, Joe",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://silvio-ai-portfolio.vercel.app",
     siteName: "Silvio.AI Portfolio",
-    title: "Silvio Christian | Data Scientist & AI Engineer",
+    title: "Silvio Christian, Joe | Data Scientist & AI Engineer",
     description:
-      "Explore the intersection of Data Science and AI Engineering through the portfolio of Silvio Christian. Specializing in NLP, Machine Learning, and Autonomous Agents.",
+      "Explore the intersection of Data Science and AI Engineering through the portfolio of Silvio Christian, Joe. Specializing in NLP, Machine Learning, and Autonomous Agents.",
     images: [
       {
         url: "/vio-image.png",
         width: 1200,
         height: 630,
-        alt: "Silvio Christian Portfolio Preview",
+        alt: "Silvio Christian Joe Portfolio Preview",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Silvio Christian | Data Scientist & AI Engineer",
+    title: "Silvio Christian, Joe | Data Scientist & AI Engineer",
     description: "Personal portfolio showcasing AI solutions and data-driven insights.",
     images: ["/vio-image.png"],
     creator: "@silvio.codes",
@@ -78,13 +78,17 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Silvio Christian",
+    "name": "Silvio Christian, Joe",
+    "givenName": "Silvio Christian",
+    "familyName": "Joe",
     "alternateName": "Vio",
     "url": "https://silvio-ai-portfolio.vercel.app",
     "image": "https://silvio-ai-portfolio.vercel.app/vio-image.png",
+    "description": "Data Scientist and AI Engineer specializing in Machine Learning, NLP, and production-ready AI solutions.",
     "sameAs": [
       "https://github.com/viochris",
       "https://instagram.com/silvio.codes",
+      "https://www.linkedin.com/in/silvio-christian-joe",
       "mailto:viochristian12@gmail.com"
     ],
     "jobTitle": "Data Scientist & AI Engineer",
@@ -106,7 +110,8 @@ export default function RootLayout({
       "Generative AI",
       "Next.js",
       "Genkit",
-      "Predictive Modeling"
+      "Predictive Modeling",
+      "Tabular Data Analysis"
     ]
   };
 
