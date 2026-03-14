@@ -7,10 +7,30 @@ export interface Credential {
 }
 
 export const professionalCertifications: Credential[] = [
-  { id: 1, title: "Oracle AI Vector Search Certified Professional", issuer: "Oracle" },
-  { id: 2, title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional", issuer: "Oracle" },
-  { id: 3, title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate", issuer: "Oracle" },
-  { id: 4, title: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional", issuer: "Oracle" },
+  { 
+    id: 1, 
+    title: "Oracle AI Vector Search Certified Professional", 
+    issuer: "Oracle",
+    verifyLink: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=4813172AB028B1405B6E5A45DB8E4BE52AD4CE92F78A90BAE7FDFD4F43D6C909"
+  },
+  { 
+    id: 2, 
+    title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional", 
+    issuer: "Oracle",
+    verifyLink: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=40E9CE3B4043AABCE1D5A50A49B186938C1CA875CE938837F73EAA2D40B3FE4F"
+  },
+  { 
+    id: 3, 
+    title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate", 
+    issuer: "Oracle",
+    verifyLink: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=2B33EA8062DFC9C8C1FE58518F6E32D13E126A9A8F2482ADFACAA2B47FB491AA"
+  },
+  { 
+    id: 4, 
+    title: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional", 
+    issuer: "Oracle",
+    verifyLink: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=50CEB7D6BF8197A8FA3F0E350EAC9B23927763A843112293AE7418E973E631F1"
+  },
   { 
     id: 5, 
     title: "IBM Machine Learning Specialization", 
@@ -45,7 +65,12 @@ export const professionalCertifications: Credential[] = [
   { id: 11, title: "Supervised Machine Learning: Regression", issuer: "IBM" },
   { id: 12, title: "Exploratory Data Analysis for Machine Learning", issuer: "IBM" },
   { id: 13, title: "Introduction to Artificial Intelligence (AI)", issuer: "IBM" },
-  { id: 14, title: "Generative AI: Prompt Engineering Basics", issuer: "IBM" },
+  { 
+    id: 14, 
+    title: "Generative AI: Prompt Engineering Basics", 
+    issuer: "IBM",
+    verifyLink: "https://www.coursera.org/account/accomplishments/verify/KK8QSSBWX0BO"
+  },
   { id: 15, title: "Data Classification and Summarization Using IBM Granite", issuer: "IBM" },
   { id: 16, title: "Code Generation and Optimization Using IBM Granite", issuer: "IBM" },
   { 
@@ -129,7 +154,12 @@ export const courseBadges: Credential[] = [
     issuer: "Coursera",
     verifyLink: "https://www.credly.com/badges/f1549127-1061-446e-a8ea-1b743cc979c4/linked_in_profile"
   },
-  { id: 6, title: "Supervised Machine Learning: Classification", issuer: "Coursera" },
+  { 
+    id: 6, 
+    title: "Supervised Machine Learning: Classification", 
+    issuer: "Coursera",
+    verifyLink: "https://www.credly.com/badges/343d6609-0801-4ef8-84dd-e09c025d2e1b/linked_in_profile"
+  },
   { id: 7, title: "Supervised Machine Learning: Regression", issuer: "Coursera" },
   { id: 8, title: "Exploratory Data Analysis for Machine Learning", issuer: "Coursera" },
   { id: 9, title: "Artificial Intelligence Essentials V2", issuer: "Coursera" }
