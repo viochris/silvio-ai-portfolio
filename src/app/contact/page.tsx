@@ -46,7 +46,7 @@ export default function ContactPage() {
                 <Phone className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
               <div className="min-w-0 overflow-hidden flex-1">
-                <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
+                <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Phone Number</div>
                 <div className="text-lg font-semibold text-white break-all whitespace-normal group-hover:text-primary transition-colors">+62 895-3426-37871</div>
               </div>
             </a>
