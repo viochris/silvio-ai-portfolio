@@ -158,18 +158,10 @@ export default function RootLayout({
                     </div>
                   </div>
 
-                  <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 text-center md:text-left">
-                      © 2026 SILVIO CHRISTIAN, JOE. ALL RIGHTS RESERVED.
-                    </div>
-                    <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
-                      <span className="flex items-center gap-2">
-                        HANDCRAFTED WITH <span className="text-primary">NEXT.JS</span>
-                      </span>
-                      <span className="hidden md:inline-block w-1 h-1 bg-white/10 rounded-full" />
-                      <span className="flex items-center gap-2">
-                        POWERED BY <span className="text-primary">GENKIT</span>
-                      </span>
+                  <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex items-center justify-center">
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 text-center leading-loose">
+                      © 2026 SILVIO CHRISTIAN, JOE.<br />
+                      ALL RIGHTS RESERVED.
                     </div>
                   </div>
                 </footer>
