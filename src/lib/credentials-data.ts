@@ -61,9 +61,24 @@ export const professionalCertifications: Credential[] = [
     issuer: "IBM",
     verifyLink: "https://www.coursera.org/account/accomplishments/verify/36LJDSZ80XV8"
   },
-  { id: 10, title: "Supervised Machine Learning: Classification", issuer: "IBM" },
-  { id: 11, title: "Supervised Machine Learning: Regression", issuer: "IBM" },
-  { id: 12, title: "Exploratory Data Analysis for Machine Learning", issuer: "IBM" },
+  { 
+    id: 10, 
+    title: "Supervised Machine Learning: Classification", 
+    issuer: "IBM",
+    verifyLink: "https://www.coursera.org/account/accomplishments/verify/FGHZW5XFQYYJ"
+  },
+  { 
+    id: 11, 
+    title: "Supervised Machine Learning: Regression", 
+    issuer: "IBM",
+    verifyLink: "https://www.coursera.org/account/accomplishments/verify/SG67ZVWKQVFE"
+  },
+  { 
+    id: 12, 
+    title: "Exploratory Data Analysis for Machine Learning", 
+    issuer: "IBM",
+    verifyLink: "https://www.coursera.org/account/accomplishments/verify/CHXNLBSONSQX"
+  },
   { id: 13, title: "Introduction to Artificial Intelligence (AI)", issuer: "IBM" },
   { 
     id: 14, 
@@ -71,8 +86,18 @@ export const professionalCertifications: Credential[] = [
     issuer: "IBM",
     verifyLink: "https://www.coursera.org/account/accomplishments/verify/KK8QSSBWX0BO"
   },
-  { id: 15, title: "Data Classification and Summarization Using IBM Granite", issuer: "IBM" },
-  { id: 16, title: "Code Generation and Optimization Using IBM Granite", issuer: "IBM" },
+  { 
+    id: 15, 
+    title: "Data Classification and Summarization Using IBM Granite", 
+    issuer: "IBM",
+    verifyLink: "https://www.credly.com/badges/1cbf6431-f4e9-4ab6-8af5-fb42dcbcd43f/linked_in_profile"
+  },
+  { 
+    id: 16, 
+    title: "Code Generation and Optimization Using IBM Granite", 
+    issuer: "IBM",
+    verifyLink: "https://www.credly.com/badges/85551651-e483-41e7-8395-f0b63f41f5c4/linked_in_profile"
+  },
   { 
     id: 17, 
     title: "Belajar Analisis Data dengan Python", 
@@ -160,7 +185,22 @@ export const courseBadges: Credential[] = [
     issuer: "Coursera",
     verifyLink: "https://www.credly.com/badges/343d6609-0801-4ef8-84dd-e09c025d2e1b/linked_in_profile"
   },
-  { id: 7, title: "Supervised Machine Learning: Regression", issuer: "Coursera" },
-  { id: 8, title: "Exploratory Data Analysis for Machine Learning", issuer: "Coursera" },
-  { id: 9, title: "Artificial Intelligence Essentials V2", issuer: "Coursera" }
+  { 
+    id: 7, 
+    title: "Supervised Machine Learning: Regression", 
+    issuer: "Coursera",
+    verifyLink: "https://www.credly.com/badges/81c7e2e0-b3a9-4dc9-80c7-635174da5796/linked_in_profile"
+  },
+  { 
+    id: 8, 
+    title: "Exploratory Data Analysis for Machine Learning", 
+    issuer: "Coursera",
+    verifyLink: "https://www.credly.com/badges/ffb7570b-bb3c-4b25-ac7f-306dba54de69/linked_in_profile"
+  },
+  { 
+    id: 9, 
+    title: "Artificial Intelligence Essentials V2", 
+    issuer: "Coursera",
+    verifyLink: "https://www.coursera.org/account/accomplishments/verify/X35FDFRT69A9"
+  }
 ];
