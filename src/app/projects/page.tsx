@@ -20,7 +20,7 @@ const featuredProjects = [
     link: "https://insightsql-langgraph-engine-web.streamlit.app/",
     problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency.",
     solution: "Implemented Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
-    image: "https://picsum.photos/seed/insight-sql/600/400"
+    image: "/insight_sql_langgraph.png"
   },
   { 
     id: 2, 
@@ -30,7 +30,7 @@ const featuredProjects = [
     link: "https://app-spend-sense.streamlit.app/",
     problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
     solution: "Built an intelligent finance assistant that combines Gemini Vision for receipt processing and LangChain for conversational data analysis.",
-    image: "https://picsum.photos/seed/spendsense/600/400"
+    image: "/streamlit_spendsense.png"
   },
   { 
     id: 3, 
@@ -40,7 +40,7 @@ const featuredProjects = [
     link: "https://silvio0-resume-scanner.hf.space/docs",
     problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
     solution: "Developed a dual-engine API offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise job-resume matching.",
-    image: "https://picsum.photos/seed/resume-api/600/400"
+    image: "/resume_scanner_api.png"
   },
   { 
     id: 4, 
@@ -50,7 +50,7 @@ const featuredProjects = [
     link: "https://insight-data-ai-analyst.streamlit.app/",
     problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
     solution: "Built a ReAct agent that autonomously writes and executes Python code for cleaning, analysis, and instant visualization.",
-    image: "https://picsum.photos/seed/ai-analyst/600/400"
+    image: "/insight_data.png"
   }
 ];
 
