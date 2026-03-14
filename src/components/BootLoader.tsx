@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -79,9 +78,9 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
           exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center p-6 font-code"
+          suppressHydrationWarning
         >
           <div className="max-w-2xl w-full">
-            {/* Terminal Window with explicit top-to-bottom flow */}
             <div 
               className="text-white/90 text-sm md:text-base leading-relaxed h-[450px] overflow-hidden flex flex-col justify-start"
               suppressHydrationWarning
