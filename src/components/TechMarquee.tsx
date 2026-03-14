@@ -37,22 +37,22 @@ export const TechMarquee: React.FC = () => {
       <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-background to-transparent z-10" />
       <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-background to-transparent z-10" />
       
-      <div className="flex animate-marquee whitespace-nowrap gap-12 items-center">
-        {[...techStack, ...techStack].map((tech, idx) => (
-          <div key={idx} className="flex items-center gap-2 px-4">
-            <span className="text-xl font-headline font-semibold text-muted-foreground/60 hover:text-primary transition-colors cursor-default uppercase tracking-widest flex items-center gap-3">
-              {tech.icon && (
-                <img 
-                  src={tech.icon} 
-                  alt={tech.name} 
-                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md" 
-                  style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-                />
-              )}
-              {tech.name}
-            </span>
-            <span className="text-primary opacity-30">/</span>
-          </div>
+      <div className="flex w-max animate-[marquee_25s_linear_infinite]">
+        {[...techStack, ...techStack].map((tech, index) => (
+          <span 
+            key={index} 
+            className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
+          >
+            {tech.icon && (
+              <img 
+                src={tech.icon} 
+                alt={tech.name} 
+                className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md" 
+                style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+              />
+            )}
+            {tech.name}
+          </span>
         ))}
       </div>
     </div>
