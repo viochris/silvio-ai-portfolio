@@ -120,7 +120,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                           credentialTab === 'Badges' && "text-sm"
                         )}>{item.title}</div>
                         <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-tighter text-primary/70 border-primary/20">
-                          {item.issuer} {credentialTab === 'Certifications' ? 'Professional' : 'Specialized'}
+                          {item.issuer}
                         </Badge>
                       </div>
                     </div>

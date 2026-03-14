@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useEffect } from 'react';
@@ -207,7 +208,7 @@ export default function SkillsPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight">{c.title}</div>
-                  <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer} Professional</div>
+                  <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer}</div>
                 </div>
               </div>
             ))}
@@ -235,7 +236,7 @@ export default function SkillsPage() {
                 </div>
                 <div className="min-w-0">
                   <div className="text-sm font-bold text-white mb-2 leading-tight">{b.title}</div>
-                  <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer} Specialized</div>
+                  <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer}</div>
                 </div>
               </div>
             ))}
