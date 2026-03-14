@@ -67,7 +67,7 @@ export default function ProjectsPage() {
           <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
         </div>
 
-        {/* Explore Repository Link - Repositioned near the projects */}
+        {/* Explore Repository Link */}
         <div className="flex justify-end mb-8 pr-4">
           <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
             <Link href="/repository">
@@ -77,20 +77,20 @@ export default function ProjectsPage() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
-            <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2.5rem] flex flex-col h-full">
-              {/* Image Container */}
-              <div className="relative h-72 lg:h-80 overflow-hidden shrink-0">
+            <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex flex-col h-full">
+              {/* Image Container - Aspect Video for full feel */}
+              <div className="relative aspect-video w-full overflow-hidden shrink-0 bg-black/20">
                 <Image 
                   src={p.image} 
                   alt={p.title} 
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
-                  <Button size="lg" className="rounded-full font-bold shadow-xl px-10" asChild>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6 md:p-10">
+                  <Button size="lg" className="rounded-full font-bold shadow-xl px-8 md:px-10 h-12 md:h-14 text-sm md:text-base" asChild>
                     <a href={p.link} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
                     </a>
@@ -99,78 +99,77 @@ export default function ProjectsPage() {
               </div>
 
               {/* Card Body */}
-              <CardHeader className="p-10 flex-1 flex flex-col">
-                {/* Horizontal Tech Tags - Fixed no-wrap and removed counter as requested */}
-                <div className="flex items-center gap-2 mb-6 flex-nowrap overflow-hidden">
+              <CardHeader className="p-6 md:p-10 flex-1 flex flex-col">
+                {/* Tech Tags - Wrap for mobile */}
+                <div className="flex flex-wrap items-center gap-2 mb-6">
                   {p.tech.map(t => (
-                    <Badge key={t} variant="secondary" className="text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap shrink-0">
+                    <Badge key={t} variant="secondary" className="text-[9px] md:text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap">
                       {t}
                     </Badge>
                   ))}
                 </div>
                 
-                {/* Title with fixed minimum height for alignment */}
-                <div className="min-h-[4rem] lg:min-h-[5rem]">
-                  <CardTitle className="text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                {/* Title */}
+                <div className="min-h-[3rem] md:min-h-[4rem]">
+                  <CardTitle className="text-2xl md:text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {p.title}
                   </CardTitle>
                 </div>
 
-                {/* Description - Same text as Case Study, but clamped here */}
-                <CardDescription className="text-lg text-muted-foreground mt-4 font-medium leading-relaxed line-clamp-2 h-14">
+                {/* Description */}
+                <CardDescription className="text-base md:text-lg text-muted-foreground mt-4 font-medium leading-relaxed line-clamp-2 md:h-14">
                   {p.desc}
                 </CardDescription>
               </CardHeader>
 
-              {/* Card Footer / Action */}
-              <CardContent className="px-10 pb-10 pt-0 mt-auto">
+              {/* Card Footer */}
+              <CardContent className="px-6 md:px-10 pb-6 md:pb-10 pt-0 mt-auto">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="outline" className="w-full rounded-2xl font-headline font-bold uppercase tracking-widest text-xs h-14 hover:bg-primary hover:text-primary-foreground transition-all">
+                    <Button variant="outline" className="w-full rounded-xl md:rounded-2xl font-headline font-bold uppercase tracking-widest text-[10px] md:text-xs h-12 md:h-14 hover:bg-primary hover:text-primary-foreground transition-all">
                       Case Study Details
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] border-border bg-card p-10">
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[1.5rem] md:rounded-[2.5rem] border-border bg-card p-6 md:p-10">
                     <DialogHeader>
-                      <DialogTitle className="text-4xl font-headline font-bold mb-8 text-foreground">{p.title}</DialogTitle>
+                      <DialogTitle className="text-2xl md:text-4xl font-headline font-bold mb-4 md:mb-8 text-foreground">{p.title}</DialogTitle>
                     </DialogHeader>
-                    <div className="grid md:grid-cols-2 gap-16">
-                      <div className="space-y-10">
-                        <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-border">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                      <div className="space-y-6 md:space-y-10">
+                        <div className="relative aspect-video w-full overflow-hidden rounded-xl md:rounded-[2rem] shadow-2xl border border-border">
                           <Image 
                             src={p.image} 
                             alt={p.title} 
                             fill
-                            className="object-cover"
+                            className="object-cover object-top"
                           />
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {p.tech.map(t => <Badge key={t} variant="secondary" className="bg-muted text-foreground uppercase text-[10px] font-bold px-3 py-1">{t}</Badge>)}
                         </div>
                       </div>
-                      <div className="space-y-10">
-                        {/* Full Description in Case Study */}
+                      <div className="space-y-8 md:space-y-10">
                         <div>
-                          <h4 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-3 tracking-[0.2em]">
+                          <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
                             <Info className="w-4 h-4" /> Overview
                           </h4>
-                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.desc}</p>
+                          <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.desc}</p>
                         </div>
 
                         <div>
-                          <h4 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-3 tracking-[0.2em]">
+                          <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
                             <Brain className="w-4 h-4" /> The Problem
                           </h4>
-                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.problem}</p>
+                          <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.problem}</p>
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold uppercase text-primary mb-4 flex items-center gap-3 tracking-[0.2em]">
+                          <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
                             <Sparkles className="w-4 h-4" /> The Solution
                           </h4>
-                          <p className="text-foreground font-medium text-lg leading-relaxed">{p.solution}</p>
+                          <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.solution}</p>
                         </div>
                         <Separator className="bg-border/50" />
-                        <Button className="w-full rounded-[1.5rem] font-headline font-bold h-14 text-lg" asChild>
+                        <Button className="w-full rounded-xl md:rounded-[1.5rem] font-headline font-bold h-12 md:h-14 text-base md:text-lg" asChild>
                           <a href={p.link} target="_blank" rel="noopener noreferrer">Visit Repository <ExternalLink className="ml-2 w-5 h-5" /></a>
                         </Button>
                       </div>
