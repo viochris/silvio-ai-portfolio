@@ -108,9 +108,23 @@ export const Navbar: React.FC = () => {
     <nav className="fixed top-0 w-full z-50 glass border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="font-headline font-bold text-xl tracking-tighter flex items-center gap-2 text-foreground">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">S</div>
-          SILVIO.AI
+        <Link 
+          href="/" 
+          onClick={() => { 
+            setIsReturning(false); 
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); 
+            setActiveTab('Home'); 
+          }} 
+          className="flex items-center gap-2 sm:gap-3 group focus:outline-none"
+        >
+          <img 
+            src="/icon.png" 
+            alt="Silvio.AI Logo" 
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-cover shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300" 
+          />
+          <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            SILVIO<span className="text-primary">.AI</span>
+          </span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -120,10 +134,8 @@ export const Navbar: React.FC = () => {
               key={link.href} 
               href={link.href}
               onClick={() => {
-                if (link.name === 'Skills') {
-                  setIsReturning(false);
-                  setActiveTab('Skills');
-                }
+                setIsReturning(false);
+                setActiveTab(link.name);
               }}
               className={cn(
                 "hover:text-primary transition-colors",
@@ -160,7 +172,11 @@ export const Navbar: React.FC = () => {
               <SheetContent side="right" className="bg-background/95 backdrop-blur-xl border-border w-[300px] p-0">
                 <SheetHeader className="p-6 border-b border-border">
                   <SheetTitle className="text-left font-headline font-bold text-xl tracking-tighter flex items-center gap-2 text-foreground">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">S</div>
+                    <img 
+                      src="/icon.png" 
+                      alt="Silvio.AI Logo" 
+                      className="w-8 h-8 rounded-lg object-cover" 
+                    />
                     SILVIO.AI
                   </SheetTitle>
                 </SheetHeader>
@@ -171,10 +187,8 @@ export const Navbar: React.FC = () => {
                       href={link.href}
                       onClick={() => {
                         setIsOpen(false);
-                        if (link.name === 'Skills') {
-                          setIsReturning(false);
-                          setActiveTab('Skills');
-                        }
+                        setIsReturning(false);
+                        setActiveTab(link.name);
                       }}
                       className={cn(
                         "text-lg font-headline font-bold uppercase tracking-widest transition-colors py-2",
