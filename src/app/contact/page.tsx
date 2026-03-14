@@ -32,8 +32,8 @@ export default function ContactPage() {
                 <Mail className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
               <div className="min-w-0 overflow-hidden flex-1">
-                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Email Inquiry</div>
-                <div className="text-lg font-semibold text-white break-all whitespace-normal">viochristian12@gmail.com</div>
+                <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
+                <div className="text-lg font-semibold text-white break-all whitespace-normal group-hover:text-primary transition-colors">viochristian12@gmail.com</div>
               </div>
             </a>
 
@@ -46,19 +46,19 @@ export default function ContactPage() {
                 <Phone className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
               <div className="min-w-0 overflow-hidden flex-1">
-                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Voice Call</div>
-                <div className="text-lg font-semibold text-white break-all whitespace-normal">+62 895-3426-37871</div>
+                <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
+                <div className="text-lg font-semibold text-white break-all whitespace-normal group-hover:text-primary transition-colors">+62 895-3426-37871</div>
               </div>
             </a>
 
             {/* Location Contact Item */}
-            <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 w-full">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0">
+            <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 w-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg rounded-3xl cursor-default">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary/50 transition-all duration-300 shadow-2xl">
                 <MapPin className="w-7 h-7 lg:w-8 lg:h-8" />
               </div>
               <div className="min-w-0 overflow-hidden flex-1">
-                <div className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Base Location</div>
-                <div className="text-lg font-semibold text-white break-words">Semarang, Central Java, Indonesia</div>
+                <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
+                <div className="text-lg font-semibold text-white break-words group-hover:text-primary transition-colors">Semarang, Central Java, Indonesia</div>
               </div>
             </div>
           </div>
