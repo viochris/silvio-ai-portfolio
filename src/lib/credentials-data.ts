@@ -79,24 +79,16 @@ export const professionalCertifications: Credential[] = [
     issuer: "IBM",
     verifyLink: "https://www.coursera.org/account/accomplishments/verify/CHXNLBSONSQX"
   },
-  { id: 13, title: "Introduction to Artificial Intelligence (AI)", issuer: "IBM" },
+  { 
+    id: 13, 
+    title: "Introduction to Artificial Intelligence (AI)", 
+    issuer: "IBM" 
+  },
   { 
     id: 14, 
     title: "Generative AI: Prompt Engineering Basics", 
     issuer: "IBM",
     verifyLink: "https://www.coursera.org/account/accomplishments/verify/KK8QSSBWX0BO"
-  },
-  { 
-    id: 15, 
-    title: "Data Classification and Summarization Using IBM Granite", 
-    issuer: "IBM",
-    verifyLink: "https://www.credly.com/badges/1cbf6431-f4e9-4ab6-8af5-fb42dcbcd43f/linked_in_profile"
-  },
-  { 
-    id: 16, 
-    title: "Code Generation and Optimization Using IBM Granite", 
-    issuer: "IBM",
-    verifyLink: "https://www.credly.com/badges/85551651-e483-41e7-8395-f0b63f41f5c4/linked_in_profile"
   },
   { 
     id: 17, 
@@ -202,5 +194,17 @@ export const courseBadges: Credential[] = [
     title: "Artificial Intelligence Essentials V2", 
     issuer: "Coursera",
     verifyLink: "https://www.coursera.org/account/accomplishments/verify/X35FDFRT69A9"
+  },
+  { 
+    id: 15, 
+    title: "Data Classification and Summarization Using IBM Granite", 
+    issuer: "IBM",
+    verifyLink: "https://www.credly.com/badges/1cbf6431-f4e9-4ab6-8af5-fb42dcbcd43f/linked_in_profile"
+  },
+  { 
+    id: 16, 
+    title: "Code Generation and Optimization Using IBM Granite", 
+    issuer: "IBM",
+    verifyLink: "https://www.credly.com/badges/85551651-e483-41e7-8395-f0b63f41f5c4/linked_in_profile"
   }
 ];
