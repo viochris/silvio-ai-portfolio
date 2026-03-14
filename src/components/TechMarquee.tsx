@@ -33,28 +33,63 @@ const techStack = [
 
 export const TechMarquee: React.FC = () => {
   return (
-    <div className="w-full py-10 bg-muted/30 overflow-hidden relative">
-      <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-background to-transparent z-10" />
-      <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-background to-transparent z-10" />
-      
-      <div className="flex w-max animate-[marquee_80s_linear_infinite]">
-        {[...techStack, ...techStack].map((tech, index) => (
-          <span 
-            key={index} 
-            className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
-          >
-            {tech.icon && (
-              <img 
-                src={tech.icon} 
-                alt={tech.name} 
-                className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md" 
-                style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-              />
-            )}
-            {tech.name}
-          </span>
-        ))}
+    <div className="relative w-full overflow-hidden bg-slate-900/50 border-y border-slate-800/50 py-4 sm:py-6 mb-12 flex">
+      {/* Gradients for smooth fade effect */}
+      <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
+
+      {/* Marquee Wrapper */}
+      <div className="flex w-max animate-[marquee_60s_linear_infinite]">
+        
+        {/* First Set */}
+        <div className="flex shrink-0">
+          {techStack.map((tech, index) => (
+            <span 
+              key={index} 
+              className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
+            >
+              {tech.icon && (
+                <img 
+                  src={tech.icon} 
+                  alt={tech.name} 
+                  className={`w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md`}
+                  style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                />
+              )}
+              {tech.name}
+            </span>
+          ))}
+        </div>
+
+        {/* Second Set (Exact duplicate to fill the gap seamlessly) */}
+        <div className="flex shrink-0">
+          {techStack.map((tech, index) => (
+            <span 
+              key={`dup-${index}`} 
+              className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
+            >
+              {tech.icon && (
+                <img 
+                  src={tech.icon} 
+                  alt={tech.name} 
+                  className={`w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md`}
+                  style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                />
+              )}
+              {tech.name}
+            </span>
+          ))}
+        </div>
+
       </div>
+      
+      {/* CSS Keyframes injected safely */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      `}} />
     </div>
   );
 };
