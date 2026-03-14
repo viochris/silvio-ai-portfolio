@@ -18,80 +18,62 @@ export const BinaryBackground: React.FC = () => {
     const fontSize = 16;
     const columns = Math.floor(width / fontSize);
     
-    let drops: number[] = new Array(columns).fill(0);
-    let speeds: number[] = new Array(columns).fill(1);
-    let isInitialDrop = true;
+    // drops stores the current y-coordinate for each column
+    let drops: number[] = new Array(columns).fill(1);
     
-    const fps = 12; // Matrix speed
-    const fpsInterval = 1000 / fps;
-    let lastTime = performance.now();
-
-    // Dark Mode colors (Futuristic Blue)
+    // Futuristic Blue colors
     const colors = {
-      bg: 'rgb(0, 0, 0)', 
-      fade: 'rgba(0, 0, 0, 0.15)',
-      text: 'rgba(59, 130, 246, 0.4)' 
+      bg: 'black', 
+      fade: 'rgba(0, 0, 0, 0.1)', // Trail effect
+      text: '#3b82f6' // Bright Blue
     };
 
-    // Hard reset canvas to solid black
-    ctx.fillStyle = colors.bg;
-    ctx.fillRect(0, 0, width, height);
-
-    const draw = (currentTime: number) => {
-      const elapsed = currentTime - lastTime;
-      requestAnimationFrame(draw);
-
-      if (elapsed < fpsInterval) return;
-      lastTime = currentTime - (elapsed % fpsInterval);
-
-      // Trailing effect
+    const draw = () => {
+      // Create trailing effect by filling with semi-transparent black
       ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = colors.text;
       ctx.font = `bold ${fontSize}px monospace`;
 
-      let allHitBottom = true;
-
       for (let i = 0; i < drops.length; i++) {
+        // Random 0 or 1
         const text = Math.random() > 0.5 ? '0' : '1';
+        
+        // Calculate x and y coordinates
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
+        // Draw the character
         ctx.fillText(text, x, y);
 
-        if (isInitialDrop) {
-          drops[i] += 1; 
-          if (y < height) allHitBottom = false;
-        } else {
-          drops[i] += speeds[i];
-          if (drops[i] * fontSize > height && Math.random() > 0.975) {
-            drops[i] = 0;
-            speeds[i] = 0.5 + Math.random() * 0.8;
-          }
+        // Reset drop to top randomly after hitting bottom
+        if (y > height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-      }
 
-      if (isInitialDrop && allHitBottom) {
-        isInitialDrop = false;
-        for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.5 + Math.random() * 0.8;
-        }
+        // Increment y coordinate
+        drops[i]++;
       }
     };
 
-    const animationId = requestAnimationFrame(draw);
+    // Use setInterval for a consistent "Matrix" speed (around 30fps is classic)
+    const interval = setInterval(draw, 33);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      ctx.fillStyle = colors.bg;
+      // Reset drops on resize to fill new space
+      const newColumns = Math.floor(width / fontSize);
+      drops = new Array(newColumns).fill(1);
+      ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, width, height);
     };
 
     window.addEventListener('resize', handleResize);
+    
     return () => {
-      cancelAnimationFrame(animationId);
+      clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -99,7 +81,7 @@ export const BinaryBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-50"
+      className="fixed inset-0 z-0 pointer-events-none opacity-60"
     />
   );
 };

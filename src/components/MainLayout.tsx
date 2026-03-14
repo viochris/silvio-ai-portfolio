@@ -49,10 +49,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Ensure consistent root div even before mount to prevent hydration errors
   return (
     <div className="min-h-screen relative bg-black" suppressHydrationWarning>
-      {/* BinaryBackground is fixed, so we render it as early as possible */}
+      {/* BinaryBackground as the base layer */}
       <BinaryBackground />
 
       <AnimatePresence mode="wait">
@@ -67,7 +66,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
             className="relative z-10"
           >
             <Navbar />
-            <main className="relative z-10 min-h-screen">
+            <main className="relative z-10 min-h-screen bg-transparent">
               {children}
             </main>
             
