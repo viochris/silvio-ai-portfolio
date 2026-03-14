@@ -152,7 +152,7 @@ export default function RepositoryPage() {
           {filteredRepos.length > 0 ? (
             filteredRepos.map((repo, i) => (
               <Card key={i} className="bg-card/40 border-white/5 hover:border-primary/30 transition-all duration-500 rounded-[2rem] overflow-hidden group min-w-0 flex flex-col h-full shadow-2xl">
-                <CardHeader className="p-8 flex-1">
+                <CardHeader className="p-8 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-6">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                       <Code2 className="w-6 h-6" />
@@ -161,19 +161,29 @@ export default function RepositoryPage() {
                       {repo.type}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl md:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words">
-                    {repo.name}
-                  </CardTitle>
-                  <div className="mt-4">
-                    <Badge className="bg-primary/10 text-primary text-[10px] font-bold border-none">
+                  
+                  {/* Setara Title Wrapper */}
+                  <div className="min-h-[6rem] flex items-start mb-4">
+                    <CardTitle className="text-xl md:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words leading-tight">
+                      {repo.name}
+                    </CardTitle>
+                  </div>
+
+                  {/* Setara Skill Tag Wrapper */}
+                  <div className="min-h-[2.5rem] flex items-center mb-6">
+                    <Badge className="bg-primary/10 text-primary text-[10px] font-bold border-none px-3 py-1">
                       {repo.tech}
                     </Badge>
                   </div>
-                  <CardDescription className="mt-6 text-sm text-white/50 leading-relaxed font-medium">
-                    {repo.desc}
-                  </CardDescription>
+
+                  {/* Setara Description Wrapper */}
+                  <div className="min-h-[5rem]">
+                    <CardDescription className="text-sm text-white/50 leading-relaxed font-medium line-clamp-3">
+                      {repo.desc}
+                    </CardDescription>
+                  </div>
                 </CardHeader>
-                <CardContent className="p-8 pt-0">
+                <CardContent className="p-8 pt-0 mt-auto">
                   <Button variant="outline" className="w-full rounded-xl border-white/10 hover:bg-white/5 text-xs font-bold uppercase tracking-widest h-12 transition-all" asChild>
                     <a href={repo.link} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4 mr-2" /> View Source <ExternalLink className="w-3.5 h-3.5 ml-auto opacity-50" />
