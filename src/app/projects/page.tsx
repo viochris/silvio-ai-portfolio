@@ -15,7 +15,7 @@ const featuredProjects = [
   { 
     id: 1, 
     title: "InsightSQL (LangGraph Engine)", 
-    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
+    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query and validate errors.",
     tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
     link: "https://insightsql-langgraph-engine-web.streamlit.app/",
     problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency.",
@@ -25,7 +25,7 @@ const featuredProjects = [
   { 
     id: 2, 
     title: "SpendSense (Financial AI)", 
-    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning and automated ETL with Google Sheets.",
+    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning.",
     tech: ["Streamlit", "LangChain", "Gemini Vision", "Pandas"],
     link: "https://app-spend-sense.streamlit.app/",
     problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
@@ -35,7 +35,7 @@ const featuredProjects = [
   { 
     id: 3, 
     title: "Resume Scanner API", 
-    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features a dual-engine offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise matching.",
+    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features dual-engine precise matching.",
     tech: ["FastAPI", "SBERT", "TF-IDF", "NLP"],
     link: "https://silvio0-resume-scanner.hf.space/docs",
     problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
@@ -45,7 +45,7 @@ const featuredProjects = [
   { 
     id: 4, 
     title: "InsightData (AI Analyst)", 
-    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Built as a ReAct agent that autonomously writes and executes Python code for cleaning and analysis.",
+    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Autonomously writes and executes Python code.",
     tech: ["Pandas Agent", "Gemini 2.5 Flash", "Python", "Matplotlib"],
     link: "https://insight-data-ai-analyst.streamlit.app/",
     problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
@@ -100,8 +100,8 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-6 md:p-10 flex-1 flex flex-col">
-                {/* Tech Tags - Optimized for Wrapping and Clipping */}
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-3 mb-6">
+                {/* Tech Tags - Setara min-height */}
+                <div className="flex flex-wrap items-start gap-x-2 gap-y-3 mb-6 min-h-[4rem]">
                   {p.tech.map(t => (
                     <Badge 
                       key={t} 
@@ -113,20 +113,22 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 
-                {/* Title */}
-                <div className="min-h-[3rem] md:min-h-[4rem]">
+                {/* Title - Setara min-height */}
+                <div className="min-h-[5rem] flex items-start">
                   <CardTitle className="text-2xl md:text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {p.title}
                   </CardTitle>
                 </div>
 
-                {/* Description */}
-                <CardDescription className="text-base md:text-lg text-muted-foreground mt-4 font-medium leading-relaxed line-clamp-2 md:h-14">
-                  {p.desc}
-                </CardDescription>
+                {/* Description - Setara min-height */}
+                <div className="min-h-[6rem]">
+                  <CardDescription className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed line-clamp-3">
+                    {p.desc}
+                  </CardDescription>
+                </div>
               </CardHeader>
 
-              {/* Card Footer */}
+              {/* Card Footer - Always at bottom */}
               <CardContent className="px-6 md:px-10 pb-6 md:pb-10 pt-0 mt-auto">
                 <Dialog>
                   <DialogTrigger asChild>
