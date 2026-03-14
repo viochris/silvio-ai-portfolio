@@ -11,7 +11,7 @@ const techStack = [
   { name: "Hugging Face", icon: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
   { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/white" },
   { name: "FAISS", icon: "https://cdn.simpleicons.org/meta/white" },
-  { name: "Pinecone", icon: "https://vectorseek.com/wp-content/uploads/2023/09/Pinecone-Icon-Logo-Vector.svg-.png" },
+  { name: "Pinecone", icon: "https://images.seeklogo.com/logo-png/48/1/pinecone-icon-logo-png_seeklogo-482365.png" },
   { name: "CrewAI", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/crewai-color.png" },
   { name: "LangGraph", icon: "https://cdn.simpleicons.org/langchain/white" },
   { name: "DSPy", icon: "https://modaic.gallerycdn.vsassets.io/extensions/modaic/dspy-intellisense/0.0.4/1766545656528/Microsoft.VisualStudio.Services.Icons.Default" },
