@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Award, GraduationCap, Search, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { professionalCertifications, courseBadges, type Credential } from '@/lib/credentials-data';
+import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -77,7 +77,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
           </div>
         </div>
 
-        {/* Search Bar - Fixed to full width */}
+        {/* Search Bar - Spans full width */}
         <div className="relative w-full mb-10">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={20} />
           <input 
@@ -98,10 +98,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
             transition={{ duration: 0.3 }}
           >
             {filteredData.length > 0 ? (
-              <div className={cn(
-                "grid gap-8",
-                credentialTab === 'Certifications' ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-              )}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredData.map((item) => (
                   <div key={item.id} className={cn(
                     "p-8 glass rounded-[2.5rem] border border-white/10 flex flex-col hover:border-primary/50 transition-all group shadow-xl h-full",
