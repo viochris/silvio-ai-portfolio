@@ -27,13 +27,14 @@ This project serves as a living laboratory for my work in **Natural Language Pro
 
 ## ✨ Key Features
 
--   **🤖 Neural Chatbot Assistant**: A live RAG-powered AI interface making POST requests to a specialized FastAPI backend on Hugging Face Spaces, featuring dynamic status checks.
--   **📟 System Bootloader**: An immersive terminal-style loading sequence simulating a BIOS/Kernel initialization for a true technical feel.
--   **♾️ Seamless Tech Marquee**: A gapless, infinite-looping tech stack display featuring official brand icons and custom CSS animations.
--   **📊 Skill Radar Architecture**: Visual proficiency mapping using custom SVG-based Radar Charts for an at-a-glance technical overview.
--   **🔍 Verified Credentials Hub**: A searchable and filterable database of professional certifications (Oracle, IBM, Dicoding) and course badges.
--   **🕒 Global Sync Clock**: A real-time local clock (Semarang, ID) with precise font-mono rendering and floating navigation safety.
--   **📱 Fully Responsive Glassmorphism**: Modular UI components built with Radix UI and Tailwind CSS, optimized for every device.
+- **🤖 Neural Chatbot Assistant**: A live RAG-powered AI interface using **Genkit** and calling a specialized FastAPI backend on Hugging Face Spaces, featuring dynamic "Neural Engine" status checks.
+- **📟 System Bootloader**: An immersive terminal-style loading sequence simulating a BIOS/Kernel initialization for a true technical feel.
+- **♾️ Seamless Tech Marquee**: A perfectly gapless, infinite-looping tech stack display featuring official brand icons and optimized CSS animations.
+- **🔄 Interactive Avatar Toggle**: A hidden "Easter Egg" in the Hero section allowing users to toggle between a professional photo and an AI-animated version.
+- **📊 Skill Radar Architecture**: Visual proficiency mapping using custom SVG-based Radar Charts for an at-a-glance technical overview.
+- **🔍 Verified Credentials Hub**: A searchable and filterable database of professional certifications (Oracle, IBM, Dicoding) and course badges.
+- **🕒 Global Sync Clock**: A real-time local clock (Semarang, ID) with precise font-mono rendering and floating navigation safety.
+- **📱 Fully Responsive Glassmorphism**: Modular UI components built with Radix UI and Tailwind CSS, optimized for every device.
 
 ---
 
@@ -48,12 +49,30 @@ This project serves as a living laboratory for my work in **Natural Language Pro
 ### **AI & Data Science**
 - **Orchestration**: Genkit AI
 - **LLM Integration**: Google Gemini 2.5 Flash
-- **Visualization**: Recharts & Custom SVG Radar Charts
+- **Visualization**: Custom SVG Radar Charts
 - **Backend API**: Hugging Face Spaces (FastAPI / LangGraph)
 
 ### **UI Components (Shadcn UI)**
 - Radix UI Primitives (Dialog, Sheet, Progress, Tabs, etc.)
 - Custom Glassmorphism Theme
+
+---
+
+## 📂 Folder Structure
+
+```text
+silvio-ai/
+├── src/
+│   ├── ai/               # Genkit flows and AI logic
+│   ├── app/              # Next.js App Router (pages & layouts)
+│   ├── components/       # Reusable UI & Core modules
+│   │   ├── ui/           # Shadcn UI primitives
+│   │   └── ...           # Custom components (Marquee, Chatbot, etc.)
+│   ├── hooks/            # Custom React hooks
+│   └── lib/              # Utilities and static data
+├── public/               # Static assets (images, icons, CV)
+└── tailwind.config.ts    # Custom theme & animation config
+```
 
 ---
 
@@ -75,12 +94,11 @@ To get a local copy up and running, follow these simple steps:
    ```bash
    npm install
    ```
-3. Create a `.env` file and add your configuration (if applicable).
-4. Run the development server:
+3. Run the development server:
    ```bash
    npm run dev
    ```
-5. Open [http://localhost:9002](http://localhost:9002) in your browser.
+4. Open [http://localhost:9002](http://localhost:9002) in your browser.
 
 ---
 
