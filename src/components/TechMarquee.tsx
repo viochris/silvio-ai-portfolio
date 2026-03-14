@@ -37,7 +37,7 @@ export const TechMarquee: React.FC = () => {
       <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-background to-transparent z-10" />
       <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-background to-transparent z-10" />
       
-      <div className="flex w-max animate-[marquee_25s_linear_infinite]">
+      <div className="flex w-max animate-[marquee_80s_linear_infinite]">
         {[...techStack, ...techStack].map((tech, index) => (
           <span 
             key={index} 
