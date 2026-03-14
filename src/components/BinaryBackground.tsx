@@ -15,17 +15,17 @@ export const BinaryBackground: React.FC = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Larger font size reduces density and looks cleaner
+    // Optimized font size for better clarity and less noise
     const fontSize = 24;
     const columns = Math.floor(width / fontSize);
     
-    // Initial drop starts all at 0 for the "initial sweep" effect from top to bottom
+    // Initial drop starts all at 0 for the "curtain drop" effect
     let drops: number[] = new Array(columns).fill(0);
     
     const colors = {
       bg: 'black', 
-      fade: 'rgba(0, 0, 0, 0.1)', // Subtle trail
-      text: '#3b82f6' // Tech Blue matching primary theme
+      fade: 'rgba(0, 0, 0, 0.12)', // Subtle trail
+      text: '#3b82f6' // Tech Blue
     };
 
     const draw = () => {
@@ -43,8 +43,7 @@ export const BinaryBackground: React.FC = () => {
 
         ctx.fillText(text, x, y);
 
-        // After hitting bottom, reset to top with a random chance 
-        // This causes them to spread out after the first synchronized sweep
+        // After initial synchronized fall, randomize individual resets
         if (y > height && Math.random() > 0.98) {
           drops[i] = 0;
         }
@@ -53,8 +52,8 @@ export const BinaryBackground: React.FC = () => {
       }
     };
 
-    // Slower, more elegant speed (70ms)
-    const interval = setInterval(draw, 70);
+    // Moderate speed (60ms) for a smooth, non-distracting flow
+    const interval = setInterval(draw, 60);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;

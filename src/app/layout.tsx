@@ -142,6 +142,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${sourceCodePro.variable}`}>
       <head>
+        <link rel="icon" type="image/png" href="/icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
