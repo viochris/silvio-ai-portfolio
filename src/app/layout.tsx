@@ -196,31 +196,20 @@ export default function RootLayout({
                     </div>
                   </div>
 
-                  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-slate-800/50">
+                  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 mt-16 pt-8 border-t border-slate-800/50 pb-8 md:pb-4 md:pr-20">
                     {/* Left: Copyright */}
                     <p className="text-xs sm:text-sm font-medium text-slate-500 tracking-wider leading-relaxed text-center md:text-left">
                       © {new Date().getFullYear()} SILVIO CHRISTIAN, JOE.<br className="hidden md:block" />
                       <span className="md:hidden"> </span>ALL RIGHTS RESERVED.
                     </p>
                     
-                    {/* Right: Availability & Time */}
-                    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-slate-400">
-                      
-                      {/* Availability Status */}
-                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/50 border border-slate-800">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        <span className="tracking-wide text-slate-300">Available for Opportunities</span>
-                      </div>
-
-                      {/* Live Local Time */}
-                      <div className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors cursor-default">
-                        <span>📍 Semarang, ID</span>
-                        <span className="text-slate-600">•</span>
-                        <span className="text-cyan-500 w-[60px] text-right font-mono">{time}</span>
-                      </div>
+                    {/* Right: Live Local Time */}
+                    <div className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors cursor-default">
+                      <span>📍 Semarang, ID</span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-cyan-500 w-[75px] text-right font-mono">
+                        {time || "00:00 PM"}
+                      </span>
                     </div>
                   </div>
                 </footer>
