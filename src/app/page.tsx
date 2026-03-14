@@ -27,7 +27,7 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
             
             {/* LEFT COLUMN: Avatar / Image Block */}
-            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end lg:pr-12 relative">
+            <div className="w-full lg:w-1/2 flex justify-center items-center relative lg:pr-4 lg:pl-8">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
