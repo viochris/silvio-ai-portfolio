@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -11,6 +12,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
   const [logs, setLogs] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const fullLogs = [
     "CONTINUUM BIOS v2.0",
@@ -31,6 +33,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
   ];
 
   useEffect(() => {
+    setMounted(true);
     let currentLogIndex = 0;
     const logInterval = setInterval(() => {
       if (currentLogIndex < fullLogs.length) {
@@ -79,8 +82,11 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
         >
           <div className="max-w-2xl w-full">
             {/* Terminal Window with explicit top-to-bottom flow */}
-            <div className="text-white/90 text-sm md:text-base leading-relaxed h-[450px] overflow-hidden flex flex-col justify-start">
-              {logs.map((log, i) => (
+            <div 
+              className="text-white/90 text-sm md:text-base leading-relaxed h-[450px] overflow-hidden flex flex-col justify-start"
+              suppressHydrationWarning
+            >
+              {mounted && logs.map((log, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: -5 }}
@@ -92,7 +98,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
                 </motion.div>
               ))}
               
-              {logs.length === fullLogs.length && (
+              {mounted && logs.length === fullLogs.length && (
                 <>
                   <div className="mt-8 text-primary font-bold">
                     {progressBar()}

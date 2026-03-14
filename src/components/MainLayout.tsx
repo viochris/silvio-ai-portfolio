@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -51,8 +52,8 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen relative bg-black" suppressHydrationWarning>
-      {/* BinaryBackground as the base layer */}
-      <BinaryBackground />
+      {/* BinaryBackground as the base layer - only show after mount to avoid hydration mismatch */}
+      {mounted && <BinaryBackground />}
 
       <AnimatePresence mode="wait">
         {!mounted || isBooting ? (
