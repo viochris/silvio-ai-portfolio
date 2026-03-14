@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useMemo } from 'react';
@@ -162,21 +163,21 @@ export default function RepositoryPage() {
                     </Badge>
                   </div>
                   
-                  {/* Setara Title Wrapper */}
+                  {/* Title Wrapper */}
                   <div className="min-h-[6rem] flex items-start mb-4">
                     <CardTitle className="text-xl md:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words leading-tight">
                       {repo.name}
                     </CardTitle>
                   </div>
 
-                  {/* Setara Skill Tag Wrapper */}
+                  {/* Skill Tag Wrapper */}
                   <div className="min-h-[2.5rem] flex items-center mb-6">
                     <Badge className="bg-primary/10 text-primary text-[10px] font-bold border-none px-3 py-1">
                       {repo.tech}
                     </Badge>
                   </div>
 
-                  {/* Setara Description Wrapper */}
+                  {/* Description Wrapper */}
                   <div className="min-h-[5rem]">
                     <CardDescription className="text-sm text-white/50 leading-relaxed font-medium line-clamp-3">
                       {repo.desc}

@@ -80,7 +80,7 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
             <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex flex-col h-full">
-              {/* Image Container - Aspect Video (16:9) to maintain consistency */}
+              {/* Image Container - Aspect Video (16:9) */}
               <div className="relative aspect-video w-full overflow-hidden shrink-0 bg-black/20">
                 <Image 
                   src={p.image} 
@@ -101,8 +101,8 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-6 md:p-10 flex-1 flex flex-col">
-                {/* Tech Tags - Increased min-height to ensure alignment even if tags wrap */}
-                <div className="flex flex-wrap items-start gap-x-2 gap-y-3 mb-6 min-h-[4.5rem]">
+                {/* Tech Tags */}
+                <div className="flex flex-wrap items-start gap-x-2 gap-y-3 mb-6 min-h-[4rem]">
                   {p.tech.map(t => (
                     <Badge 
                       key={t} 
@@ -114,14 +114,14 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 
-                {/* Title - Significantly increased min-height to handle 3-line titles consistently */}
+                {/* Title */}
                 <div className="min-h-[9rem] flex items-start">
                   <CardTitle className="text-2xl md:text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {p.title}
                   </CardTitle>
                 </div>
 
-                {/* Description - Increased min-height to handle longer text and keep it aligned */}
+                {/* Description */}
                 <div className="min-h-[7rem]">
                   <CardDescription className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed line-clamp-3">
                     {p.desc}
@@ -129,7 +129,7 @@ export default function ProjectsPage() {
                 </div>
               </CardHeader>
 
-              {/* Card Footer - Always at bottom */}
+              {/* Card Footer */}
               <CardContent className="px-6 md:p-10 pb-6 md:pb-10 pt-0 mt-auto">
                 <Dialog>
                   <DialogTrigger asChild>

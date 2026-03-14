@@ -206,8 +206,8 @@ export default function SkillsPage() {
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <Award className="w-6 h-6" />
                 </div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight">{c.title}</div>
+                <div className="min-w-0 flex-1 flex flex-col items-start">
+                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight min-h-[3.5rem] md:min-h-[4rem]">{c.title}</div>
                   <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer}</div>
                 </div>
               </div>
@@ -228,14 +228,14 @@ export default function SkillsPage() {
 
         <div id="badges-section" className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {courseBadges.slice(0, 4).map((b) => (
               <div key={b.id} className="p-6 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col gap-4 hover:border-primary/50 transition-all group shadow-xl">
                 <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors">
                   <GraduationCap className="w-6 h-6" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-sm font-bold text-white mb-2 leading-tight">{b.title}</div>
+                <div className="min-w-0 flex flex-col items-start">
+                  <div className="text-sm font-bold text-white mb-2 leading-tight min-h-[2.5rem] md:min-h-[3rem]">{b.title}</div>
                   <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer}</div>
                 </div>
               </div>

@@ -104,7 +104,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                     "p-8 glass rounded-[2.5rem] border border-white/10 flex flex-col hover:border-primary/50 transition-all group shadow-xl h-full"
                   )}>
                     {/* Header: Icon + Text Block */}
-                    <div className="flex items-center gap-6 mb-4">
+                    <div className="flex items-start gap-6 mb-4">
                       {/* Icon Container */}
                       <div className={cn(
                         "w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0",
@@ -114,14 +114,14 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                       </div>
                       
                       {/* Text Block: Title + Issuer Badge */}
-                      <div className="min-w-0 flex-1 flex flex-col items-start justify-center text-left">
+                      <div className="min-w-0 flex-1 flex flex-col items-start text-left">
                         <div className={cn(
-                          "text-lg font-headline font-bold leading-tight text-white mb-2",
-                          credentialTab === 'Badges' && "text-sm"
+                          "text-lg font-headline font-bold leading-tight text-white mb-3 min-h-[4.5rem]",
+                          credentialTab === 'Badges' && "text-sm min-h-[3.5rem]"
                         )}>{item.title}</div>
-                        <Badge variant="outline" className="text-[10px] font-bold uppercase tracking-tighter text-primary/70 border-primary/20">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-primary/70 border border-primary/20 px-2 py-0.5 rounded-lg bg-primary/5">
                           {item.issuer}
-                        </Badge>
+                        </div>
                       </div>
                     </div>
                     
