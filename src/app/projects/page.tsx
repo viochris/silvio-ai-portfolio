@@ -80,7 +80,7 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
             <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex flex-col h-full">
-              {/* Image Container */}
+              {/* Image Container - Aspect Video (16:9) to maintain consistency */}
               <div className="relative aspect-video w-full overflow-hidden shrink-0 bg-black/20">
                 <Image 
                   src={p.image} 
@@ -88,6 +88,7 @@ export default function ProjectsPage() {
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105" 
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6 md:p-10">
                   <Button size="lg" className="rounded-full font-bold shadow-xl px-8 md:px-10 h-12 md:h-14 text-sm md:text-base" asChild>
@@ -100,8 +101,8 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-6 md:p-10 flex-1 flex flex-col">
-                {/* Tech Tags - Setara min-height */}
-                <div className="flex flex-wrap items-start gap-x-2 gap-y-3 mb-6 min-h-[4rem]">
+                {/* Tech Tags - Increased min-height to ensure alignment even if tags wrap */}
+                <div className="flex flex-wrap items-start gap-x-2 gap-y-3 mb-6 min-h-[4.5rem]">
                   {p.tech.map(t => (
                     <Badge 
                       key={t} 
@@ -113,15 +114,15 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 
-                {/* Title - Setara min-height */}
-                <div className="min-h-[5rem] flex items-start">
+                {/* Title - Significantly increased min-height to handle 3-line titles consistently */}
+                <div className="min-h-[9rem] flex items-start">
                   <CardTitle className="text-2xl md:text-3xl lg:text-4xl font-headline font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                     {p.title}
                   </CardTitle>
                 </div>
 
-                {/* Description - Setara min-height */}
-                <div className="min-h-[6rem]">
+                {/* Description - Increased min-height to handle longer text and keep it aligned */}
+                <div className="min-h-[7rem]">
                   <CardDescription className="text-base md:text-lg text-muted-foreground font-medium leading-relaxed line-clamp-3">
                     {p.desc}
                   </CardDescription>
@@ -129,7 +130,7 @@ export default function ProjectsPage() {
               </CardHeader>
 
               {/* Card Footer - Always at bottom */}
-              <CardContent className="px-6 md:px-10 pb-6 md:pb-10 pt-0 mt-auto">
+              <CardContent className="px-6 md:p-10 pb-6 md:pb-10 pt-0 mt-auto">
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full rounded-xl md:rounded-2xl font-headline font-bold uppercase tracking-widest text-[10px] md:text-xs h-12 md:h-14 hover:bg-primary hover:text-primary-foreground transition-all">
