@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useMemo } from 'react';
@@ -14,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from 'next/link';
-import { useNavigation } from '@/app/layout';
+import { useNavigation } from '@/context/NavigationContext';
 
 type Category = "All" | "GenAI" | "Backend" | "Automation" | "Data Science" | "Analytics" | "Fun";
 
@@ -37,7 +36,7 @@ const repos = [
   { name: "Insightify API (NLP)", type: "Backend", tech: "FastAPI, RoBERTa", desc: "Dual-lingual sentiment analytics for English & Indonesian text.", link: "https://github.com/viochris/Insightify-Sentiment-API" },
   { name: "Stunting Prediction API (Flask)", type: "Backend", tech: "Flask, Python", desc: "RESTful API for real-time stunting prediction inference.", link: "https://github.com/viochris/API-Stuntify" },
 
-  // Automation & Orchestration (LENGKAP)
+  // Automation & Orchestration
   { name: "NovaCal AI (Stateful Telegram)", type: "Automation", tech: "LangChain, SQL", desc: "Advanced Telegram bot with SQL-backed conversational memory for multi-turn calendar management.", link: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
   { name: "NovaCal AI (Ephemeral Telegram)", type: "Automation", tech: "LangChain, RAM", desc: "Slot-filling calendar assistant using RAM-based memory to save tokens and prevent hallucinations.", link: "https://github.com/viochris/NovaCal-Ephemeral-AI.git" },
   { name: "NovaCal AI (Stateless Telegram)", type: "Automation", tech: "LangChain, PTB", desc: "Fast, stateless Telegram bot for quick single-turn calendar tasks with maximum token efficiency.", link: "https://github.com/viochris/NovaCal-AI-Telegram.git" },
@@ -54,7 +53,7 @@ const repos = [
   { name: "Daily Quote Automator", type: "Automation", tech: "Prefect, Gemini", desc: "Simple HTTP bot that synthesizes daily developer motivation via direct requests.", link: "https://github.com/viochris/trial-simple-quote-bot" },
   { name: "Daily Quote Bot (PTB)", type: "Automation", tech: "Prefect, PTB", desc: "Official library implementation for the Daily Quote bot using python-telegram-bot.", link: "https://github.com/viochris/daily-quote-bot-ptb" },
   
-  // Data Science (LENGKAP)
+  // Data Science
   { name: "SpendSense (Financial AI)", type: "Data Science", tech: "Streamlit, Vision", desc: "Conversational finance app with OCR receipt scanning and natural language expense queries.", link: "https://github.com/viochris/Streamlit-SpendSense" },
   { name: "Streamlit Resume Scanner", type: "Data Science", tech: "SBERT, NLP", desc: "Dual-Engine CV analyzer for ATS logic and semantic fit calculation with Streamlit UI.", link: "https://github.com/viochris/streamlit-resume-scanner" },
   { name: "Diabetes Prediction (Robust)", type: "Data Science", tech: "Scikit-Learn, SMOTE", desc: "ML model with proper pre-processing after split to avoid data leakage and handle imbalance.", link: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -90,7 +89,6 @@ export default function RepositoryPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="repository" className="max-w-7xl mx-auto">
-        {/* Back Button */}
         <div className="mb-12">
           <Link 
             href="/projects" 
@@ -101,18 +99,16 @@ export default function RepositoryPage() {
           </Link>
         </div>
 
-        {/* Header */}
         <div className="space-y-8 mb-16 text-center lg:text-left">
           <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Github</Badge>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
             Explore <span className="text-primary">Repository</span>
           </h2>
           <p className="text-white/70 text-lg md:text-xl max-w-2xl font-medium mx-auto lg:mx-0">
-            A comprehensive list of my AI projects, ranging from robust predictive modeling to autonomous agents and MLOps.
+            A complete list of my AI projects, ranging from robust predictive modeling to autonomous agents and MLOps.
           </p>
         </div>
 
-        {/* Search & Filter Controls - Horizontal Layout */}
         <div className="flex flex-col sm:flex-row gap-4 mb-16 bg-white/5 p-4 rounded-3xl border border-white/10 shadow-xl items-stretch">
           <div className="relative flex-1">
             <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
@@ -148,12 +144,10 @@ export default function RepositoryPage() {
           </DropdownMenu>
         </div>
 
-        {/* Results Info */}
         <div className="mb-8 text-sm text-white/40 font-bold uppercase tracking-widest px-2">
           Showing {filteredRepos.length} Projects
         </div>
 
-        {/* Repository Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredRepos.length > 0 ? (
             filteredRepos.map((repo, i) => (

@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState } from 'react';
@@ -7,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Download, Menu, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useNavigation } from '@/app/layout';
+import { useNavigation } from '@/context/NavigationContext';
 import {
   Sheet,
   SheetContent,
@@ -30,7 +29,6 @@ export const Navbar: React.FC = () => {
   const [isCVOpen, setIsCVOpen] = useState(false);
   const [showViewer, setShowViewer] = useState(false);
   
-  // Use global navigation context
   const { setIsReturning, setActiveTab } = useNavigation();
 
   const cvRawLink = "/vio-cv.pdf";
@@ -107,7 +105,6 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 w-full z-50 glass border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        {/* Logo */}
         <Link 
           href="/" 
           onClick={() => { 
@@ -127,7 +124,6 @@ export const Navbar: React.FC = () => {
           </span>
         </Link>
         
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10 text-sm font-headline font-bold uppercase tracking-widest">
           {navLinks.map((link) => (
             <Link 
@@ -147,7 +143,6 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Right Actions (CV & Mobile Menu) */}
         <div className="flex items-center gap-4">
           <Dialog open={isCVOpen} onOpenChange={(open) => {
             setIsCVOpen(open);
@@ -161,7 +156,6 @@ export const Navbar: React.FC = () => {
             <CVDialogContent />
           </Dialog>
 
-          {/* Mobile Menu Trigger */}
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>

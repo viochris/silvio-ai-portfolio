@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useEffect } from 'react';
@@ -8,7 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
 import { AllCredentialsPage } from '@/components/AllCredentialsPage';
-import { useNavigation } from '@/app/layout';
+import { useNavigation } from '@/context/NavigationContext';
 
 const skills = [
   { name: "NLP", value: 90 },
@@ -95,18 +94,17 @@ export default function SkillsPage() {
     isReturning, setIsReturning 
   } = useNavigation();
 
-  // Smart Auto-Scroll logic when returning from Credentials
   useEffect(() => {
     if (isReturning) {
       const timer = setTimeout(() => {
         const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
         const element = document.getElementById(targetId);
         if (element) {
-          const yOffset = -100; // Adjust for sticky navbar
+          const yOffset = -100;
           const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
-        setIsReturning(false); // Reset the flag after scrolling
+        setIsReturning(false);
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -123,12 +121,11 @@ export default function SkillsPage() {
     );
   }
 
-  // Selected a diverse set of certifications for the preview section
   const diverseCertifications = [
-    professionalCertifications[0], // Oracle AI Vector Search
-    professionalCertifications[4], // IBM Machine Learning Specialization
-    professionalCertifications[16], // Dicoding Belajar Analisis Data dengan Python
-    professionalCertifications[1], // Oracle GenAI Professional
+    professionalCertifications[0],
+    professionalCertifications[4],
+    professionalCertifications[16],
+    professionalCertifications[1],
   ];
 
   return (
