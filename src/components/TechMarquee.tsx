@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 
@@ -13,10 +12,10 @@ const techStack = [
   { name: "Hugging Face", icon: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
   { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/white" },
   { name: "FAISS", icon: "https://cdn.simpleicons.org/meta/white" },
-  { name: "Pinecone", icon: "https://images.seeklogo.com/logo-png/48/1/pinecone-icon-logo-png_seeklogo-482365.png" },
+  { name: "Pinecone", icon: "https://tse1.mm.bing.net/th/id/OIP.dIiAlq1gr59JEXq0qq8sjgHaHa?w=600&h=600&rs=1&pid=ImgDetMain&o=7&rm=3" },
   { name: "CrewAI", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/crewai-color.png" },
   { name: "LangGraph", icon: "https://cdn.simpleicons.org/langchain/white" },
-  { name: "DSPy", icon: "https://modaic.gallerycdn.vsassets.io/extensions/modaic/dspy-intellisense/0.0.4/1766545656528/Microsoft.VisualStudio.Services.Icons.Default" },
+  { name: "DSPy", icon: "https://tse4.mm.bing.net/th/id/OIP.BX9A57mu9tXK6grXTD9gkgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" },
   { name: "Streamlit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg" },
   { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
   { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" },
@@ -26,7 +25,7 @@ const techStack = [
   { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
   { name: "Tableau", icon: "https://tse1.mm.bing.net/th/id/OIP.jVA94Ufbp0OiqyZUUex8CQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
   { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg" },
-  { name: "Seaborn", icon: "https://seeklogo.com/images/S/seaborn-logo-244EB2DEC5-seeklogo.com.png" },
+  { name: "Seaborn", icon: "https://tse3.mm.bing.net/th/id/OIP.iJbEyBJE25whTlMSyTtHdwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
   { name: "Google Colab", icon: "https://cdn.simpleicons.org/googlecolab/F9AB00" },
   { name: "Kaggle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kaggle/kaggle-original.svg" },
   { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg" },
@@ -59,6 +58,7 @@ export const TechMarquee: React.FC = () => {
                     height={24}
                     className="object-contain drop-shadow-md"
                     style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                    unoptimized
                   />
                 </div>
               )}
@@ -83,6 +83,7 @@ export const TechMarquee: React.FC = () => {
                     height={24}
                     className="object-contain drop-shadow-md"
                     style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                    unoptimized
                   />
                 </div>
               )}
