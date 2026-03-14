@@ -48,6 +48,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Silvio Christian, Joe", url: "https://github.com/viochris" }],
   creator: "Silvio Christian, Joe",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
