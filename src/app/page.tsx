@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -19,12 +20,14 @@ export default function Home() {
 
   return (
     <div className="pt-32 lg:pt-40 min-h-screen">
-      <section id="home" className="pb-20 px-6 md:px-12 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Row 1: Hero Content */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
-            <div className="flex justify-center lg:justify-end">
+      <section id="home" className="pb-20">
+        
+        {/* Main Hero Container - Updated for Better Centering and Balance */}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-20 lg:pb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-between">
+            
+            {/* LEFT COLUMN: Avatar / Image Block */}
+            <div className="flex justify-center lg:justify-center w-full relative">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
@@ -45,7 +48,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+            {/* RIGHT COLUMN: Text & Buttons Block */}
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0 space-y-8">
               <div className="space-y-6">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
@@ -79,7 +83,10 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
 
+        {/* Subsequent rows remain within the central column */}
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           {/* Row 2: Stats Block */}
           <div className="w-full mb-32">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full">
