@@ -130,22 +130,26 @@ export const Navbar: React.FC = () => {
         </Link>
         
         <div className="hidden md:flex items-center gap-10 text-sm font-headline font-bold uppercase tracking-widest">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href}
-              onClick={() => {
-                setIsReturning(false);
-                setActiveTab(link.name);
-              }}
-              className={cn(
-                "hover:text-primary transition-colors",
-                pathname === link.href ? "text-primary" : "text-foreground/80"
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.name === 'Projects' && pathname === '/repository');
+            
+            return (
+              <Link 
+                key={link.href} 
+                href={link.href}
+                onClick={() => {
+                  setIsReturning(false);
+                  setActiveTab(link.name);
+                }}
+                className={cn(
+                  "hover:text-primary transition-colors",
+                  isActive ? "text-primary" : "text-foreground/80"
+                )}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-4">
@@ -183,23 +187,27 @@ export const Navbar: React.FC = () => {
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col p-6 gap-6 mt-4">
-                  {navLinks.map((link) => (
-                    <Link 
-                      key={link.href} 
-                      href={link.href}
-                      onClick={() => {
-                        setIsOpen(false);
-                        setIsReturning(false);
-                        setActiveTab(link.name);
-                      }}
-                      className={cn(
-                        "text-lg font-headline font-bold uppercase tracking-widest transition-colors py-2",
-                        pathname === link.href ? "text-primary border-l-4 border-primary pl-4" : "text-foreground/70 pl-4 hover:text-primary"
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
+                  {navLinks.map((link) => {
+                    const isActive = pathname === link.href || (link.name === 'Projects' && pathname === '/repository');
+
+                    return (
+                      <Link 
+                        key={link.href} 
+                        href={link.href}
+                        onClick={() => {
+                          setIsOpen(false);
+                          setIsReturning(false);
+                          setActiveTab(link.name);
+                        }}
+                        className={cn(
+                          "text-lg font-headline font-bold uppercase tracking-widest transition-colors py-2",
+                          isActive ? "text-primary border-l-4 border-primary pl-4" : "text-foreground/70 pl-4 hover:text-primary"
+                        )}
+                      >
+                        {link.name}
+                      </Link>
+                    );
+                  })}
                   <div className="pt-6 border-t border-border mt-4">
                     <Dialog open={isCVOpen} onOpenChange={(open) => {
                       setIsCVOpen(open);
