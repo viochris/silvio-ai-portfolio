@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Award, GraduationCap, Search, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
+import { professionalCertifications, courseBadges, type Credential } from '@/lib/credentials-data';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -126,15 +126,19 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                     </div>
                     {/* External Link */}
                     <div className="mt-auto pt-4 flex justify-end">
-                      <a 
-                        href="#" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-primary hover:text-primary/80 transition-colors group/link"
-                      >
-                        <span>Verify Link</span>
-                        <ExternalLink size={12} className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
-                      </a>
+                      {item.verifyLink ? (
+                        <a 
+                          href={item.verifyLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-primary hover:text-primary/80 transition-colors group/link"
+                        >
+                          <span>Verify Link</span>
+                          <ExternalLink size={12} className="transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                        </a>
+                      ) : (
+                        <span className="text-[9px] font-bold text-white/20 uppercase tracking-widest italic">Verification Pending</span>
+                      )}
                     </div>
                   </div>
                 ))}
