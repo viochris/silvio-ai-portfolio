@@ -123,6 +123,14 @@ export default function SkillsPage() {
     );
   }
 
+  // Selected a diverse set of certifications for the preview section
+  const diverseCertifications = [
+    professionalCertifications[0], // Oracle AI Vector Search
+    professionalCertifications[4], // IBM Machine Learning Specialization
+    professionalCertifications[16], // Dicoding Belajar Analisis Data dengan Python
+    professionalCertifications[1], // Oracle GenAI Professional
+  ];
+
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="skills" className="max-w-7xl mx-auto overflow-hidden">
@@ -195,7 +203,7 @@ export default function SkillsPage() {
         <div id="certifications-section" className="mb-40">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {professionalCertifications.slice(0, 4).map((c) => (
+            {diverseCertifications.map((c) => (
               <div key={c.id} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group shadow-xl h-full">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <Award className="w-6 h-6" />
