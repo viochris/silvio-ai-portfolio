@@ -11,7 +11,7 @@
 **Data Scientist | AI Engineer | Informatics Undergraduate**  
 *Transforming unstructured data into intelligent, production-ready solutions.*
 
-[Live Demo](https://silvio-ai-portfolio.vercel.app/) • [View Projects](/projects) • [Contact Me](/contact)
+[Live Demo](https://silvio-ai-portfolio.vercel.app/) • [View Projects](https://github.com/viochris?tab=repositories) • [Contact Me](mailto:viochristian12@gmail.com)
 
 </div>
 
