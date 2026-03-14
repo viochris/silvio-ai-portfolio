@@ -75,6 +75,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Silvio Christian",
+    "alternateName": "Vio",
+    "url": "https://silvio-ai-portfolio.vercel.app",
+    "image": "https://silvio-ai-portfolio.vercel.app/vio-image.png",
+    "sameAs": [
+      "https://github.com/viochris",
+      "https://instagram.com/silvio.codes",
+      "mailto:viochristian12@gmail.com"
+    ],
+    "jobTitle": "Data Scientist & AI Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Silvio.AI"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Dian Nuswantoro University",
+      "alternateName": "UDINUS",
+      "department": "Informatics Engineering / Computer Science"
+    },
+    "knowsAbout": [
+      "Data Science",
+      "AI Engineering",
+      "Natural Language Processing",
+      "Machine Learning",
+      "Generative AI",
+      "Next.js",
+      "Genkit",
+      "Predictive Modeling"
+    ]
+  };
+
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
@@ -83,6 +118,10 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="font-body antialiased bg-black overflow-x-hidden">
