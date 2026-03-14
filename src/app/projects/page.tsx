@@ -80,7 +80,7 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
             <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex flex-col h-full">
-              {/* Image Container - Aspect Video for full feel */}
+              {/* Image Container */}
               <div className="relative aspect-video w-full overflow-hidden shrink-0 bg-black/20">
                 <Image 
                   src={p.image} 
@@ -100,10 +100,14 @@ export default function ProjectsPage() {
 
               {/* Card Body */}
               <CardHeader className="p-6 md:p-10 flex-1 flex flex-col">
-                {/* Tech Tags - Wrap for mobile */}
-                <div className="flex flex-wrap items-center gap-2 mb-6">
+                {/* Tech Tags - Optimized for Wrapping and Clipping */}
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-3 mb-6">
                   {p.tech.map(t => (
-                    <Badge key={t} variant="secondary" className="text-[9px] md:text-[10px] uppercase font-bold tracking-tighter bg-primary/5 text-primary border-primary/10 px-3 py-1 whitespace-nowrap">
+                    <Badge 
+                      key={t} 
+                      variant="secondary" 
+                      className="text-[10px] md:text-[11px] uppercase font-bold tracking-tight bg-primary/10 text-primary border-primary/20 px-3 py-1"
+                    >
                       {t}
                     </Badge>
                   ))}
@@ -145,7 +149,11 @@ export default function ProjectsPage() {
                           />
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          {p.tech.map(t => <Badge key={t} variant="secondary" className="bg-muted text-foreground uppercase text-[10px] font-bold px-3 py-1">{t}</Badge>)}
+                          {p.tech.map(t => (
+                            <Badge key={t} variant="secondary" className="bg-muted text-foreground uppercase text-[10px] font-bold px-3 py-1">
+                              {t}
+                            </Badge>
+                          ))}
                         </div>
                       </div>
                       <div className="space-y-8 md:space-y-10">
