@@ -2,6 +2,7 @@
 "use client"
 
 import React from 'react';
+import Image from 'next/image';
 import { ExternalLink, ChevronRight, Brain, Sparkles, Info } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -81,7 +82,13 @@ export default function ProjectsPage() {
             <Card key={p.id} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2.5rem] flex flex-col h-full">
               {/* Image Container */}
               <div className="relative h-72 lg:h-80 overflow-hidden shrink-0">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image 
+                  src={p.image} 
+                  alt={p.title} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
                   <Button size="lg" className="rounded-full font-bold shadow-xl px-10" asChild>
                     <a href={p.link} target="_blank" rel="noopener noreferrer">
@@ -129,7 +136,14 @@ export default function ProjectsPage() {
                     </DialogHeader>
                     <div className="grid md:grid-cols-2 gap-16">
                       <div className="space-y-10">
-                        <img src={p.image} alt={p.title} className="w-full rounded-[2rem] shadow-2xl border border-border" />
+                        <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[2rem] shadow-2xl border border-border">
+                          <Image 
+                            src={p.image} 
+                            alt={p.title} 
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
                         <div className="flex flex-wrap gap-2">
                           {p.tech.map(t => <Badge key={t} variant="secondary" className="bg-muted text-foreground uppercase text-[10px] font-bold px-3 py-1">{t}</Badge>)}
                         </div>

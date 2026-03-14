@@ -2,6 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, BarChart4, RefreshCw } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
@@ -38,9 +39,12 @@ export default function Home() {
                     onClick={() => setIsAnim(!isAnim)}
                     title="Click to see my AI Avatar!"
                   >
-                    <img 
+                    <Image 
                       src={isAnim ? "/vio-image-animation.png" : "/vio-image.png"} 
                       alt="Silvio Christian Joe" 
+                      width={320}
+                      height={320}
+                      priority
                       className="w-full h-full object-cover rounded-full transition-opacity duration-500"
                     />
                   </div>

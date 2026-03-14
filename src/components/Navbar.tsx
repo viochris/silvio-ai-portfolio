@@ -1,7 +1,9 @@
+
 "use client"
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Download, Menu, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -114,11 +116,14 @@ export const Navbar: React.FC = () => {
           }} 
           className="flex items-center gap-2 sm:gap-3 group focus:outline-none"
         >
-          <img 
-            src="/icon.png" 
-            alt="Silvio.AI Logo" 
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl object-cover shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300" 
-          />
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10">
+            <Image 
+              src="/icon.png" 
+              alt="Silvio.AI Logo" 
+              fill
+              className="rounded-xl object-cover shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300" 
+            />
+          </div>
           <span className="text-xl sm:text-2xl font-black text-white tracking-tight">
             SILVIO<span className="text-primary">.AI</span>
           </span>
@@ -166,11 +171,14 @@ export const Navbar: React.FC = () => {
               <SheetContent side="right" className="bg-background/95 backdrop-blur-xl border-border w-[300px] p-0">
                 <SheetHeader className="p-6 border-b border-border">
                   <SheetTitle className="text-left font-headline font-bold text-xl tracking-tighter flex items-center gap-2 text-foreground">
-                    <img 
-                      src="/icon.png" 
-                      alt="Silvio.AI Logo" 
-                      className="w-8 h-8 rounded-lg object-cover" 
-                    />
+                    <div className="relative w-8 h-8">
+                      <Image 
+                        src="/icon.png" 
+                        alt="Silvio.AI Logo" 
+                        fill
+                        className="rounded-lg object-cover" 
+                      />
+                    </div>
                     SILVIO.AI
                   </SheetTitle>
                 </SheetHeader>

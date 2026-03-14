@@ -1,4 +1,6 @@
+
 import React from 'react';
+import Image from 'next/image';
 
 const techStack = [
   { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
@@ -49,12 +51,16 @@ export const TechMarquee: React.FC = () => {
               className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
             >
               {tech.icon && (
-                <img 
-                  src={tech.icon} 
-                  alt={tech.name} 
-                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md"
-                  style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-                />
+                <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
+                  <Image 
+                    src={tech.icon} 
+                    alt={tech.name} 
+                    width={24}
+                    height={24}
+                    className="object-contain drop-shadow-md"
+                    style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                  />
+                </div>
               )}
               {tech.name}
             </span>
@@ -69,12 +75,16 @@ export const TechMarquee: React.FC = () => {
               className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
             >
               {tech.icon && (
-                <img 
-                  src={tech.icon} 
-                  alt={tech.name} 
-                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md"
-                  style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-                />
+                <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
+                  <Image 
+                    src={tech.icon} 
+                    alt={tech.name} 
+                    width={24}
+                    height={24}
+                    className="object-contain drop-shadow-md"
+                    style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
+                  />
+                </div>
               )}
               {tech.name}
             </span>
