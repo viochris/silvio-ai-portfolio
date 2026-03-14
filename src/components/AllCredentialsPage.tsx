@@ -104,14 +104,18 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                     "p-8 glass rounded-[2.5rem] border border-white/10 flex flex-col hover:border-primary/50 transition-all group shadow-xl h-full",
                     credentialTab === 'Badges' && "p-6 rounded-2xl"
                   )}>
-                    <div className="flex items-center gap-6 mb-4">
+                    {/* Header: Icon + Text Block */}
+                    <div className="flex items-start gap-6 mb-4">
+                      {/* Icon Container */}
                       <div className={cn(
                         "w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0",
                         credentialTab === 'Badges' && "w-10 h-10 rounded-xl"
                       )}>
                         {credentialTab === 'Certifications' ? <Award className="w-6 h-6" /> : <GraduationCap className="w-5 h-5" />}
                       </div>
-                      <div className="min-w-0 flex-1">
+                      
+                      {/* Text Block: Title + Issuer Badge */}
+                      <div className="min-w-0 flex-1 flex flex-col items-start text-left">
                         <div className={cn(
                           "text-lg font-headline font-bold leading-tight text-white mb-2",
                           credentialTab === 'Badges' && "text-sm"
@@ -121,6 +125,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                         </Badge>
                       </div>
                     </div>
+                    
                     {/* External Link */}
                     <div className="mt-auto pt-4 flex justify-end">
                       {item.verifyLink ? (
