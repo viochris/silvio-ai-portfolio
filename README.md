@@ -11,7 +11,7 @@
 **Data Scientist | AI Engineer | Informatics Undergraduate**  
 *Transforming unstructured data into intelligent, production-ready solutions.*
 
-[Live Demo](https://silvio-ai.web.app) • [View Projects](/projects) • [Contact Me](/contact)
+[Live Demo](https://silvio-ai-portfolio.vercel.app/) • [View Projects](/projects) • [Contact Me](/contact)
 
 </div>
 
