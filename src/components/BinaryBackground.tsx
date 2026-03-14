@@ -22,15 +22,15 @@ export const BinaryBackground: React.FC = () => {
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    const fps = 8; // Slower, more elegant rain
+    const fps = 12; // Sedikit lebih cepat untuk kesan aktif
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
-    // Dark Mode colors (Pure Dark)
+    // Dark Mode colors (Futuristic Blue)
     const colors = {
-      bg: 'rgb(16, 17, 22)',
-      fade: 'rgba(16, 17, 22, 0.4)',
-      text: 'rgba(59, 130, 246, 0.25)' 
+      bg: 'rgb(0, 0, 0)', // Pure black base
+      fade: 'rgba(0, 0, 0, 0.15)', // Lighter fade for smoother trails
+      text: 'rgba(59, 130, 246, 0.4)' // Increased opacity for better visibility
     };
 
     // Hard reset canvas to solid black
@@ -49,7 +49,7 @@ export const BinaryBackground: React.FC = () => {
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = colors.text;
-      ctx.font = `${fontSize}px monospace`;
+      ctx.font = `bold ${fontSize}px monospace`;
 
       let allHitBottom = true;
 
@@ -65,9 +65,9 @@ export const BinaryBackground: React.FC = () => {
           if (y < height) allHitBottom = false;
         } else {
           drops[i] += speeds[i];
-          if (drops[i] * fontSize > height && Math.random() > 0.98) {
+          if (drops[i] * fontSize > height && Math.random() > 0.975) {
             drops[i] = 0;
-            speeds[i] = 0.2 + Math.random() * 0.4;
+            speeds[i] = 0.5 + Math.random() * 0.8;
           }
         }
       }
@@ -75,7 +75,7 @@ export const BinaryBackground: React.FC = () => {
       if (isInitialDrop && allHitBottom) {
         isInitialDrop = false;
         for (let i = 0; i < speeds.length; i++) {
-          speeds[i] = 0.2 + Math.random() * 0.4;
+          speeds[i] = 0.5 + Math.random() * 0.8;
         }
       }
     };
@@ -99,7 +99,7 @@ export const BinaryBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-20 pointer-events-none"
+      className="fixed inset-0 -z-10 pointer-events-none opacity-50"
     />
   );
 };
