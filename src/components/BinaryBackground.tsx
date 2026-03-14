@@ -19,17 +19,18 @@ export const BinaryBackground: React.FC = () => {
     const columns = Math.floor(width / fontSize);
     
     // drops stores the current y-coordinate for each column
-    let drops: number[] = new Array(columns).fill(1);
+    // Initialize at 0 so they all drop together from the top at the beginning
+    let drops: number[] = new Array(columns).fill(0);
     
-    // Futuristic Blue colors
+    // Matrix Blue theme
     const colors = {
       bg: 'black', 
-      fade: 'rgba(0, 0, 0, 0.1)', // Trail effect
-      text: '#3b82f6' // Bright Blue
+      fade: 'rgba(0, 0, 0, 0.05)', // Longer trails for a "heavier" look
+      text: '#3b82f6' // Classic Tech Blue
     };
 
     const draw = () => {
-      // Create trailing effect by filling with semi-transparent black
+      // Create trailing effect
       ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
@@ -47,7 +48,8 @@ export const BinaryBackground: React.FC = () => {
         // Draw the character
         ctx.fillText(text, x, y);
 
-        // Reset drop to top randomly after hitting bottom
+        // After hitting bottom, reset to top with a random delay 
+        // this staggering creates the "one by one" effect after the first full sweep
         if (y > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -57,15 +59,14 @@ export const BinaryBackground: React.FC = () => {
       }
     };
 
-    // Use setInterval for a consistent "Matrix" speed (around 30fps is classic)
-    const interval = setInterval(draw, 33);
+    // 50ms interval for a moderate, classic speed
+    const interval = setInterval(draw, 50);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      // Reset drops on resize to fill new space
       const newColumns = Math.floor(width / fontSize);
-      drops = new Array(newColumns).fill(1);
+      drops = new Array(newColumns).fill(0);
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, width, height);
     };
@@ -81,7 +82,7 @@ export const BinaryBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-60"
+      className="fixed inset-0 z-0 pointer-events-none opacity-40"
     />
   );
 };
