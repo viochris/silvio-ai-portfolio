@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { BinaryBackground } from '@/components/BinaryBackground';
 import Link from 'next/link';
 import { NavigationProvider, useNavigation } from '@/context/NavigationContext';
 
@@ -50,6 +51,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen relative bg-black" suppressHydrationWarning>
+      {/* Background stays persistent and subtle */}
+      {mounted && <BinaryBackground />}
+      
       <AnimatePresence mode="wait">
         {!mounted || isBooting ? (
           <BootLoader key="bootloader" onComplete={() => setIsBooting(false)} />
