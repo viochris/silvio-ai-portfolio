@@ -93,49 +93,49 @@ export const professionalCertifications: Credential[] = [
   { 
     id: 17, 
     title: "Belajar Analisis Data dengan Python", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/MRZME711KPYQ"
   },
   { 
     id: 18, 
     title: "Financial Literacy 101", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/4EXG3VD1QZRL"
   },
   { 
     id: 19, 
     title: "AI Praktis untuk Produktivitas", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/4EXGVW86DXRL"
   },
   { 
     id: 20, 
     title: "Belajar Penggunaan Generative AI", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/07Z632M52ZQR"
   },
   { 
     id: 21, 
     title: "Belajar Dasar Visualisasi Data", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/NVP77328RPR0"
   },
   { 
     id: 22, 
     title: "Belajar Dasar Structured Query Language (SQL)", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/2VX35VJQJPYQ"
   },
   { 
     id: 23, 
     title: "Belajar Dasar Data Science", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/N9ZO206KRPG5"
   },
   { 
     id: 24, 
     title: "Belajar Dasar AI", 
-    issuer: "Dicoding Indonesia",
+    issuer: "Dicoding",
     verifyLink: "https://www.dicoding.com/certificates/4EXG3JN2QZRL"
   }
 ];

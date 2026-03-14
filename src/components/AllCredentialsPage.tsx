@@ -101,11 +101,10 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredData.map((item) => (
                   <div key={item.id} className={cn(
-                    "p-8 glass rounded-[2.5rem] border border-white/10 flex flex-col hover:border-primary/50 transition-all group shadow-xl h-full",
-                    credentialTab === 'Badges' && "p-6 rounded-2xl"
+                    "p-8 glass rounded-[2.5rem] border border-white/10 flex flex-col hover:border-primary/50 transition-all group shadow-xl h-full"
                   )}>
                     {/* Header: Icon + Text Block */}
-                    <div className="flex items-start gap-6 mb-4">
+                    <div className="flex items-center gap-6 mb-4">
                       {/* Icon Container */}
                       <div className={cn(
                         "w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0",
@@ -115,7 +114,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
                       </div>
                       
                       {/* Text Block: Title + Issuer Badge */}
-                      <div className="min-w-0 flex-1 flex flex-col items-start justify-start text-left">
+                      <div className="min-w-0 flex-1 flex flex-col items-start justify-center text-left">
                         <div className={cn(
                           "text-lg font-headline font-bold leading-tight text-white mb-2",
                           credentialTab === 'Badges' && "text-sm"
