@@ -35,6 +35,7 @@ export default function RootLayout({
 }>) {
   const [isBooting, setIsBooting] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState('');
   
   // Navigation States
   const [isReturning, setIsReturning] = useState(false);
@@ -44,6 +45,24 @@ export default function RootLayout({
   useEffect(() => {
     setMounted(true);
     document.documentElement.classList.add('dark');
+  }, []);
+
+  // Clock Effect for Semarang, ID (Asia/Jakarta)
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = { 
+        timeZone: 'Asia/Jakarta', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        hour12: true 
+      };
+      setTime(now.toLocaleTimeString('en-US', options));
+    };
+    
+    updateClock();
+    const intervalId = setInterval(updateClock, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   // GLOBAL SCROLL-TO-TOP FOR NON-SKILLS TABS
@@ -158,10 +177,31 @@ export default function RootLayout({
                     </div>
                   </div>
 
-                  <div className="max-w-7xl mx-auto pt-10 border-t border-white/10 flex items-center justify-center">
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 text-center leading-loose">
-                      © 2026 SILVIO CHRISTIAN, JOE.<br />
-                      ALL RIGHTS RESERVED.
+                  <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-slate-800/50">
+                    {/* Left: Copyright */}
+                    <p className="text-xs sm:text-sm font-medium text-slate-500 tracking-wider leading-relaxed text-center md:text-left">
+                      © {new Date().getFullYear()} SILVIO CHRISTIAN, JOE.<br className="hidden md:block" />
+                      <span className="md:hidden"> </span>ALL RIGHTS RESERVED.
+                    </p>
+                    
+                    {/* Right: Availability & Time */}
+                    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-slate-400">
+                      
+                      {/* Availability Status */}
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/50 border border-slate-800">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span className="tracking-wide text-slate-300">Available for Opportunities</span>
+                      </div>
+
+                      {/* Live Local Time */}
+                      <div className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors cursor-default">
+                        <span>📍 Semarang, ID</span>
+                        <span className="text-slate-600">•</span>
+                        <span className="text-cyan-500 w-[60px] text-right font-mono">{time}</span>
+                      </div>
                     </div>
                   </div>
                 </footer>
@@ -173,3 +213,4 @@ export default function RootLayout({
     </html>
   );
 }
+
