@@ -15,22 +15,20 @@ export const BinaryBackground: React.FC = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const fontSize = 16;
+    // Increased font size to reduce density and make it less "busy"
+    const fontSize = 22;
     const columns = Math.floor(width / fontSize);
     
-    // drops stores the current y-coordinate for each column
-    // Initialize at 0 so they all drop together from the top at the beginning
+    // All columns start at 0 to create the "initial sweep" effect from top to bottom
     let drops: number[] = new Array(columns).fill(0);
     
-    // Matrix Blue theme
     const colors = {
       bg: 'black', 
-      fade: 'rgba(0, 0, 0, 0.05)', // Longer trails for a "heavier" look
-      text: '#3b82f6' // Classic Tech Blue
+      fade: 'rgba(0, 0, 0, 0.08)', // Slightly slower fade for better trails
+      text: '#3b82f6' // Tech Blue
     };
 
     const draw = () => {
-      // Create trailing effect
       ctx.fillStyle = colors.fade;
       ctx.fillRect(0, 0, width, height);
 
@@ -38,29 +36,25 @@ export const BinaryBackground: React.FC = () => {
       ctx.font = `bold ${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
-        // Random 0 or 1
         const text = Math.random() > 0.5 ? '0' : '1';
         
-        // Calculate x and y coordinates
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
-        // Draw the character
         ctx.fillText(text, x, y);
 
-        // After hitting bottom, reset to top with a random delay 
-        // this staggering creates the "one by one" effect after the first full sweep
+        // After hitting bottom, reset to top with a random chance 
+        // This causes them to spread out after the first synchronized sweep
         if (y > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        // Increment y coordinate
         drops[i]++;
       }
     };
 
-    // 50ms interval for a moderate, classic speed
-    const interval = setInterval(draw, 50);
+    // Slower interval (60ms) for a more elegant, less distracting speed
+    const interval = setInterval(draw, 60);
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -82,7 +76,7 @@ export const BinaryBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none opacity-40"
+      className="fixed inset-0 z-0 pointer-events-none opacity-30"
     />
   );
 };
