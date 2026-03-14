@@ -7,7 +7,7 @@ import { Navbar } from '@/components/Navbar';
 import { BinaryBackground } from '@/components/BinaryBackground';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import Link from 'next/link';
 
 // Create a context to share navigation state across the app
@@ -36,6 +36,7 @@ export default function RootLayout({
   const [isBooting, setIsBooting] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [time, setTime] = useState('');
+  const [showScrollTop, setShowScrollTop] = useState(false);
   
   // Navigation States
   const [isReturning, setIsReturning] = useState(false);
@@ -46,6 +47,24 @@ export default function RootLayout({
     setMounted(true);
     document.documentElement.classList.add('dark');
   }, []);
+
+  // Scroll detection for Back to Top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Clock Effect for Semarang, ID (Asia/Jakarta)
   useEffect(() => {
@@ -205,6 +224,17 @@ export default function RootLayout({
                     </div>
                   </div>
                 </footer>
+
+                {/* Floating Back to Top Button */}
+                <button
+                  onClick={scrollToTop}
+                  aria-label="Back to top"
+                  className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 p-3 sm:p-4 rounded-full bg-primary text-primary-foreground shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:bg-primary/90 hover:-translate-y-1 transition-all duration-300 z-50 ${
+                    showScrollTop ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-10 invisible'
+                  }`}
+                >
+                  <ArrowUp size={24} className="font-bold stroke-[3px]" />
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
@@ -213,4 +243,3 @@ export default function RootLayout({
     </html>
   );
 }
-
