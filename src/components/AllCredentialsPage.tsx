@@ -77,8 +77,8 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="relative w-full max-w-md lg:max-w-full mx-auto mb-10">
+        {/* Search Bar - Fixed to full width */}
+        <div className="relative w-full mb-10">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" size={20} />
           <input 
             type="text" 
