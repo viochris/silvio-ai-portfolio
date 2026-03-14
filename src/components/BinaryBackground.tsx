@@ -22,15 +22,15 @@ export const BinaryBackground: React.FC = () => {
     let speeds: number[] = new Array(columns).fill(1);
     let isInitialDrop = true;
     
-    const fps = 12; // Sedikit lebih cepat untuk kesan aktif
+    const fps = 12; // Matrix speed
     const fpsInterval = 1000 / fps;
     let lastTime = performance.now();
 
     // Dark Mode colors (Futuristic Blue)
     const colors = {
-      bg: 'rgb(0, 0, 0)', // Pure black base
-      fade: 'rgba(0, 0, 0, 0.15)', // Lighter fade for smoother trails
-      text: 'rgba(59, 130, 246, 0.4)' // Increased opacity for better visibility
+      bg: 'rgb(0, 0, 0)', 
+      fade: 'rgba(0, 0, 0, 0.15)',
+      text: 'rgba(59, 130, 246, 0.4)' 
     };
 
     // Hard reset canvas to solid black
@@ -99,7 +99,7 @@ export const BinaryBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none opacity-50"
+      className="fixed inset-0 z-0 pointer-events-none opacity-50"
     />
   );
 };

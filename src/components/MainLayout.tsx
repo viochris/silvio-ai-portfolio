@@ -49,12 +49,14 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
     return () => clearInterval(intervalId);
   }, []);
 
-  if (!mounted) return <div className="bg-black min-h-screen" />;
-
+  // Ensure consistent root div even before mount to prevent hydration errors
   return (
-    <div className="min-h-screen relative bg-black">
+    <div className="min-h-screen relative bg-black" suppressHydrationWarning>
+      {/* BinaryBackground is fixed, so we render it as early as possible */}
+      <BinaryBackground />
+
       <AnimatePresence mode="wait">
-        {isBooting ? (
+        {!mounted || isBooting ? (
           <BootLoader key="bootloader" onComplete={() => setIsBooting(false)} />
         ) : (
           <motion.div
@@ -62,9 +64,8 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="relative z-0"
+            className="relative z-10"
           >
-            <BinaryBackground />
             <Navbar />
             <main className="relative z-10 min-h-screen">
               {children}
