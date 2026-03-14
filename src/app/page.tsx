@@ -22,12 +22,12 @@ export default function Home() {
     <div className="pt-32 lg:pt-40 min-h-screen">
       <section id="home" className="pb-20">
         
-        {/* Main Hero Container - Updated for Better Centering and Balance */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-20 lg:pb-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center justify-between">
+        {/* Main Hero Container - COMPACTED & CENTERED */}
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-20 lg:pb-28">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
             
             {/* LEFT COLUMN: Avatar / Image Block */}
-            <div className="flex justify-center lg:justify-center w-full relative">
+            <div className="w-full lg:w-1/2 flex justify-center lg:justify-end lg:pr-12 relative">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
@@ -49,7 +49,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT COLUMN: Text & Buttons Block */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full max-w-2xl mx-auto lg:mx-0 space-y-8">
+            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-8">
               <div className="space-y-6">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
