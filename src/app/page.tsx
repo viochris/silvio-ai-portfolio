@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [showAnimatedAvatar, setShowAnimatedAvatar] = useState(false);
+  const [isAnim, setIsAnim] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -35,11 +35,11 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary animate-[spin_30s_linear_infinite]" />
                   <div 
                     className="absolute inset-4 rounded-full p-2 bg-black shadow-2xl overflow-hidden border border-primary/20 cursor-pointer active:scale-95 transition-all duration-300"
-                    onClick={() => setShowAnimatedAvatar(!showAnimatedAvatar)}
+                    onClick={() => setIsAnim(!isAnim)}
                     title="Click to see my AI Avatar!"
                   >
                     <img 
-                      src={showAnimatedAvatar ? "/vio-image-animation.png" : "/vio-image.png"} 
+                      src={isAnim ? "/vio-image-animation.png" : "/vio-image.png"} 
                       alt="Silvio Christian Joe" 
                       className="w-full h-full object-cover rounded-full transition-opacity duration-500"
                     />
@@ -77,14 +77,16 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
-                <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20" asChild>
-                  <Link href="/projects">
+                <Link href="/projects">
+                  <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20">
                     View Projects <ChevronRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 border-white/20 text-white hover:bg-white/10 w-full sm:w-auto" asChild>
-                  <Link href="/contact">Contact Me</Link>
-                </Button>
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="lg" variant="outline" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 border-white/20 text-white hover:bg-white/10 w-full sm:w-auto">
+                    Contact Me
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -241,9 +243,11 @@ export default function Home() {
               </div>
               
               <div className="relative z-10 w-full flex justify-center">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl transition-transform active:scale-95" asChild>
-                  <Link href="/contact">Start a Project</Link>
-                </Button>
+                <Link href="/contact">
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl transition-transform active:scale-95">
+                    Start a Project
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
