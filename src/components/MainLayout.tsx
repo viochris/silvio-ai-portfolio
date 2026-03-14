@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
-import { BinaryBackground } from '@/components/BinaryBackground';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
@@ -51,9 +50,6 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen relative bg-black" suppressHydrationWarning>
-      {/* BinaryBackground as the base layer - only show after mount to avoid hydration mismatch */}
-      {mounted && <BinaryBackground />}
-
       <AnimatePresence mode="wait">
         {!mounted || isBooting ? (
           <BootLoader key="bootloader" onComplete={() => setIsBooting(false)} />
