@@ -11,6 +11,7 @@ import Link from 'next/link';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [showAnimatedAvatar, setShowAnimatedAvatar] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -32,11 +33,15 @@ export default function Home() {
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
                 <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
                   <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary animate-[spin_30s_linear_infinite]" />
-                  <div className="absolute inset-4 rounded-full p-2 bg-black shadow-2xl overflow-hidden border border-primary/20">
+                  <div 
+                    className="absolute inset-4 rounded-full p-2 bg-black shadow-2xl overflow-hidden border border-primary/20 cursor-pointer active:scale-95 transition-all duration-300"
+                    onClick={() => setShowAnimatedAvatar(!showAnimatedAvatar)}
+                    title="Click to see my AI Avatar!"
+                  >
                     <img 
-                      src="/vio-image.png" 
+                      src={showAnimatedAvatar ? "/vio-image-animation.png" : "/vio-image.png"} 
                       alt="Silvio Christian Joe" 
-                      className="w-full h-full object-cover rounded-full"
+                      className="w-full h-full object-cover rounded-full transition-opacity duration-500"
                     />
                   </div>
                   <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
@@ -109,7 +114,7 @@ export default function Home() {
           <div className="space-y-16 mb-40">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
-              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                 Core <span className="text-primary">Focus</span>
               </h2>
             </div>
@@ -161,7 +166,7 @@ export default function Home() {
           <div className="mb-40 space-y-16">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
-              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                 How I <span className="text-primary">Work</span>
               </h2>
             </div>
