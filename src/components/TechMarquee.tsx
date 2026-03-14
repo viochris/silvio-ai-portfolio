@@ -34,15 +34,15 @@ const techStack = [
 export const TechMarquee: React.FC = () => {
   return (
     <div className="relative w-full overflow-hidden bg-slate-900/50 border-y border-slate-800/50 py-4 sm:py-6 mb-12 flex">
-      {/* Gradients for smooth fade effect */}
+      {/* Left & Right Gradients */}
       <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
       <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
 
-      {/* Marquee Wrapper */}
-      <div className="flex w-max animate-[marquee_60s_linear_infinite]">
+      {/* Flex Container - NO ANIMATION HERE */}
+      <div className="flex w-max">
         
-        {/* First Set */}
-        <div className="flex shrink-0">
+        {/* First Set - Animates 100% of its own width */}
+        <div className="flex shrink-0 animate-[marquee_40s_linear_infinite]">
           {techStack.map((tech, index) => (
             <span 
               key={index} 
@@ -52,7 +52,7 @@ export const TechMarquee: React.FC = () => {
                 <img 
                   src={tech.icon} 
                   alt={tech.name} 
-                  className={`w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md`}
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md"
                   style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
                 />
               )}
@@ -61,8 +61,8 @@ export const TechMarquee: React.FC = () => {
           ))}
         </div>
 
-        {/* Second Set (Exact duplicate to fill the gap seamlessly) */}
-        <div className="flex shrink-0">
+        {/* Second Set - Exact duplicate, also animates 100% of its own width */}
+        <div className="flex shrink-0 animate-[marquee_40s_linear_infinite]" aria-hidden="true">
           {techStack.map((tech, index) => (
             <span 
               key={`dup-${index}`} 
@@ -72,7 +72,7 @@ export const TechMarquee: React.FC = () => {
                 <img 
                   src={tech.icon} 
                   alt={tech.name} 
-                  className={`w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md`}
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow-md"
                   style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
                 />
               )}
@@ -83,11 +83,11 @@ export const TechMarquee: React.FC = () => {
 
       </div>
       
-      {/* CSS Keyframes injected safely */}
+      {/* Updated Keyframes to use -100% */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
+          from { transform: translateX(0%); }
+          to { transform: translateX(-100%); }
         }
       `}} />
     </div>
