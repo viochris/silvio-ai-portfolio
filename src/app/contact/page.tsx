@@ -63,24 +63,24 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="pt-12 border-t border-white/10 flex flex-wrap items-center gap-4 justify-center lg:justify-start w-full">
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
+          {/* Social Links - 2x2 Grid */}
+          <div className="pt-12 border-t border-white/10 grid grid-cols-2 gap-4 w-full">
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
               <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-3 w-5 h-5 text-primary" /> LinkedIn
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
               <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-3 w-5 h-5 text-primary" /> GitHub
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
               <a href="https://www.kaggle.com/viochristian" target="_blank" rel="noopener noreferrer">
                 <BarChart3 className="mr-3 w-5 h-5 text-primary" /> Kaggle
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
               <a href="https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" target="_blank" rel="noopener noreferrer">
                 <Instagram className="mr-3 w-5 h-5 text-primary" /> Instagram
               </a>

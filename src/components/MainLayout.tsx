@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp, BarChart3 } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, BarChart3, Instagram } from 'lucide-react';
 import { BinaryBackground } from '@/components/BinaryBackground';
 import Link from 'next/link';
 import { NavigationProvider, useNavigation } from '@/context/NavigationContext';
@@ -116,12 +116,12 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
                 <div className="space-y-8">
                   <h4 className="text-sm font-headline font-bold uppercase tracking-widest text-white">Connect</h4>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="grid grid-cols-2 gap-4 w-fit">
                     {[
-                      { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
                       { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/silvio-christian-joe" },
+                      { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
                       { icon: <BarChart3 className="w-5 h-5" />, href: "https://www.kaggle.com/viochristian" },
-                      { icon: <Mail className="w-5 h-5" />, href: "mailto:viochristian12@gmail.com" }
+                      { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" }
                     ].map((social, i) => (
                       <a 
                         key={i} 
