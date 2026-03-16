@@ -11,12 +11,12 @@ import { AllCredentialsPage } from '@/components/AllCredentialsPage';
 import { useNavigation } from '@/context/NavigationContext';
 
 const skills = [
-  { name: "NLP", value: 90 },
-  { name: "GenAI", value: 85 },
-  { name: "Backend", value: 92 },
-  { name: "Data", value: 95 },
-  { name: "ML", value: 88 },
-  { name: "Cloud", value: 75 }
+  { name: "GenAI", value: 95 },
+  { name: "NLP", value: 88 },
+  { name: "Data", value: 85 },
+  { name: "ML", value: 82 },
+  { name: "Backend", value: 75 },
+  { name: "Cloud", value: 50 }
 ];
 
 const techStacks = [
