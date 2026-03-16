@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, BarChart3 } from 'lucide-react';
 import { Chatbot } from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -73,6 +73,11 @@ export default function ContactPage() {
             <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
               <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-3 w-5 h-5 text-primary" /> GitHub
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
+              <a href="https://www.kaggle.com/viochristian" target="_blank" rel="noopener noreferrer">
+                <BarChart3 className="mr-3 w-5 h-5 text-primary" /> Kaggle
               </a>
             </Button>
             <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white min-w-[140px] flex-1 sm:flex-none transition-all" asChild>
