@@ -10,6 +10,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 
+const statItems = [
+  { value: "15+", label: "PROJECTS COMPLETED" },
+  { value: "20+", label: "VERIFIED CERTIFICATIONS" },
+  { value: "7+", label: "GENAI AGENTS DEPLOYED" }
+];
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [isAnim, setIsAnim] = useState(false);
@@ -101,18 +107,12 @@ export default function Home() {
           {/* Row 2: Stats Block */}
           <div className="w-full mb-32">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full">
-              <div className="text-center">
-                <div className="text-3xl md:text-5xl font-headline font-black text-primary">15+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">PROJECTS COMPLETED</div>
-              </div>
-              <div className="text-center border-y sm:border-y-0 sm:border-x border-white/10 py-8 sm:py-0">
-                <div className="text-3xl md:text-5xl font-headline font-black text-primary">24+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">VERIFIED CERTIFICATIONS</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-5xl font-headline font-black text-primary">9+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">GENAI AGENTS DEPLOYED</div>
-              </div>
+              {statItems.map((stat, index) => (
+                <div key={index} className={cn("text-center", index === 1 && "border-y sm:border-y-0 sm:border-x border-white/10 py-8 sm:py-0")}>
+                  <div className="text-3xl md:text-5xl font-headline font-black text-primary">{stat.value}</div>
+                  <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -262,4 +262,8 @@ export default function Home() {
       <TechMarquee />
     </div>
   );
+}
+
+function cn(...inputs: any[]) {
+  return inputs.filter(Boolean).join(' ');
 }
