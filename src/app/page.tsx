@@ -103,15 +103,15 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 py-16 border-t border-b border-white/10 w-full">
               <div className="text-center">
                 <div className="text-3xl md:text-5xl font-headline font-black text-primary">15+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Projects Completed</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">PROJECTS COMPLETED</div>
               </div>
               <div className="text-center border-y sm:border-y-0 sm:border-x border-white/10 py-8 sm:py-0">
-                <div className="text-3xl md:text-5xl font-headline font-black text-primary">4+</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Awards & Honors</div>
+                <div className="text-3xl md:text-5xl font-headline font-black text-primary">24+</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">VERIFIED CERTIFICATIONS</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-5xl font-headline font-black text-primary">99%</div>
-                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">Model Precision</div>
+                <div className="text-3xl md:text-5xl font-headline font-black text-primary">9+</div>
+                <div className="text-[10px] md:text-xs uppercase font-bold text-white/50 tracking-[0.3em] mt-4">GENAI AGENTS DEPLOYED</div>
               </div>
             </div>
           </div>
