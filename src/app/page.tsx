@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -81,12 +82,14 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment.
-                  <br className="hidden md:block" />
-                  <span className="text-foreground font-bold underline decoration-primary/30 italic">
+                  A 5th-semester Informatics Engineering student specializing in bridging the gap between raw data and practical AI implementation. I excel at analyzing <strong>Tabular & NLP data</strong> to build predictive models, and engineering <strong>autonomous AI Agents</strong> using modern frameworks.
+                </p>
+
+                <div className="w-full flex justify-center mt-4">
+                  <span className="inline-block text-foreground font-bold underline decoration-primary/30 italic text-center">
                     Focusing on Data Science, specifically NLP and Tabular Data processing.
                   </span>
-                </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
