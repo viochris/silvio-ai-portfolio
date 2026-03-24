@@ -65,7 +65,7 @@ export default function Home() {
 
             {/* RIGHT COLUMN: Text & Buttons Block */}
             <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-8">
-              <div className="space-y-6">
+              <div className="space-y-6 w-full">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
                     Data Scientist & AI Engineer
@@ -81,8 +81,8 @@ export default function Home() {
                   <TypewriterEffect />
                 </div>
                 
-                <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  A 5th-semester Informatics Engineering student specializing in **Tabular Data analysis** and **Natural Language Processing (NLP)**. I focus on building practical AI solutions, specifically developing **autonomous AI Agents** that bridge the gap between raw data and real-world applications.
+                <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
+                  I am an Informatics Engineering student specializing in both <strong>NLP and Tabular Data Science</strong>. My true passion lies in <strong>AI Agent Engineering</strong>, where I build practical, task-oriented autonomous systems that turn intelligence into real-world action.
                 </p>
 
                 <div className="w-full flex justify-center mt-4">
