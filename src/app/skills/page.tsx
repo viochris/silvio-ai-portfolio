@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useEffect } from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight } from 'lucide-react';
+import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight, Rocket } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -28,7 +28,7 @@ const techStacks = [
     ]
   },
   {
-    category: "Data Science & ML",
+    category: "Data Science & Machine Learning",
     badges: [
       { name: "Pandas", url: "https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" },
       { name: "NumPy", url: "https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" },
@@ -37,55 +37,71 @@ const techStacks = [
     ]
   },
   {
-    category: "NLP, GenAI & VectorDB",
+    category: "NLP, GenAI & LLMOps",
     badges: [
       { name: "Google Gemini", url: "https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" },
+      { name: "Groq", url: "https://img.shields.io/badge/Groq-F55036?style=for-the-badge" },
       { name: "Hugging Face", url: "https://img.shields.io/badge/-HuggingFace-FDEE21?style=for-the-badge&logo=HuggingFace&logoColor=black" },
       { name: "LangChain", url: "https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=LangChain&logoColor=white" },
-      { name: "FAISS", url: "https://img.shields.io/badge/FAISS-092E20?style=for-the-badge&logo=meta&logoColor=white" }
+      { name: "CrewAI", url: "https://img.shields.io/badge/CrewAI-0769AD?style=for-the-badge&logo=probot&logoColor=white" },
+      { name: "FAISS", url: "https://img.shields.io/badge/FAISS-092E20?style=for-the-badge&logo=meta&logoColor=white" },
+      { name: "Pinecone", url: "https://img.shields.io/badge/Pinecone-000000?style=for-the-badge&logo=pinecone&logoColor=white" }
     ]
   },
   {
     category: "Web Frameworks & UI",
     badges: [
       { name: "Streamlit", url: "https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" },
-      { name: "FastAPI", url: "https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" },
+      { name: "FastAPI", url: "https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white" },
       { name: "Flask", url: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" }
     ]
   },
   {
-    category: "Automation & DevOps",
+    category: "Automation, Bots & DevOps",
     badges: [
       { name: "Telegram", url: "https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" },
-      { name: "Prefect", url: "https://img.shields.io/badge/Prefect-0052FF?style=for-the-badge" },
+      { name: "Prefect", url: "https://img.shields.io/badge/Prefect-0052FF?style=for-the-badge&logo=prefect&logoColor=white" },
       { name: "Docker", url: "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" }
     ]
   },
   {
-    category: "Visualization",
+    category: "Databases",
     badges: [
-      { name: "Tableau", url: "https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=Tableau&logoColor=white" },
-      { name: "Matplotlib", url: "https://img.shields.io/badge/Matplotlib-ffffff?style=for-the-badge&logo=Matplotlib&logoColor=black" },
+      { name: "MySQL", url: "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" }
+    ]
+  },
+  {
+    category: "Data Analytics & Visualization",
+    badges: [
+      { name: "Tableau", url: "https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white" },
+      { name: "Power BI", url: "https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" },
+      { name: "Looker Studio", url: "https://img.shields.io/badge/Looker_Studio-4285F4?style=for-the-badge&logo=looker&logoColor=white" },
+      { name: "Excel", url: "https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" },
+      { name: "Matplotlib", url: "https://img.shields.io/badge/Matplotlib-ffffff?style=for-the-badge&logo=matplotlib&logoColor=black" },
       { name: "Seaborn", url: "https://img.shields.io/badge/Seaborn-444876?style=for-the-badge&logo=python&logoColor=white" }
     ]
   },
   {
-    category: "Databases & Tools",
+    category: "Environment & Tools",
     badges: [
-      { name: "MySQL", url: "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" },
-      { name: "Git", url: "https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" },
       { name: "Google Colab", url: "https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" },
-      { name: "Kaggle", url: "https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" }
-    ]
-  },
-  {
-    category: "Cloud & MLOps",
-    badges: [
-      { name: "AWS", url: "https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" },
-      { name: "GCP", url: "https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white" },
-      { name: "HuggingFace", url: "https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" }
+      { name: "Kaggle", url: "https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" },
+      { name: "Jupyter", url: "https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white" },
+      { name: "Git", url: "https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" },
+      { name: "VS Code", url: "https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" },
+      { name: "Google Antigravity", url: "https://img.shields.io/badge/Google_Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" },
+      { name: "Firebase Studio (IDX)", url: "https://img.shields.io/badge/Firebase_Studio_(IDX)-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" }
     ]
   }
+];
+
+const nextRadar = [
+  { name: "LangGraph", url: "https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" },
+  { name: "DSPy", url: "https://img.shields.io/badge/DSPy-2A2B2E?style=for-the-badge&logo=python&logoColor=white" },
+  { name: "LiteLLM", url: "https://img.shields.io/badge/LiteLLM-1A9E38?style=for-the-badge" },
+  { name: "Langfuse", url: "https://img.shields.io/badge/Langfuse-000000?style=for-the-badge" },
+  { name: "Phoenix Arize", url: "https://img.shields.io/badge/Phoenix%20Arize-E15E28?style=for-the-badge" },
+  { name: "FastMCP", url: "https://img.shields.io/badge/FastMCP-009688?style=for-the-badge&logo=fastapi&logoColor=white" }
 ];
 
 export default function SkillsPage() {
@@ -173,7 +189,7 @@ export default function SkillsPage() {
 
         <div className="mb-40 space-y-20">
           <div className="text-center space-y-4">
-            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white flex items-center justify-center gap-4">
+            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-4 text-white flex items-center justify-center gap-4">
               <Wrench className="text-primary w-8 h-8" /> Tech Stack & Tools
             </h3>
             <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
@@ -195,6 +211,30 @@ export default function SkillsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Section: Currently Exploring */}
+        <div className="mb-40 space-y-16">
+          <div className="text-center space-y-6">
+             <div className="flex flex-col items-center justify-center gap-3">
+                <Badge variant="outline" className="text-primary/70 tracking-[0.2em] uppercase px-4 py-1 text-[10px]">Future Vision</Badge>
+                <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white flex items-center gap-4">
+                   <Rocket className="text-primary w-8 h-8 animate-bounce" /> Currently Exploring & Next on My Radar
+                </h3>
+             </div>
+             <p className="text-white/50 font-medium max-w-xl mx-auto">Technologies I am actively learning and integrating into upcoming projects.</p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto p-10 rounded-[3rem] bg-white/5 border border-white/10">
+             {nextRadar.map((badge, idx) => (
+                <img 
+                   key={idx} 
+                   src={badge.url} 
+                   alt={badge.name} 
+                   className="h-8 md:h-10 hover:scale-110 hover:brightness-110 transition-all duration-300 shadow-xl" 
+                />
+             ))}
           </div>
         </div>
 
