@@ -1,6 +1,8 @@
 # 🌌 Silvio.AI — Personal Portfolio
 
 <div align="center">
+  <img src="public/icon.png" width="120" height="120" alt="Silvio.AI Logo" />
+  <br />
 
 [![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -45,16 +47,19 @@ This project serves as a living laboratory for my work in **Natural Language Pro
 - **Library**: React 19
 - **Styling**: Tailwind CSS & Lucide React (Icons)
 - **Animations**: Framer Motion & Tailwind Animate
+- **Components**: Shadcn UI (Radix UI Primitives)
 
 ### **AI & Data Science**
-- **Orchestration**: Genkit AI
+- **Orchestration**: Genkit AI (Server Flows)
 - **LLM Integration**: Google Gemini 2.5 Flash
 - **Visualization**: Custom SVG Radar Charts
 - **Backend API**: Hugging Face Spaces (FastAPI / LangGraph)
+- **NLP Models**: SBERT, TF-IDF, RoBERTa (via APIs)
 
-### **UI Components (Shadcn UI)**
-- Radix UI Primitives (Dialog, Sheet, Progress, Tabs, etc.)
-- Custom Glassmorphism Theme
+### **Infrastructure**
+- **Platform**: Firebase App Hosting
+- **CI/CD**: GitHub Actions
+- **Containerization**: Docker (for backend services)
 
 ---
 
@@ -63,16 +68,27 @@ This project serves as a living laboratory for my work in **Natural Language Pro
 ```text
 silvio-ai/
 ├── src/
-│   ├── ai/               # Genkit flows and AI logic
-│   ├── app/              # Next.js App Router (pages & layouts)
-│   ├── components/       # Reusable UI & Core modules
-│   │   ├── ui/           # Shadcn UI primitives
-│   │   └── ...           # Custom components (Marquee, Chatbot, etc.)
-│   ├── hooks/            # Custom React hooks
-│   └── lib/              # Utilities and static data
-├── public/               # Static assets (images, icons, CV)
-└── tailwind.config.ts    # Custom theme & animation config
+│   ├── ai/               # Genkit flows, prompts, and server-side AI logic
+│   ├── app/              # Next.js App Router (pages, layouts, robots.txt, sitemap)
+│   ├── components/       # Reusable UI & Core modules (Navbar, Chatbot, Marquee)
+│   │   └── ui/           # Shadcn UI primitives (Buttons, Dialogs, Cards)
+│   ├── context/          # React Context (Navigation state management)
+│   ├── hooks/            # Custom React hooks (useToast, useMobile)
+│   ├── lib/              # Utilities, static data, and TypeScript interfaces
+│   └── ...
+├── public/               # Static assets (icon.png, CV, images)
+├── tailwind.config.ts    # Custom themes, animations, and typography config
+└── package.json          # Dependencies and script definitions
 ```
+
+---
+
+## 📂 Highlighted Repositories
+
+- **InsightSQL (LangGraph)**: SQL Agent with cyclic reasoning and self-correction.
+- **SpendSense**: Financial AI with OCR receipt scanning and conversational analytics.
+- **Resume Scanner API**: Dual-engine ATS optimizer using semantic SBERT analysis.
+- **NovaCal AI**: Autonomous Telegram agents for Google Calendar/Tasks automation.
 
 ---
 
@@ -94,11 +110,13 @@ To get a local copy up and running, follow these simple steps:
    ```bash
    npm install
    ```
-3. Run the development server:
+3. Setup Environment Variables:
+   Create a `.env` file and add your `GOOGLE_GENAI_API_KEY` and other required secrets.
+4. Run the development server:
    ```bash
    npm run dev
    ```
-4. Open [http://localhost:9002](http://localhost:9002) in your browser.
+5. Open [http://localhost:9002](http://localhost:9002) in your browser.
 
 ---
 
@@ -106,6 +124,7 @@ To get a local copy up and running, follow these simple steps:
 
 - **LinkedIn**: [Silvio Christian Joe](https://www.linkedin.com/in/silvio-christian-joe)
 - **GitHub**: [@viochris](https://github.com/viochris)
+- **Kaggle**: [@viochristian](https://www.kaggle.com/viochristian)
 - **Email**: [viochristian12@gmail.com](mailto:viochristian12@gmail.com)
 - **Location**: Semarang, Central Java, Indonesia
 
