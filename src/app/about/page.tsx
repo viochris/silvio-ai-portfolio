@@ -188,22 +188,22 @@ export default function AboutPage() {
               </h3>
               <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
                 <p>
-                  When I'm not architecting neural networks or optimizing ETL pipelines, I enjoy contributing to the open-source community and participating in AI hackathons. 
+                  When I'm not writing code or analyzing datasets, I spend my time exploring the latest advancements in Generative AI and building hands-on projects to test new frameworks.
                 </p>
                 <p>
-                  I'm a firm believer in lifelong learning and often spend my weekends experimenting with new LLM frameworks or exploring the intersection between AI and human psychology.
+                  I'm a firm believer in learning by doing. My weekends are often spent deploying models to Hugging Face, exploring agentic workflows, or occasionally creating bite-sized educational content about data science.
                 </p>
                 <p>
-                  My goal is to create technology that is not only powerful, but truly useful and intuitive for human users.
+                  My ultimate goal is to bridge the gap between complex AI technologies and practical, intuitive solutions that actually solve real-world problems.
                 </p>
               </div>
             </div>
             <div className="w-full grid grid-cols-2 gap-3 sm:gap-6 px-2 sm:px-0">
               {[
-                { label: "Open Source", val: "Contributor" },
-                { label: "Hackathons", val: "Winner" },
-                { label: "Mentorship", val: "Enthusiast" },
-                { label: "Tech Blog", val: "Writer" }
+                { label: "PERSONAL PROJECTS", val: "Builder" },
+                { label: "HUGGING FACE & KAGGLE", val: "Explorer" },
+                { label: "DATA EDU CONTENT", val: "Creator" },
+                { label: "NEW AI FRAMEWORKS", val: "Learner" }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center justify-center p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-900/50 border border-slate-800 w-full text-center">
                   <h3 className="text-sm sm:text-xl font-bold text-primary w-full whitespace-nowrap sm:whitespace-normal">{item.val}</h3>
