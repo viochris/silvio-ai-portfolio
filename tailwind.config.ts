@@ -60,6 +60,7 @@ export default {
         'marquee': 'marquee 25s linear infinite',
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'slide-up': 'slide-up 0.5s ease-out forwards',
+        'float': 'float 3s ease-in-out infinite',
       },
       keyframes: {
         'pulse-glow': {
@@ -77,6 +78,10 @@ export default {
         'slide-up': {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },
