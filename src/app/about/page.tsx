@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, BarChart2, Users, Download, Eye } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -50,13 +50,13 @@ export default function AboutPage() {
             
             <div className="space-y-8 text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
               <p>
-                My journey as an AI Engineer is fueled by a passion for solving real-world problems through data. I specialize in <span className="text-foreground font-bold underline decoration-primary/30">Natural Language Processing (NLP)</span> and building sophisticated models for <span className="text-foreground font-bold underline decoration-primary/30">Tabular Data analysis</span>.
+                My journey as a <strong>Data Scientist and AI Engineer</strong> is fueled by a passion for extracting stories from raw data. I specialize in both <strong>Natural Language Processing (NLP)</strong> for unstructured text and building robust predictive models for <strong>Tabular Data analysis</strong>.
               </p>
               <p>
-                Beyond model training, I focus on <span className="text-foreground font-bold underline decoration-primary/30">end-to-end deployment</span>—ensuring that the intelligence I build is accessible via high-performance APIs and integrated seamlessly into production environments using Docker and Cloud providers.
+                Beyond training models, I focus on <strong>practical implementation</strong>—ensuring that the intelligence I build is accessible through functional APIs and interactive interfaces. I enjoy turning research-based concepts into real-world applications that solve actual problems.
               </p>
               <p>
-                I believe that AI should be practical, accessible, and high-performing. This philosophy guides every project I undertake.
+                I believe that AI should be practical, ethical, and easy to use. This philosophy guides every project I undertake, from my hands-on experiments on Kaggle to my agentic AI deployments on Hugging Face.
               </p>
             </div>
 
