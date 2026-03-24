@@ -111,7 +111,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Professional Pillars - ENFORCED EQUAL HEIGHT */}
+        {/* Section: Professional Pillars - ENFORCED EQUAL HEIGHT & ALIGNMENT */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32 items-stretch">
           {[
             {
@@ -140,7 +140,10 @@ export default function AboutPage() {
                 {pillar.icon}
               </div>
               <div className="space-y-4 flex flex-col flex-grow">
-                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
+                {/* min-h ensures consistent starting point for the description text */}
+                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight min-h-[4rem] md:min-h-[5rem] flex items-start">
+                  {pillar.title}
+                </h4>
                 <div className="flex-grow">
                   <p className="text-muted-foreground font-medium leading-relaxed flex-grow">
                     {pillar.desc}
