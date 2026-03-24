@@ -40,8 +40,10 @@ export default function AboutPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="about" className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-32">
-          <div className="space-y-12">
+        {/* Section: Experience & Education */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 w-full items-start mb-32">
+          {/* LEFT COLUMN: Text + Icons */}
+          <div className="w-full lg:w-1/2 flex flex-col space-y-6">
             <div className="space-y-6">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Journey</Badge>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
@@ -49,17 +51,15 @@ export default function AboutPage() {
               </h2>
             </div>
             
-            <div className="space-y-8 text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              <p>
-                My journey as a <strong>Data Scientist and AI Engineer</strong> is fueled by a passion for extracting stories from raw data. I specialize in both <strong>Natural Language Processing (NLP)</strong> for unstructured text and building robust predictive models for <strong>Tabular Data analysis</strong>.
-              </p>
-              <p>
-                Beyond training models, I focus on <strong>practical implementation</strong>—ensuring that the intelligence I build is accessible through functional APIs and interactive interfaces. I enjoy turning research-based concepts into real-world applications that solve actual problems.
-              </p>
-              <p>
-                I believe that AI should be practical, ethical, and easy to use. This philosophy guides every project I undertake, from my hands-on experiments on Kaggle to my agentic AI deployments on Hugging Face.
-              </p>
-            </div>
+            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
+              My journey as a <strong>Data Scientist and AI Engineer</strong> is driven by a passion for transforming raw data into intelligent systems. On the data science front, I specialize in analyzing <strong>Tabular Data</strong> to build robust predictive models and applying <strong>Natural Language Processing (NLP)</strong> to extract meaning from unstructured text.
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
+              Beyond traditional modeling, my work as an AI Engineer focuses on developing <strong>autonomous AI Agents</strong>. I build practical, task-oriented systems using modern LLM frameworks—implementing RAG pipelines, engineering conversational bots, and creating ReAct agents that can independently reason and execute complex workflows.
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
+              I believe AI should be practical and accessible. From analyzing datasets on Kaggle to deploying functional AI assistants on Telegram and web interfaces, I ensure my projects deliver real-world utility through reliable, high-performance execution.
+            </p>
 
             <div className="flex gap-4 sm:gap-6 pt-4">
               <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
@@ -80,8 +80,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="space-y-12">
-            <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] space-y-10 border-primary/10 shadow-2xl">
+          {/* RIGHT COLUMN: Education Roadmap */}
+          <div className="w-full lg:w-1/2">
+            <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] border-primary/10 shadow-2xl">
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <GraduationCap className="text-blue-500" size={28} />
