@@ -199,9 +199,9 @@ export default function SkillsPage() {
             <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch auto-rows-fr">
             {techStacks.map((stack, idx) => (
-              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group flex flex-col h-full">
+              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group flex flex-col h-full shadow-lg">
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6">{stack.category}</h4>
                 <div className="flex flex-wrap gap-3">
                   {stack.badges.map((badge, bIdx) => (
