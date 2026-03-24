@@ -163,7 +163,8 @@ export default function Home() {
                     {skill.icon}
                   </div>
                   <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[4rem] md:min-h-[5rem]">
+                  {/* Fixed alignment: min-height forced to handle up to 3 lines on desktop */}
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[6.5rem] flex items-start">
                     {skill.title}
                   </h3>
                   <p className="text-sm text-white/60 leading-relaxed font-medium flex-1">
