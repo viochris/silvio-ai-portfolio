@@ -114,23 +114,23 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32">
           {[
             {
-              title: "Innovation First",
-              desc: "Always exploring the latest research papers and state-of-the-art architectures to stay at the cutting edge of AI.",
+              title: "Continuous Learning",
+              desc: "I actively follow the latest developments in NLP and GenAI, constantly experimenting with new frameworks to see how they work in practice.",
               icon: <Zap className="w-10 h-10 text-primary" />
             },
             {
-              title: "Precision Driven",
-              desc: "Data-driven decision making ensures every model is optimized for the highest accuracy and real-world reliability.",
+              title: "Data Integrity",
+              desc: "I focus on building reliable models by paying close attention to data quality, preventing data leakage, and minimizing AI hallucinations.",
               icon: <Target className="w-10 h-10 text-primary" />
             },
             {
-              title: "Scalable Systems",
-              desc: "Developing solutions that don't just work locally, but are architected to scale globally under high production loads.",
+              title: "Practical Delivery",
+              desc: "I try not to stop at Jupyter Notebooks. I enjoy taking models and wrapping them into functional, user-friendly web apps or APIs.",
               icon: <ShieldCheck className="w-10 h-10 text-primary" />
             },
             {
-              title: "Collaborative Spirit",
-              desc: "Thriving in cross-functional environments to transform complex data insights into shared business successes.",
+              title: "Community Focused",
+              desc: "I enjoy collaborating on university group projects and sharing my personal tech experiments with the broader developer community.",
               icon: <Users className="w-10 h-10 text-primary" />
             }
           ].map((pillar, idx) => (
@@ -188,13 +188,13 @@ export default function AboutPage() {
               </h3>
               <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
                 <p>
-                  When I'm not writing code or analyzing datasets, I spend my time exploring the latest advancements in Generative AI and building hands-on projects to test new frameworks.
+                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I’m a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
                 </p>
                 <p>
-                  I'm a firm believer in learning by doing. My weekends are often spent deploying models to Hugging Face, exploring agentic workflows, or occasionally creating bite-sized educational content about data science.
+                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
                 </p>
                 <p>
-                  My ultimate goal is to bridge the gap between complex AI technologies and practical, intuitive solutions that actually solve real-world problems.
+                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
                 </p>
               </div>
             </div>
