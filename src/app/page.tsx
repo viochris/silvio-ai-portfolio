@@ -82,7 +82,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  A 5th-semester Informatics Engineering student specializing in bridging the gap between raw data and practical AI implementation. I excel at analyzing <strong>Tabular & NLP data</strong> to build predictive models, and engineering <strong>autonomous AI Agents</strong> using modern frameworks.
+                  A 5th-semester Informatics Engineering student specializing in <strong>Tabular Data analysis</strong> and <strong>Natural Language Processing (NLP)</strong>. I focus on building practical AI solutions, specifically developing <strong>autonomous AI Agents</strong> that bridge the gap between raw data and real-world applications.
                 </p>
 
                 <div className="w-full flex justify-center mt-4">
@@ -135,25 +135,25 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Advanced text analysis, sentiment extraction, and language modeling using state-of-the-art architectures.",
+                  desc: "Analyzing text data to extract meaningful insights, from sentiment analysis to building custom document-processing tools.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP"
                 },
                 {
-                  title: "Data Engineering",
-                  desc: "Building scalable pipelines for tabular data processing, feature engineering, and high-performance APIs.",
+                  title: "Tabular Data Modeling",
+                  desc: "Cleaning and engineering features from structured datasets to build reliable predictive models for real-world scenarios.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA"
                 },
                 {
-                  title: "Generative AI Systems",
-                  desc: "Designing intelligent agents and LLM-powered applications focused on user experience and efficiency.",
+                  title: "AI Agent Engineering",
+                  desc: "Developing intelligent, task-oriented agents using LLM frameworks to automate workflows and solve complex reasoning tasks.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "GenAI"
                 },
                 {
                   title: "Predictive Analytics",
-                  desc: "Utilizing robust machine learning models to forecast trends and deliver actionable business insights.",
+                  desc: "Applying machine learning techniques to discover patterns in data and generate actionable forecasts.",
                   icon: <BarChart4 className="w-8 h-8 text-primary" />,
                   label: "Analytic"
                 }
