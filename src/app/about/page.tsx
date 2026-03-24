@@ -18,7 +18,12 @@ const educationData = [
     period: "Aug 2023 - Sep 2027",
     degree: "Bachelor of Informatics Engineering",
     institution: "Universitas Dian Nuswantoro (UDINUS)",
-    description: "IPK: 3.95/4.00 (Cumulative GPA in 5th Semester). Activities: UKM Dian Nuswantoro Computer Club - DNCC."
+    description: (
+      <>
+        IPK: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
+        Activities: UKM Dian Nuswantoro Computer Club - DNCC.
+      </>
+    )
   },
   {
     period: "Jul 2020 - May 2023",
@@ -93,9 +98,9 @@ export default function AboutPage() {
                         <span className="text-blue-500 dark:text-blue-400 font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
                         <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">{edu.degree}</h3>
                         <h4 className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-medium mb-3">{edu.institution}</h4>
-                        <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
+                        <div className="text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
                           {edu.description}
-                        </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -148,7 +153,7 @@ export default function AboutPage() {
               <span className="px-4 py-1 rounded-full border border-slate-700 bg-slate-800/50 text-primary text-xs font-bold tracking-widest uppercase">Activity</span>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
-                <BarChart2 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
+                <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">GitHub Performance</h2>
               </div>
             </div>
