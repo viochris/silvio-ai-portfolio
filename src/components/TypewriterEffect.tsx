@@ -4,10 +4,10 @@
 import React, { useState, useEffect } from 'react';
 
 const words = [
-  "analyze NLP & Tabular Data.",
-  "engineer AI Agents.",
-  "build intelligent solutions.",
-  "deploy autonomous systems."
+  "analyze Tabular & NLP data.",
+  "engineer autonomous AI Agents.",
+  "build predictive ML models.",
+  "deploy intelligent LLM solutions."
 ];
 
 export const TypewriterEffect: React.FC = () => {
