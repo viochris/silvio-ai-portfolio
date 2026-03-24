@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 const words = [
   "analyze Tabular & NLP data.",
   "build intelligent AI Agents.",
-  "develop Machine Learning models.",
+  "develop ML models.",
   "create GenAI applications."
 ];
 

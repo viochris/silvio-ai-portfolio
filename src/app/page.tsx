@@ -27,11 +27,11 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <div className="pt-32 lg:pt-40 min-h-screen">
+    <div className="pt-12 lg:pt-16 min-h-screen">
       <section id="home" className="pb-20">
         
         {/* Main Hero Container - COMPACTED & CENTERED */}
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 lg:pt-20 lg:pb-28">
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-12 lg:pb-20">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
             
             {/* LEFT COLUMN: Avatar / Image Block */}
@@ -64,8 +64,8 @@ export default function Home() {
             </div>
 
             {/* RIGHT COLUMN: Text & Buttons Block */}
-            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-8">
-              <div className="space-y-6 w-full">
+            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-6">
+              <div className="space-y-4 w-full">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
                     Data Scientist & AI Engineer
@@ -75,8 +75,8 @@ export default function Home() {
                   </h1>
                 </div>
                 
-                {/* Fixed Typewriter Subtitle Container */}
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white/90 min-h-[40px] animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                {/* Fixed Typewriter Subtitle Container - PREVENT WRAPPING */}
+                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white/90 min-h-[40px] animate-fade-in whitespace-nowrap overflow-hidden" style={{ animationDelay: '0.2s' }}>
                   <span>I</span>
                   <TypewriterEffect />
                 </div>
@@ -85,7 +85,7 @@ export default function Home() {
                   I am an Informatics Engineering student specializing in both <strong>NLP and Tabular Data Science</strong>. My true passion lies in <strong>AI Agent Engineering</strong>, where I build practical, task-oriented autonomous systems that turn intelligence into real-world action.
                 </p>
 
-                <div className="w-full flex justify-center mt-4">
+                <div className="w-full flex justify-center mt-2">
                   <span className="inline-block text-foreground font-bold underline decoration-primary/30 italic text-center">
                     Focusing on Data Science (Tabular & NLP) and autonomous AI Agent Engineering.
                   </span>
