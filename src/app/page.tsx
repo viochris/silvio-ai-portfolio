@@ -81,7 +81,11 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment. Focusing on Data Science, specifically NLP and Tabular Data processing.
+                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment.
+                  <br className="hidden md:block" />
+                  <span className="text-foreground font-bold underline decoration-primary/30 italic">
+                    Focusing on Data Science, specifically NLP and Tabular Data processing.
+                  </span>
                 </p>
               </div>
 
