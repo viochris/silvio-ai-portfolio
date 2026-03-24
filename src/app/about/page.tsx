@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -111,7 +112,7 @@ export default function AboutPage() {
         </div>
 
         {/* Section: Professional Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32 items-stretch">
           {[
             {
               title: "Continuous Learning",
@@ -134,13 +135,15 @@ export default function AboutPage() {
               icon: <Users className="w-10 h-10 text-primary" />
             }
           ].map((pillar, idx) => (
-            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all flex flex-col h-full">
+            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all flex flex-col h-full shadow-lg">
               <div className="w-20 h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center shrink-0">
                 {pillar.icon}
               </div>
-              <div className="space-y-4 flex-1">
+              <div className="space-y-4 flex flex-col flex-grow">
                 <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight">{pillar.title}</h4>
-                <p className="text-muted-foreground font-medium leading-relaxed">{pillar.desc}</p>
+                <div className="flex-grow">
+                  <p className="text-muted-foreground font-medium leading-relaxed">{pillar.desc}</p>
+                </div>
               </div>
             </div>
           ))}

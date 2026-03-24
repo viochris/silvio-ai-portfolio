@@ -82,12 +82,12 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  A 5th-semester Informatics Engineering student specializing in <strong>Tabular Data analysis</strong> and <strong>Natural Language Processing (NLP)</strong>. I focus on building practical AI solutions, specifically developing <strong>autonomous AI Agents</strong> that bridge the gap between raw data and real-world applications.
+                  I am an Informatics Engineering student focused on the <strong>practical application of AI</strong>. By blending Data Science principles with modern engineering, I develop intelligent solutions using <strong>NLP</strong>, <strong>Tabular Data analysis</strong>, and <strong>autonomous AI Agents</strong>.
                 </p>
 
                 <div className="w-full flex justify-center mt-4">
                   <span className="inline-block text-foreground font-bold underline decoration-primary/30 italic text-center">
-                    Focusing on Data Science, specifically NLP and Tabular Data processing.
+                    Building intelligent solutions with NLP, Tabular Data analysis, and autonomous AI Agents.
                   </span>
                 </div>
               </div>

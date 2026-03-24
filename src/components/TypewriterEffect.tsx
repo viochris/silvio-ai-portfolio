@@ -1,12 +1,13 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
 
 const words = [
-  "analyze Tabular Data.",
-  "build AI Chatbots.",
-  "engineer ML Models.",
-  "develop Stunting APIs."
+  "analyze NLP & Tabular Data.",
+  "engineer AI Agents.",
+  "build intelligent solutions.",
+  "deploy autonomous systems."
 ];
 
 export const TypewriterEffect: React.FC = () => {
