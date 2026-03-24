@@ -188,7 +188,6 @@ export default function SkillsPage() {
 
         <div className="mb-40 space-y-20">
           <div className="text-center space-y-4">
-            {/* My Tech Stack Header - ONLY Icon Animates */}
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="text-primary animate-float">
                 <Wrench className="w-8 h-8" />
@@ -210,8 +209,7 @@ export default function SkillsPage() {
                       key={bIdx} 
                       src={badge.url} 
                       alt={badge.name} 
-                      style={{ animationDelay: `${(idx + bIdx) * 0.1}s` }}
-                      className="h-7 md:h-8 animate-float hover:scale-125 hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(59,130,246,0.1)]" 
+                      className="h-7 md:h-8 hover:scale-125 hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(59,130,246,0.1)]" 
                     />
                   ))}
                 </div>
@@ -220,13 +218,11 @@ export default function SkillsPage() {
           </div>
         </div>
 
-        {/* Section: Currently Exploring */}
         <div className="mb-40 space-y-16">
           <div className="text-center space-y-6">
              <div className="flex flex-col items-center justify-center gap-3">
                 <Badge variant="outline" className="text-primary/70 tracking-[0.2em] uppercase px-4 py-1 text-[10px]">Future Vision</Badge>
                 
-                {/* 3-Stage Responsive Header - ONLY Icon Animates */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full mb-6">
                   <div className="flex-shrink-0 animate-float">
                      <Rocket className="text-primary w-10 h-10" />
@@ -250,8 +246,7 @@ export default function SkillsPage() {
                    key={idx} 
                    src={badge.url} 
                    alt={badge.name} 
-                   style={{ animationDelay: `${idx * 0.15}s` }}
-                   className="h-8 md:h-10 animate-float hover:scale-125 hover:brightness-110 transition-all duration-300 shadow-xl" 
+                   className="h-8 md:h-10 hover:scale-125 hover:brightness-110 transition-all duration-300 shadow-xl" 
                 />
              ))}
           </div>
