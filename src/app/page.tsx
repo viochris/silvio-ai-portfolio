@@ -82,7 +82,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  I am an Informatics Engineering student focused on the <strong>practical application of AI</strong>. By blending Data Science principles with modern engineering, I develop intelligent solutions using <strong>NLP</strong>, <strong>Tabular Data analysis</strong>, and <strong>autonomous AI Agents</strong>.
+                  I am an Informatics Engineering student working as a <strong>Data Scientist</strong> and <strong>AI Engineer</strong>. My technical focus involves analyzing <strong>Tabular & NLP data</strong>, as well as developing functional <strong>AI Agents</strong> for practical applications.
                 </p>
 
                 <div className="w-full flex justify-center mt-2">
