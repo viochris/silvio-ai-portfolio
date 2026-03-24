@@ -82,7 +82,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  I am an Informatics Engineering student specializing in both <strong>NLP and Tabular Data Science</strong>. My true passion lies in <strong>AI Agent Engineering</strong>, where I build practical, task-oriented autonomous systems that turn intelligence into real-world action.
+                  I am an Informatics Engineering student focused on the <strong>practical application of AI</strong>. By blending Data Science principles with modern engineering, I develop intelligent solutions using <strong>NLP</strong>, <strong>Tabular Data analysis</strong>, and <strong>autonomous AI Agents</strong>.
                 </p>
 
                 <div className="w-full flex justify-center mt-2">
@@ -131,7 +131,7 @@ export default function Home() {
               </h2>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
               {[
                 {
                   title: "Natural Language Processing",
@@ -183,7 +183,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
               {[
                 {
                   title: "Research & Design",
