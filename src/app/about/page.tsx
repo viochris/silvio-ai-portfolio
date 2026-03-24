@@ -1,4 +1,3 @@
-
 "use client"
 
 import React from 'react';
@@ -19,7 +18,7 @@ const educationData = [
     period: "Aug 2023 - Sep 2027",
     degree: "Bachelor of Informatics Engineering",
     institution: "Universitas Dian Nuswantoro (UDINUS)",
-    description: "IPK: 3.95/4.00 (Cumulative GPA in 5th Semester). Activities: UKM Dian Nuswantoro Computer Club - DNCC. Focusing on Data Science, specifically NLP and Tabular Data processing."
+    description: "IPK: 3.95/4.00 (Cumulative GPA in 5th Semester). Activities: UKM Dian Nuswantoro Computer Club - DNCC."
   },
   {
     period: "Jul 2020 - May 2023",

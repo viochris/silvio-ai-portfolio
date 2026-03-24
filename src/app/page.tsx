@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -82,7 +81,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl">
-                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment.
+                  Undergraduate Informatics student at UDINUS with a sharp focus on extracting value from unstructured text and structured datasets through end-to-end AI deployment. Focusing on Data Science, specifically NLP and Tabular Data processing.
                 </p>
               </div>
 
