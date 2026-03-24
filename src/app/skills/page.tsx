@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useEffect } from 'react';
@@ -199,8 +200,10 @@ export default function SkillsPage() {
             <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
           </div>
 
+          {/* GRID FIX: Using items-stretch and auto-rows-fr to force absolute equal height for all cards in the grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch auto-rows-fr">
             {techStacks.map((stack, idx) => (
+              /* CARD FIX: flex flex-col h-full shadow-lg ensures the card fills the FR row height */
               <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group flex flex-col h-full shadow-lg">
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6">{stack.category}</h4>
                 <div className="flex flex-wrap gap-3">
@@ -254,14 +257,14 @@ export default function SkillsPage() {
 
         <div id="certifications-section" className="mb-40">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch auto-rows-fr">
             {diverseCertifications.map((c) => (
               <div key={c.id} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group shadow-xl h-full">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <Award className="w-6 h-6" />
                 </div>
                 <div className="min-w-0 flex-1 flex flex-col items-start">
-                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight min-h-[3.5rem] md:min-h-[4rem]">{c.title}</div>
+                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight min-h-[3.5rem] md:min-h-[4rem] flex items-center">{c.title}</div>
                   <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer}</div>
                 </div>
               </div>
@@ -282,14 +285,14 @@ export default function SkillsPage() {
 
         <div id="badges-section" className="mt-20">
           <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch auto-rows-fr">
             {courseBadges.slice(0, 4).map((b) => (
-              <div key={b.id} className="p-6 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col gap-4 hover:border-primary/50 transition-all group shadow-xl">
+              <div key={b.id} className="p-6 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col gap-4 hover:border-primary/50 transition-all group shadow-xl h-full">
                 <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors">
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div className="min-w-0 flex flex-col items-start">
-                  <div className="text-sm font-bold text-white mb-2 leading-tight min-h-[2.5rem] md:min-h-[3rem]">{b.title}</div>
+                  <div className="text-sm font-bold text-white mb-2 leading-tight min-h-[2.5rem] md:min-h-[3rem] flex items-center">{b.title}</div>
                   <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer}</div>
                 </div>
               </div>
