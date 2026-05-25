@@ -221,15 +221,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Link to Interests in About Page */}
-            <div className="flex justify-center pt-8">
-              <Link href="/about#interests">
-                <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
-                  Explore Interest Journey <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </Button>
-              </Link>
-            </div>
-
             {/* Special Vibe Coding Focus */}
             <div className="w-full p-10 md:p-16 glass rounded-[3rem] border border-primary/20 relative overflow-hidden group hover:bg-primary/5 transition-all duration-700">
                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-32 -mt-32 group-hover:bg-primary/20 transition-all" />
@@ -249,6 +240,15 @@ export default function Home() {
                      </p>
                   </div>
                </div>
+            </div>
+
+            {/* Link to Interests in About Page - MOVED TO BOTTOM */}
+            <div className="flex justify-center pt-8">
+              <Link href="/about#interests">
+                <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
+                  Explore Interest Journey <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </div>
 

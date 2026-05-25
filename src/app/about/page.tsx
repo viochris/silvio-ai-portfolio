@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -102,6 +102,28 @@ const interestData = [
       { name: "InsightSQL (LangGraph)", id: 1, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: 2, github: "https://github.com/viochris/Streamlit-SpendSense" },
       { name: "NovaCal AI (Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
+    ]
+  },
+  {
+    title: "Automation & Orchestration",
+    icon: <Workflow className="w-10 h-10 text-primary" />,
+    desc: "Building autonomous pipelines & workflows.",
+    details: "Automation is about creating high-performance ecosystems where AI services connect seamlessly. I focus on building stateful agents for calendar management, autonomous inbox assistants, and real-time news delivery pipelines. My goal is to maximize efficiency by offloading repetitive tasks to intelligent, stateless and stateful bots.",
+    projects: [
+      { name: "NovaCal AI (Stateful Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
+      { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
+      { name: "Daily AI News Digest", id: null, github: "https://github.com/viochris/daily-ai-news-digest" }
+    ]
+  },
+  {
+    title: "Vibe Coding",
+    icon: <Code2 className="w-10 h-10 text-primary" />,
+    desc: "Engineering the AI-first digital experience.",
+    details: "Vibe Coding is a philosophy where engineering meets intuition. I prioritize clean, modular, and AI-first coding practices, ensuring that the interaction between human intent and machine execution is fluid. This involves architecting systems that are not just high-performance, but also highly adaptable and user-centric.",
+    projects: [
+      { name: "Vibe Engine Alpha (Coming Soon)", id: null, github: "#" },
+      { name: "Neural Interface UI (Coming Soon)", id: null, github: "#" },
+      { name: "Synthetic Experience Lab (Coming Soon)", id: null, github: "#" }
     ]
   }
 ];
@@ -226,7 +248,7 @@ export default function AboutPage() {
             {interestData.map((item, i) => (
               <Dialog key={i}>
                 <DialogTrigger asChild>
-                  <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5">
+                  <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full">
                     <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                       {item.icon}
                     </div>
@@ -276,11 +298,13 @@ export default function AboutPage() {
                                   </Button>
                                 </Link>
                               )}
-                              <a href={proj.github} target="_blank" rel="noopener noreferrer">
-                                <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                  <Github className="w-3 h-3" /> Repository
-                                </Button>
-                              </a>
+                              {proj.github !== "#" && (
+                                <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                    <Github className="w-3 h-3" /> Repository
+                                  </Button>
+                                </a>
+                              )}
                             </div>
                           </div>
                         ))}
