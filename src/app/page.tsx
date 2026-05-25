@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -124,20 +123,20 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: Neural Pulse Dashboard (NEW) */}
+          {/* Row 2: AI Infrastructure Monitor */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
-                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Neural Engine Status</Badge>
+                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">AI Service Infrastructure</Badge>
                 <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                  System <span className="text-primary">Metrics</span>
+                  System <span className="text-primary">Integrity</span>
                 </h2>
              </div>
              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch auto-rows-fr">
                 {[
-                  { label: "Inference Latency", val: "45ms", icon: <Zap className="text-yellow-400" />, desc: "Average response time per query" },
-                  { label: "Model Reliability", val: "99.8%", icon: <Shield className="text-green-400" />, desc: "Uptime for active agents" },
-                  { label: "Active Nodes", val: "7 Agents", icon: <Activity className="text-blue-400" />, desc: "Currently deployed AI workflows" },
-                  { label: "Data Pipeline", val: "Optimized", icon: <Code2 className="text-purple-400" />, desc: "ETL automated through Prefect" }
+                  { label: "Inference Latency", val: "Optimized", icon: <Zap className="text-yellow-400" />, desc: "High-speed response via edge-optimized models" },
+                  { label: "Model Reliability", val: "High Stability", icon: <Shield className="text-green-400" />, desc: "Continuous uptime for deployed AI agents" },
+                  { label: "Deployment Nodes", val: "Production", icon: <Activity className="text-blue-400" />, desc: "Currently active cloud-hosted AI workflows" },
+                  { label: "Data Pipeline", val: "Automated", icon: <Code2 className="text-purple-400" />, desc: "ETL pipelines managed with stateful orchestration" }
                 ].map((m, i) => (
                   <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group">
                      <div className="flex justify-between items-start mb-6">
@@ -206,7 +205,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 4: Featured Projects Preview (NEW) */}
+          {/* Row 4: Featured Projects Preview */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">

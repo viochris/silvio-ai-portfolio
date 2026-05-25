@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -122,9 +121,9 @@ export const Chatbot: React.FC = () => {
                 engineStatus === 'checking' ? 'text-yellow-500' : 
                 'text-red-500'
               }`}>
-                {engineStatus === 'active' ? 'NEURAL ENGINE ACTIVE' : 
-                 engineStatus === 'checking' ? 'CHECKING ENGINE...' : 
-                 'ENGINE SLEEPING (WAKING UP)'}
+                {engineStatus === 'active' ? 'AI SERVICE ONLINE' : 
+                 engineStatus === 'checking' ? 'CHECKING INFRASTRUCTURE...' : 
+                 'SERVICE STANDBY (WAKING UP)'}
               </span>
             </div>
           </div>
@@ -171,7 +170,7 @@ export const Chatbot: React.FC = () => {
             </div>
             <div className="bg-muted/50 text-muted-foreground max-w-[90%] sm:max-w-[85%] rounded-[1.5rem] rounded-bl-none p-3 sm:p-4 text-xs sm:text-sm flex items-center gap-3 italic border border-border/30">
               <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-spin" />
-              <span>Processing neural response...</span>
+              <span>Processing query...</span>
             </div>
           </div>
         )}
