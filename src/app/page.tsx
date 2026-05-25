@@ -1,20 +1,15 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, BarChart4, RefreshCw, Activity, Zap, Shield, Code2, ExternalLink } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Activity, Zap, Shield, Code2, ExternalLink } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-
-const statItems = [
-  { value: "15+", label: "PROJECTS COMPLETED" },
-  { value: "20+", label: "VERIFIED CERTIFICATIONS" },
-  { value: "7+", label: "GENAI AGENTS DEPLOYED" }
-];
 
 const featuredProjects = [
   { 
@@ -126,7 +121,7 @@ export default function Home() {
           {/* Row 2: AI Infrastructure Monitor */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
-                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">AI Service Infrastructure</Badge>
+                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">AI Infrastructure Monitor</Badge>
                 <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                   System <span className="text-primary">Integrity</span>
                 </h2>
@@ -168,25 +163,25 @@ export default function Home() {
                   title: "Natural Language Processing",
                   desc: "Analyzing text data to extract meaningful insights, from sentiment analysis to building custom document-processing tools.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
-                  label: "NLP"
+                  label: "TEXT (NLP)"
                 },
                 {
                   title: "Tabular Data Modeling",
                   desc: "Cleaning and engineering features from structured datasets to build reliable predictive models for real-world scenarios.",
                   icon: <Database className="w-8 h-8 text-primary" />,
-                  label: "DATA"
+                  label: "DATA (TABULAR)"
                 },
                 {
                   title: "AI Agent Engineering",
                   desc: "Developing intelligent, task-oriented agents using LLM frameworks to automate workflows and solve complex reasoning tasks.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
-                  label: "GenAI"
+                  label: "AI AGENTS"
                 },
                 {
-                  title: "Predictive Analytics",
-                  desc: "Applying machine learning techniques to discover patterns in data and generate actionable forecasts.",
-                  icon: <BarChart4 className="w-8 h-8 text-primary" />,
-                  label: "Analytic"
+                  title: "Automation & Orchestration",
+                  desc: "Building autonomous pipelines that connect different AI services and APIs into a seamless, high-performance ecosystem.",
+                  icon: <Workflow className="w-8 h-8 text-primary" />,
+                  label: "AUTOMATION"
                 }
               ].map((skill, idx) => (
                 <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group flex flex-col h-full">
@@ -202,6 +197,27 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Special Vibe Coding Focus */}
+            <div className="w-full p-10 md:p-16 glass rounded-[3rem] border border-primary/20 relative overflow-hidden group hover:bg-primary/5 transition-all duration-700">
+               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-32 -mt-32 group-hover:bg-primary/20 transition-all" />
+               <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                  <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 flex items-center justify-center shrink-0 shadow-2xl group-hover:scale-110 transition-transform border border-white/10">
+                     <Code2 className="w-10 h-10 md:w-14 md:h-14 text-primary" />
+                  </div>
+                  <div className="space-y-4 text-center md:text-left flex-1">
+                     <div className="flex flex-col md:flex-row items-center gap-4">
+                        <Badge className="bg-primary text-white font-black px-4 py-1 uppercase text-[10px] tracking-widest">Philosophy</Badge>
+                        <h3 className="text-2xl md:text-4xl font-headline font-black text-white uppercase tracking-tighter">
+                           Engineering the <span className="text-primary">Digital Vibe</span>
+                        </h3>
+                     </div>
+                     <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
+                        I prioritize clean, modular, and AI-first coding practices. My focus isn't just on the syntax, but on the architecture of the <strong>"vibe"</strong>—ensuring that the interaction between human intent and machine execution is fluid, intuitive, and high-performance.
+                     </p>
+                  </div>
+               </div>
             </div>
           </div>
 
