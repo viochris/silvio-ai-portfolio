@@ -1,4 +1,3 @@
-
 "use client"
 
 import React from 'react';
@@ -13,6 +12,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const educationData = [
   {
@@ -37,7 +43,8 @@ const educationData = [
 const technicalMilestones = [
   { year: "2023", event: "Tabular Mastery", desc: "Built predictive models for medical diagnosis on Kaggle." },
   { year: "2024", event: "NLP Revolution", desc: "Developed ATS scoring engines and semantic search APIs." },
-  { year: "2025", event: "Agentic Shift", desc: "Orchestrating autonomous agents with LangGraph & Genkit." }
+  { year: "2025", event: "Agentic Shift", desc: "Orchestrating autonomous agents with LangGraph & Genkit." },
+  { year: "2026", event: "Scalable Autonomy", desc: "Deploying multi-agent swarms with robust monitoring and real-time observability." }
 ];
 
 const orchestrationNodes = [
@@ -141,14 +148,29 @@ export default function AboutPage() {
                 Technical <span className="text-primary">Milestones</span>
               </h2>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
-              {technicalMilestones.map((m, i) => (
-                <div key={i} className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 transition-all h-full">
-                   <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                   <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.event}</h4>
-                   <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
-                </div>
-              ))}
+           
+           <div className="relative max-w-5xl mx-auto px-12">
+              <Carousel 
+                opts={{
+                  align: "start",
+                  loop: false,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {technicalMilestones.map((m, i) => (
+                    <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                      <div className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 transition-all h-full">
+                        <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
+                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.event}</h4>
+                        <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex -left-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
+                <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
+              </Carousel>
            </div>
         </div>
 
