@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/components/MainLayout";
+import { FirebaseClientProvider } from "@/firebase/client-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -153,7 +154,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased bg-black overflow-x-hidden">
-        <MainLayout>{children}</MainLayout>
+        <FirebaseClientProvider>
+          <MainLayout>{children}</MainLayout>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
