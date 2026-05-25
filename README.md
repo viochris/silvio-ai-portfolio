@@ -125,6 +125,11 @@ To get a local copy up and running, follow these simple steps:
 - **LinkedIn**: [Silvio Christian Joe](https://www.linkedin.com/in/silvio-christian-joe)
 - **GitHub**: [@viochris](https://github.com/viochris)
 - **Kaggle**: [@viochristian](https://www.kaggle.com/viochristian)
+- **Instagram**: [@silvio.codes](https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj)
+- **X (Twitter)**: [@SilvioCodes](https://x.com/SilvioCodes)
+- **YouTube**: [@silviocodes](https://youtube.com/@silviocodes)
+- **TikTok**: [@silvio.codes](https://www.tiktok.com/@silvio.codes?_r=1&_t=ZS-96drUPoz4zP)
+- **Medium**: [@silviochristian](https://medium.com/@silviochristian)
 - **Email**: [viochristian12@gmail.com](mailto:viochristian12@gmail.com)
 - **Location**: Semarang, Central Java, Indonesia
 
