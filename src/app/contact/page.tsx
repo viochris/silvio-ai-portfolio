@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare, Loader2 } from 'lucide-react';
 import { Chatbot } from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useFirestore } from '@/firebase';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
 
 const faqs = [
   {
@@ -38,9 +42,19 @@ const faqs = [
 
 export default function ContactPage() {
   const { toast } = useToast();
+  const db = useFirestore();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
   useEffect(() => {
     const updateTime = () => {
@@ -72,6 +86,48 @@ export default function ContactPage() {
       title: "Copied to clipboard",
       description: `${text} has been saved.`,
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!db) return;
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        variant: "destructive",
+        title: "Missing Information",
+        description: "Please fill in all required fields (Name, Email, and Message).",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const messagesRef = collection(db, 'contactMessages');
+    const payload = {
+      ...formData,
+      createdAt: serverTimestamp(),
+    };
+
+    addDoc(messagesRef, payload)
+      .then(() => {
+        toast({
+          title: "Message Dispatched!",
+          description: "Your message has been saved to the database. I'll get back to you soon!",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      })
+      .catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+          path: messagesRef.path,
+          operation: 'create',
+          requestResourceData: payload,
+        } satisfies SecurityRuleContext);
+        errorEmitter.emit('permission-error', permissionError);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -207,27 +263,57 @@ export default function ContactPage() {
               <p className="text-white/50 text-sm font-medium">Use this form for formal inquiries or technical consultation.</p>
             </div>
 
-            <form className="space-y-6 relative z-10" onSubmit={(e) => { e.preventDefault(); toast({ title: "Form submitted", description: "This is a UI demo. Form submission is not active." }); }}>
+            <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Name</label>
-                  <Input placeholder="John Doe" className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                  <Input 
+                    placeholder="John Doe" 
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Email Address</label>
-                  <Input type="email" placeholder="john@example.com" className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                  <Input 
+                    type="email" 
+                    placeholder="john@example.com" 
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Subject</label>
-                <Input placeholder="Project Inquiry" className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                <Input 
+                  placeholder="Project Inquiry" 
+                  value={formData.subject}
+                  onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
+                  className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Message</label>
-                <Textarea placeholder="How can I help you?" className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" />
+                <Textarea 
+                  placeholder="How can I help you?" 
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" 
+                />
               </div>
-              <Button type="submit" size="lg" className="w-full h-16 rounded-2xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 group">
-                Dispatch Message <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <Button 
+                type="submit" 
+                size="lg" 
+                disabled={isSubmitting}
+                className="w-full h-16 rounded-2xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 group"
+              >
+                {isSubmitting ? (
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Dispatching...</>
+                ) : (
+                  <>Dispatch Message <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                )}
               </Button>
             </form>
           </div>
@@ -271,3 +357,4 @@ export default function ContactPage() {
     </div>
   );
 }
+
