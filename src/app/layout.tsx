@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     title: "Silvio Christian, Joe | Data Scientist & AI Engineer",
     description: "Personal portfolio showcasing AI solutions and data-driven insights.",
     images: ["/vio-image.png"],
-    creator: "@silvio.codes",
+    creator: "@SilvioCodes",
   },
   robots: {
     index: true,
@@ -89,7 +90,6 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Keep existing Google verification intact
     google: "0m7_K4YS51gzVJGdNr7tdNvIxX6ViAphfdoyiF23s_8",
   },
 };
@@ -113,6 +113,10 @@ export default function RootLayout({
       "https://github.com/viochris",
       "https://instagram.com/silvio.codes",
       "https://www.linkedin.com/in/silvio-christian-joe",
+      "https://x.com/SilvioCodes",
+      "https://youtube.com/@silviocodes",
+      "https://www.tiktok.com/@silvio.codes?_r=1&_t=ZS-96drUPoz4zP",
+      "https://medium.com/@silviochristian",
       "mailto:viochristian12@gmail.com"
     ],
     "jobTitle": "Data Scientist & AI Engineer",

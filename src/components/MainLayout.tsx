@@ -124,10 +124,10 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                       { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
                       { icon: <KaggleIcon className="w-5 h-5" />, href: "https://www.kaggle.com/viochristian" },
                       { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" },
-                      { icon: <XIcon className="w-5 h-5" />, href: "https://twitter.com/silvio_codes" },
+                      { icon: <XIcon className="w-5 h-5" />, href: "https://x.com/SilvioCodes" },
                       { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/@silviocodes" },
-                      { icon: <TikTokIcon className="w-5 h-5" />, href: "https://tiktok.com/@silvio.codes" },
-                      { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@viochristian12" }
+                      { icon: <TikTokIcon className="w-5 h-5" />, href: "https://www.tiktok.com/@silvio.codes?_r=1&_t=ZS-96drUPoz4zP" },
+                      { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@silviochristian" }
                     ].map((social, i) => (
                       <a 
                         key={i} 
