@@ -118,7 +118,8 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
                 <div className="space-y-8">
                   <h4 className="text-sm font-headline font-bold uppercase tracking-widest text-white">Connect</h4>
-                  <div className="grid grid-cols-4 gap-4 w-fit">
+                  {/* Updated Social Grid: 2 columns on mobile (4 rows), 4 columns on desktop (2 rows) */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-fit">
                     {[
                       { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/silvio-christian-joe" },
                       { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
