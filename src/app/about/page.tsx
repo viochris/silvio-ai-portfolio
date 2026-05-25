@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -32,6 +32,12 @@ const educationData = [
     institution: "SMA Kristen YSKI",
     description: "Activities: Photography, Entrepreneurship, and Scout."
   }
+];
+
+const technicalMilestones = [
+  { year: "2023", event: "Tabular Mastery", desc: "Built predictive models for medical diagnosis on Kaggle." },
+  { year: "2024", event: "NLP Revolution", desc: "Developed ATS scoring engines and semantic search APIs." },
+  { year: "2025", event: "Agentic Shift", desc: "Orchestrating autonomous agents with LangGraph & Genkit." }
 ];
 
 export default function AboutPage() {
@@ -92,10 +98,7 @@ export default function AboutPage() {
                 <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
                   {educationData.map((edu, index) => (
                     <div key={index} className="mb-10 ml-8 relative group">
-                      {/* The Blue Dot Marker */}
                       <span className="absolute flex items-center justify-center w-4 h-4 bg-blue-500 rounded-full -left-[35px] top-1 ring-4 ring-slate-50 dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></span>
-
-                      {/* Content */}
                       <div className="flex flex-col">
                         <span className="text-blue-500 dark:text-blue-400 font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
                         <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">{edu.degree}</h3>
@@ -112,8 +115,27 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Professional Pillars - ENFORCED EQUAL HEIGHT & ALIGNMENT */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32 items-stretch">
+        {/* Section: Technical Evolution (NEW) */}
+        <div className="mb-32 space-y-16">
+           <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
+              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
+                Technical <span className="text-primary">Milestones</span>
+              </h2>
+           </div>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
+              {technicalMilestones.map((m, i) => (
+                <div key={i} className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 transition-all h-full">
+                   <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
+                   <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.event}</h4>
+                   <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
+                </div>
+              ))}
+           </div>
+        </div>
+
+        {/* Section: Professional Pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32 items-stretch auto-rows-fr">
           {[
             {
               title: "Continuous Learning",
@@ -141,8 +163,7 @@ export default function AboutPage() {
                 {pillar.icon}
               </div>
               <div className="space-y-4 flex flex-col flex-grow">
-                {/* min-h ensures consistent starting point for the description text */}
-                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight min-h-[4rem] md:min-h-[5rem] flex items-start">
+                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight min-h-[4rem] flex items-start">
                   {pillar.title}
                 </h4>
                 <div className="flex-grow">
@@ -155,12 +176,39 @@ export default function AboutPage() {
           ))}
         </div>
 
+        {/* Section: Project Architecture (NEW) */}
+        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-32">
+           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
+           <div className="relative z-10 space-y-16">
+              <div className="text-center space-y-4">
+                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Logic</Badge>
+                 <h3 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                   AI Engine <span className="text-primary">Orchestration</span>
+                 </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                 {[
+                   { title: "Input Processing", icon: <BrainCircuit className="w-8 h-8 text-primary" />, desc: "Unstructured data is parsed via NLP engines to extract intent and entities." },
+                   { title: "Agentic Reasoning", icon: <Workflow className="w-8 h-8 text-primary" />, desc: "LangGraph manages stateful workflows and tool calling for autonomous execution." },
+                   { title: "Output Synthesis", icon: <Rocket className="w-8 h-8 text-primary" />, desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces." }
+                 ].map((arch, i) => (
+                   <div key={i} className="space-y-6 text-center">
+                      <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl">
+                         {arch.icon}
+                      </div>
+                      <h5 className="text-xl font-bold text-white uppercase tracking-widest">{arch.title}</h5>
+                      <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
+                   </div>
+                 ))}
+              </div>
+           </div>
+        </div>
+
         {/* Section: GitHub Performance */}
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
               <span className="px-4 py-1 rounded-full border border-slate-700 bg-slate-800/50 text-primary text-xs font-bold tracking-widest uppercase">Activity</span>
-              
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
                 <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">GitHub Performance</h2>
