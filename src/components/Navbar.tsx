@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Download, Menu, ExternalLink, ArrowLeft } from 'lucide-react';
+import { Download, Menu, ExternalLink, ArrowLeft, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useNavigation } from '@/context/NavigationContext';
@@ -24,6 +24,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -31,7 +37,7 @@ export const Navbar: React.FC = () => {
   const [isCVOpen, setIsCVOpen] = useState(false);
   const [showViewer, setShowViewer] = useState(false);
   
-  const { setIsReturning, setActiveTab } = useNavigation();
+  const { setIsReturning, setActiveTab, vibe, setVibe } = useNavigation();
 
   const cvRawLink = "/vio-cv.pdf";
 
@@ -95,12 +101,6 @@ export const Navbar: React.FC = () => {
           </Button>
         </div>
       )}
-      
-      {!showViewer && (
-        <div className="text-center text-[10px] font-bold text-muted-foreground uppercase tracking-widest opacity-50">
-          Last updated: January 2024
-        </div>
-      )}
     </DialogContent>
   );
 
@@ -153,6 +153,25 @@ export const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-colors">
+                <Palette className="w-5 h-5 text-primary" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-card border-border rounded-xl">
+              <DropdownMenuItem onClick={() => setVibe('blue')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+                <div className="w-3 h-3 rounded-full bg-blue-500" /> Neural Blue
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setVibe('lime')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+                <div className="w-3 h-3 rounded-full bg-lime-500" /> Cyber Lime
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setVibe('purple')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+                <div className="w-3 h-3 rounded-full bg-purple-500" /> Synthetic Purple
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Dialog open={isCVOpen} onOpenChange={(open) => {
             setIsCVOpen(open);
             if (!open) setShowViewer(false);
@@ -208,19 +227,6 @@ export const Navbar: React.FC = () => {
                       </Link>
                     );
                   })}
-                  <div className="pt-6 border-t border-border mt-4">
-                    <Dialog open={isCVOpen} onOpenChange={(open) => {
-                      setIsCVOpen(open);
-                      if (!open) setShowViewer(false);
-                    }}>
-                      <DialogTrigger asChild>
-                        <Button className="w-full gap-2 font-headline uppercase font-bold tracking-widest h-14 rounded-2xl">
-                          <Download className="w-4 h-4" /> Download CV
-                        </Button>
-                      </DialogTrigger>
-                      <CVDialogContent />
-                    </Dialog>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>

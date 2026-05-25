@@ -15,6 +15,7 @@ const featuredProjects = [
   { 
     id: 1, 
     title: "InsightSQL (LangGraph Engine)", 
+    impact: "Production Ready",
     desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query and validate errors.",
     tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
     link: "https://insightsql-langgraph-engine-web.streamlit.app/",
@@ -25,6 +26,7 @@ const featuredProjects = [
   { 
     id: 2, 
     title: "SpendSense (Financial AI)", 
+    impact: "High Impact",
     desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning.",
     tech: ["Streamlit", "LangChain", "Gemini Vision", "Pandas"],
     link: "https://app-spend-sense.streamlit.app/",
@@ -35,6 +37,7 @@ const featuredProjects = [
   { 
     id: 3, 
     title: "Resume Scanner API", 
+    impact: "Research Oriented",
     desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features dual-engine precise matching.",
     tech: ["FastAPI", "SBERT", "TF-IDF", "NLP"],
     link: "https://silvio0-resume-scanner.hf.space/docs",
@@ -45,6 +48,7 @@ const featuredProjects = [
   { 
     id: 4, 
     title: "InsightData (AI Analyst)", 
+    impact: "Automation Pro",
     desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Autonomously writes and executes Python code.",
     tech: ["Pandas Agent", "Gemini 2.5 Flash", "Python", "Matplotlib"],
     link: "https://insight-data-ai-analyst.streamlit.app/",
@@ -90,6 +94,11 @@ export default function ProjectsPage() {
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105" 
                   priority
                 />
+                <div className="absolute top-4 right-4 z-20">
+                  <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[10px] px-3 py-1 shadow-2xl">
+                    {p.impact}
+                  </Badge>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6 md:p-10">
                   <Button size="lg" className="rounded-full font-bold shadow-xl px-8 md:px-10 h-12 md:h-14 text-sm md:text-base" asChild>
                     <a href={p.link} target="_blank" rel="noopener noreferrer">
@@ -152,6 +161,7 @@ export default function ProjectsPage() {
                           />
                         </div>
                         <div className="flex flex-wrap gap-2">
+                          <Badge className="bg-primary text-white px-3 py-1 font-black uppercase text-xs">{p.impact}</Badge>
                           {p.tech.map(t => (
                             <Badge key={t} variant="secondary" className="bg-muted text-foreground uppercase text-[10px] font-bold px-3 py-1">
                               {t}

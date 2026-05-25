@@ -2,7 +2,7 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -21,7 +21,7 @@ const educationData = [
     institution: "Universitas Dian Nuswantoro (UDINUS)",
     description: (
       <>
-        IPK: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
+        GPA: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
         Activities: UKM Dian Nuswantoro Computer Club - DNCC.
       </>
     )
@@ -30,7 +30,7 @@ const educationData = [
     period: "Jul 2020 - May 2023",
     degree: "High School Diploma, Science",
     institution: "SMA Kristen YSKI",
-    description: "Activities: Photography, Entrepreneurship, and Scout."
+    description: "Activities: Photography, Entrepreneurship, and Scouting."
   }
 ];
 
@@ -38,6 +38,27 @@ const technicalMilestones = [
   { year: "2023", event: "Tabular Mastery", desc: "Built predictive models for medical diagnosis on Kaggle." },
   { year: "2024", event: "NLP Revolution", desc: "Developed ATS scoring engines and semantic search APIs." },
   { year: "2025", event: "Agentic Shift", desc: "Orchestrating autonomous agents with LangGraph & Genkit." }
+];
+
+const orchestrationNodes = [
+  { 
+    title: "Input Processing", 
+    icon: <BrainCircuit className="w-8 h-8 text-primary" />, 
+    desc: "Unstructured data is parsed via NLP engines to extract intent and entities.",
+    details: "Leveraging state-of-the-art transformer models (SBERT, RoBERTa) to convert raw text into high-dimensional embeddings. We perform semantic classification and named entity recognition (NER) to structure input before passing it to the reasoning layer."
+  },
+  { 
+    title: "Agentic Reasoning", 
+    icon: <Workflow className="w-8 h-8 text-primary" />, 
+    desc: "LangGraph manages stateful workflows and tool calling for autonomous execution.",
+    details: "Utilizing cyclic graph architectures to allow agents to 'think-step-by-step'. The system uses ReAct (Reasoning and Acting) patterns, enabling it to call external tools, validate its own SQL queries, and self-correct logic errors through iterative loops."
+  },
+  { 
+    title: "Output Synthesis", 
+    icon: <Rocket className="w-8 h-8 text-primary" />, 
+    desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces.",
+    details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensures data integrity, applies safety filters, and optimizes latency via streaming responses and edge-cached delivery."
+  }
 ];
 
 export default function AboutPage() {
@@ -62,9 +83,6 @@ export default function AboutPage() {
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
               Beyond traditional modeling, my work as an AI Engineer focuses on developing <strong>autonomous AI Agents</strong>. I build practical, task-oriented systems using modern LLM frameworks—implementing RAG pipelines, engineering conversational bots, and creating ReAct agents that can independently reason and execute complex workflows.
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I believe AI should be practical and accessible. From analyzing datasets on Kaggle to deploying functional AI assistants on Telegram and web interfaces, I ensure my projects deliver real-world utility through reliable, high-performance execution.
             </p>
 
             <div className="flex gap-4 sm:gap-6 pt-4">
@@ -91,16 +109,16 @@ export default function AboutPage() {
             <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] border-primary/10 shadow-2xl">
               <div>
                 <div className="flex items-center gap-3 mb-8">
-                  <GraduationCap className="text-blue-500" size={28} />
+                  <GraduationCap className="text-primary" size={28} />
                   <h2 className="text-2xl font-black text-white tracking-widest uppercase">Education Roadmap</h2>
                 </div>
 
                 <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
                   {educationData.map((edu, index) => (
                     <div key={index} className="mb-10 ml-8 relative group">
-                      <span className="absolute flex items-center justify-center w-4 h-4 bg-blue-500 rounded-full -left-[35px] top-1 ring-4 ring-slate-50 dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></span>
+                      <span className="absolute flex items-center justify-center w-4 h-4 bg-primary rounded-full -left-[35px] top-1 ring-4 ring-slate-50 dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></span>
                       <div className="flex flex-col">
-                        <span className="text-blue-500 dark:text-blue-400 font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
+                        <span className="text-primary font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
                         <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">{edu.degree}</h3>
                         <h4 className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-medium mb-3">{edu.institution}</h4>
                         <div className="text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
@@ -115,7 +133,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Technical Evolution (NEW) */}
+        {/* Section: Technical Evolution */}
         <div className="mb-32 space-y-16">
            <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
@@ -134,49 +152,7 @@ export default function AboutPage() {
            </div>
         </div>
 
-        {/* Section: Professional Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-10 mb-32 items-stretch auto-rows-fr">
-          {[
-            {
-              title: "Continuous Learning",
-              desc: "I actively follow the latest developments in NLP and GenAI, constantly experimenting with new frameworks to see how they work in practice.",
-              icon: <Zap className="w-10 h-10 text-primary" />
-            },
-            {
-              title: "Data Integrity",
-              desc: "I focus on building reliable models by paying close attention to data quality, preventing data leakage, and minimizing AI hallucinations.",
-              icon: <Target className="w-10 h-10 text-primary" />
-            },
-            {
-              title: "Practical Delivery",
-              desc: "I try not to stop at Jupyter Notebooks. I enjoy taking models and wrapping them into functional, user-friendly web apps or APIs.",
-              icon: <ShieldCheck className="w-10 h-10 text-primary" />
-            },
-            {
-              title: "Community Focused",
-              desc: "I enjoy collaborating on university group projects and sharing my personal tech experiments with the broader developer community.",
-              icon: <Users className="w-10 h-10 text-primary" />
-            }
-          ].map((pillar, idx) => (
-            <div key={idx} className="p-10 lg:p-12 glass rounded-[3rem] border-white/5 space-y-8 hover:bg-primary/5 transition-all flex flex-col h-full shadow-lg">
-              <div className="w-20 h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center shrink-0">
-                {pillar.icon}
-              </div>
-              <div className="space-y-4 flex flex-col flex-grow">
-                <h4 className="text-2xl font-headline font-bold text-white uppercase tracking-tight leading-tight min-h-[4rem] flex items-start">
-                  {pillar.title}
-                </h4>
-                <div className="flex-grow">
-                  <p className="text-muted-foreground font-medium leading-relaxed flex-grow">
-                    {pillar.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Section: Project Architecture (NEW) */}
+        {/* Section: Project Architecture */}
         <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-32">
            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
            <div className="relative z-10 space-y-16">
@@ -185,20 +161,39 @@ export default function AboutPage() {
                  <h3 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
                    AI Engine <span className="text-primary">Orchestration</span>
                  </h3>
+                 <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Click elements for technical deep-dive</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                 {[
-                   { title: "Input Processing", icon: <BrainCircuit className="w-8 h-8 text-primary" />, desc: "Unstructured data is parsed via NLP engines to extract intent and entities." },
-                   { title: "Agentic Reasoning", icon: <Workflow className="w-8 h-8 text-primary" />, desc: "LangGraph manages stateful workflows and tool calling for autonomous execution." },
-                   { title: "Output Synthesis", icon: <Rocket className="w-8 h-8 text-primary" />, desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces." }
-                 ].map((arch, i) => (
-                   <div key={i} className="space-y-6 text-center">
-                      <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl">
-                         {arch.icon}
-                      </div>
-                      <h5 className="text-xl font-bold text-white uppercase tracking-widest">{arch.title}</h5>
-                      <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
-                   </div>
+                 {orchestrationNodes.map((arch, i) => (
+                   <Dialog key={i}>
+                     <DialogTrigger asChild>
+                       <div className="space-y-6 text-center cursor-pointer group">
+                          <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:border-primary/50 transition-all">
+                             {arch.icon}
+                          </div>
+                          <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors">{arch.title}</h5>
+                          <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
+                       </div>
+                     </DialogTrigger>
+                     <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
+                       <DialogHeader>
+                         <DialogTitle className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
+                           {arch.icon}
+                           {arch.title}
+                         </DialogTitle>
+                       </DialogHeader>
+                       <div className="space-y-6">
+                         <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                           <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                             <Info className="w-4 h-4" /> Technical Documentation
+                           </h6>
+                           <p className="text-foreground leading-relaxed text-sm font-medium">
+                             {arch.details}
+                           </p>
+                         </div>
+                       </div>
+                     </DialogContent>
+                   </Dialog>
                  ))}
               </div>
            </div>
@@ -208,7 +203,7 @@ export default function AboutPage() {
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
-              <span className="px-4 py-1 rounded-full border border-slate-700 bg-slate-800/50 text-primary text-xs font-bold tracking-widest uppercase">Activity</span>
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
                 <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">GitHub Performance</h2>
@@ -224,50 +219,6 @@ export default function AboutPage() {
                 className="w-full h-auto max-w-lg object-contain"
               />
             </div>
-            <div className="w-full p-4 sm:p-6 rounded-3xl bg-[#0d1117] border border-slate-800 overflow-x-auto shadow-2xl">
-              <img 
-                src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=viochris&theme=radical" 
-                alt="Productive Time" 
-                className="min-w-full h-auto object-contain"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Section: Beyond The Code */}
-        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-24">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
-          <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8 text-center lg:text-left">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Personal Interests</Badge>
-              <h3 className="text-4xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                Beyond The <span className="text-primary">Code</span>
-              </h3>
-              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
-                <p>
-                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I’m a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
-                </p>
-                <p>
-                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
-                </p>
-                <p>
-                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
-                </p>
-              </div>
-            </div>
-            <div className="w-full grid grid-cols-2 gap-3 sm:gap-6 px-2 sm:px-0">
-              {[
-                { label: "PERSONAL PROJECTS", val: "Builder" },
-                { label: "HUGGING FACE & KAGGLE", val: "Explorer" },
-                { label: "DATA EDU CONTENT", val: "Creator" },
-                { label: "NEW AI FRAMEWORKS", val: "Learner" }
-              ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center justify-center p-3 sm:p-6 rounded-2xl sm:rounded-3xl bg-slate-900/50 border border-slate-800 w-full text-center">
-                  <h3 className="text-sm sm:text-xl font-bold text-primary w-full whitespace-nowrap sm:whitespace-normal">{item.val}</h3>
-                  <p className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-400 mt-1 sm:mt-2 uppercase">{item.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -282,8 +233,7 @@ export default function AboutPage() {
             <a 
               href={cvRawLink} 
               download="vio-cv.pdf" 
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
-              style={{ backgroundColor: '#ED2224' }}
+              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 bg-primary"
             >
               <Download className="w-5 h-5" /> DOWNLOAD CV
             </a>
@@ -291,8 +241,7 @@ export default function AboutPage() {
             <Dialog>
               <DialogTrigger asChild>
                 <button 
-                  className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 text-left"
-                  style={{ backgroundColor: '#4285F4' }}
+                  className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 border border-primary/50"
                 >
                   <Eye className="w-5 h-5" /> VIEW CV
                 </button>
@@ -310,24 +259,6 @@ export default function AboutPage() {
                 </div>
               </DialogContent>
             </Dialog>
-
-            <a 
-              href="mailto:viochristian12@gmail.com"
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
-              style={{ backgroundColor: '#D14836' }}
-            >
-              <Mail className="w-5 h-5" /> GMAIL CONTACT
-            </a>
-
-            <a 
-              href="https://www.linkedin.com/in/silvio-christian-joe" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1"
-              style={{ backgroundColor: '#0077B5' }}
-            >
-              <Linkedin className="w-5 h-5" /> LINKEDIN PROFILE
-            </a>
           </div>
         </div>
       </section>
