@@ -2,6 +2,7 @@
 "use client"
 
 import React from 'react';
+import Link from 'next/link';
 import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -298,7 +299,7 @@ export default function AboutPage() {
            <div className="relative z-10 space-y-16">
               <div className="text-center space-y-4">
                  <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Logic</Badge>
-                 <h3 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                 <h3 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                    AI Engine <span className="text-primary">Orchestration</span>
                  </h3>
                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Click elements for technical deep-dive</p>
@@ -346,7 +347,7 @@ export default function AboutPage() {
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
                 <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">GitHub Performance</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5 font-black text-white uppercase tracking-tight">GitHub Performance</h2>
               </div>
             </div>
           </div>
