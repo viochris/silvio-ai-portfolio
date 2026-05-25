@@ -1,15 +1,13 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Activity, Zap, Shield, Code2, ExternalLink } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Code2, ExternalLink, Zap } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import {
   Carousel,
   CarouselContent,
@@ -21,6 +19,7 @@ const featuredProjects = [
   { 
     title: "InsightSQL (LangGraph Engine)", 
     type: "GenAI Engine",
+    impact: "Production Ready",
     desc: "Autonomous SQL agent with cyclic reasoning and self-correction capabilities using LangGraph.",
     tech: "LangGraph • Gemini",
     link: "https://insightsql-langgraph-engine-web.streamlit.app/"
@@ -28,6 +27,7 @@ const featuredProjects = [
   { 
     title: "SpendSense (Financial AI)", 
     type: "Data Science",
+    impact: "High Impact",
     desc: "Conversational finance app with OCR receipt scanning and Pandas reasoning for expense analysis.",
     tech: "LangChain • Vision",
     link: "https://app-spend-sense.streamlit.app/"
@@ -35,6 +35,7 @@ const featuredProjects = [
   { 
     title: "Resume Scanner API", 
     type: "NLP / Backend",
+    impact: "Research Oriented",
     desc: "High-performance stateless API for ATS optimization using hybrid semantic matching.",
     tech: "FastAPI • SBERT",
     link: "https://silvio0-resume-scanner.hf.space/docs"
@@ -42,6 +43,7 @@ const featuredProjects = [
   { 
     title: "InsightData (AI Analyst)", 
     type: "GenAI Analyst",
+    impact: "Automation Pro",
     desc: "Automated Data Scientist agent that analyzes CSVs/Excel and autonomously writes execution code.",
     tech: "Pandas Agent • Gemini",
     link: "https://insight-data-ai-analyst.streamlit.app/"
@@ -134,7 +136,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: AI Infrastructure Pulse (System Monitor) */}
+          {/* Row 2: Infrastructure Pulse (System Monitor) */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
@@ -240,7 +242,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 4: Featured Work Auto-Carousel (Marquee style) */}
+          {/* Row 4: Featured Work Auto-Carousel */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
@@ -280,7 +282,14 @@ export default function Home() {
                           rel="noopener noreferrer" 
                           className="block h-full"
                         >
-                          <div className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group">
+                          <div className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group relative">
+                             {/* Impact Badge */}
+                             <div className="absolute top-6 right-6 z-10">
+                                <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
+                                  {p.impact}
+                                </Badge>
+                             </div>
+                             
                              <div>
                                 <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4">{p.type}</div>
                                 <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors">{p.title}</h3>
