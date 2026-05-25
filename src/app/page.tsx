@@ -15,7 +15,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 const featuredProjects = [
   { 
@@ -240,7 +240,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 4: Featured Work Auto-Carousel */}
+          {/* Row 4: Featured Work Auto-Carousel (Marquee style) */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
@@ -263,8 +263,10 @@ export default function Home() {
                     loop: true,
                   }}
                   plugins={[
-                    Autoplay({
-                      delay: 4000,
+                    AutoScroll({
+                      speed: 1,
+                      stopOnInteraction: false,
+                      stopOnMouseEnter: true,
                     }),
                   ]}
                   className="w-full"
