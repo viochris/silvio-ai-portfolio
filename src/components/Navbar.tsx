@@ -106,7 +106,8 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed top-0 w-full z-50 glass border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
+        {/* Logo Section */}
         <Link 
           href="/" 
           onClick={() => { 
@@ -114,7 +115,7 @@ export const Navbar: React.FC = () => {
             window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); 
             setActiveTab('Home'); 
           }} 
-          className="flex items-center gap-2 sm:gap-3 group focus:outline-none"
+          className="flex items-center gap-2 sm:gap-3 group shrink-0"
         >
           <div className="relative w-8 h-8 sm:w-10 sm:h-10">
             <Image 
@@ -129,7 +130,8 @@ export const Navbar: React.FC = () => {
           </span>
         </Link>
         
-        <div className="hidden md:flex items-center gap-10 text-sm font-headline font-bold uppercase tracking-widest">
+        {/* Desktop Navigation Links */}
+        <div className="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-headline font-bold uppercase tracking-widest">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.name === 'Projects' && pathname === '/repository');
             
@@ -142,7 +144,7 @@ export const Navbar: React.FC = () => {
                   setActiveTab(link.name);
                 }}
                 className={cn(
-                  "hover:text-primary transition-colors",
+                  "hover:text-primary transition-colors duration-200",
                   isActive ? "text-primary" : "text-foreground/80"
                 )}
               >
@@ -152,42 +154,46 @@ export const Navbar: React.FC = () => {
           })}
         </div>
 
-        <div className="flex items-center gap-4">
+        {/* Right Side Actions */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Theme Switcher */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-colors">
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-colors w-10 h-10">
                 <Palette className="w-5 h-5 text-primary" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-card border-border rounded-xl">
-              <DropdownMenuItem onClick={() => setVibe('blue')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+              <DropdownMenuItem onClick={() => setVibe('blue')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
                 <div className="w-3 h-3 rounded-full bg-blue-500" /> Neural Blue
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setVibe('lime')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+              <DropdownMenuItem onClick={() => setVibe('lime')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
                 <div className="w-3 h-3 rounded-full bg-lime-500" /> Cyber Lime
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setVibe('purple')} className="gap-2 cursor-pointer font-bold text-xs uppercase tracking-widest">
+              <DropdownMenuItem onClick={() => setVibe('purple')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
                 <div className="w-3 h-3 rounded-full bg-purple-500" /> Synthetic Purple
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* CV Button (Desktop) */}
           <Dialog open={isCVOpen} onOpenChange={(open) => {
             setIsCVOpen(open);
             if (!open) setShowViewer(false);
           }}>
             <DialogTrigger asChild>
-              <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-xs tracking-widest px-6 h-10 rounded-xl shadow-lg shadow-primary/10">
+              <Button size="sm" className="hidden sm:flex gap-2 font-headline uppercase font-bold text-[10px] lg:text-xs tracking-widest px-4 lg:px-6 h-10 rounded-xl shadow-lg shadow-primary/10">
                 <Download className="w-4 h-4" /> CV
               </Button>
             </DialogTrigger>
             <CVDialogContent />
           </Dialog>
 
+          {/* Mobile Menu Trigger */}
           <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-foreground">
+                <Button variant="ghost" size="icon" className="text-foreground w-10 h-10 hover:bg-white/5 rounded-xl">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>
@@ -227,6 +233,12 @@ export const Navbar: React.FC = () => {
                       </Link>
                     );
                   })}
+                  {/* Mobile CV Button */}
+                  <div className="pt-4 sm:hidden">
+                     <Button className="w-full h-14 rounded-xl gap-3 font-headline font-bold uppercase tracking-widest text-xs" onClick={() => setIsCVOpen(true)}>
+                       <Download className="w-5 h-5" /> Download CV
+                     </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
