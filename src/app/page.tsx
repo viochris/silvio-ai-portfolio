@@ -1,8 +1,9 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Code2, ExternalLink, Zap } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Code2, ExternalLink, Zap, ArrowRight } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -220,6 +221,15 @@ export default function Home() {
               ))}
             </div>
 
+            {/* Link to Interests in About Page */}
+            <div className="flex justify-center pt-8">
+              <Link href="/about#interests">
+                <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
+                  Explore Interest Journey <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+
             {/* Special Vibe Coding Focus */}
             <div className="w-full p-10 md:p-16 glass rounded-[3rem] border border-primary/20 relative overflow-hidden group hover:bg-primary/5 transition-all duration-700">
                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-32 -mt-32 group-hover:bg-primary/20 transition-all" />
@@ -379,7 +389,7 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
               
               <div className="relative z-10 space-y-6 max-w-3xl">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
+                <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                   Ready to Build the <span className="text-black">Future?</span>
                 </h2>
                 <p className="text-lg md:text-xl text-white/90 font-medium mx-auto">

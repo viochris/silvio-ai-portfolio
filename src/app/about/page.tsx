@@ -1,7 +1,8 @@
+
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -65,6 +66,42 @@ const orchestrationNodes = [
     icon: <Rocket className="w-8 h-8 text-primary" />, 
     desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces.",
     details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensures data integrity, applies safety filters, and optimizes latency via streaming responses and edge-cached delivery."
+  }
+];
+
+const interestData = [
+  {
+    title: "Natural Language Processing",
+    icon: <Brain className="w-10 h-10 text-primary" />,
+    desc: "Semantic analysis and linguistic intelligence.",
+    details: "My passion for NLP lies in bridging the gap between human language and machine understanding. I specialize in hybrid semantic matching, combining traditional TF-IDF with modern SBERT embeddings to achieve ultra-precise information retrieval. I focus on building tools like ATS optimizers, sentiment engines, and multi-lingual document parsers that can handle nuances in both English and Indonesian.",
+    projects: [
+      { name: "Resume Scanner API", id: 3, github: "https://github.com/viochris/resume-scanner-api" },
+      { name: "Insightify API (NLP)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
+      { name: "DocuTalk-AI (Smart RAG)", id: null, github: "https://github.com/viochris/DocuTalk-AI" }
+    ]
+  },
+  {
+    title: "Tabular Data Modeling",
+    icon: <Database className="w-10 h-10 text-primary" />,
+    desc: "Predictive power from structured datasets.",
+    details: "Data is the foundation of every AI system. I enjoy the rigorous process of feature engineering, handling data imbalance using SMOTE/SMOTENC, and building robust classifiers. My background includes replicating academic research for medical diagnosis and health analysis, ensuring that models are not just accurate, but also interpretable and leak-free.",
+    projects: [
+      { name: "InsightData (AI Analyst)", id: 4, github: "https://github.com/viochris/insight-data-ai-analyst" },
+      { name: "Stunting Analysis", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
+      { name: "Diabetes Prediction", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" }
+    ]
+  },
+  {
+    title: "AI Agent Engineering",
+    icon: <Sparkles className="w-10 h-10 text-primary" />,
+    desc: "Building autonomous reasoning engines.",
+    details: "Agentic AI is the future of productivity. I am deeply interested in building 'reasoning agents' that don't just generate text, but actively problem-solve. By utilizing LangGraph and ReAct architectures, I create systems that can query databases, call external APIs, and self-correct their own logic errors. This interest drives me to build production-ready agents like InsightSQL and financial OCR assistants.",
+    projects: [
+      { name: "InsightSQL (LangGraph)", id: 1, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
+      { name: "SpendSense (Financial AI)", id: 2, github: "https://github.com/viochris/Streamlit-SpendSense" },
+      { name: "NovaCal AI (Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
+    ]
   }
 ];
 
@@ -172,6 +209,87 @@ export default function AboutPage() {
                 <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
               </Carousel>
            </div>
+        </div>
+
+        {/* Section: Professional Interests & Deep Dive */}
+        <div id="interests" className="mb-32 scroll-mt-32">
+          <div className="text-center space-y-4 mb-16">
+            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Passions</Badge>
+            <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+              Professional <span className="text-primary">Interests</span>
+            </h2>
+            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Click cards to explore methodology and related work</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {interestData.map((item, i) => (
+              <Dialog key={i}>
+                <DialogTrigger asChild>
+                  <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5">
+                    <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                      {item.icon}
+                    </div>
+                    <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-white/50 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        {item.icon}
+                      </div>
+                      {item.title}
+                    </DialogTitle>
+                  </DialogHeader>
+                  
+                  <div className="space-y-8">
+                    {/* Methodology Section */}
+                    <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                      <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                        <BrainCircuit className="w-4 h-4" /> Methodology & Vision
+                      </h6>
+                      <p className="text-foreground leading-relaxed text-sm font-medium">
+                        {item.details}
+                      </p>
+                    </div>
+
+                    {/* Top 3 Projects Section */}
+                    <div className="space-y-4">
+                      <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
+                      <div className="grid gap-3">
+                        {item.projects.map((proj, idx) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
+                            <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
+                              {proj.name}
+                            </span>
+                            <div className="flex items-center gap-3">
+                              {proj.id && (
+                                <Link href={`/projects#project-${proj.id}`}>
+                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                    <Eye className="w-3 h-3" /> Project Details
+                                  </Button>
+                                </Link>
+                              )}
+                              <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                                <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                  <Github className="w-3 h-3" /> Repository
+                                </Button>
+                              </a>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ))}
+          </div>
         </div>
 
         {/* Section: Project Architecture */}
