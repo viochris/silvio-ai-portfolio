@@ -10,25 +10,41 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const featuredProjects = [
   { 
-    title: "InsightSQL (LangGraph)", 
+    title: "InsightSQL (LangGraph Engine)", 
     type: "GenAI Engine",
-    desc: "Autonomous SQL agent with cyclic reasoning and self-correction.",
-    tech: "LangGraph • Gemini"
+    desc: "Autonomous SQL agent with cyclic reasoning and self-correction capabilities using LangGraph.",
+    tech: "LangGraph • Gemini",
+    link: "https://insightsql-langgraph-engine-web.streamlit.app/"
   },
   { 
-    title: "SpendSense", 
+    title: "SpendSense (Financial AI)", 
     type: "Data Science",
-    desc: "Conversational finance app with OCR and Pandas reasoning.",
-    tech: "LangChain • Vision"
+    desc: "Conversational finance app with OCR receipt scanning and Pandas reasoning for expense analysis.",
+    tech: "LangChain • Vision",
+    link: "https://app-spend-sense.streamlit.app/"
   },
   { 
     title: "Resume Scanner API", 
     type: "NLP / Backend",
-    desc: "Dual-engine ATS API using SBERT & TF-IDF semantic matching.",
-    tech: "FastAPI • SBERT"
+    desc: "High-performance stateless API for ATS optimization using hybrid semantic matching.",
+    tech: "FastAPI • SBERT",
+    link: "https://silvio0-resume-scanner.hf.space/docs"
+  },
+  { 
+    title: "InsightData (AI Analyst)", 
+    type: "GenAI Analyst",
+    desc: "Automated Data Scientist agent that analyzes CSVs/Excel and autonomously writes execution code.",
+    tech: "Pandas Agent • Gemini",
+    link: "https://insight-data-ai-analyst.streamlit.app/"
   }
 ];
 
@@ -118,25 +134,28 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: AI Infrastructure Monitor */}
+          {/* Row 2: AI Infrastructure Pulse */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
-                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">AI Infrastructure Monitor</Badge>
+                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
                 <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                  System <span className="text-primary">Integrity</span>
+                  Infrastructure <span className="text-primary">Pulse</span>
                 </h2>
              </div>
              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch auto-rows-fr">
                 {[
-                  { label: "Inference Latency", val: "Optimized", icon: <Zap className="text-yellow-400" />, desc: "High-speed response via edge-optimized models" },
-                  { label: "Model Reliability", val: "High Stability", icon: <Shield className="text-green-400" />, desc: "Continuous uptime for deployed AI agents" },
-                  { label: "Deployment Nodes", val: "Production", icon: <Activity className="text-blue-400" />, desc: "Currently active cloud-hosted AI workflows" },
-                  { label: "Data Pipeline", val: "Automated", icon: <Code2 className="text-purple-400" />, desc: "ETL pipelines managed with stateful orchestration" }
+                  { label: "Backend Services", val: "Operational", icon: <Cpu className="text-blue-400" />, desc: "High-performance server-side logic and APIs" },
+                  { label: "Inference Engine", val: "Active", icon: <Zap className="text-yellow-400" />, desc: "LLM orchestration and reasoning agents" },
+                  { label: "Vector Database", val: "Synced", icon: <Database className="text-green-400" />, desc: "RAG infrastructure and semantic search" },
+                  { label: "API Endpoints", val: "Live", icon: <Layers className="text-purple-400" />, desc: "Active production-ready service nodes" }
                 ].map((m, i) => (
-                  <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group">
+                  <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl">
                      <div className="flex justify-between items-start mb-6">
                         <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">{m.icon}</div>
-                        <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">LIVE</span>
+                        <div className="flex items-center gap-1.5">
+                           <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                           <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">LIVE</span>
+                        </div>
                      </div>
                      <div>
                         <div className="text-3xl font-headline font-black text-white mb-2">{m.val}</div>
@@ -221,7 +240,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 4: Featured Projects Preview */}
+          {/* Row 4: Featured Work Auto-Carousel */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
@@ -237,22 +256,46 @@ export default function Home() {
                 </Link>
              </div>
              
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch auto-rows-fr">
-                {featuredProjects.map((p, i) => (
-                  <div key={i} className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group">
-                     <div>
-                        <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4">{p.type}</div>
-                        <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors">{p.title}</h3>
-                        <p className="text-sm text-white/60 leading-relaxed mb-8">{p.desc}</p>
-                     </div>
-                     <div className="flex items-center justify-between pt-6 border-t border-white/5">
-                        <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{p.tech}</span>
-                        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary transition-colors">
-                           <ExternalLink className="w-3.5 h-3.5 text-white" />
-                        </div>
-                     </div>
-                  </div>
-                ))}
+             <div className="w-full">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  plugins={[
+                    Autoplay({
+                      delay: 4000,
+                    }),
+                  ]}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-4">
+                    {featuredProjects.map((p, i) => (
+                      <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                        <a 
+                          href={p.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="block h-full"
+                        >
+                          <div className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group">
+                             <div>
+                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4">{p.type}</div>
+                                <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors">{p.title}</h3>
+                                <p className="text-sm text-white/60 leading-relaxed mb-8">{p.desc}</p>
+                             </div>
+                             <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                                <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{p.tech}</span>
+                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary transition-all duration-300">
+                                   <ExternalLink className="w-4 h-4 text-white" />
+                                </div>
+                             </div>
+                          </div>
+                        </a>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
              </div>
           </div>
 
