@@ -134,7 +134,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: AI Infrastructure Pulse */}
+          {/* Row 2: AI Infrastructure Pulse (System Monitor) */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
