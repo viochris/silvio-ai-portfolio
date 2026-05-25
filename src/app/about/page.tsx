@@ -241,79 +241,93 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
               Professional <span className="text-primary">Interests</span>
             </h2>
-            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Click cards to explore methodology and related work</p>
+            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Explore methodology and related work via carousel</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {interestData.map((item, i) => (
-              <Dialog key={i}>
-                <DialogTrigger asChild>
-                  <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full">
-                    <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                      {item.icon}
-                    </div>
-                    <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-white/50 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                        {item.icon}
-                      </div>
-                      {item.title}
-                    </DialogTitle>
-                  </DialogHeader>
-                  
-                  <div className="space-y-8">
-                    {/* Methodology Section */}
-                    <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
-                      <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
-                        <BrainCircuit className="w-4 h-4" /> Methodology & Vision
-                      </h6>
-                      <p className="text-foreground leading-relaxed text-sm font-medium">
-                        {item.details}
-                      </p>
-                    </div>
+          <div className="relative max-w-6xl mx-auto px-12">
+            <Carousel 
+              opts={{
+                align: "start",
+                loop: false,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {interestData.map((item, i) => (
+                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full">
+                          <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            {item.icon}
+                          </div>
+                          <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-sm text-white/50 leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
+                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                              {item.icon}
+                            </div>
+                            {item.title}
+                          </DialogTitle>
+                        </DialogHeader>
+                        
+                        <div className="space-y-8">
+                          {/* Methodology Section */}
+                          <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                            <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                              <BrainCircuit className="w-4 h-4" /> Methodology & Vision
+                            </h6>
+                            <p className="text-foreground leading-relaxed text-sm font-medium">
+                              {item.details}
+                            </p>
+                          </div>
 
-                    {/* Top 3 Projects Section */}
-                    <div className="space-y-4">
-                      <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
-                      <div className="grid gap-3">
-                        {item.projects.map((proj, idx) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
-                            <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
-                              {proj.name}
-                            </span>
-                            <div className="flex items-center gap-3">
-                              {proj.id && (
-                                <Link href={`/projects#project-${proj.id}`}>
-                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                    <Eye className="w-3 h-3" /> Project Details
-                                  </Button>
-                                </Link>
-                              )}
-                              {proj.github !== "#" && (
-                                <a href={proj.github} target="_blank" rel="noopener noreferrer">
-                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                    <Github className="w-3 h-3" /> Repository
-                                  </Button>
-                                </a>
-                              )}
+                          {/* Top 3 Projects Section */}
+                          <div className="space-y-4">
+                            <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
+                            <div className="grid gap-3">
+                              {item.projects.map((proj, idx) => (
+                                <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
+                                  <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
+                                    {proj.name}
+                                  </span>
+                                  <div className="flex items-center gap-3">
+                                    {proj.id && (
+                                      <Link href={`/projects#project-${proj.id}`}>
+                                        <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                          <Eye className="w-3 h-3" /> Project Details
+                                        </Button>
+                                      </Link>
+                                    )}
+                                    {proj.github !== "#" && (
+                                      <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                                        <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                          <Github className="w-3 h-3" /> Repository
+                                        </Button>
+                                      </a>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            ))}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex -left-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
+              <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
+            </Carousel>
           </div>
         </div>
 
