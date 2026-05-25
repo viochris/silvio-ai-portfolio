@@ -136,7 +136,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: Infrastructure Pulse (System Monitor) */}
+          {/* Row 2: System Monitor */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
@@ -291,9 +291,13 @@ export default function Home() {
                              </div>
                              
                              <div>
-                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4">{p.type}</div>
-                                <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors">{p.title}</h3>
-                                <p className="text-sm text-white/60 leading-relaxed mb-8">{p.desc}</p>
+                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4 min-h-[1.5rem]">{p.type}</div>
+                                <div className="min-h-[6rem] flex items-start">
+                                  <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">{p.title}</h3>
+                                </div>
+                                <div className="min-h-[5rem]">
+                                  <p className="text-sm text-white/60 leading-relaxed mb-8 line-clamp-3">{p.desc}</p>
+                                </div>
                              </div>
                              <div className="flex items-center justify-between pt-6 border-t border-white/5">
                                 <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{p.tech}</span>
