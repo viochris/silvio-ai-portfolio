@@ -1,8 +1,7 @@
-
 "use client"
 
 import React, { useEffect } from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight, Rocket } from 'lucide-react';
+import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight, Rocket, Zap } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +11,7 @@ import { useNavigation } from '@/context/NavigationContext';
 
 const skills = [
   { name: "GenAI", value: 95 },
+  { name: "Vibe Code", value: 98 },
   { name: "NLP", value: 88 },
   { name: "Data", value: 85 },
   { name: "ML", value: 82 },
@@ -171,6 +171,7 @@ export default function SkillsPage() {
                   <span className="flex items-center gap-4">
                     {s.name === 'NLP' && <Languages className="w-5 h-5 text-primary shrink-0" />}
                     {s.name === 'GenAI' && <Sparkles className="w-5 h-5 text-primary shrink-0" />}
+                    {s.name === 'Vibe Code' && <Zap className="w-5 h-5 text-primary shrink-0" />}
                     {s.name === 'Backend' && <Code className="w-5 h-5 text-primary shrink-0" />}
                     {s.name === 'Data' && <Database className="w-5 h-5 text-primary shrink-0" />}
                     {s.name === 'ML' && <Brain className="w-5 h-5 text-primary shrink-0" />}
