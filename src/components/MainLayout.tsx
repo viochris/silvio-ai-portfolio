@@ -1,13 +1,15 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp, BarChart3, Instagram } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Instagram, Twitter, Youtube } from 'lucide-react';
 import { BinaryBackground } from '@/components/BinaryBackground';
 import Link from 'next/link';
 import { NavigationProvider, useNavigation } from '@/context/NavigationContext';
+import { KaggleIcon, TikTokIcon, MediumIcon } from '@/components/SocialIcons';
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const [isBooting, setIsBooting] = useState(true);
@@ -116,12 +118,16 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
                 <div className="space-y-8">
                   <h4 className="text-sm font-headline font-bold uppercase tracking-widest text-white">Connect</h4>
-                  <div className="grid grid-cols-2 gap-4 w-fit">
+                  <div className="grid grid-cols-4 gap-4 w-fit">
                     {[
                       { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/silvio-christian-joe" },
                       { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
-                      { icon: <BarChart3 className="w-5 h-5" />, href: "https://www.kaggle.com/viochristian" },
-                      { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" }
+                      { icon: <KaggleIcon className="w-5 h-5" />, href: "https://www.kaggle.com/viochristian" },
+                      { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" },
+                      { icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com/silvio_codes" },
+                      { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/@silviocodes" },
+                      { icon: <TikTokIcon className="w-5 h-5" />, href: "https://tiktok.com/@silvio.codes" },
+                      { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@viochristian12" }
                     ].map((social, i) => (
                       <a 
                         key={i} 
