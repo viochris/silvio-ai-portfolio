@@ -13,13 +13,15 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
   const [isFinished, setIsFinished] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Updated to today's date: 2025.03.05
   const fullLogs = [
     "CONTINUUM BIOS v2.0",
     "Memory Check: OK",
     "Secure Boot: ENABLED",
-    "Release: 2026.01.18",
+    "Release: 2025.03.05",
+    "Updated: 2025.03.05",
     "",
-    "MWBIOS (C)2026 Developer Portfolio System",
+    "MWBIOS (C)2025 Developer Portfolio System",
     "",
     "Loading Portfolio Resources...",
     "",
