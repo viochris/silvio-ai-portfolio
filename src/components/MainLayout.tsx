@@ -5,11 +5,11 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp, Instagram, Twitter, Youtube } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Instagram, Youtube } from 'lucide-react';
 import { BinaryBackground } from '@/components/BinaryBackground';
 import Link from 'next/link';
 import { NavigationProvider, useNavigation } from '@/context/NavigationContext';
-import { KaggleIcon, TikTokIcon, MediumIcon } from '@/components/SocialIcons';
+import { KaggleIcon, TikTokIcon, MediumIcon, XIcon } from '@/components/SocialIcons';
 
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const [isBooting, setIsBooting] = useState(true);
@@ -124,7 +124,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                       { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
                       { icon: <KaggleIcon className="w-5 h-5" />, href: "https://www.kaggle.com/viochristian" },
                       { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" },
-                      { icon: <Twitter className="w-5 h-5" />, href: "https://twitter.com/silvio_codes" },
+                      { icon: <XIcon className="w-5 h-5" />, href: "https://twitter.com/silvio_codes" },
                       { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/@silviocodes" },
                       { icon: <TikTokIcon className="w-5 h-5" />, href: "https://tiktok.com/@silvio.codes" },
                       { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@viochristian12" }
