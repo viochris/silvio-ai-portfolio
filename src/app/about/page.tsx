@@ -121,9 +121,9 @@ const interestData = [
     desc: "Engineering the AI-first digital experience.",
     details: "Vibe Coding is a philosophy where engineering meets intuition. I prioritize clean, modular, and AI-first coding practices, ensuring that the interaction between human intent and machine execution is fluid. This involves architecting systems that are not just high-performance, but also highly adaptable and user-centric.",
     projects: [
-      { name: "Vibe Engine Alpha (Coming Soon)", id: null, github: "#" },
-      { name: "Neural Interface UI (Coming Soon)", id: null, github: "#" },
-      { name: "Synthetic Experience Lab (Coming Soon)", id: null, github: "#" }
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" }
     ]
   }
 ];
