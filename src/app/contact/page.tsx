@@ -159,56 +159,59 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* 2. Contact Details & Socials Bar */}
+        {/* 2. Contact Details Bar */}
         <div className="space-y-12">
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* Email Card */}
+            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
               <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <Mail className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-white break-all">viochristian12@gmail.com</span>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <span className="text-xs sm:text-sm font-semibold text-white break-words">viochristian12@gmail.com</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary shrink-0"
+                    className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary shrink-0"
                     onClick={() => copyToClipboard('viochristian12@gmail.com', 'email')}
                   >
-                    {copiedEmail ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copiedEmail ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   </Button>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+            {/* Phone Card */}
+            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
               <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <Phone className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-semibold text-white whitespace-nowrap">+62 895-3426-37871</span>
+                  <span className="text-xs sm:text-sm font-semibold text-white whitespace-nowrap">+62 895-3426-37871</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary shrink-0"
+                    className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary shrink-0"
                     onClick={() => copyToClipboard('+62895342637871', 'phone')}
                   >
-                    {copiedPhone ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copiedPhone ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   </Button>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+            {/* Location Card */}
+            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden sm:col-span-2 lg:col-span-1">
               <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
-                <div className="text-sm font-semibold text-white">Semarang, ID <span className="text-primary/60 ml-1 font-mono">({currentTime})</span></div>
+                <div className="text-xs sm:text-sm font-semibold text-white">Semarang, ID <span className="text-primary/60 ml-1 font-mono text-[10px]">({currentTime})</span></div>
               </div>
             </div>
           </div>
@@ -308,7 +311,7 @@ export default function ContactPage() {
                   type="submit" 
                   size="lg" 
                   disabled={isSubmitting}
-                  className="w-full h-14 rounded-xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20"
+                  className="w-full h-14 rounded-xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 mt-4"
                 >
                   {isSubmitting ? (
                     <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Dispatching...</>
@@ -321,7 +324,7 @@ export default function ContactPage() {
           </div>
 
           {/* Column Right: AI Assistant Chatbot */}
-          <div className="relative flex flex-col h-full">
+          <div className="relative flex flex-col h-full min-h-[600px]">
             <div className="absolute -inset-10 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="relative w-full h-full flex flex-col overflow-hidden rounded-[3rem] shadow-2xl border border-white/10">
                <Chatbot />
