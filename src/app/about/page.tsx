@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -201,6 +201,11 @@ export default function AboutPage() {
   const [ghStats, setGhStats] = useState({ repos: 0, stars: 0, followers: 0, latestCommit: '' });
   const [loadingGh, setLoadingGh] = useState(true);
 
+  // States for unified dialog navigation
+  const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
+  const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
+  const [openArchIdx, setOpenArchIdx] = useState<number | null>(null);
+
   useEffect(() => {
     async function fetchGitHubData() {
       try {
@@ -335,41 +340,14 @@ export default function AboutPage() {
                 <CarouselContent className="-ml-4">
                   {technicalMilestones.map((m, i) => (
                     <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <div className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl">
-                            <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                            <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.title}</h4>
-                            <p className="text-sm text-white/50 leading-relaxed">{m.shortSummary}</p>
-                          </div>
-                        </DialogTrigger>
-                        <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-                          <DialogHeader>
-                            <DialogTitle className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
-                              {m.year}
-                            </DialogTitle>
-                            <DialogDescription className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
-                              {m.title}
-                            </DialogDescription>
-                          </DialogHeader>
-                          
-                          <div className="space-y-6">
-                            <div className="p-8 bg-primary/5 rounded-[2rem] border border-primary/10">
-                              <h6 className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
-                                <Info className="w-4 h-4" /> Detailed Breakdown
-                              </h6>
-                              <ul className="space-y-4">
-                                {m.details.map((detail, idx) => (
-                                  <li key={idx} className="flex items-start gap-3 text-foreground/80 leading-relaxed text-sm font-medium">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                                    {detail}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
+                      <div 
+                        onClick={() => setOpenMilestoneIdx(i)}
+                        className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl"
+                      >
+                        <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
+                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.title}</h4>
+                        <p className="text-sm text-white/50 leading-relaxed">{m.shortSummary}</p>
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -377,6 +355,63 @@ export default function AboutPage() {
                 <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
               </Carousel>
            </div>
+
+           {/* Unified Technical Milestones Dialog */}
+           <Dialog open={openMilestoneIdx !== null} onOpenChange={(open) => !open && setOpenMilestoneIdx(null)}>
+             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+               {openMilestoneIdx !== null && (
+                 <>
+                   <DialogHeader>
+                     <DialogTitle className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
+                       {technicalMilestones[openMilestoneIdx].year}
+                     </DialogTitle>
+                     <DialogDescription className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
+                       {technicalMilestones[openMilestoneIdx].title}
+                     </DialogDescription>
+                   </DialogHeader>
+                   
+                   <div className="space-y-6">
+                     <div className="p-8 bg-primary/5 rounded-[2rem] border border-primary/10">
+                       <h6 className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
+                         <Info className="w-4 h-4" /> Detailed Breakdown
+                       </h6>
+                       <ul className="space-y-4">
+                         {technicalMilestones[openMilestoneIdx].details.map((detail, idx) => (
+                           <li key={idx} className="flex items-start gap-3 text-foreground/80 leading-relaxed text-sm font-medium">
+                             <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                             {detail}
+                           </li>
+                         ))}
+                       </ul>
+                     </div>
+
+                     {/* Navigation Buttons */}
+                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenMilestoneIdx(prev => prev! > 0 ? prev! - 1 : technicalMilestones.length - 1)}
+                        >
+                          <ChevronLeft className="w-4 h-4" /> Previous
+                        </Button>
+                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
+                          {openMilestoneIdx + 1} / {technicalMilestones.length}
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenMilestoneIdx(prev => prev! < technicalMilestones.length - 1 ? prev! + 1 : 0)}
+                        >
+                          Next <ChevronRight className="w-4 h-4" />
+                        </Button>
+                     </div>
+                   </div>
+                 </>
+               )}
+             </DialogContent>
+           </Dialog>
         </div>
 
         {/* Section: Professional Interests & Deep Dive */}
@@ -400,73 +435,20 @@ export default function AboutPage() {
               <CarouselContent className="-ml-4">
                 {interestData.map((item, i) => (
                   <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <div className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full">
-                          <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            {item.icon}
-                          </div>
-                          <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
-                            {item.title}
-                          </h4>
-                          <p className="text-sm text-white/50 leading-relaxed">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </DialogTrigger>
-                      <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
-                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                              {item.icon}
-                            </div>
-                            {item.title}
-                          </DialogTitle>
-                        </DialogHeader>
-                        
-                        <div className="space-y-8">
-                          {/* Methodology Section */}
-                          <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
-                            <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
-                              <BrainCircuit className="w-4 h-4" /> Methodology & Vision
-                            </h6>
-                            <p className="text-foreground leading-relaxed text-sm font-medium">
-                              {item.details}
-                            </p>
-                          </div>
-
-                          {/* Top 3 Projects Section */}
-                          <div className="space-y-4">
-                            <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
-                            <div className="grid gap-3">
-                              {item.projects.map((proj, idx) => (
-                                <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
-                                  <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
-                                    {proj.name}
-                                  </span>
-                                  <div className="flex items-center gap-3">
-                                    {proj.id && (
-                                      <Link href={`/projects#project-${proj.id}`}>
-                                        <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                          <Eye className="w-3 h-3" /> Project Details
-                                        </Button>
-                                      </Link>
-                                    )}
-                                    {proj.github !== "#" && (
-                                      <a href={proj.github} target="_blank" rel="noopener noreferrer">
-                                        <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                          <Github className="w-3 h-3" /> Repository
-                                        </Button>
-                                      </a>
-                                    )}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                    <div 
+                      onClick={() => setOpenInterestIdx(i)}
+                      className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full"
+                    >
+                      <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                        {item.icon}
+                      </div>
+                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-white/50 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -474,6 +456,89 @@ export default function AboutPage() {
               <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
             </Carousel>
           </div>
+
+          {/* Unified Professional Interests Dialog */}
+          <Dialog open={openInterestIdx !== null} onOpenChange={(open) => !open && setOpenInterestIdx(null)}>
+            <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+              {openInterestIdx !== null && (
+                <>
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        {interestData[openInterestIdx].icon}
+                      </div>
+                      {interestData[openInterestIdx].title}
+                    </DialogTitle>
+                  </DialogHeader>
+                  
+                  <div className="space-y-8">
+                    {/* Methodology Section */}
+                    <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                      <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                        <BrainCircuit className="w-4 h-4" /> Methodology & Vision
+                      </h6>
+                      <p className="text-foreground leading-relaxed text-sm font-medium">
+                        {interestData[openInterestIdx].details}
+                      </p>
+                    </div>
+
+                    {/* Top 3 Projects Section */}
+                    <div className="space-y-4">
+                      <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
+                      <div className="grid gap-3">
+                        {interestData[openInterestIdx].projects.map((proj, idx) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
+                            <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
+                              {proj.name}
+                            </span>
+                            <div className="flex items-center gap-3">
+                              {proj.id && (
+                                <Link href={`/projects#project-${proj.id}`}>
+                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                    <Eye className="w-3 h-3" /> Project Details
+                                  </Button>
+                                </Link>
+                              )}
+                              {proj.github !== "#" && (
+                                <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
+                                    <Github className="w-3 h-3" /> Repository
+                                  </Button>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Navigation Buttons */}
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenInterestIdx(prev => prev! > 0 ? prev! - 1 : interestData.length - 1)}
+                        >
+                          <ChevronLeft className="w-4 h-4" /> Previous
+                        </Button>
+                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
+                          {openInterestIdx + 1} / {interestData.length}
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenInterestIdx(prev => prev! < interestData.length - 1 ? prev! + 1 : 0)}
+                        >
+                          Next <ChevronRight className="w-4 h-4" />
+                        </Button>
+                     </div>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Section: Project Architecture */}
@@ -489,38 +554,65 @@ export default function AboutPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                  {orchestrationNodes.map((arch, i) => (
-                   <Dialog key={i}>
-                     <DialogTrigger asChild>
-                       <div className="space-y-6 text-center cursor-pointer group">
-                          <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:border-primary/50 transition-all">
-                             {arch.icon}
-                          </div>
-                          <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors">{arch.title}</h5>
-                          <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
-                       </div>
-                     </DialogTrigger>
-                     <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
-                       <DialogHeader>
-                         <DialogTitle className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
-                           {arch.icon}
-                           {arch.title}
-                         </DialogTitle>
-                       </DialogHeader>
-                       <div className="space-y-6">
-                         <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
-                           <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
-                             <Info className="w-4 h-4" /> Technical Documentation
-                           </h6>
-                           <p className="text-foreground leading-relaxed text-sm font-medium">
-                             {arch.details}
-                           </p>
-                         </div>
-                       </div>
-                     </DialogContent>
-                   </Dialog>
+                   <div key={i} className="space-y-6 text-center cursor-pointer group" onClick={() => setOpenArchIdx(i)}>
+                      <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:border-primary/50 transition-all">
+                         {arch.icon}
+                      </div>
+                      <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors">{arch.title}</h5>
+                      <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
+                   </div>
                  ))}
               </div>
            </div>
+
+           {/* Unified Architecture Nodes Dialog */}
+           <Dialog open={openArchIdx !== null} onOpenChange={(open) => !open && setOpenArchIdx(null)}>
+             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
+               {openArchIdx !== null && (
+                 <>
+                   <DialogHeader>
+                     <DialogTitle className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
+                       {orchestrationNodes[openArchIdx].icon}
+                       {orchestrationNodes[openArchIdx].title}
+                     </DialogTitle>
+                   </DialogHeader>
+                   <div className="space-y-6">
+                     <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                       <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                         <Info className="w-4 h-4" /> Technical Documentation
+                       </h6>
+                       <p className="text-foreground leading-relaxed text-sm font-medium">
+                         {orchestrationNodes[openArchIdx].details}
+                       </p>
+                     </div>
+
+                     {/* Navigation Buttons */}
+                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenArchIdx(prev => prev! > 0 ? prev! - 1 : orchestrationNodes.length - 1)}
+                        >
+                          <ChevronLeft className="w-4 h-4" /> Previous
+                        </Button>
+                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
+                          {openArchIdx + 1} / {orchestrationNodes.length}
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
+                          onClick={() => setOpenArchIdx(prev => prev! < orchestrationNodes.length - 1 ? prev! + 1 : 0)}
+                        >
+                          Next <ChevronRight className="w-4 h-4" />
+                        </Button>
+                     </div>
+                   </div>
+                 </>
+               )}
+             </DialogContent>
+           </Dialog>
         </div>
 
         {/* Section: GitHub Performance */}
