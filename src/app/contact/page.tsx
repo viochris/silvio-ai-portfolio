@@ -159,18 +159,18 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* 2. Contact Details Bar */}
+        {/* 2. Contact Details Hub (Grid 2 columns) */}
         <div className="space-y-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             {/* Email Card */}
-            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <Mail className="w-5 h-5 text-primary" />
+            <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Mail className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
+                <div className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Email</div>
                 <div className="flex items-center gap-2 overflow-hidden">
-                  <span className="text-xs sm:text-sm font-semibold text-white break-words">viochristian12@gmail.com</span>
+                  <span className="text-sm sm:text-base font-bold text-white break-words">viochristian12@gmail.com</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
@@ -184,14 +184,14 @@ export default function ContactPage() {
             </div>
 
             {/* Phone Card */}
-            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <Phone className="w-5 h-5 text-primary" />
+            <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Phone className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
+                <div className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Phone</div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs sm:text-sm font-semibold text-white whitespace-nowrap">+62 895-3426-37871</span>
+                  <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">+62 895-3426-37871</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
@@ -204,14 +204,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Location Card */}
-            <div className="flex items-center gap-4 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden sm:col-span-2 lg:col-span-1">
-              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <MapPin className="w-5 h-5 text-primary" />
+            {/* Location Card (Spans 2 columns / full width) */}
+            <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden sm:col-span-2">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <MapPin className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
-                <div className="text-xs sm:text-sm font-semibold text-white">Semarang, ID <span className="text-primary/60 ml-1 font-mono text-[10px]">({currentTime})</span></div>
+                <div className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Location</div>
+                <div className="text-sm sm:text-base font-bold text-white">Semarang, ID <span className="text-primary/60 ml-2 font-mono text-xs">({currentTime})</span></div>
               </div>
             </div>
           </div>
