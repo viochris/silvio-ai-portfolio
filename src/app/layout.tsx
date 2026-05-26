@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
@@ -145,7 +144,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`dark scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${sourceCodePro.variable}`}>
+    <html lang="en" className={`dark scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${sourceCodePro.variable}`} data-scroll-behavior="smooth">
       <head>
         <link rel="icon" type="image/png" href="/icon.png" />
         <script

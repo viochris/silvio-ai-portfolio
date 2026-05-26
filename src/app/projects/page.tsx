@@ -1,4 +1,3 @@
-
 "use client"
 
 import React from 'react';
@@ -7,7 +6,7 @@ import { ExternalLink, ChevronRight, Brain, Sparkles, Info } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 
@@ -90,7 +89,7 @@ export default function ProjectsPage() {
                   src={p.image} 
                   alt={p.title} 
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105" 
                   priority
                 />
@@ -149,6 +148,7 @@ export default function ProjectsPage() {
                   <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[1.5rem] md:rounded-[2.5rem] border-border bg-card p-6 md:p-10">
                     <DialogHeader>
                       <DialogTitle className="text-2xl md:text-4xl font-headline font-bold mb-4 md:mb-8 text-foreground">{p.title}</DialogTitle>
+                      <DialogDescription className="text-muted-foreground text-sm font-medium">Detailed case study of the project including the problem statement and technical solution.</DialogDescription>
                     </DialogHeader>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
                       <div className="space-y-6 md:space-y-10">
@@ -157,6 +157,7 @@ export default function ProjectsPage() {
                             src={p.image} 
                             alt={p.title} 
                             fill
+                            sizes="(max-width: 768px) 100vw, 400px"
                             className="object-cover object-top"
                           />
                         </div>

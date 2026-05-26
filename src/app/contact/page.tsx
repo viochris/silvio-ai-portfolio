@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -18,8 +17,6 @@ import {
 } from "@/components/ui/accordion";
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
-import { errorEmitter } from '@/firebase/error-emitter';
-import { FirestorePermissionError, type SecurityRuleContext } from '@/firebase/errors';
 
 const faqs = [
   {
@@ -108,30 +105,26 @@ export default function ContactPage() {
     // 1. Save to Firestore (Backup - Database Jakarta)
     if (db) {
       console.log("Attempting to sync with Firestore (Jakarta)...");
-      const messagesRef = collection(db, 'contactMessages');
-      const payload = {
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        subject: formData.subject.trim() || 'General Inquiry',
-        message: formData.message.trim(),
-        createdAt: serverTimestamp(),
-      };
+      try {
+        const messagesRef = collection(db, 'contactMessages');
+        const payload = {
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim() || 'General Inquiry',
+          message: formData.message.trim(),
+          createdAt: serverTimestamp(),
+        };
 
-      addDoc(messagesRef, payload)
-        .then(() => {
-          console.log("Firestore sync successful!");
-        })
-        .catch(async (error) => {
-          console.error("Firestore Error:", error);
-          const permissionError = new FirestorePermissionError({
-            path: messagesRef.path,
-            operation: 'create',
-            requestResourceData: payload,
-          } satisfies SecurityRuleContext);
-          errorEmitter.emit('permission-error', permissionError);
-        });
+        await addDoc(messagesRef, payload);
+        console.log("Firestore sync successful!");
+      } catch (error: any) {
+        console.error("Firestore Sync Error Details:", error);
+        console.error("Code:", error.code);
+        console.error("Message:", error.message);
+        // This won't stop the email from sending
+      }
     } else {
-      console.warn("Firestore database instance not found.");
+      console.error("Firestore database instance not found. Check your Firebase config.");
     }
 
     // 2. Send to Formspree (Email Delivery)

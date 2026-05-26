@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState } from 'react';
@@ -59,6 +58,9 @@ export const Navbar: React.FC = () => {
           <DialogTitle className="text-2xl font-headline font-bold text-foreground">
             {showViewer ? "Curriculum Vitae Preview" : "Curriculum Vitae"}
           </DialogTitle>
+          <DialogDescription className={cn("text-muted-foreground font-medium", showViewer && "sr-only")}>
+            Choose how you would like to access Silvio's professional profile.
+          </DialogDescription>
           {showViewer && (
             <Button 
               variant="ghost" 
@@ -70,11 +72,6 @@ export const Navbar: React.FC = () => {
             </Button>
           )}
         </div>
-        {!showViewer && (
-          <DialogDescription className="text-muted-foreground font-medium">
-            Choose how you would like to access Silvio's professional profile.
-          </DialogDescription>
-        )}
       </DialogHeader>
       
       {showViewer ? (
@@ -122,6 +119,7 @@ export const Navbar: React.FC = () => {
               src="/icon.png" 
               alt="Silvio.AI Logo" 
               fill
+              sizes="40px"
               className="rounded-xl object-cover shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300" 
             />
           </div>
@@ -205,6 +203,7 @@ export const Navbar: React.FC = () => {
                         src="/icon.png" 
                         alt="Silvio.AI Logo" 
                         fill
+                        sizes="32px"
                         className="rounded-lg object-cover" 
                       />
                     </div>
