@@ -94,8 +94,8 @@ export default function ContactPage() {
     if (!db) {
       toast({
         variant: "destructive",
-        title: "Connection Error",
-        description: "Firebase service is not initialized. Please refresh and try again.",
+        title: "System Initializing",
+        description: "Firebase service is still warming up. Please wait a second and try again.",
       });
       return;
     }
@@ -103,48 +103,52 @@ export default function ContactPage() {
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         variant: "destructive",
-        title: "Missing Information",
-        description: "Please fill in all required fields (Name, Email, and Message).",
+        title: "Incomplete Form",
+        description: "Please provide at least your name, email, and a message.",
       });
       return;
     }
 
     setIsSubmitting(true);
 
-    const messagesRef = collection(db, 'contactMessages');
-    const payload = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      subject: formData.subject.trim() || 'No Subject',
-      message: formData.message.trim(),
-      createdAt: serverTimestamp(),
-    };
+    try {
+      const messagesRef = collection(db, 'contactMessages');
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subject: formData.subject.trim() || 'General Inquiry',
+        message: formData.message.trim(),
+        createdAt: serverTimestamp(),
+      };
 
-    addDoc(messagesRef, payload)
-      .then(() => {
-        toast({
-          title: "Message Dispatched!",
-          description: "Your message has been sent successfully. I'll get back to you soon!",
+      // We initiate the write and handle the result
+      addDoc(messagesRef, payload)
+        .then(() => {
+          toast({
+            title: "Transmission Success",
+            description: "Your message has been dispatched to the neural database. I'll get back to you soon!",
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setIsSubmitting(false);
+        })
+        .catch(async (error) => {
+          const permissionError = new FirestorePermissionError({
+            path: messagesRef.path,
+            operation: 'create',
+            requestResourceData: payload,
+          } satisfies SecurityRuleContext);
+          errorEmitter.emit('permission-error', permissionError);
+          setIsSubmitting(false);
         });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      })
-      .catch(async (serverError) => {
-        const permissionError = new FirestorePermissionError({
-          path: messagesRef.path,
-          operation: 'create',
-          requestResourceData: payload,
-        } satisfies SecurityRuleContext);
-        errorEmitter.emit('permission-error', permissionError);
-        
-        toast({
-          variant: "destructive",
-          title: "Dispatch Failed",
-          description: "Failed to send message. Please try again later.",
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setIsSubmitting(false);
+      toast({
+        variant: "destructive",
+        title: "Submission Error",
+        description: "An unexpected error occurred. Please try again later.",
       });
+    }
   };
 
   return (
