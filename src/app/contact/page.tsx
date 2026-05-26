@@ -90,9 +90,17 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!db) return;
+    
+    if (!db) {
+      toast({
+        variant: "destructive",
+        title: "Connection Error",
+        description: "Firebase service is not initialized. Please refresh and try again.",
+      });
+      return;
+    }
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         variant: "destructive",
         title: "Missing Information",
@@ -105,7 +113,10 @@ export default function ContactPage() {
 
     const messagesRef = collection(db, 'contactMessages');
     const payload = {
-      ...formData,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim() || 'No Subject',
+      message: formData.message.trim(),
       createdAt: serverTimestamp(),
     };
 
@@ -113,7 +124,7 @@ export default function ContactPage() {
       .then(() => {
         toast({
           title: "Message Dispatched!",
-          description: "Your message has been saved to the database. I'll get back to you soon!",
+          description: "Your message has been sent successfully. I'll get back to you soon!",
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       })
@@ -124,6 +135,12 @@ export default function ContactPage() {
           requestResourceData: payload,
         } satisfies SecurityRuleContext);
         errorEmitter.emit('permission-error', permissionError);
+        
+        toast({
+          variant: "destructive",
+          title: "Dispatch Failed",
+          description: "Failed to send message. Please try again later.",
+        });
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -272,6 +289,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                    required
                   />
                 </div>
                 <div className="space-y-2">
@@ -282,6 +300,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                    required
                   />
                 </div>
               </div>
@@ -301,6 +320,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" 
+                  required
                 />
               </div>
               <Button 
@@ -357,4 +377,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
