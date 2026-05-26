@@ -211,7 +211,7 @@ export default function ContactPage() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Location</div>
-                <div className="text-sm sm:text-base font-bold text-white">Semarang, ID <span className="text-primary/60 ml-2 font-mono text-xs">({currentTime})</span></div>
+                <div className="text-sm sm:text-base font-bold text-white">Semarang, Central Java, Indonesia <span className="text-primary/60 ml-2 font-mono text-xs">({currentTime})</span></div>
               </div>
             </div>
           </div>
