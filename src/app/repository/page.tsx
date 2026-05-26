@@ -1,7 +1,8 @@
+
 "use client"
 
-import React, { useState, useMemo } from 'react';
-import { Github, ExternalLink, Code2, Search, Filter, ChevronDown, ArrowLeft, Star } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Github, ExternalLink, Code2, Search, Filter, ChevronDown, ArrowLeft, Star, GitBranch, Users, MessageSquare } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from 'next/link';
 import { useNavigation } from '@/context/NavigationContext';
+import { cn } from '@/lib/utils';
 
 type Category = "All" | "GenAI" | "Backend" | "Automation" | "Data Science" | "Analytics" | "Fun";
 type Impact = "All" | "Production Ready" | "High Impact" | "Research Oriented" | "Automation Pro";
@@ -79,6 +81,34 @@ export default function RepositoryPage() {
   const [activeCategory, setActiveCategory] = useState<Category>("All");
   const [activeImpact, setActiveImpact] = useState<Impact>("All");
   const { setActiveTab } = useNavigation();
+  const [ghStats, setGhStats] = useState({ repos: 0, stars: 0 });
+  const [loadingGh, setLoadingGh] = useState(true);
+
+  useEffect(() => {
+    async function fetchGitHubData() {
+      try {
+        const [userRes, reposRes] = await Promise.all([
+          fetch('https://api.github.com/users/viochris'),
+          fetch('https://api.github.com/users/viochris/repos?per_page=100')
+        ]);
+
+        const userData = await userRes.json();
+        const reposData = await reposRes.json();
+
+        const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
+
+        setGhStats({
+          repos: userData.public_repos || 0,
+          stars: totalStars
+        });
+      } catch (error) {
+        console.error('Error fetching GitHub stats:', error);
+      } finally {
+        setLoadingGh(false);
+      }
+    }
+    fetchGitHubData();
+  }, []);
 
   const filteredRepos = useMemo(() => {
     return repos.filter(repo => {
@@ -104,13 +134,35 @@ export default function RepositoryPage() {
         </div>
 
         <div className="space-y-8 mb-16 text-center lg:text-left">
-          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Github</Badge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
-            Explore <span className="text-primary">Repository</span>
-          </h2>
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl font-medium mx-auto lg:mx-0">
-            A complete list of my AI projects, ranging from robust predictive modeling to autonomous agents and MLOps.
-          </p>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="space-y-6">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Github</Badge>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
+                Explore <span className="text-primary">Repository</span>
+              </h2>
+              <p className="text-white/70 text-lg md:text-xl max-w-2xl font-medium mx-auto lg:mx-0">
+                A complete list of my AI projects, ranging from robust predictive modeling to autonomous agents and MLOps.
+              </p>
+            </div>
+
+            {/* Live Insights Bar */}
+            <div className="flex gap-4 sm:gap-6 justify-center lg:justify-end">
+              <div className="px-6 py-4 glass rounded-2xl border-white/10 flex flex-col items-center">
+                <div className="flex items-center gap-2 text-primary mb-1">
+                  <GitBranch size={16} />
+                  <span className="text-lg font-black text-white">{loadingGh ? "..." : ghStats.repos}</span>
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40">Total Repos</div>
+              </div>
+              <div className="px-6 py-4 glass rounded-2xl border-white/10 flex flex-col items-center">
+                <div className="flex items-center gap-2 text-primary mb-1">
+                  <Star size={16} />
+                  <span className="text-lg font-black text-white">{loadingGh ? "..." : ghStats.stars}</span>
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40">GitHub Stars</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col xl:flex-row gap-4 mb-16 bg-white/5 p-4 rounded-3xl border border-white/10 shadow-xl items-stretch">

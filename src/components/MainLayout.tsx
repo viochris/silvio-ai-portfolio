@@ -78,14 +78,21 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                   <div className="text-3xl font-headline font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">
                     SILVIO.AI
                   </div>
-                  <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 w-fit">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-                    </span>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                      Open for Data Science roles & collaborations
-                    </span>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 w-fit">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                      </span>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
+                        Open for Data Science roles & collaborations
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 w-fit">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                        Response Time: &lt; 24 Hours
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -118,7 +125,6 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
                 <div className="space-y-8">
                   <h4 className="text-sm font-headline font-bold uppercase tracking-widest text-white">Connect</h4>
-                  {/* Updated Social Grid: 2 columns on mobile (4 rows), 4 columns on desktop (2 rows) */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-fit">
                     {[
                       { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/silvio-christian-joe" },

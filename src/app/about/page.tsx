@@ -1,9 +1,9 @@
 
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2 } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -130,6 +130,40 @@ const interestData = [
 
 export default function AboutPage() {
   const cvRawLink = "/vio-cv.pdf";
+  const [ghStats, setGhStats] = useState({ repos: 0, stars: 0, followers: 0, latestCommit: '' });
+  const [loadingGh, setLoadingGh] = useState(true);
+
+  useEffect(() => {
+    async function fetchGitHubData() {
+      try {
+        const [userRes, reposRes, eventsRes] = await Promise.all([
+          fetch('https://api.github.com/users/viochris'),
+          fetch('https://api.github.com/users/viochris/repos?per_page=100'),
+          fetch('https://api.github.com/users/viochris/events/public')
+        ]);
+
+        const userData = await userRes.json();
+        const reposData = await reposRes.json();
+        const eventsData = await eventsRes.json();
+
+        const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
+        const pushEvent = eventsData.find((e: any) => e.type === 'PushEvent');
+        const lastCommit = pushEvent?.payload?.commits?.[0]?.message || 'Stable Architecture';
+
+        setGhStats({
+          repos: userData.public_repos || 0,
+          stars: totalStars,
+          followers: userData.followers || 0,
+          latestCommit: lastCommit
+        });
+      } catch (error) {
+        console.error('Error fetching GitHub stats:', error);
+      } finally {
+        setLoadingGh(false);
+      }
+    }
+    fetchGitHubData();
+  }, []);
 
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
@@ -151,6 +185,18 @@ export default function AboutPage() {
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
               Beyond traditional modeling, my work as an AI Engineer focuses on developing <strong>autonomous AI Agents</strong>. I build practical, task-oriented systems using modern LLM frameworks—implementing RAG pipelines, engineering conversational bots, and creating ReAct agents that can independently reason and execute complex workflows.
             </p>
+
+            {/* Availability Status Card */}
+            <div className="p-6 rounded-2xl glass border-primary/20 bg-primary/5 flex items-center gap-4 mt-4 shadow-xl">
+              <div className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
+              <div className="flex-1">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-1">Status</div>
+                <div className="text-sm font-bold text-white uppercase tracking-widest">Open for Freelance & Collaborations</div>
+              </div>
+            </div>
 
             <div className="flex gap-4 sm:gap-6 pt-4">
               <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
@@ -390,6 +436,24 @@ export default function AboutPage() {
             </div>
           </div>
           
+          {/* GitHub Live Stats Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+            {[
+              { label: "Public Repos", val: ghStats.repos, icon: <GitBranch className="text-blue-400" /> },
+              { label: "Total Stars", val: ghStats.stars, icon: <Star className="text-yellow-400" /> },
+              { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> },
+              { label: "Latest Action", val: ghStats.latestCommit, icon: <MessageSquare className="text-purple-400" />, isCommit: true }
+            ].map((stat, i) => (
+              <div key={i} className="p-6 glass rounded-[2rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">{stat.icon}</div>
+                <div className={cn("text-2xl font-headline font-black text-white mb-1", stat.isCommit && "text-xs line-clamp-1")}>
+                  {loadingGh ? "..." : stat.val}
+                </div>
+                <div className="text-[10px] font-bold text-primary uppercase tracking-widest">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 p-6 rounded-3xl bg-[#0d1117] border border-slate-800 w-full shadow-2xl">
               <img 
