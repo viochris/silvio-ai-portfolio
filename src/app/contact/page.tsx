@@ -147,6 +147,7 @@ export default function ContactPage() {
   return (
     <div className="w-full max-w-full overflow-x-hidden pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="contact" className="max-w-7xl mx-auto space-y-32">
+        {/* Top Section: Info + Chatbot */}
         <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
           <div className="space-y-12 lg:space-y-16 w-full max-w-full">
             <div className="space-y-6 text-center lg:text-left">
@@ -257,8 +258,9 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
-          {/* LEFT COLUMN: Message Form */}
+        {/* Bottom Section: Vertical Stack of Form, Quick Response, and FAQ */}
+        <div className="max-w-4xl mx-auto space-y-24">
+          {/* 1. Message Form */}
           <div className="p-8 md:p-12 glass rounded-[3rem] border-primary/10 relative overflow-hidden space-y-10 group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
@@ -346,34 +348,34 @@ export default function ContactPage() {
             </Form>
           </div>
 
-          {/* RIGHT COLUMN: Quick Response & FAQ */}
-          <div className="space-y-12">
-            {/* Quick Response Info Box */}
-            <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-4 shadow-xl">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <Clock className="text-primary w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-sm font-bold text-white">Quick Response</h4>
-                <p className="text-xs text-white/50 leading-relaxed font-medium">I typically respond to serious inquiries within 24-48 business hours. For urgent technical consultation, please mention [URGENT] in the subject.</p>
-              </div>
+          {/* 2. Quick Response Info Box */}
+          <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-6 shadow-xl">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <Clock className="text-primary w-6 h-6" />
             </div>
+            <div className="space-y-2">
+              <h4 className="text-lg font-bold text-white uppercase tracking-widest">Quick Response</h4>
+              <p className="text-sm text-white/50 leading-relaxed font-medium">I typically respond to serious inquiries within 24-48 business hours. For urgent technical consultation, please mention [URGENT] in the subject.</p>
+            </div>
+          </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                <HelpCircle className="text-primary w-6 h-6" />
-                <h3 className="text-2xl font-headline font-bold text-white uppercase tracking-widest">Technical FAQ</h3>
+          {/* 3. Technical FAQ */}
+          <div className="space-y-12">
+            <div className="space-y-6 text-center">
+              <div className="flex items-center justify-center gap-3">
+                <HelpCircle className="text-primary w-8 h-8" />
+                <h3 className="text-3xl font-headline font-black text-white uppercase tracking-widest">Technical FAQ</h3>
               </div>
-              <p className="text-white/60 font-medium leading-relaxed">Frequently asked questions about my workflow, availability, and technical expertise.</p>
+              <p className="text-white/60 font-medium leading-relaxed max-w-2xl mx-auto">Frequently asked questions about my workflow, availability, and technical expertise.</p>
             </div>
 
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-none">
                   <AccordionTrigger className="flex p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all text-left font-bold text-white hover:no-underline group [&[data-state=open]]:bg-primary/5 [&[data-state=open]]:border-primary/50">
-                    <span className="text-sm md:text-base pr-4">{faq.question}</span>
+                    <span className="text-base md:text-lg pr-4">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="p-6 text-white/60 text-sm leading-relaxed font-medium bg-white/[0.02] rounded-b-2xl -mt-4 border-x border-b border-white/5">
+                  <AccordionContent className="p-6 text-white/60 text-sm md:text-base leading-relaxed font-medium bg-white/[0.02] rounded-b-2xl -mt-4 border-x border-b border-white/5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
