@@ -69,7 +69,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
-  // Formspree ID from your configuration
   const FORMSPREE_ID = "mnjrggbv";
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -162,19 +161,19 @@ export default function ContactPage() {
 
         {/* 2. Contact Details & Socials Bar */}
         <div className="space-y-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <Mail className="w-6 h-6 text-primary" />
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Mail className="w-5 h-5 text-primary" />
               </div>
-              <div className="min-w-0 overflow-hidden flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-semibold text-white truncate">viochristian12@gmail.com</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-white break-all">viochristian12@gmail.com</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary"
+                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary shrink-0"
                     onClick={() => copyToClipboard('viochristian12@gmail.com', 'email')}
                   >
                     {copiedEmail ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
@@ -183,18 +182,18 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <Phone className="w-6 h-6 text-primary" />
+            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Phone className="w-5 h-5 text-primary" />
               </div>
-              <div className="min-w-0 overflow-hidden flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-semibold text-white truncate">+62 895-3426-37871</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-white whitespace-nowrap">+62 895-3426-37871</span>
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary"
+                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary shrink-0"
                     onClick={() => copyToClipboard('+62895342637871', 'phone')}
                   >
                     {copiedPhone ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
@@ -203,13 +202,13 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
-                <MapPin className="w-6 h-6 text-primary" />
+            <div className="flex items-center gap-5 p-5 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all group">
+              <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <MapPin className="w-5 h-5 text-primary" />
               </div>
-              <div className="min-w-0 overflow-hidden flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
-                <div className="text-sm font-semibold text-white truncate">Semarang, ID <span className="text-primary/60 ml-2">({currentTime})</span></div>
+                <div className="text-sm font-semibold text-white">Semarang, ID <span className="text-primary/60 ml-1 font-mono">({currentTime})</span></div>
               </div>
             </div>
           </div>
@@ -234,7 +233,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           
           {/* Column Left: Manual Message Form */}
-          <div className="p-8 md:p-10 glass rounded-[3rem] border-primary/10 relative overflow-hidden flex flex-col h-full group">
+          <div className="p-8 md:p-10 glass rounded-[3rem] border-primary/10 relative overflow-hidden flex flex-col h-full">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
             <div className="space-y-4 mb-8">
