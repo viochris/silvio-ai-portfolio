@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
             {showViewer ? "Curriculum Vitae Preview" : "Curriculum Vitae"}
           </DialogTitle>
           <DialogDescription className={cn("text-muted-foreground font-medium", showViewer && "sr-only")}>
-            Choose how you would like to access Silvio's professional profile.
+            {showViewer ? "Preview of my professional profile." : "Choose how you would like to access Silvio's professional profile."}
           </DialogDescription>
           {showViewer && (
             <Button 

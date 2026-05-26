@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -29,7 +28,7 @@ const featuredProjects = [
     title: "SpendSense (Financial AI)", 
     type: "Data Science",
     impact: "High Impact",
-    desc: "Conversational finance app with OCR receipt scanning and Pandas reasoning for expense analysis.",
+    desc: "Conversational finance app with OCR receipt scanning and pandas reasoning for expense analysis.",
     tech: "LangChain • Vision",
     link: "https://app-spend-sense.streamlit.app/"
   },
@@ -85,6 +84,7 @@ export default function Home() {
                       alt="Silvio Christian Joe" 
                       width={320}
                       height={320}
+                      sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 320px"
                       priority
                       className="w-full h-full object-cover rounded-full transition-opacity duration-500"
                     />

@@ -74,18 +74,20 @@ export default function ContactPage() {
   }, []);
 
   const copyToClipboard = (text: string, type: 'email' | 'phone') => {
-    navigator.clipboard.writeText(text);
-    if (type === 'email') {
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } else {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      if (type === 'email') {
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
+      } else {
+        setCopiedPhone(true);
+        setTimeout(() => setCopiedPhone(false), 2000);
+      }
+      toast({
+        title: "Copied to clipboard",
+        description: `${text} has been saved.`,
+      });
     }
-    toast({
-      title: "Copied to clipboard",
-      description: `${text} has been saved.`,
-    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -102,7 +104,8 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // 1. Save to Firestore (Backup - Database Jakarta)
+    // 1. Sync to Firestore (Backup - Database Jakarta)
+    let firestoreSuccess = false;
     if (db) {
       console.log("Attempting to sync with Firestore (Jakarta)...");
       try {
@@ -117,21 +120,22 @@ export default function ContactPage() {
 
         await addDoc(messagesRef, payload);
         console.log("Firestore sync successful!");
+        firestoreSuccess = true;
       } catch (error: any) {
         console.error("Firestore Sync Error Details:", error);
-        console.error("Code:", error.code);
-        console.error("Message:", error.message);
-        // This won't stop the email from sending
+        // We continue even if Firestore fails, as Formspree is the primary email delivery
       }
     } else {
-      console.error("Firestore database instance not found. Check your Firebase config.");
+      console.warn("Firestore database instance not found. Check your Firebase config.");
     }
 
-    // 2. Send to Formspree (Email Delivery)
+    // 2. Send to Formspree (Primary Email Delivery)
     try {
+      console.log("Dispatching to Formspree...");
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
@@ -144,15 +148,29 @@ export default function ContactPage() {
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        throw new Error('Formspree response not OK');
+        const errData = await response.json();
+        console.error("Formspree Error Response:", errData);
+        throw new Error(errData.error || 'Formspree response not OK');
       }
-    } catch (err) {
-      console.error("Submission error:", err);
-      toast({
-        variant: "destructive",
-        title: "Dispatch Error",
-        description: "Failed to send to email. Please check your network or try again.",
-      });
+    } catch (err: any) {
+      console.error("Submission error details:", err);
+      
+      // Check if it's the specific "Failed to fetch" error (usually AdBlock or Network)
+      if (err instanceof TypeError && err.message === "Failed to fetch") {
+        toast({
+          variant: "destructive",
+          title: "Network Blocked",
+          description: "Could not connect to the email server. Please disable any AdBlockers or check your connection.",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Dispatch Error",
+          description: firestoreSuccess 
+            ? "Email delivery failed, but your message was saved to my database. I'll check it there!"
+            : "Failed to send message. Please try again or contact me via LinkedIn.",
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
