@@ -105,8 +105,9 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // 1. Save to Firestore (Backup - Free)
+    // 1. Save to Firestore (Backup - Database Jakarta)
     if (db) {
+      console.log("Attempting to sync with Firestore (Jakarta)...");
       const messagesRef = collection(db, 'contactMessages');
       const payload = {
         name: formData.name.trim(),
@@ -116,17 +117,24 @@ export default function ContactPage() {
         createdAt: serverTimestamp(),
       };
 
-      addDoc(messagesRef, payload).catch(async (error) => {
-        const permissionError = new FirestorePermissionError({
-          path: messagesRef.path,
-          operation: 'create',
-          requestResourceData: payload,
-        } satisfies SecurityRuleContext);
-        errorEmitter.emit('permission-error', permissionError);
-      });
+      addDoc(messagesRef, payload)
+        .then(() => {
+          console.log("Firestore sync successful!");
+        })
+        .catch(async (error) => {
+          console.error("Firestore Error:", error);
+          const permissionError = new FirestorePermissionError({
+            path: messagesRef.path,
+            operation: 'create',
+            requestResourceData: payload,
+          } satisfies SecurityRuleContext);
+          errorEmitter.emit('permission-error', permissionError);
+        });
+    } else {
+      console.warn("Firestore database instance not found.");
     }
 
-    // 2. Send to Formspree (Direct to Email - Free)
+    // 2. Send to Formspree (Email Delivery)
     try {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',

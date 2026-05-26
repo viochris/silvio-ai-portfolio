@@ -2,14 +2,15 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Aturan untuk Production Mode: 
-    // Izinkan publik untuk mengirim pesan (create) tapi tidak bisa baca/ubah pesan lain.
+    // Aturan untuk Koleksi Pesan Kontak
+    // Mengizinkan siapapun untuk mengirim pesan (create)
+    // Tapi melarang orang lain untuk membaca atau mengubah pesan yang sudah masuk
     match /contactMessages/{messageId} {
       allow create: if true;
       allow read, update, delete: if false;
     }
     
-    // Tolak akses untuk koleksi lain secara default
+    // Default: Tolak semua akses lainnya
     match /{document=**} {
       allow read, write: if false;
     }
