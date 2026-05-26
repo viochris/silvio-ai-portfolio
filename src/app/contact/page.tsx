@@ -258,6 +258,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
+          {/* LEFT COLUMN: Message Form */}
           <div className="p-8 md:p-12 glass rounded-[3rem] border-primary/10 relative overflow-hidden space-y-10 group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
@@ -345,7 +346,19 @@ export default function ContactPage() {
             </Form>
           </div>
 
+          {/* RIGHT COLUMN: Quick Response & FAQ */}
           <div className="space-y-12">
+            {/* Quick Response Info Box */}
+            <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-4 shadow-xl">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <Clock className="text-primary w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-sm font-bold text-white">Quick Response</h4>
+                <p className="text-xs text-white/50 leading-relaxed font-medium">I typically respond to serious inquiries within 24-48 business hours. For urgent technical consultation, please mention [URGENT] in the subject.</p>
+              </div>
+            </div>
+
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <HelpCircle className="text-primary w-6 h-6" />
@@ -366,16 +379,6 @@ export default function ContactPage() {
                 </AccordionItem>
               ))}
             </Accordion>
-
-            <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <Clock className="text-primary w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-sm font-bold text-white">Quick Response</h4>
-                <p className="text-xs text-white/50 leading-relaxed font-medium">I typically respond to serious inquiries within 24-48 business hours. For urgent technical consultation, please mention [URGENT] in the subject.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
