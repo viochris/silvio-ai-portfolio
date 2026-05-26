@@ -16,8 +16,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
 
 const faqs = [
   {
@@ -40,7 +38,6 @@ const faqs = [
 
 export default function ContactPage() {
   const { toast } = useToast();
-  const db = useFirestore();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
@@ -105,34 +102,7 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // 1. Sync to Firestore (Backup - Database Jakarta)
-    let firestoreSuccess = false;
-    if (db) {
-      console.log("Attempting to sync with Firestore (Jakarta)...");
-      try {
-        const messagesRef = collection(db, 'contactMessages');
-        const payload = {
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          subject: formData.subject.trim() || 'General Inquiry',
-          message: formData.message.trim(),
-          createdAt: serverTimestamp(),
-        };
-
-        await addDoc(messagesRef, payload);
-        console.log("Firestore sync successful!");
-        firestoreSuccess = true;
-      } catch (error: any) {
-        console.error("Firestore Sync Error Details:", error);
-        // We continue even if Firestore fails, as Formspree is the primary email delivery
-      }
-    } else {
-      console.warn("Firestore database instance not found. Check your Firebase config.");
-    }
-
-    // 2. Send to Formspree (Primary Email Delivery)
     try {
-      console.log("Dispatching to Formspree...");
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: {
@@ -144,34 +114,21 @@ export default function ContactPage() {
 
       if (response.ok) {
         toast({
-          title: "Transmission Success",
-          description: "Your message has been dispatched to my inbox. I'll get back to you soon!",
+          title: "Message Dispatched",
+          description: "Your inquiry has been sent to my inbox successfully!",
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         const errData = await response.json();
-        console.error("Formspree Error Response:", errData);
-        throw new Error(errData.error || 'Formspree response not OK');
+        throw new Error(errData.error || 'Formspree error');
       }
     } catch (err: any) {
-      console.error("Submission error details:", err);
-      
-      // Check if it's the specific "Failed to fetch" error (usually AdBlock or Network)
-      if (err instanceof TypeError && err.message === "Failed to fetch") {
-        toast({
-          variant: "destructive",
-          title: "Network Blocked",
-          description: "Could not connect to the email server. Please disable any AdBlockers or check your connection.",
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Dispatch Error",
-          description: firestoreSuccess 
-            ? "Email delivery failed, but your message was saved to my database. I'll check it there!"
-            : "Failed to send message. Please try again or contact me via LinkedIn.",
-        });
-      }
+      console.error("Submission error:", err);
+      toast({
+        variant: "destructive",
+        title: "Dispatch Failed",
+        description: "Could not send message. Please check your connection or contact me via LinkedIn.",
+      });
     } finally {
       setIsSubmitting(false);
     }
