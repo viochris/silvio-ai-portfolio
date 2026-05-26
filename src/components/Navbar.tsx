@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState } from 'react';
@@ -14,6 +15,7 @@ import {
   SheetTrigger,
   SheetTitle,
   SheetHeader,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import {
   Dialog,
@@ -119,7 +121,7 @@ export const Navbar: React.FC = () => {
               src="/icon.png" 
               alt="Silvio.AI Logo" 
               fill
-              sizes="40px"
+              sizes="(max-width: 768px) 32px, 40px"
               className="rounded-xl object-cover shadow-[0_0_10px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-300" 
             />
           </div>
@@ -209,6 +211,7 @@ export const Navbar: React.FC = () => {
                     </div>
                     SILVIO.AI
                   </SheetTitle>
+                  <SheetDescription className="sr-only">Mobile navigation menu</SheetDescription>
                 </SheetHeader>
                 <div className="flex flex-col p-6 gap-6 mt-4">
                   {navLinks.map((link) => {
