@@ -69,6 +69,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
+  // Formspree ID from your configuration
   const FORMSPREE_ID = "mnjrggbv";
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -159,7 +160,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* 2. Contact Details & Socials Row */}
+        {/* 2. Contact Details & Socials Bar */}
         <div className="space-y-12">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
@@ -229,7 +230,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* 3. Interaction Grid (Form & Chatbot at Equal Height) */}
+        {/* 3. Interaction Hub: Form vs AI (Equal Height Grid) */}
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           
           {/* Column Left: Manual Message Form */}
@@ -329,7 +330,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* 4. Bottom Stack: Quick Response & FAQ */}
+        {/* 4. Bottom Stack: Info & FAQ */}
         <div className="max-w-4xl mx-auto space-y-20">
           {/* Quick Response Info */}
           <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-6 shadow-xl">
