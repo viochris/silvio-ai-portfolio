@@ -48,6 +48,9 @@ export default function ContactPage() {
   const [currentTime, setCurrentTime] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // REPLACE THIS WITH YOUR ACTUAL FORMSPREE ID FROM https://formspree.io/
+  const FORMSPREE_ID = "YOUR_FORMSPREE_ID";
+
   // Form State
   const [formData, setFormData] = useState({
     name: '',
@@ -91,15 +94,6 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!db) {
-      toast({
-        variant: "destructive",
-        title: "System Initializing",
-        description: "Firebase service is still warming up. Please wait a second and try again.",
-      });
-      return;
-    }
-
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
         variant: "destructive",
@@ -111,7 +105,8 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    try {
+    // 1. Save to Firestore (Backup - Free)
+    if (db) {
       const messagesRef = collection(db, 'contactMessages');
       const payload = {
         name: formData.name.trim(),
@@ -121,33 +116,44 @@ export default function ContactPage() {
         createdAt: serverTimestamp(),
       };
 
-      // We initiate the write and handle the result
-      addDoc(messagesRef, payload)
-        .then(() => {
-          toast({
-            title: "Transmission Success",
-            description: "Your message has been dispatched to the neural database. I'll get back to you soon!",
-          });
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          setIsSubmitting(false);
-        })
-        .catch(async (error) => {
-          const permissionError = new FirestorePermissionError({
-            path: messagesRef.path,
-            operation: 'create',
-            requestResourceData: payload,
-          } satisfies SecurityRuleContext);
-          errorEmitter.emit('permission-error', permissionError);
-          setIsSubmitting(false);
+      addDoc(messagesRef, payload).catch(async (error) => {
+        const permissionError = new FirestorePermissionError({
+          path: messagesRef.path,
+          operation: 'create',
+          requestResourceData: payload,
+        } satisfies SecurityRuleContext);
+        errorEmitter.emit('permission-error', permissionError);
+      });
+    }
+
+    // 2. Send to Formspree (Direct to Email - Free)
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Transmission Success",
+          description: "Your message has been dispatched to my inbox. I'll get back to you soon!",
         });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Formspree response not OK');
+      }
     } catch (err) {
       console.error("Submission error:", err);
-      setIsSubmitting(false);
       toast({
         variant: "destructive",
-        title: "Submission Error",
-        description: "An unexpected error occurred. Please try again later.",
+        title: "Dispatch Error",
+        description: "Failed to send to email. Please check your network or try again.",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
