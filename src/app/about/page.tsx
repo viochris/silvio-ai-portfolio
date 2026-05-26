@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -44,10 +45,76 @@ const educationData = [
 ];
 
 const technicalMilestones = [
-  { year: "2023", event: "Tabular Mastery", desc: "Built predictive models for medical diagnosis on Kaggle." },
-  { year: "2024", event: "NLP Revolution", desc: "Developed ATS scoring engines and semantic search APIs." },
-  { year: "2025", event: "Agentic Shift", desc: "Orchestrating autonomous agents with LangGraph & Genkit." },
-  { year: "2026", event: "Scalable Autonomy", desc: "Deploying multi-agent swarms with robust monitoring and real-time observability." }
+  {
+    year: "2023",
+    title: "WEB & CODING FOUNDATIONS",
+    shortSummary: "Started programming journey with a focus on frontend web development and UI design.",
+    details: [
+      "Began learning programming from scratch in Semester 1",
+      "Explored frontend web development: HTML, CSS, JavaScript",
+      "Developed strong interest in UI/UX design principles and visual aesthetics",
+      "Focused on building clean, responsive, and visually appealing interfaces"
+    ]
+  },
+  {
+    year: "Early 2024",
+    title: "DATA ANALYTICS ENTRY",
+    shortSummary: "Dived into data analytics through SQL and Python data libraries.",
+    details: [
+      "Learned SQL for querying and manipulating relational databases",
+      "Explored Python data stack: Pandas for data wrangling, NumPy for numerical computing",
+      "Studied data cleaning, transformation, and exploratory data analysis (EDA) techniques",
+      "Applied knowledge to small analytical exercises and datasets"
+    ]
+  },
+  {
+    year: "2024",
+    title: "BI TOOLS & VISUALIZATION",
+    shortSummary: "Explored major data analytics and business intelligence tools.",
+    details: [
+      "Practiced data visualization with Tableau and Looker Studio",
+      "Used Microsoft Power BI for dashboard creation and reporting",
+      "Leveraged Microsoft Excel for data analysis, pivot tables, and charting",
+      "Built end-to-end analytical workflows from raw data to visual insight",
+      "Began transitioning interest toward machine learning at the end of this period"
+    ]
+  },
+  {
+    year: "Mid 2024",
+    title: "ML & DL EXPLORATION",
+    shortSummary: "Explored machine learning and deep learning across multiple domains.",
+    details: [
+      "Studied and implemented Machine Learning (ML) and Deep Learning (DL) models",
+      "Explored three major domains: Computer Vision, NLP, and Tabular Data",
+      "Experimented with image and video processing tasks",
+      "Built familiarity with model training pipelines and frameworks (TensorFlow / PyTorch)"
+    ]
+  },
+  {
+    year: "Late 2024 – Early 2025",
+    title: "THEORETICAL DEEPDIVE",
+    shortSummary: "Strengthened fundamentals through deep theoretical study of statistics and ML concepts.",
+    details: [
+      "Studied statistical hypothesis testing: T-Test, Z-Test, ANOVA, and related methods",
+      "Learned evaluation metrics for Regression, Classification, Forecasting, and Clustering",
+      "Explored time-series forecasting models: ARIMA, SARIMA, SARIMAX, and Auto-ARIMA",
+      "Studied how ML models work under the hood: architectures and mechanics",
+      "Learned to use Hugging Face pipelines for loading and applying pretrained models",
+      "Focused entirely on theoretical mastery before moving to applied work"
+    ]
+  },
+  {
+    year: "2025 – Present",
+    title: "HANDS-ON PROJECT BUILDING",
+    shortSummary: "Shifted from theory to real-world projects and applied machine learning.",
+    details: [
+      "Transitioned from theory to active, project-based learning",
+      "Started building real ML/DL projects from data collection to deployment",
+      "Applied knowledge from previous semesters into complete end-to-end pipelines",
+      "Continued expanding skills through practical experimentation and iteration",
+      "Currently in Semester 6, actively developing portfolio-worthy projects"
+    ]
+  }
 ];
 
 const orchestrationNodes = [
@@ -254,6 +321,7 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                 Technical <span className="text-primary">Milestones</span>
               </h2>
+              <p className="text-white/40 text-[10px] font-bold tracking-[0.2em] uppercase">Click cards to explore deep breakdown</p>
            </div>
            
            <div className="relative max-w-5xl mx-auto px-12">
@@ -267,11 +335,41 @@ export default function AboutPage() {
                 <CarouselContent className="-ml-4">
                   {technicalMilestones.map((m, i) => (
                     <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
-                      <div className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 transition-all h-full">
-                        <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.event}</h4>
-                        <p className="text-sm text-white/50 leading-relaxed">{m.desc}</p>
-                      </div>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <div className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl">
+                            <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
+                            <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.title}</h4>
+                            <p className="text-sm text-white/50 leading-relaxed">{m.shortSummary}</p>
+                          </div>
+                        </DialogTrigger>
+                        <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+                          <DialogHeader>
+                            <DialogTitle className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
+                              {m.year}
+                            </DialogTitle>
+                            <DialogDescription className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
+                              {m.title}
+                            </DialogDescription>
+                          </DialogHeader>
+                          
+                          <div className="space-y-6">
+                            <div className="p-8 bg-primary/5 rounded-[2rem] border border-primary/10">
+                              <h6 className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
+                                <Info className="w-4 h-4" /> Detailed Breakdown
+                              </h6>
+                              <ul className="space-y-4">
+                                {m.details.map((detail, idx) => (
+                                  <li key={idx} className="flex items-start gap-3 text-foreground/80 leading-relaxed text-sm font-medium">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
+                                    {detail}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
