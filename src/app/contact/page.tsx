@@ -146,143 +146,115 @@ export default function ContactPage() {
 
   return (
     <div className="w-full max-w-full overflow-x-hidden pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
-      <section id="contact" className="max-w-7xl mx-auto space-y-32">
-        {/* Top Section: Info + Chatbot */}
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
-          <div className="space-y-12 lg:space-y-16 w-full max-w-full">
-            <div className="space-y-6 text-center lg:text-left">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Connect</Badge>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
-                Get In <span className="text-primary">Touch</span>
-              </h2>
-              <p className="text-white/70 text-lg md:text-xl lg:text-2xl leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
-                Interested in collaboration or have a project in mind? Reach out via contact details or chat with my AI assistant.
-              </p>
-            </div>
+      <section id="contact" className="max-w-7xl mx-auto space-y-24">
+        
+        {/* 1. Standalone Header */}
+        <div className="space-y-6 text-center">
+          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Connect</Badge>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
+            Get In <span className="text-primary">Touch</span>
+          </h2>
+          <p className="text-white/70 text-lg md:text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto font-medium">
+            Interested in collaboration or have a project in mind? Reach out via contact details or interact with my autonomous AI assistant.
+          </p>
+        </div>
 
-            <div className="space-y-8 lg:space-y-10 w-full">
-              <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 rounded-3xl w-full">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
-                  <Mail className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
-                </div>
-                <div className="min-w-0 overflow-hidden flex-1">
-                  <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg font-semibold text-white break-all truncate">viochristian12@gmail.com</span>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary"
-                      onClick={() => copyToClipboard('viochristian12@gmail.com', 'email')}
-                    >
-                      {copiedEmail ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    </Button>
-                  </div>
-                </div>
+        {/* 2. Contact Details & Socials Row */}
+        <div className="space-y-12">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Mail className="w-6 h-6 text-primary" />
               </div>
-
-              <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 rounded-3xl w-full">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
-                  <Phone className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
-                </div>
-                <div className="min-w-0 overflow-hidden flex-1">
-                  <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Phone Number</div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg font-semibold text-white truncate">+62 895-3426-37871</span>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary"
-                      onClick={() => copyToClipboard('+62895342637871', 'phone')}
-                    >
-                      {copiedPhone ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 w-full rounded-3xl">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
-                  <MapPin className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
-                </div>
-                <div className="min-w-0 overflow-hidden flex-1">
-                  <div className="text-[10px] sm:text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
-                  <div className="space-y-1">
-                    <div className="text-lg font-semibold text-white break-words">Semarang, Central Java, ID</div>
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-primary/60">
-                        <Clock className="w-3 h-3" /> {currentTime}
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">Local Time (GMT+7)</span>
-                      </div>
-                    </div>
-                  </div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Email</div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-semibold text-white truncate">viochristian12@gmail.com</span>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary"
+                    onClick={() => copyToClipboard('viochristian12@gmail.com', 'email')}
+                  >
+                    {copiedEmail ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  </Button>
                 </div>
               </div>
             </div>
 
-            <div className="pt-12 border-t border-white/10 grid grid-cols-2 gap-4 w-full">
-              <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
-                <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="mr-3 w-5 h-5 text-primary" /> LinkedIn
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
-                <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-3 w-5 h-5 text-primary" /> GitHub
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
-                <a href="https://www.kaggle.com/viochristian" target="_blank" rel="noopener noreferrer">
-                  <KaggleIcon className="mr-3 w-5 h-5 text-primary" /> Kaggle
-                </a>
-              </Button>
-              <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
-                <a href="https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="mr-3 w-5 h-5 text-primary" /> Instagram
-                </a>
-              </Button>
+            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <Phone className="w-6 h-6 text-primary" />
+              </div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Phone</div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-semibold text-white truncate">+62 895-3426-37871</span>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-7 w-7 rounded-lg hover:bg-primary/20 text-primary"
+                    onClick={() => copyToClipboard('+62895342637871', 'phone')}
+                  >
+                    {copiedPhone ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6 group p-4 rounded-3xl glass border-white/10 hover:border-primary/30 transition-all">
+              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
+                <MapPin className="w-6 h-6 text-primary" />
+              </div>
+              <div className="min-w-0 overflow-hidden flex-1">
+                <div className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mb-1">Location</div>
+                <div className="text-sm font-semibold text-white truncate">Semarang, ID <span className="text-primary/60 ml-2">({currentTime})</span></div>
+              </div>
             </div>
           </div>
 
-          <div className="relative mt-16 lg:mt-0 w-full lg:sticky lg:top-40 overflow-hidden">
-            <div className="absolute -inset-10 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-            <div className="relative w-full overflow-hidden rounded-[3rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10">
-               <Chatbot />
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button variant="outline" size="sm" className="rounded-xl px-5 border-white/10 text-white hover:bg-primary/10" asChild>
+              <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer"><Linkedin className="mr-2 w-4 h-4 text-primary" /> LinkedIn</a>
+            </Button>
+            <Button variant="outline" size="sm" className="rounded-xl px-5 border-white/10 text-white hover:bg-primary/10" asChild>
+              <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer"><Github className="mr-2 w-4 h-4 text-primary" /> GitHub</a>
+            </Button>
+            <Button variant="outline" size="sm" className="rounded-xl px-5 border-white/10 text-white hover:bg-primary/10" asChild>
+              <a href="https://www.kaggle.com/viochristian" target="_blank" rel="noopener noreferrer"><KaggleIcon className="mr-2 w-4 h-4 text-primary" /> Kaggle</a>
+            </Button>
+            <Button variant="outline" size="sm" className="rounded-xl px-5 border-white/10 text-white hover:bg-primary/10" asChild>
+              <a href="https://www.instagram.com/silvio.codes?igsh=eTgxcGMybjNiYTlj" target="_blank" rel="noopener noreferrer"><Instagram className="mr-2 w-4 h-4 text-primary" /> Instagram</a>
+            </Button>
           </div>
         </div>
 
-        {/* Bottom Section: Vertical Stack of Form, Quick Response, and FAQ */}
-        <div className="max-w-4xl mx-auto space-y-24">
-          {/* 1. Message Form */}
-          <div className="p-8 md:p-12 glass rounded-[3rem] border-primary/10 relative overflow-hidden space-y-10 group">
+        {/* 3. Interaction Grid (Form & Chatbot at Equal Height) */}
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+          
+          {/* Column Left: Manual Message Form */}
+          <div className="p-8 md:p-10 glass rounded-[3rem] border-primary/10 relative overflow-hidden flex flex-col h-full group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
-            <div className="space-y-4">
+            <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3">
                 <MessageSquare className="text-primary w-6 h-6" />
-                <h3 className="text-2xl font-headline font-bold text-white uppercase tracking-widest">Send a Message</h3>
+                <h3 className="text-2xl font-headline font-bold text-white uppercase tracking-widest">Manual Inquiry</h3>
               </div>
-              <p className="text-white/50 text-sm font-medium">Use this form for formal inquiries or technical consultation.</p>
+              <p className="text-white/50 text-sm font-medium">Send a structured message directly to my primary inbox.</p>
             </div>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
-                <div className="grid sm:grid-cols-2 gap-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 flex-1 flex flex-col">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Name</FormLabel>
+                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                          <Input placeholder="John Doe" {...field} className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary text-white" />
                         </FormControl>
                         <FormMessage className="text-xs text-red-400" />
                       </FormItem>
@@ -293,9 +265,9 @@ export default function ContactPage() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Email Address</FormLabel>
+                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                          <Input type="email" placeholder="john@example.com" {...field} className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary text-white" />
                         </FormControl>
                         <FormMessage className="text-xs text-red-400" />
                       </FormItem>
@@ -309,7 +281,7 @@ export default function ContactPage() {
                     <FormItem>
                       <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Subject</FormLabel>
                       <FormControl>
-                        <Input placeholder="Project Inquiry" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                        <Input placeholder="Project Inquiry" {...field} className="h-12 bg-white/5 border-white/10 rounded-xl focus:ring-primary text-white" />
                       </FormControl>
                       <FormMessage className="text-xs text-red-400" />
                     </FormItem>
@@ -319,12 +291,12 @@ export default function ContactPage() {
                   control={form.control}
                   name="message"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Message</FormLabel>
-                      <FormControl>
+                    <FormItem className="flex-1 flex flex-col">
+                      <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Message</FormLabel>
+                      <FormControl className="flex-1">
                         <Textarea 
-                          placeholder="How can I help you?" 
-                          className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" 
+                          placeholder="Tell me about your project..." 
+                          className="min-h-[180px] h-full bg-white/5 border-white/10 rounded-xl focus:ring-primary text-white p-5" 
                           {...field}
                         />
                       </FormControl>
@@ -336,19 +308,30 @@ export default function ContactPage() {
                   type="submit" 
                   size="lg" 
                   disabled={isSubmitting}
-                  className="w-full h-16 rounded-2xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 group"
+                  className="w-full h-14 rounded-xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20"
                 >
                   {isSubmitting ? (
                     <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Dispatching...</>
                   ) : (
-                    <>Dispatch Message <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                    <>Dispatch Message <Send className="ml-2 w-4 h-4" /></>
                   )}
                 </Button>
               </form>
             </Form>
           </div>
 
-          {/* 2. Quick Response Info Box */}
+          {/* Column Right: AI Assistant Chatbot */}
+          <div className="relative flex flex-col h-full">
+            <div className="absolute -inset-10 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="relative w-full h-full flex flex-col overflow-hidden rounded-[3rem] shadow-2xl border border-white/10">
+               <Chatbot />
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Bottom Stack: Quick Response & FAQ */}
+        <div className="max-w-4xl mx-auto space-y-20">
+          {/* Quick Response Info */}
           <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-6 shadow-xl">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
               <Clock className="text-primary w-6 h-6" />
@@ -359,20 +342,20 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* 3. Technical FAQ */}
+          {/* FAQ Section */}
           <div className="space-y-12">
-            <div className="space-y-6 text-center">
+            <div className="space-y-4 text-center">
               <div className="flex items-center justify-center gap-3">
                 <HelpCircle className="text-primary w-8 h-8" />
                 <h3 className="text-3xl font-headline font-black text-white uppercase tracking-widest">Technical FAQ</h3>
               </div>
-              <p className="text-white/60 font-medium leading-relaxed max-w-2xl mx-auto">Frequently asked questions about my workflow, availability, and technical expertise.</p>
+              <p className="text-white/60 font-medium">Frequently asked questions about my workflow and availability.</p>
             </div>
 
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-none">
-                  <AccordionTrigger className="flex p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all text-left font-bold text-white hover:no-underline group [&[data-state=open]]:bg-primary/5 [&[data-state=open]]:border-primary/50">
+                  <AccordionTrigger className="flex p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all text-left font-bold text-white hover:no-underline group [&[data-state=open]]:bg-primary/5">
                     <span className="text-base md:text-lg pr-4">{faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="p-6 text-white/60 text-sm md:text-base leading-relaxed font-medium bg-white/[0.02] rounded-b-2xl -mt-4 border-x border-b border-white/5">
