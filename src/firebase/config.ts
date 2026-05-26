@@ -1,9 +1,9 @@
 
 export const firebaseConfig = {
-  apiKey: "PLACEHOLDER",
-  authDomain: "PLACEHOLDER",
-  projectId: "PLACEHOLDER",
-  storageBucket: "PLACEHOLDER",
-  messagingSenderId: "PLACEHOLDER",
-  appId: "PLACEHOLDER"
+  apiKey: "AIzaSyC-placeholder-key",
+  authDomain: "silvio-ai-portfolio.firebaseapp.com",
+  projectId: "silvio-ai-portfolio",
+  storageBucket: "silvio-ai-portfolio.firebasestorage.app",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:placeholder-id"
 };
