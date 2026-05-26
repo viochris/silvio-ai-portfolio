@@ -149,7 +149,7 @@ export default function AboutPage() {
 
         const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
         const pushEvent = eventsData.find((e: any) => e.type === 'PushEvent');
-        const lastCommit = pushEvent?.payload?.commits?.[0]?.message || 'Stable Architecture';
+        const lastCommit = pushEvent?.payload?.commits?.[0]?.message || 'Active Development';
 
         setGhStats({
           repos: userData.public_repos || 0,
@@ -195,7 +195,7 @@ export default function AboutPage() {
               </div>
               <div className="flex-1">
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-1">Status</div>
-                <div className="text-sm font-bold text-white uppercase tracking-widest">Open for Freelance & Collaborations</div>
+                <div className="text-sm font-bold text-white uppercase tracking-widest">Open for Job, Freelance & Collaborators</div>
               </div>
             </div>
 
