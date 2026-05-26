@@ -2,7 +2,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare, Loader2 } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare, Loader2, CheckCircle2 } from 'lucide-react';
 import { Chatbot } from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +19,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const faqs = [
   {
@@ -36,22 +54,31 @@ const faqs = [
   }
 ];
 
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z.string().optional(),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
 export default function ContactPage() {
   const { toast } = useToast();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
-  // Formspree Endpoint ID
   const FORMSPREE_ID = "mnjrggbv";
 
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
   });
 
   useEffect(() => {
@@ -88,20 +115,8 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      toast({
-        variant: "destructive",
-        title: "Incomplete Form",
-        description: "Please provide at least your name, email, and a message.",
-      });
-      return;
-    }
-
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-
     try {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
@@ -109,21 +124,16 @@ export default function ContactPage() {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(values)
       });
 
       if (response.ok) {
-        toast({
-          title: "Message Dispatched",
-          description: "Your inquiry has been sent to my inbox successfully!",
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setShowSuccessDialog(true);
+        form.reset();
       } else {
-        const errData = await response.json();
-        throw new Error(errData.error || 'Formspree error');
+        throw new Error('Submission failed');
       }
-    } catch (err: any) {
-      console.error("Submission error:", err);
+    } catch (err) {
       toast({
         variant: "destructive",
         title: "Dispatch Failed",
@@ -132,12 +142,11 @@ export default function ContactPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }
 
   return (
     <div className="w-full max-w-full overflow-x-hidden pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="contact" className="max-w-7xl mx-auto space-y-32">
-        {/* Top Section: Info + Chatbot */}
         <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
           <div className="space-y-12 lg:space-y-16 w-full max-w-full">
             <div className="space-y-6 text-center lg:text-left">
@@ -151,7 +160,6 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-8 lg:space-y-10 w-full">
-              {/* Email Contact Item */}
               <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 rounded-3xl w-full">
                 <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
                   <Mail className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
@@ -172,7 +180,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Phone Contact Item */}
               <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 rounded-3xl w-full">
                 <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
                   <Phone className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
@@ -193,7 +200,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Location Contact Item */}
               <div className="flex items-center gap-6 sm:gap-8 group p-2 -ml-2 w-full rounded-3xl">
                 <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] bg-white/5 flex items-center justify-center text-white border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300 shadow-2xl">
                   <MapPin className="w-7 h-7 lg:w-8 lg:h-8 text-primary" />
@@ -219,7 +225,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="pt-12 border-t border-white/10 grid grid-cols-2 gap-4 w-full">
               <Button variant="outline" size="lg" className="rounded-2xl px-6 h-14 font-headline font-bold text-sm hover:bg-white/5 border-white/10 text-white transition-all w-full" asChild>
                 <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
@@ -244,7 +249,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Side: Chatbot */}
           <div className="relative mt-16 lg:mt-0 w-full lg:sticky lg:top-40 overflow-hidden">
             <div className="absolute -inset-10 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="relative w-full overflow-hidden rounded-[3rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10">
@@ -253,9 +257,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Bottom Section: Contact Form + FAQ */}
         <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-start">
-          {/* Contact Form */}
           <div className="p-8 md:p-12 glass rounded-[3rem] border-primary/10 relative overflow-hidden space-y-10 group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
@@ -267,65 +269,82 @@ export default function ContactPage() {
               <p className="text-white/50 text-sm font-medium">Use this form for formal inquiries or technical consultation.</p>
             </div>
 
-            <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Name</label>
-                  <Input 
-                    placeholder="John Doe" 
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
-                    required
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="John Doe" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                        </FormControl>
+                        <FormMessage className="text-xs text-red-400" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Email Address</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="john@example.com" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                        </FormControl>
+                        <FormMessage className="text-xs text-red-400" />
+                      </FormItem>
+                    )}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Email Address</label>
-                  <Input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
-                    required
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Subject</label>
-                <Input 
-                  placeholder="Project Inquiry" 
-                  value={formData.subject}
-                  onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-                  className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" 
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Subject</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Project Inquiry" {...field} className="h-14 bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white" />
+                      </FormControl>
+                      <FormMessage className="text-xs text-red-400" />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Message</label>
-                <Textarea 
-                  placeholder="How can I help you?" 
-                  value={formData.message}
-                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                  className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" 
-                  required
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] ml-1">Your Message</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="How can I help you?" 
+                          className="min-h-[150px] bg-white/5 border-white/10 rounded-2xl focus:ring-primary text-white p-6" 
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs text-red-400" />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <Button 
-                type="submit" 
-                size="lg" 
-                disabled={isSubmitting}
-                className="w-full h-16 rounded-2xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 group"
-              >
-                {isSubmitting ? (
-                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Dispatching...</>
-                ) : (
-                  <>Dispatch Message <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
-                )}
-              </Button>
-            </form>
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  disabled={isSubmitting}
+                  className="w-full h-16 rounded-2xl font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/20 group"
+                >
+                  {isSubmitting ? (
+                    <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Dispatching...</>
+                  ) : (
+                    <>Dispatch Message <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                  )}
+                </Button>
+              </form>
+            </Form>
           </div>
 
-          {/* FAQ Accordion */}
           <div className="space-y-12">
             <div className="space-y-6">
               <div className="flex items-center gap-3">
@@ -348,7 +367,6 @@ export default function ContactPage() {
               ))}
             </Accordion>
 
-            {/* Final Contact Note */}
             <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                 <Clock className="text-primary w-5 h-5" />
@@ -361,6 +379,29 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Success Dialog */}
+      <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-md p-10 text-center">
+          <DialogHeader>
+            <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+              <CheckCircle2 className="w-10 h-10 text-primary" />
+            </div>
+            <DialogTitle className="text-2xl font-headline font-black uppercase tracking-tighter text-white mb-2">Message Dispatched!</DialogTitle>
+            <DialogDescription className="text-white/70 text-base font-medium">
+              Your inquiry has been sent to Silvio's inbox successfully. Expect a response within 24-48 business hours.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-8">
+            <Button 
+              onClick={() => setShowSuccessDialog(false)}
+              className="w-full h-14 rounded-2xl font-headline font-bold uppercase tracking-widest"
+            >
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
