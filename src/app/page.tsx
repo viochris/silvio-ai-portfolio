@@ -448,10 +448,10 @@ export default function Home() {
 
           <div className="mb-40 space-y-16">
             <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
-              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
-                HOW <span className="text-primary">I WORK</span>
-              </h2>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">HOW</span>
+                <span className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-primary">I WORK</span>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch auto-rows-fr">
@@ -483,7 +483,7 @@ export default function Home() {
               ].map((w, i) => (
                 <div key={i} className="p-10 bg-black rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden h-full flex flex-col shadow-2xl">
                   {/* Background Number Layer */}
-                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.08] group-hover:scale-125 group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.4)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
+                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.08] group-hover:scale-125 group-hover:drop-shadow-[0_0_25px_rgba(6,182,212,0.6)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
                     {w.step}
                   </div>
                   
