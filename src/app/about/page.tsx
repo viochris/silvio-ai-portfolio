@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -338,10 +339,12 @@ export default function AboutPage() {
                         className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl w-full"
                       >
                         <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest min-h-[3.5rem] flex items-center justify-center">
+                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest min-h-[4rem] flex items-center justify-center">
                           {m.title}
                         </h4>
-                        <p className="text-sm text-white/50 leading-relaxed flex-1">{m.shortSummary}</p>
+                        <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[5rem] flex items-center justify-center">
+                          {m.shortSummary}
+                        </p>
                       </div>
                     </CarouselItem>
                   ))}
@@ -437,10 +440,10 @@ export default function AboutPage() {
                       <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shrink-0">
                         {item.icon}
                       </div>
-                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[3.5rem] flex items-center justify-center">
+                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[4rem] flex items-center justify-center">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[4rem]">
+                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[5rem] flex items-center justify-center">
                         {item.desc}
                       </p>
                     </div>
