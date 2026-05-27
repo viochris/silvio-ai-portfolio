@@ -21,7 +21,7 @@ const featuredProjects = [
     title: "InsightSQL — LangGraph Engine", 
     type: "GenAI / Graph Agent",
     impact: "State-of-the-Art",
-    desc: "The next evolution of database interaction. This LangGraph-powered engine uses cyclic reasoning to autonomously query, validate, and self-correct SQL operations with complete 'Glass Box' transparency.",
+    desc: "The next evolution of database interaction using cyclic reasoning to autonomously query, validate, and self-correct SQL operations.",
     tech: "LangGraph • Gemini 2.5 Flash",
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web"
   },
@@ -29,7 +29,7 @@ const featuredProjects = [
     title: "DocuTalk-AI — Smart RAG", 
     type: "GenAI / Document Intelligence",
     impact: "High Precision",
-    desc: "A premier RAG assistant that thinks before it acts. Powered by ReAct agents, it intelligently chooses between FAISS-indexed document retrieval or real-time web search for maximum accuracy.",
+    desc: "A premier RAG assistant using ReAct agents to intelligently choose between vector retrieval or real-time web search.",
     tech: "LangChain • FAISS • Gemini",
     link: "https://github.com/viochris/DocuTalk-AI"
   },
@@ -37,9 +37,65 @@ const featuredProjects = [
     title: "NovaCal AI — Stateful Assistant", 
     type: "GenAI / Automation",
     impact: "Stateful Design",
-    desc: "Redefining conversational scheduling. This Telegram bot utilizes a unique SQL-backed memory architecture to maintain deep context across multi-turn dialogues for seamless Google Calendar management.",
+    desc: "Redefining conversational scheduling with an SQL-backed memory architecture to maintain deep context across multi-turn dialogues.",
     tech: "LangChain • SQL Memory • Gemini",
     link: "https://github.com/viochris/telegram-calendar-ai-bot"
+  },
+  { 
+    title: "SpendSense — Financial AI", 
+    type: "Data Science / Vision",
+    impact: "Utility Pro",
+    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries for smart money management.",
+    tech: "Streamlit • Vision • Gemini",
+    link: "https://github.com/viochris/Streamlit-SpendSense"
+  },
+  { 
+    title: "Resume Scanner API", 
+    type: "Backend / NLP",
+    impact: "Research Oriented",
+    desc: "Dual-Engine ATS API using TF-IDF and SBERT embeddings for high-precision resume-job description matching.",
+    tech: "FastAPI • SBERT • Docker",
+    link: "https://github.com/viochris/resume-scanner-api"
+  },
+  { 
+    title: "Insightify API — Sentiment", 
+    type: "NLP / Analytics",
+    impact: "Dual-Lingual",
+    desc: "High-performance sentiment analytics API supporting both English and Indonesian using RoBERTa transformer models.",
+    tech: "FastAPI • RoBERTa • Transformers",
+    link: "https://github.com/viochris/Insightify-Sentiment-API"
+  },
+  { 
+    title: "Daily Agenda Broadcaster", 
+    type: "Automation / Workflow",
+    impact: "Efficiency Pro",
+    desc: "Automated workflow that fetches upcoming GCalendar events and dispatches structured daily briefings to Telegram.",
+    tech: "Python • GCalendar • Telegram",
+    link: "https://github.com/viochris/auto-daily-scheduler.git"
+  },
+  { 
+    title: "NovaMail AI — Autoresponder", 
+    type: "Automation / LLMOps",
+    impact: "Autonomous Inbox",
+    desc: "An intelligent inbox assistant that autonomously parses incoming emails and generates professional AI replies.",
+    tech: "Gmail API • Gemini • Python",
+    link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git"
+  },
+  { 
+    title: "Stuntify API — MLOps", 
+    type: "Backend / MLOps",
+    impact: "Production Ready",
+    desc: "Robust inference system for real-time stunting risk prediction based on rigorous health analytics research.",
+    tech: "FastAPI • Scikit-Learn • Docker",
+    link: "https://github.com/viochris/Stuntify-API"
+  },
+  { 
+    title: "InsightData — AI Analyst", 
+    type: "GenAI / Analytics",
+    impact: "Automation Pro",
+    desc: "Automated Data Scientist that analyzes CSV/Excel files and auto-generates deep visualizations and insights.",
+    tech: "Pandas Agent • Gemini • Python",
+    link: "https://github.com/viochris/insight-data-ai-analyst"
   }
 ];
 
@@ -109,7 +165,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <span className="text-white font-bold">Agentic Workflows</span>, <span className="text-white font-bold">NLP Pipelines</span>, and <span className="text-white font-bold">Applied Machine Learning</span>.
+                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, and <strong>Applied Machine Learning</strong>.
                 </p>
               </div>
 
@@ -229,7 +285,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the <span className="text-white font-bold">"vibe"</span>—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
+                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the <strong>"vibe"</strong>—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
                      </p>
                   </div>
                </div>
@@ -278,7 +334,7 @@ export default function Home() {
                 >
                   <CarouselContent className="-ml-4">
                     {featuredProjects.map((p, i) => (
-                      <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                      <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                         <a 
                           href={p.link} 
                           target="_blank" 
@@ -293,16 +349,16 @@ export default function Home() {
                                 </Badge>
                              </div>
                              
-                             <div>
+                             <div className="flex flex-col flex-1">
                                 <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4 min-h-[1.5rem]">{p.type}</div>
-                                <div className="min-h-[6rem] flex items-start">
+                                <div className="min-h-[5.5rem] flex items-start">
                                   <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">{p.title}</h3>
                                 </div>
-                                <div className="min-h-[5rem]">
+                                <div className="min-h-[5rem] flex-1">
                                   <p className="text-sm text-white/60 leading-relaxed mb-8 line-clamp-3">{p.desc}</p>
                                 </div>
                              </div>
-                             <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                             <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
                                 <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{p.tech}</span>
                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary transition-all duration-300">
                                    <ExternalLink className="w-4 h-4 text-white" />
