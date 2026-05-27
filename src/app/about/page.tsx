@@ -587,7 +587,7 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
                 Beyond The <span className="text-primary">Code</span>
               </h2>
-              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
+              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed font-body">
                 <p>
                   Outside of my regular coursework, I spend my time exploring the practical side of AI. I'm a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
                 </p>
