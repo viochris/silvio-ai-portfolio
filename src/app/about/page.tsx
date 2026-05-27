@@ -255,10 +255,10 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My passion lies at the intersection of data and intelligence, specializing in building state-of-the-art systems—from high-precision NLP pipelines and RAG applications to autonomous AI agents and automated workflows.
+              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My passion lies at the intersection of data and intelligence, specializing in building state-of-the-art systems—from high-precision <span className="text-white font-bold">NLP pipelines</span> and <span className="text-white font-bold">RAG applications</span> to <span className="text-white font-bold">autonomous AI agents</span> and <span className="text-white font-bold">automated workflows</span>.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I don't just build models; I architect reasoning systems that solve complex problems. Whether it's analyzing tabular data for medical insights or mashing up LangGraph with Gemini to create autonomous agents, my goal is to transform raw information into production-ready intelligence.
+              I don't just build models; I architect reasoning systems that solve complex problems. Whether it's analyzing tabular data for medical insights or mashing up <span className="text-white font-bold">LangGraph with Gemini</span> to create autonomous agents, my goal is to transform raw information into production-ready intelligence.
             </p>
 
             {/* Availability Status Card */}

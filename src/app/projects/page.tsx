@@ -32,7 +32,7 @@ const featuredProjects = [
     link: "https://github.com/viochris/DocuTalk-AI",
     problem: "Standard RAG systems often suffer from hallucinations when answers aren't in the provided documents or are outdated.",
     solution: "Built a ReAct agent that autonomously decides whether to retrieve from internal documents or search the web, ensuring the most accurate response.",
-    image: "/resume_scanner_api.png" // Using existing image for context
+    image: "/resume_scanner_api.png"
   },
   { 
     id: 3, 
@@ -43,7 +43,7 @@ const featuredProjects = [
     link: "https://github.com/viochris/telegram-calendar-ai-bot",
     problem: "Most conversational bots are stateless or have very short memory spans, making complex multi-turn scheduling difficult.",
     solution: "Architected a persistent SQL-backed memory system that maintains context across long sessions, enabling full CRUD calendar management through natural language.",
-    image: "/streamlit_spendsense.png" // Using existing image for context
+    image: "/streamlit_spendsense.png"
   }
 ];
 

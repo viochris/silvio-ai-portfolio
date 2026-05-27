@@ -109,7 +109,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in **Agentic Workflows**, **NLP Pipelines**, and **Applied Machine Learning**.
+                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <span className="text-white font-bold">Agentic Workflows</span>, <span className="text-white font-bold">NLP Pipelines</span>, and <span className="text-white font-bold">Applied Machine Learning</span>.
                 </p>
               </div>
 
@@ -229,13 +229,13 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the **"vibe"**—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
+                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the <span className="text-white font-bold">"vibe"</span>—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
                      </p>
                   </div>
                </div>
             </div>
 
-            {/* Link to Interests in About Page - MOVED TO BOTTOM */}
+            {/* Link to Interests in About Page */}
             <div className="flex justify-center pt-8">
               <Link href="/about#interests">
                 <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
