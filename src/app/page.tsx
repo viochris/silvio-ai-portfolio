@@ -260,7 +260,6 @@ export default function Home() {
                 </h2>
              </div>
              
-             {/* Infinite Marquee Carousel */}
              <div className="w-full relative">
                 <Carousel
                   opts={{
@@ -296,7 +295,6 @@ export default function Home() {
                         </div>
                       </CarouselItem>
                     ))}
-                    {/* Duplicate for seamless looping if needed by embla, though loop: true handles it */}
                   </CarouselContent>
                 </Carousel>
              </div>
@@ -314,13 +312,13 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Bridging human language and machine understanding through high-precision NLP pipelines and semantic intelligence.",
+                  desc: "Bridging human language and machine understanding through high-precision NLP pipelines. Designing comprehensive systems for context extraction, dynamic summarization, and deep sentiment analysis to transform unstructured text into actionable semantic intelligence.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Building robust predictive systems from structured data through rigorous feature engineering and cross-validation.",
+                  desc: "Building robust predictive systems from complex structured data using both traditional algorithms and neural networks. Focused on rigorous feature engineering, deep model validation, and Explainable AI (XAI) techniques to ensure transparent decision-making.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },
@@ -347,7 +345,7 @@ export default function Home() {
                   <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[5.5rem] flex items-start">
                     {skill.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1 min-h-[6rem]">
+                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1">
                     {skill.desc}
                   </p>
                 </div>
@@ -368,7 +366,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        Vibe Coding is the art of intent-driven development. I leverage this philosophy to build products outside my primary expertise—such as Computer Vision, Web, and Mobile development—while significantly accelerating repetitive workflows through a seamless synergy between human intuition and AI execution.
+                        Vibe Coding is the art of intent-driven development. I leverage this philosophy to build products outside my primary expertise—such as Computer Vision, Web, and Mobile development—while significantly accelerating repetitive workflows through a synergy between human intuition and AI execution.
                      </p>
                   </div>
                </div>
@@ -454,7 +452,7 @@ export default function Home() {
               </h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch auto-rows-fr">
               {[
                 { 
                   step: "01", 
@@ -487,11 +485,11 @@ export default function Home() {
                   </div>
                   
                   <div className="flex items-center gap-3 mb-10 relative z-10">
-                    <div className="text-primary">{w.icon}</div>
+                    <div className="text-primary shrink-0">{w.icon}</div>
                     <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
                   </div>
                   
-                  <h3 className="text-3xl font-headline font-black text-white mb-6 leading-tight relative z-10">{w.title}</h3>
+                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white mb-6 leading-tight relative z-10">{w.title}</h3>
                   <p className="text-sm text-white/50 leading-relaxed font-medium flex-1 relative z-10">{w.desc}</p>
                 </div>
               ))}
