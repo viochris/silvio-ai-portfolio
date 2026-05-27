@@ -22,7 +22,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, LabelList } from "recharts";
 
 const commitData = [
   { hour: '0', commits: 80 }, { hour: '1', commits: 65 }, { hour: '2', commits: 30 }, { hour: '3', commits: 5 },
@@ -597,14 +597,21 @@ export default function AboutPage() {
             <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
             <div className="h-[400px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={commitData}>
+                <BarChart data={commitData} margin={{ top: 30 }}>
                   <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
                   <YAxis hide />
                   <Tooltip 
                     cursor={{fill: 'rgba(255,255,255,0.05)'}}
                     contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
                   />
-                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]}>
+                    <LabelList 
+                      dataKey="commits" 
+                      position="top" 
+                      style={{ fill: 'hsl(var(--primary))', fontSize: '12px', fontWeight: 'bold' }} 
+                      offset={10} 
+                    />
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
               <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
