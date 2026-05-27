@@ -113,11 +113,9 @@ export default function Home() {
     <div className="pt-12 lg:pt-16 min-h-screen">
       <section id="home" className="pb-20">
         
-        {/* Main Hero Container */}
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-12 lg:pb-20">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
             
-            {/* LEFT COLUMN: Avatar */}
             <div className="w-full lg:w-1/2 flex justify-center items-center relative lg:pr-4 lg:pl-8">
               <div className="relative group shrink-0">
                 <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
@@ -147,7 +145,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Text */}
             <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-6">
               <div className="space-y-4 w-full">
                 <div className="space-y-4">
@@ -190,7 +187,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Stats Bar Section */}
         <div className="w-full border-y border-white/10 bg-white/[0.02] py-12 mb-20 relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-around items-center gap-12 md:gap-0">
             <div className="flex flex-col items-center text-center">
@@ -211,7 +207,6 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: Infrastructure Pulse */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
@@ -244,7 +239,6 @@ export default function Home() {
              </div>
           </div>
 
-          {/* Row 3: Expertise Section */}
           <div className="space-y-16 mb-40">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
@@ -257,19 +251,19 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Bridging the gap between human language and machine understanding through modern NLP pipelines tailored to specific needs.",
+                  desc: "Bridging human language and machine understanding through high-precision NLP pipelines and semantic intelligence.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Building robust predictive models across diverse domains through rigorous feature engineering and cross-validation.",
+                  desc: "Building robust predictive systems from structured data through rigorous feature engineering and cross-validation.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Designing advanced reasoning systems and multi-agent frameworks using Google SDK, CrewAI, and LangChain for autonomous problem solving.",
+                  desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving and complex orchestration.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "REASONING AGENTS"
                 },
@@ -297,7 +291,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Special Vibe Coding Focus */}
             <div className="w-full p-10 md:p-16 glass rounded-[3rem] border border-primary/20 relative overflow-hidden group hover:bg-primary/5 transition-all duration-700">
                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-32 -mt-32 group-hover:bg-primary/20 transition-all" />
                <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
@@ -319,7 +312,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Featured Projects Showcase */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
@@ -363,7 +355,6 @@ export default function Home() {
                              <div className="flex flex-col flex-1">
                                 <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-3 min-h-[1.5rem]">{p.type}</div>
                                 
-                                {/* Impact Badge */}
                                 <div className="mb-4">
                                    <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
                                      {p.impact}
@@ -392,7 +383,6 @@ export default function Home() {
              </div>
           </div>
 
-          {/* Row 5: How I Work (Workflow) */}
           <div className="mb-40 space-y-16">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
@@ -429,18 +419,15 @@ export default function Home() {
                 }
               ].map((w, i) => (
                 <div key={i} className="p-10 bg-white/[0.03] rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all group relative overflow-hidden h-full flex flex-col shadow-2xl">
-                  {/* Large background number */}
                   <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.05] leading-none -mr-8 -mt-4 transition-colors select-none pointer-events-none">
                     {w.step}
                   </div>
                   
-                  {/* Step label row */}
                   <div className="flex items-center gap-3 mb-10 relative z-10">
                     <div className="text-primary">{w.icon}</div>
                     <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
                   </div>
                   
-                  {/* Content */}
                   <h3 className="text-3xl font-headline font-black text-white mb-6 leading-tight relative z-10">{w.title}</h3>
                   <p className="text-sm text-white/50 leading-relaxed font-medium flex-1 relative z-10">{w.desc}</p>
                 </div>
@@ -448,7 +435,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Row 6: CTA Section */}
           <div className="mb-20">
              <div className="w-full p-12 md:p-20 rounded-[3rem] bg-primary flex flex-col items-center text-center space-y-8 shadow-[0_0_50px_rgba(6,182,212,0.3)]">
                 <h2 className="text-4xl md:text-6xl font-headline font-black text-white uppercase tracking-tighter max-w-3xl">

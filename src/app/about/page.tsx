@@ -151,7 +151,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving.",
-    details: "Designing advanced reasoning systems and multi-agent frameworks. Leverages a diverse stack including Google SDK, CrewAI, LangChain, and LangGraph for autonomous problem solving and tool calling.",
+    details: "Designing advanced reasoning systems and multi-agent frameworks. Leverages a diverse stack including modern LLM frameworks and agentic architectures for autonomous problem solving and tool calling.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -302,7 +302,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Technical Milestones Section */}
         <div className="mb-32 space-y-16">
            <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
@@ -400,7 +399,6 @@ export default function AboutPage() {
            </Dialog>
         </div>
 
-        {/* Professional Interests Section */}
         <div id="interests" className="mb-32 scroll-mt-32">
           <div className="text-center space-y-4 mb-16">
             <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
@@ -517,7 +515,6 @@ export default function AboutPage() {
           </Dialog>
         </div>
 
-        {/* GitHub Metrics Section */}
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
@@ -557,7 +554,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Commits Chart Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
@@ -578,7 +574,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Beyond the Code Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-primary/20 bg-primary/5 shadow-2xl relative overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
@@ -615,7 +610,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Collaborate Section */}
         <div className="text-center space-y-12">
           <div className="space-y-4">
             <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Collaborate</h3>
