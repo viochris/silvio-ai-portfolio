@@ -101,7 +101,13 @@ const nextRadar = [
   { name: "LiteLLM", url: "https://img.shields.io/badge/LiteLLM-1A9E38?style=for-the-badge" },
   { name: "Langfuse", url: "https://img.shields.io/badge/Langfuse-000000?style=for-the-badge" },
   { name: "Phoenix Arize", url: "https://img.shields.io/badge/Phoenix%20Arize-E15E28?style=for-the-badge" },
-  { name: "FastMCP", url: "https://img.shields.io/badge/FastMCP-009688?style=for-the-badge&logo=fastapi&logoColor=white" }
+  { name: "FastMCP", url: "https://img.shields.io/badge/FastMCP-009688?style=for-the-badge&logo=fastapi&logoColor=white" },
+  { name: "Google ADK", url: "https://img.shields.io/badge/Google_ADK-4285F4?style=for-the-badge&logo=google&logoColor=white" },
+  { name: "PyTorch", url: "https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" },
+  { name: "BeautifulSoup / BS4", url: "https://img.shields.io/badge/BS4-000000?style=for-the-badge&logo=python&logoColor=white" },
+  { name: "Scrapy", url: "https://img.shields.io/badge/Scrapy-60A817?style=for-the-badge&logo=scrapy&logoColor=white" },
+  { name: "Selenium", url: "https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" },
+  { name: "Playwright", url: "https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" }
 ];
 
 export default function SkillsPage() {
@@ -232,16 +238,12 @@ export default function SkillsPage() {
                      <Rocket className="text-primary w-10 h-10" />
                   </div>
                   <h3 className="text-center text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white leading-tight">
-                    Currently Exploring
-                    <br className="block lg:hidden" />
-                    <span className="lg:mx-4"> & </span>
-                    <br className="block md:hidden" />
-                    Next on My Radar
+                    Currently Exploring & Next on My Radar
                   </h3>
                 </div>
 
              </div>
-             <p className="text-white/50 font-medium max-w-xl mx-auto">Technologies I am actively learning and integrating into upcoming projects.</p>
+             <p className="text-white/50 font-medium max-w-xl mx-auto">Foundations established. Currently targeting these technologies for advanced project integration.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto p-10 rounded-[3rem] bg-white/5 border border-white/10">
