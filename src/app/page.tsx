@@ -259,11 +259,13 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                     {skill.icon}
                   </div>
-                  <Badge className="bg-primary/10 text-primary border-none mb-6 uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[3.5rem] flex items-start">
+                  <div className="min-h-[1.5rem] mb-6">
+                    <Badge className="bg-primary/10 text-primary border-none uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[5.5rem] flex items-start">
                     {skill.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1">
+                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1 min-h-[6rem]">
                     {skill.desc}
                   </p>
                 </div>
@@ -354,7 +356,7 @@ export default function Home() {
                                 <div className="min-h-[5.5rem] flex items-start">
                                   <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">{p.title}</h3>
                                 </div>
-                                <div className="min-h-[5rem] flex-1">
+                                <div className="min-h-[6.5rem] flex-1">
                                   <p className="text-sm text-white/60 leading-relaxed mb-8 line-clamp-3">{p.desc}</p>
                                 </div>
                              </div>
