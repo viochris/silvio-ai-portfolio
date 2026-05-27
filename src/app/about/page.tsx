@@ -69,7 +69,7 @@ const technicalMilestones = [
   {
     year: "Early 2024",
     title: "DATA ANALYTICS ENTRY",
-    shortSummary: "Dived into data analytics through SQL and Python data libraries.",
+    shortSummary: "Dived into data analytics through SQL and Python data libraries like Pandas and NumPy.",
     details: [
       "Learned SQL for querying and manipulating relational databases",
       "Explored Python data stack: Pandas for data wrangling, NumPy for numerical computing",
@@ -80,7 +80,7 @@ const technicalMilestones = [
   {
     year: "2024",
     title: "BI TOOLS & VISUALIZATION",
-    shortSummary: "Explored major data analytics and business intelligence tools.",
+    shortSummary: "Explored major data analytics and business intelligence tools for visual storytelling.",
     details: [
       "Practiced data visualization with Tableau and Looker Studio",
       "Used Microsoft Power BI for dashboard creation and reporting",
@@ -91,7 +91,7 @@ const technicalMilestones = [
   {
     year: "Mid 2024",
     title: "ML & DL EXPLORATION",
-    shortSummary: "Explored machine learning and deep learning across multiple domains.",
+    shortSummary: "Explored machine learning and deep learning across computer vision and NLP domains.",
     details: [
       "Studied and implemented Machine Learning (ML) and Deep Learning (DL) models",
       "Explored three major domains: Computer Vision, NLP, and Tabular Data",
@@ -114,7 +114,7 @@ const technicalMilestones = [
   {
     year: "2025 – Present",
     title: "PROJECT & AGENTIC ERA",
-    shortSummary: "Building end-to-end ML, autonomous AI Agents, and mastering Vibe Coding.",
+    shortSummary: "Building end-to-end ML, autonomous AI Agents, and mastering Vibe Coding philosophy.",
     details: [
       "Transitioned to active, project-based learning with an AI-first approach",
       "Building end-to-end ML/DL projects from raw data to production-ready deployment",
@@ -128,7 +128,7 @@ const interestData = [
   {
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
-    desc: "Bridging human language and machine understanding.",
+    desc: "Bridging human language and machine understanding through high-precision NLP pipelines.",
     details: "Focused on building intelligent systems that understand intent using high-precision NLP pipelines tailored to specific needs. Specializes in building tools like ATS optimizers, sentiment engines, and multilingual processors.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
@@ -139,7 +139,7 @@ const interestData = [
   {
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
-    desc: "Predictive power from structured foundations.",
+    desc: "Predictive power from structured foundations using rigorous cross-validation and feature engineering.",
     details: "Building robust predictive models across diverse domains including medical, finance, and behavior. Ensures models are interpretable and reliable through rigorous feature engineering and handling class imbalance.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
@@ -150,7 +150,7 @@ const interestData = [
   {
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
-    desc: "Building autonomous reasoning engines.",
+    desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving.",
     details: "Designing advanced reasoning systems and multi-agent frameworks. Leverages a diverse stack including Google SDK, CrewAI, LangChain, and LangGraph for autonomous problem solving and tool calling.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
@@ -161,7 +161,7 @@ const interestData = [
   {
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
-    desc: "High-performance AI ecosystems.",
+    desc: "Building high-performance AI ecosystems where services connect seamlessly via intelligent bots.",
     details: "Focused on building seamless AI ecosystems where services connect. Architecting stateful agents for automated workflows, inbox management, and real-time data pipelines to maximize efficiency.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
@@ -172,7 +172,7 @@ const interestData = [
   {
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
-    desc: "The AI-first digital experience.",
+    desc: "The AI-first digital experience, creating a synergy between human intuition and AI execution.",
     details: "A philosophy where engineering meets intuition. Bridging AI expertise into web, mobile, and communication platforms by creating a seamless synergy between human intuition and AI execution.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
