@@ -14,10 +14,10 @@ import Link from 'next/link';
 const featuredProjects = [
   { 
     id: 1, 
-    title: "InsightSQL — LangGraph Engine", 
+    title: "InsightSQL (LangGraph Engine)", 
     impact: "State-of-the-Art",
-    desc: "The next evolution of database interaction. This LangGraph-powered engine uses cyclic reasoning to autonomously query, validate, and self-correct SQL operations with complete 'Glass Box' transparency.",
-    tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
+    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query and validate errors.",
+    tech: ["LANGGRAPH", "GEMINI 2.5 FLASH", "PYTHON", "SQL"],
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
     problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency into their reasoning process.",
     solution: "Implemented Cyclic Reasoning to query, validate, and self-correct errors in real-time. The architecture provides full visibility into the agent's thought process.",
@@ -25,25 +25,25 @@ const featuredProjects = [
   },
   { 
     id: 2, 
+    title: "SpendSense (Financial AI)", 
+    impact: "Utility Pro",
+    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning.",
+    tech: ["STREAMLIT", "LANGCHAIN", "GEMINI VISION", "PANDAS"],
+    link: "https://github.com/viochris/Streamlit-SpendSense",
+    problem: "Manual expense tracking is tedious and users often struggle to derive meaningful insights from their raw financial data.",
+    solution: "Developed a vision-enabled assistant that extracts data from receipts and allows users to query their spending habits using natural language.",
+    image: "/streamlit_spendsense.png"
+  },
+  { 
+    id: 3, 
     title: "DocuTalk-AI — Smart RAG", 
     impact: "High Precision",
-    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval (FAISS — supports PDF, CSV, TXT, MD) or real-time Web Search for hyper-accurate answers.",
-    tech: ["LangChain", "Gemini 2.5 Flash", "FAISS", "Python"],
+    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval or real-time Web Search for hyper-accurate answers.",
+    tech: ["LANGCHAIN", "GEMINI 2.5 FLASH", "FAISS", "PYTHON"],
     link: "https://github.com/viochris/DocuTalk-AI",
     problem: "Standard RAG systems often suffer from hallucinations when answers aren't in the provided documents or are outdated.",
     solution: "Built a ReAct agent that autonomously decides whether to retrieve from internal documents or search the web, ensuring the most accurate response.",
     image: "/resume_scanner_api.png"
-  },
-  { 
-    id: 3, 
-    title: "NovaCal AI — Stateful Telegram", 
-    impact: "Stateful Design",
-    desc: "An advanced Telegram bot featuring an SQL-backed conversational memory architecture. Enables natural, multi-turn dialogue for Google Calendar management without context loss.",
-    tech: ["LangChain", "SQL Memory", "Gemini Flash", "Python"],
-    link: "https://github.com/viochris/telegram-calendar-ai-bot",
-    problem: "Most conversational bots are stateless or have very short memory spans, making complex multi-turn scheduling difficult.",
-    solution: "Architected a persistent SQL-backed memory system that maintains context across long sessions, enabling full CRUD calendar management through natural language.",
-    image: "/streamlit_spendsense.png"
   }
 ];
 
@@ -52,28 +52,29 @@ export default function ProjectsPage() {
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="projects" className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="space-y-6 mb-12">
-          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Portfolio</Badge>
-          <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
-            Featured <span className="text-primary">Solutions</span>
-          </h2>
-          <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">High-impact AI implementations solving real-world challenges through reasoning and data science.</p>
-        </div>
-
-        {/* Explore Repository Link */}
-        <div className="flex justify-end mb-8 pr-4">
-          <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
-            <Link href="/repository">
-              Full Archive <ChevronRight className="w-4 h-4" />
-            </Link>
-          </Button>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div className="space-y-6">
+            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Portfolio</Badge>
+            <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
+              Featured <span className="text-primary">Projects</span>
+            </h2>
+            <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
+          </div>
+          
+          <div className="pb-2">
+            <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
+              <Link href="/repository">
+                Explore Repository <ChevronRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
           {featuredProjects.map((p) => (
             <Card key={p.id} id={`project-${p.id}`} className="group overflow-hidden border-border bg-card/40 hover:bg-card/60 transition-all duration-500 hover:shadow-2xl hover:border-primary/20 rounded-[2rem] md:rounded-[2.5rem] flex flex-col h-full scroll-mt-32">
-              {/* Image Container - Aspect Video (16:9) */}
+              {/* Image Container */}
               <div className="relative aspect-video w-full overflow-hidden shrink-0 bg-black/20">
                 <Image 
                   src={p.image} 
