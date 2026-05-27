@@ -40,7 +40,8 @@ const educationData = [
     institution: "Universitas Dian Nuswantoro (UDINUS)",
     description: (
       <>
-        GPA: 3.95/4.00 (Cumulative GPA as of 5th Semester).<br />
+        IPK: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
+        Activities: UKM Dian Nuswantoro Computer Club - DNCC.<br />
         Focusing on AI Development, Data Engineering, and Computational Logic.
       </>
     )
@@ -49,7 +50,7 @@ const educationData = [
     period: "Jul 2020 - May 2023",
     degree: "High School Diploma, Science",
     institution: "SMA Kristen YSKI",
-    description: "Built foundational skills in logic and science while exploring early digital creative work."
+    description: "Activities: Photography, Entrepreneurship, and Scout."
   }
 ];
 
@@ -234,7 +235,7 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian, Joe (Vio), an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>robust tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
+              I am Silvio Christian, Joe, an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>robust tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
               I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web and mobile development—ensuring every solution is driven by high-performance intelligence.
@@ -275,7 +276,7 @@ export default function AboutPage() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <GraduationCap className="text-primary" size={28} />
-                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Academic Journey</h2>
+                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Education Roadmap</h2>
                 </div>
 
                 <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
