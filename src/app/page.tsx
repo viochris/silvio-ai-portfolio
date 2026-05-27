@@ -232,13 +232,13 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "I bridge the gap between human language and machine understanding using Hybrid Semantic Matching, combining TF-IDF with SBERT for high-precision retrieval.",
+                  desc: "Bridging the gap between human language and machine intelligence using versatile NLP pipelines and semantic models tailored to specific use cases.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Focused on rigorous feature engineering and robust modeling for medical analytics, ensuring models are both high-performing and interpretable.",
+                  desc: "Expertise in rigorous feature engineering and robust predictive modeling across diverse domains, from health analytics to financial and behavioral forecasting.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },

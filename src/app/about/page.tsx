@@ -145,7 +145,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "I focus on bridging the gap between human language and machine understanding. I specialize in Hybrid Semantic Matching, combining traditional TF-IDF with modern SBERT embeddings for highly precise information retrieval. My goal is to build high-performance tools like ATS optimizers, sentiment engines, and multilingual document processors.",
+    details: "I focus on bridging the gap between human language and machine intelligence. I specialize in versatile NLP pipelines and semantic models tailored to specific use cases, ranging from text classification and sentiment analysis to advanced RAG systems. My goal is to build high-performance tools that process and understand language at scale.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -156,7 +156,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Data is the foundation of every AI system. I focus on rigorous Feature Engineering, handling class imbalance using SMOTE/SMOTENC, and building strong classification models. My background includes replicating research for medical analytics, ensuring models are not only accurate but also interpretable and free from data leakage.",
+    details: "Data is the foundation of every AI system. I focus on rigorous Feature Engineering and robust predictive modeling across diverse domains. My expertise includes handling class imbalance and building strong classification/regression models for health analytics, financial forecasting, and behavioral analysis, ensuring models are both high-performing and interpretable.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
