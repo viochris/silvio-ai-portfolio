@@ -278,7 +278,7 @@ export default function Home() {
                   <CarouselContent className="-ml-4">
                     {infrastructurePulseData.map((m, i) => (
                       <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden min-h-[380px]">
+                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden min-h-[420px]">
                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors" />
                            <div className="flex justify-between items-start mb-6 relative z-10">
                               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform border border-white/5">{m.icon}</div>
@@ -288,9 +288,11 @@ export default function Home() {
                               </div>
                            </div>
                            <div className="relative z-10 flex flex-col flex-1">
-                              <h3 className="text-2xl font-headline font-black text-white mb-1 group-hover:text-primary transition-colors leading-tight min-h-[4rem] flex items-center">{m.title}</h3>
-                              <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-4 min-h-[1.5rem]">{m.subtitle}</div>
-                              <p className="text-[11px] text-white/50 leading-relaxed font-medium min-h-[6rem] flex-1">{m.desc}</p>
+                              <header className="space-y-1">
+                                <h3 className="text-2xl font-headline font-black text-white group-hover:text-primary transition-colors leading-tight min-h-[5rem] flex items-center">{m.title}</h3>
+                                <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest min-h-[2.5rem] flex items-start">{m.subtitle}</div>
+                              </header>
+                              <p className="text-[11px] text-white/50 leading-relaxed font-medium mt-4 min-h-[6rem] flex-1">{m.desc}</p>
                            </div>
                         </div>
                       </CarouselItem>
