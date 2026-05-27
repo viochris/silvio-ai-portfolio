@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap, Workflow } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -155,7 +155,8 @@ export default function Home() {
                     Architecting Intelligent Systems
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian, <span className="text-primary">Joe</span>
+                    Silvio Christian, <br />
+                    <span className="text-primary">Joe</span>
                   </h1>
                 </div>
                 
