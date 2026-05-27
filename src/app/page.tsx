@@ -103,42 +103,42 @@ const infrastructurePulseData = [
   { 
     status: "LIVE", 
     title: "High-Performance Backend", 
-    subtitle: "Asynchronous APIs & Microservices", 
+    subtitle: "ASYNCHRONOUS APIS & MICROSERVICES", 
     desc: "Architecting scalable, asynchronous server-side logic and robust API gateways to form the backbone of seamless AI integrations and data pipelines.",
     icon: <Cpu className="text-blue-400" />
   },
   { 
     status: "ACTIVE", 
     title: "Multi-Agent Orchestration", 
-    subtitle: "Cognitive AI Architectures", 
+    subtitle: "COGNITIVE AI ARCHITECTURES", 
     desc: "Engineering autonomous agentic workflows and multi-step reasoning systems using modern LLM frameworks to execute complex, context-aware problem-solving logic.",
     icon: <Sparkles className="text-yellow-400" />
   },
   { 
     status: "SYNCED", 
     title: "RAG & Vector Ecosystems", 
-    subtitle: "High-Precision Knowledge Retrieval", 
+    subtitle: "HIGH-PRECISION KNOWLEDGE RETRIEVAL", 
     desc: "Designing robust semantic search pipelines and vector database integrations to ground language models with dynamic, real-time factual context.",
     icon: <Database className="text-green-400" />
   },
   { 
     status: "OPTIMIZED", 
     title: "Advanced Machine Learning", 
-    subtitle: "Deep Learning & Explainable AI", 
+    subtitle: "DEEP LEARNING & EXPLAINABLE AI", 
     desc: "Building highly accurate predictive models leveraging both traditional algorithms (Scikit-Learn) and neural networks (TensorFlow/Keras), enhanced by transparent XAI techniques like SHAP and LIME.",
     icon: <Brain className="text-purple-400" />
   },
   { 
     status: "PROCESSING", 
     title: "Applied Natural Language Processing", 
-    subtitle: "Context Extraction & Intelligence", 
+    subtitle: "CONTEXT EXTRACTION & INTELLIGENCE", 
     desc: "Designing comprehensive text processing pipelines to extract nuanced meaning, execute dynamic summarization, and analyze linguistic context from unstructured data.",
     icon: <Languages className="text-cyan-400" />
   },
   { 
     status: "DEPLOYED", 
     title: "Production & Automation", 
-    subtitle: "CI/CD & Interactive Interfaces", 
+    subtitle: "CI/CD & INTERACTIVE INTERFACES", 
     desc: "Deploying reliable AI solutions via automated pipelines (GitHub Actions) and REST APIs (FastAPI), delivering utility through interactive web apps (Streamlit) and autonomous Telegram bots.",
     icon: <Workflow className="text-orange-400" />
   }
@@ -278,7 +278,7 @@ export default function Home() {
                   <CarouselContent className="-ml-4">
                     {infrastructurePulseData.map((m, i) => (
                       <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden min-h-[420px]">
+                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden min-h-[480px]">
                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors" />
                            <div className="flex justify-between items-start mb-6 relative z-10">
                               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform border border-white/5">{m.icon}</div>
@@ -289,10 +289,10 @@ export default function Home() {
                            </div>
                            <div className="relative z-10 flex flex-col flex-1">
                               <header className="space-y-1">
-                                <h3 className="text-2xl font-headline font-black text-white group-hover:text-primary transition-colors leading-tight min-h-[5rem] flex items-center">{m.title}</h3>
+                                <h3 className="text-2xl font-headline font-black text-white group-hover:text-primary transition-colors leading-tight min-h-[6.5rem] flex items-center">{m.title}</h3>
                                 <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest min-h-[2.5rem] flex items-start">{m.subtitle}</div>
                               </header>
-                              <p className="text-[11px] text-white/50 leading-relaxed font-medium mt-4 min-h-[6rem] flex-1">{m.desc}</p>
+                              <p className="text-[11px] text-white/50 leading-relaxed font-medium mt-4 min-h-[7rem] flex-1">{m.desc}</p>
                            </div>
                         </div>
                       </CarouselItem>
@@ -344,10 +344,10 @@ export default function Home() {
                   <div className="min-h-[1.5rem] mb-6">
                     <Badge className="bg-primary/10 text-primary border-none uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[6rem] sm:min-h-[7.5rem] flex items-start">
+                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[6.5rem] sm:min-h-[7.5rem] flex items-start">
                     {skill.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1">
+                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1 min-h-[12rem]">
                     {skill.desc}
                   </p>
                 </div>
