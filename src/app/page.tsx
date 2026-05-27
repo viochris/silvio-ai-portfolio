@@ -344,15 +344,16 @@ export default function Home() {
                           className="block h-full"
                         >
                           <div className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group relative">
-                             {/* Impact Badge */}
-                             <div className="absolute top-6 right-6 z-10">
-                                <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
-                                  {p.impact}
-                                </Badge>
-                             </div>
-                             
                              <div className="flex flex-col flex-1">
-                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-4 min-h-[1.5rem]">{p.type}</div>
+                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-3 min-h-[1.5rem]">{p.type}</div>
+                                
+                                {/* Impact Badge - Moved here to avoid overlap with category text */}
+                                <div className="mb-4">
+                                   <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
+                                     {p.impact}
+                                   </Badge>
+                                </div>
+
                                 <div className="min-h-[5.5rem] flex items-start">
                                   <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">{p.title}</h3>
                                 </div>
