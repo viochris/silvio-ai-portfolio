@@ -145,7 +145,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "I focus on bridging the gap between human language and machine intelligence. I specialize in versatile NLP pipelines and semantic models tailored to specific use cases, ranging from text classification and sentiment analysis to advanced RAG systems. My goal is to build high-performance tools that process and understand language at scale.",
+    details: "Saya berfokus pada pengembangan sistem cerdas yang mampu memahami bahasa manusia secara mendalam. Keahlian saya mencakup pembangunan pipeline NLP modern dan model semantik yang disesuaikan dengan kebutuhan spesifik, mulai dari analisis sentimen hingga sistem RAG (Retrieval-Augmented Generation) yang presisi.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -156,7 +156,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Data is the foundation of every AI system. I focus on rigorous Feature Engineering and robust predictive modeling across diverse domains. My expertise includes handling class imbalance and building strong classification/regression models for health analytics, financial forecasting, and behavioral analysis, ensuring models are both high-performing and interpretable.",
+    details: "Saya menerapkan metodologi yang ketat dalam Feature Engineering dan pembangunan model prediktif untuk data tabular di berbagai domain seperti kesehatan, finansial, dan analisis perilaku. Fokus utama saya adalah memastikan model yang dihasilkan tidak hanya akurat, tetapi juga memiliki interpretibilitas tinggi dan bebas dari data leakage.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -167,7 +167,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Agentic AI is the future of productivity. I am deeply interested in building advanced reasoning systems and multi-agent frameworks that solve problems autonomously. Leveraging tools like CrewAI, LangChain, and specialized SDKs (such as Google GenAI SDK), I create systems capable of complex reasoning, tool calling, and autonomous execution.",
+    details: "Saya merancang sistem penalaran otonom dan framework multi-agen menggunakan berbagai teknologi seperti Google SDK, CrewAI, LangChain, dan LangGraph. Fokus saya adalah menciptakan agen yang mampu melakukan penalaran kompleks, pemanggilan tool eksternal, dan eksekusi tugas secara mandiri dengan presisi tinggi.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -178,7 +178,7 @@ const interestData = [
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
     desc: "High-performance AI ecosystems.",
-    details: "Automation is about creating high-performance ecosystems where AI services connect seamlessly. I focus on building stateful agents for calendar management, autonomous inbox assistants, and real-time news delivery pipelines. My goal is to maximize efficiency by offloading repetitive tasks to intelligent, state-aware bots.",
+    details: "Saya berfokus pada pembangunan ekosistem berperforma tinggi di mana layanan AI terhubung secara mulus. Keahlian saya mencakup pembuatan agen stateful untuk manajemen jadwal, asisten kotak masuk otomatis, hingga pipeline pengiriman berita real-time untuk memaksimalkan efisiensi operasional.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -189,7 +189,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "Vibe Coding adalah seni pengembangan berbasis intensi. Saya berfokus pada penciptaan sinergi yang mulus antara intuisi manusia dan eksekusi AI, memastikan setiap pengalaman digital yang dibangun mengalir secara alami, intuitif, dan berperforma tinggi sejalan dengan visi yang mendasarinya.",
+    details: "Vibe Coding adalah seni pengembangan berbasis intensi yang memungkinkan saya menjembatani keahlian AI ke dalam pengembangan web, mobile, dan komunikasi. Saya berfokus pada sinergi antara intuisi manusia dan eksekusi AI untuk menciptakan pengalaman digital yang mengalir secara alami dan berperforma tinggi.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -255,10 +255,10 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My passion lies at the intersection of data and intelligence, specializing in building state-of-the-art systems—from high-precision <span className="text-white font-bold">NLP pipelines</span> and <span className="text-white font-bold">RAG applications</span> to <span className="text-white font-bold">autonomous AI agents</span> and <span className="text-white font-bold">automated workflows</span>.
+              Saya adalah Silvio Christian Joe (Vio), mahasiswa Teknik Informatika di UDINUS. Fokus utama saya adalah membangun sistem cerdas yang memadukan data dan inteligensi—mulai dari <strong>pipeline NLP presisi tinggi</strong> dan <strong>model tabular prediktif</strong> hingga <strong>agen AI otonom</strong> dan <strong>otomatisasi alur kerja</strong>.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I don't just build models; I architect reasoning systems that solve complex problems. Whether it's analyzing tabular data for medical insights or mashing up <span className="text-white font-bold">LangGraph with Gemini</span> to create autonomous agents, my goal is to transform raw information into production-ready intelligence.
+              Saya tidak hanya membangun model; saya merancang sistem penalaran untuk menyelesaikan masalah kompleks. Meskipun spesialisasi utama saya ada di AI dan Data Engineering, saya memanfaatkan filosofi <strong>Vibe Coding</strong> untuk menjembatani pengembangan web, mobile, dan komunikasi—memastikan setiap solusi yang saya bangun didorong oleh inteligensi performa tinggi dan desain intuitif.
             </p>
 
             {/* Availability Status Card */}

@@ -104,7 +104,7 @@ export default function Home() {
   const [isAnim, setIsAnim] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    mounted && setMounted(true);
   }, []);
 
   if (!mounted) return null;
@@ -165,7 +165,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, and <strong>Applied Machine Learning</strong>.
+                  Membangun solusi cerdas berbasis data yang siap produksi. Spesialisasi dalam <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, dan <strong>Sistem Prediktif Modern</strong>.
                 </p>
               </div>
 
@@ -232,25 +232,25 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Bridging the gap between human language and machine intelligence using versatile NLP pipelines and semantic models tailored to specific use cases.",
+                  desc: "Membangun sistem cerdas untuk memahami bahasa manusia melalui pipeline NLP modern dan model semantik yang disesuaikan dengan kebutuhan.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Expertise in rigorous feature engineering and robust predictive modeling across diverse domains, from health analytics to financial and behavioral forecasting.",
+                  desc: "Membangun model prediktif yang kuat di berbagai domain melalui feature engineering yang ketat untuk memastikan akurasi dan interpretibilitas tinggi.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Architecting advanced reasoning systems and multi-agent frameworks to solve complex problems and perform autonomous execution.",
+                  desc: "Merancang sistem penalaran canggih dan framework multi-agen menggunakan Google SDK, CrewAI, dan LangChain untuk penyelesaian masalah otonom.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "REASONING AGENTS"
                 },
                 {
                   title: "Automation & Orchestration",
-                  desc: "Building high-performance ecosystems where AI services connect seamlessly to eliminate repetitive tasks through intelligent, stateful bots.",
+                  desc: "Membangun ekosistem berperforma tinggi di mana layanan AI terhubung secara mulus untuk otomatisasi tugas rutin melalui bot cerdas.",
                   icon: <Workflow className="w-8 h-8 text-primary" />,
                   label: "ORCHESTRATION"
                 }
@@ -347,7 +347,7 @@ export default function Home() {
                              <div className="flex flex-col flex-1">
                                 <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-3 min-h-[1.5rem]">{p.type}</div>
                                 
-                                {/* Impact Badge - Moved here to avoid overlap with category text */}
+                                {/* Impact Badge */}
                                 <div className="mb-4">
                                    <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
                                      {p.impact}
