@@ -386,6 +386,72 @@ export default function Home() {
                 </Carousel>
              </div>
           </div>
+
+          {/* Row 5: How I Work (Workflow) */}
+          <div className="mb-40 space-y-16">
+            <div className="text-center space-y-4">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
+              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                How <span className="text-primary">I Work</span>
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { 
+                  step: "01", 
+                  title: "Research & Design", 
+                  desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.", 
+                  icon: <Terminal className="w-6 h-6 text-primary" /> 
+                },
+                { 
+                  step: "02", 
+                  title: "Architect & Build", 
+                  desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.", 
+                  icon: <Cpu className="w-6 h-6 text-primary" /> 
+                },
+                { 
+                  step: "03", 
+                  title: "Deploy & Scale", 
+                  desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.", 
+                  icon: <Layers className="w-6 h-6 text-primary" /> 
+                },
+                { 
+                  step: "04", 
+                  title: "Optimization", 
+                  desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.", 
+                  icon: <RefreshCw className="w-6 h-6 text-primary" /> 
+                }
+              ].map((w, i) => (
+                <div key={i} className="p-10 glass rounded-[2.5rem] border-white/10 hover:border-primary/30 transition-all group relative overflow-hidden h-full flex flex-col">
+                  <div className="absolute top-4 right-8 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors">{w.step}</div>
+                  <div className="flex items-center gap-3 mb-8 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-primary border border-white/10">{w.icon}</div>
+                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
+                  </div>
+                  <h3 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest min-h-[3rem] flex items-center">{w.title}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed font-medium flex-1">{w.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 6: CTA Section */}
+          <div className="mb-20">
+             <div className="w-full p-12 md:p-20 rounded-[3rem] bg-primary flex flex-col items-center text-center space-y-8 shadow-[0_0_50px_rgba(6,182,212,0.3)]">
+                <h2 className="text-4xl md:text-6xl font-headline font-black text-white uppercase tracking-tighter max-w-3xl">
+                  Ready to Build the <span className="text-black">Future?</span>
+                </h2>
+                <p className="text-white/90 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
+                </p>
+                <Link href="/contact">
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95">
+                    Start a Project
+                  </Button>
+                </Link>
+             </div>
+          </div>
         </div>
       </section>
 
