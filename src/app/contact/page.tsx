@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare, Loader2, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Instagram, Copy, Check, Send, Clock, HelpCircle, MessageSquare, Loader2, CheckCircle2, ExternalLink } from 'lucide-react';
 import { Chatbot } from '@/components/Chatbot';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -192,14 +192,26 @@ export default function ContactPage() {
                 <div className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Phone</div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">+62 895-3426-37871</span>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary shrink-0"
-                    onClick={() => copyToClipboard('+62895342637871', 'phone')}
-                  >
-                    {copiedPhone ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary shrink-0"
+                      onClick={() => copyToClipboard('+62895342637871', 'phone')}
+                    >
+                      {copiedPhone ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 rounded-lg hover:bg-primary/20 text-primary shrink-0"
+                      asChild
+                    >
+                      <a href="https://wa.me/62895342637871" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

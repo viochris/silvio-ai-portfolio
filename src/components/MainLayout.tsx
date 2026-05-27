@@ -1,10 +1,11 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { BootLoader } from '@/components/BootLoader';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp, Instagram, Youtube } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowUp, Instagram, Youtube, Phone } from 'lucide-react';
 import { BinaryBackground } from '@/components/BinaryBackground';
 import Link from 'next/link';
 import { NavigationProvider, useNavigation } from '@/context/NavigationContext';
@@ -124,7 +125,7 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
                 <div className="space-y-8">
                   <h4 className="text-sm font-headline font-bold uppercase tracking-widest text-white">Connect</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-fit">
+                  <div className="grid grid-cols-3 gap-4 w-fit">
                     {[
                       { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/silvio-christian-joe" },
                       { icon: <Github className="w-5 h-5" />, href: "https://github.com/viochris" },
@@ -133,7 +134,8 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                       { icon: <XIcon className="w-5 h-5" />, href: "https://x.com/SilvioCodes" },
                       { icon: <Youtube className="w-5 h-5" />, href: "https://youtube.com/@silviocodes" },
                       { icon: <TikTokIcon className="w-5 h-5" />, href: "https://www.tiktok.com/@silvio.codes?_r=1&_t=ZS-96drUPoz4zP" },
-                      { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@silviochristian" }
+                      { icon: <MediumIcon className="w-5 h-5" />, href: "https://medium.com/@silviochristian" },
+                      { icon: <Phone className="w-5 h-5" />, href: "https://wa.me/62895342637871" }
                     ].map((social, i) => (
                       <a 
                         key={i} 
