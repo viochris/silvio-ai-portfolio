@@ -580,18 +580,9 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-
-          <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 p-6 rounded-3xl bg-[#0d1117] border border-slate-800 w-full shadow-2xl">
-              <img 
-                src="https://ghchart.rshah.org/22c55e/viochris" 
-                alt="GitHub Contributions" 
-                className="w-full h-auto max-w-4xl object-contain invert dark:invert-0"
-              />
-            </div>
-          </div>
         </div>
 
+        {/* Bar Chart Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
@@ -615,6 +606,51 @@ export default function AboutPage() {
                 </BarChart>
               </ResponsiveContainer>
               <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
+            </div>
+          </div>
+        </div>
+
+        {/* GitHub Contribution Grid Section */}
+        <div className="mb-32 space-y-8">
+          <div className="p-8 md:p-12 glass rounded-[3rem] border border-white/10 shadow-2xl bg-[#0d1117]/80 backdrop-blur-xl flex flex-col gap-8">
+            <div className="flex items-center justify-between px-2">
+              <div className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-widest">
+                <Github size={14} className="text-primary" /> GitHub Activity Grid
+              </div>
+              <div className="flex items-center gap-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                <span>Less</span>
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 bg-[#0d1117] border border-white/5 rounded-sm"></div>
+                  <div className="w-3 h-3 bg-[#0e4429] rounded-sm"></div>
+                  <div className="w-3 h-3 bg-[#006d32] rounded-sm"></div>
+                  <div className="w-3 h-3 bg-[#26a641] rounded-sm"></div>
+                  <div className="w-3 h-3 bg-[#39d353] rounded-sm"></div>
+                </div>
+                <span>More</span>
+              </div>
+            </div>
+
+            <div className="w-full flex flex-col gap-2 overflow-x-auto scrollbar-hide">
+              {/* Month Labels */}
+              <div className="flex justify-between text-[10px] text-slate-500 font-bold uppercase tracking-widest px-12 min-w-[700px]">
+                <span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span>
+              </div>
+              
+              <div className="flex gap-4 min-w-[700px]">
+                {/* Day Labels */}
+                <div className="flex flex-col justify-between text-[10px] text-slate-500 font-bold uppercase py-4 shrink-0">
+                  <span>Mon</span><span>Wed</span><span>Fri</span>
+                </div>
+                
+                {/* The Real Grid Image */}
+                <div className="flex-1">
+                  <img 
+                    src="https://ghchart.rshah.org/22c55e/viochris" 
+                    alt="GitHub Contributions Grid" 
+                    className="w-full h-auto object-contain invert dark:invert-0"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
