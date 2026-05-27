@@ -483,7 +483,7 @@ export default function Home() {
               ].map((w, i) => (
                 <div key={i} className="p-10 bg-black rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden h-full flex flex-col shadow-2xl">
                   {/* Background Number Layer */}
-                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.08] group-hover:scale-125 group-hover:drop-shadow-[0_0_25px_rgba(6,182,212,0.6)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
+                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.08] group-hover:text-primary/[0.18] group-hover:scale-125 group-hover:drop-shadow-[0_0_35px_rgba(6,182,212,0.8)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
                     {w.step}
                   </div>
                   
