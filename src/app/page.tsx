@@ -244,7 +244,7 @@ export default function Home() {
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Architecting reasoning systems using LangGraph and ReAct patterns that solve complex problems and perform autonomous self-correction.",
+                  desc: "Architecting advanced reasoning systems and multi-agent frameworks to solve complex problems and perform autonomous execution.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "REASONING AGENTS"
                 },

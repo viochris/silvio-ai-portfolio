@@ -167,7 +167,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Agentic AI is the future of productivity. I am deeply interested in building Reasoning Agents that solve problems autonomously. Leveraging LangGraph and ReAct patterns, I create systems capable of database querying, tool calling, and self-correcting logic errors through iterative reasoning loops.",
+    details: "Agentic AI is the future of productivity. I am deeply interested in building advanced reasoning systems and multi-agent frameworks that solve problems autonomously. Leveraging tools like CrewAI, LangChain, and specialized SDKs (such as Google GenAI SDK), I create systems capable of complex reasoning, tool calling, and autonomous execution.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
