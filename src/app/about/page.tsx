@@ -237,7 +237,7 @@ export default function AboutPage() {
         });
         const sortedLangs = Object.entries(langCount)
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 2)
+          .slice(0, 1) // Only take top 1
           .map(l => l[0])
           .join(', ');
 
@@ -600,7 +600,7 @@ export default function AboutPage() {
             {/* Row 2: 2 Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { label: "Top Languages", val: ghStats.topLanguages, icon: <Languages className="text-cyan-400" /> },
+                { label: "TOP 1 LANGUAGE", val: ghStats.topLanguages, icon: <Languages className="text-cyan-400" /> },
                 { label: "Total Commits (All-Time)", val: ghStats.totalCommits, icon: <GitCommit className="text-purple-400" /> }
               ].map((stat, i) => (
                 <div key={i} className="p-8 glass rounded-[2.5rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
@@ -670,7 +670,7 @@ export default function AboutPage() {
           <div className="p-8 md:p-12 glass rounded-[3rem] border border-white/10 shadow-2xl bg-[#0d1117]/80 backdrop-blur-xl flex flex-col gap-8">
             <div className="flex items-center justify-between px-2">
               <div className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-widest">
-                <Github size={14} className="text-primary" /> GitHub Activity Grid
+                <span className="flex items-center gap-1.5"><Github size={14} className="text-primary" /> GitHub Activity Grid</span>
               </div>
               <div className="flex items-center gap-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
                 <span>Less</span>
