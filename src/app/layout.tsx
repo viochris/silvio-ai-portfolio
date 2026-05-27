@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Silvio Christian, Joe (Vio), an Informatics Undergraduate, Data Scientist, and AI Engineer specializing in Machine Learning, NLP, and production-ready AI solutions. Transforming unstructured data into intelligence.",
   keywords: [
-    "Silvio Christian Joe",
+    "Silvio Christian, Joe",
     "Vio",
     "viochris",
     "Data Scientist",
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
         url: "/vio-image.png",
         width: 1200,
         height: 630,
-        alt: "Silvio Christian Joe Portfolio Preview",
+        alt: "Silvio Christian, Joe Portfolio Preview",
       },
     ],
   },

@@ -129,7 +129,7 @@ export default function Home() {
                   >
                     <Image 
                       src={isAnim ? "/vio-image-animation.png" : "/vio-image.png"} 
-                      alt="Silvio Christian Joe" 
+                      alt="Silvio Christian, Joe" 
                       width={320}
                       height={320}
                       sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 320px"
@@ -154,7 +154,7 @@ export default function Home() {
                     Architecting Intelligent Systems
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian <span className="text-primary">Joe</span>
+                    Silvio Christian, <span className="text-primary">Joe</span>
                   </h1>
                 </div>
                 
@@ -231,13 +231,13 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Bridging the gap between human language and machine understanding through modern NLP pipelines and tailored semantic models.",
+                  desc: "Bridging the gap between human language and machine understanding through modern NLP pipelines tailored to specific needs.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Building strong predictive models across multiple domains through rigorous feature engineering to ensure high accuracy and interpretability.",
+                  desc: "Building robust predictive models across diverse domains through rigorous feature engineering and cross-validation.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },
@@ -286,7 +286,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        Vibe Coding is the art of intent-driven development. I focus on creating a seamless synergy between human intuition and AI execution, ensuring every digital experience flows naturally, intuitively, and performs at its peak.
+                        Vibe Coding is the art of intent-driven development. I focus on creating a seamless synergy between human intuition and AI execution, ensuring every digital experience flows naturally and performs at its peak.
                      </p>
                   </div>
                </div>

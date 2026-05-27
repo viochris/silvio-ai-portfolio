@@ -138,7 +138,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "Focused on bridging the gap between human language and machine understanding. Specializes in Hybrid Semantic Matching, combining traditional methods with modern embeddings for highly precise information retrieval. Focused on building custom NLP pipelines tailored to specific needs.",
+    details: "Focused on bridging the gap between human language and machine understanding through modern NLP pipelines tailored to specific needs. Specializes in sophisticated semantic matching techniques to achieve high-precision information retrieval.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -149,7 +149,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Believes data is the foundation of AI systems. Focused on rigorous Feature Engineering, handling class imbalance (SMOTE/SMOTENC), and building strong classification models across multiple domains (medical, financial, behavior). Ensures models are accurate, interpretable, and free from data leakage.",
+    details: "Building robust predictive models across diverse domains through rigorous feature engineering and cross-validation. Ensures models are not only accurate but also interpretable and reliable for real-world deployment.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -160,7 +160,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Focused on building Reasoning Agents that actively solve problems. Leverages frameworks like Google SDK, CrewAI, LangChain, and LangGraph architecture. Enables systems to perform database queries, call external APIs, and self-correct logic errors autonomously.",
+    details: "Designing advanced reasoning systems and multi-agent frameworks using Google SDK, CrewAI, and LangChain. Enables systems to perform complex tasks, call external APIs, and self-correct logic autonomously.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -171,7 +171,7 @@ const interestData = [
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
     desc: "High-performance AI ecosystems.",
-    details: "Focused on building high-performance AI ecosystems where services connect seamlessly. Building Stateful Agents for calendar management, automated inbox assistants, and real-time news delivery pipelines. Goal: maximize efficiency by delegating repetitive tasks to intelligent bots.",
+    details: "Focused on building high-performance AI ecosystems where services connect seamlessly. Architecting stateful agents for automated workflows, inbox management, and real-time data pipelines to maximize efficiency.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -182,7 +182,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "A philosophy where engineering meets intuition. Prioritizing clean, modular, and AI-first coding practices. Bridges AI expertise into web, mobile, and communication development, ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.",
+    details: "A philosophy where engineering meets intuition. Prioritizing clean, modular, and AI-first coding practices. This approach bridges AI expertise into web and mobile development, ensuring smooth and high-performing human-machine interaction.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -247,10 +247,10 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>predictive tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
+              I am Silvio Christian, Joe (Vio), an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>robust tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web, mobile, and communication development—ensuring every solution I build is driven by high-performance intelligence and intuitive design.
+              I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web and mobile development—ensuring every solution is driven by high-performance intelligence.
             </p>
 
             {/* Availability Status Card */}
