@@ -146,7 +146,7 @@ const interestData = [
     desc: "Semantic analysis and linguistic intelligence.",
     details: "My passion for NLP lies in bridging the gap between human language and machine understanding. I specialize in hybrid semantic matching, combining traditional TF-IDF with modern SBERT embeddings to achieve ultra-precise information retrieval. I focus on building tools like ATS optimizers, sentiment engines, and multi-lingual document parsers that can handle nuances in both English and Indonesian.",
     projects: [
-      { name: "Resume Scanner API", id: 3, github: "https://github.com/viochris/resume-scanner-api" },
+      { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
       { name: "DocuTalk-AI (Smart RAG)", id: null, github: "https://github.com/viochris/DocuTalk-AI" }
     ]
@@ -157,9 +157,9 @@ const interestData = [
     desc: "Predictive power from structured datasets.",
     details: "Data is the foundation of every AI system. I enjoy the rigorous process of feature engineering, handling data imbalance using SMOTE/SMOTENC, and building robust classifiers. My background includes replicating academic research for medical diagnosis and health analysis, ensuring that models are not just accurate, but also interpretable and leak-free.",
     projects: [
-      { name: "InsightData (AI Analyst)", id: 4, github: "https://github.com/viochris/insight-data-ai-analyst" },
       { name: "Stunting Analysis", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
-      { name: "Diabetes Prediction", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" }
+      { name: "Diabetes Prediction", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
+      { name: "Coming Soon", id: null, github: "#" }
     ]
   },
   {
@@ -168,8 +168,8 @@ const interestData = [
     desc: "Building autonomous reasoning engines.",
     details: "Agentic AI is the future of productivity. I am deeply interested in building 'reasoning agents' that don't just generate text, but actively problem-solve. By utilizing LangGraph and ReAct architectures, I create systems that can query databases, call external APIs, and self-correct their own logic errors. This interest drives me to build production-ready agents like InsightSQL and financial OCR assistants.",
     projects: [
-      { name: "InsightSQL (LangGraph)", id: 1, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
-      { name: "SpendSense (Financial AI)", id: 2, github: "https://github.com/viochris/Streamlit-SpendSense" },
+      { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
+      { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
       { name: "NovaCal AI (Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
     ]
   },
@@ -179,7 +179,7 @@ const interestData = [
     desc: "Building autonomous pipelines & workflows.",
     details: "Automation is about creating high-performance ecosystems where AI services connect seamlessly. I focus on building stateful agents for calendar management, autonomous inbox assistants, and real-time news delivery pipelines. My goal is to maximize efficiency by offloading repetitive tasks to intelligent, stateless and stateful bots.",
     projects: [
-      { name: "NovaCal AI (Stateful Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
+      { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
       { name: "Daily AI News Digest", id: null, github: "https://github.com/viochris/daily-ai-news-digest" }
     ]
