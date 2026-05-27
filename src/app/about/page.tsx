@@ -629,7 +629,7 @@ export default function AboutPage() {
               <a 
                 href={cvRawLink} 
                 download="vio-cv.pdf" 
-                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-red-600 hover:bg-red-700 uppercase tracking-widest text-xs"
+                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-primary hover:bg-primary/90 uppercase tracking-widest text-xs"
               >
                 <Download className="w-5 h-5" /> DOWNLOAD CV
               </a>
