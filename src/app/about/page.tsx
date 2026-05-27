@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -184,7 +184,13 @@ const interestData = [
 
 export default function AboutPage() {
   const cvRawLink = "/vio-cv.pdf";
-  const [ghStats, setGhStats] = useState({ repos: 0, stars: 0, followers: 0, latestCommit: '' });
+  const [ghStats, setGhStats] = useState({ 
+    repos: 0, 
+    stars: 0, 
+    followers: 0, 
+    topLanguages: '...', 
+    totalCommits: 0 
+  });
   const [loadingGh, setLoadingGh] = useState(true);
 
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
@@ -193,25 +199,41 @@ export default function AboutPage() {
   useEffect(() => {
     async function fetchGitHubData() {
       try {
-        const [userRes, reposRes, eventsRes] = await Promise.all([
+        const [userRes, reposRes, commitsRes] = await Promise.all([
           fetch('https://api.github.com/users/viochris'),
           fetch('https://api.github.com/users/viochris/repos?per_page=100'),
-          fetch('https://api.github.com/users/viochris/events/public')
+          // Fetching commit count via search API (Estimated)
+          fetch('https://api.github.com/search/commits?q=author:viochris', {
+            headers: { 'Accept': 'application/vnd.github.cloak-preview' }
+          })
         ]);
 
         const userData = await userRes.json();
         const reposData = await reposRes.json();
-        const eventsData = await eventsRes.json();
+        const searchCommitsData = await commitsRes.json();
 
+        // Calculate Total Stars
         const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
-        const pushEvent = eventsData.find((e: any) => e.type === 'PushEvent');
-        const lastCommit = pushEvent?.payload?.commits?.[0]?.message || 'Active Development';
+        
+        // Calculate Top Languages
+        const langCount: Record<string, number> = {};
+        reposData.forEach((repo: any) => {
+          if (repo.language) {
+            langCount[repo.language] = (langCount[repo.language] || 0) + 1;
+          }
+        });
+        const sortedLangs = Object.entries(langCount)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 2)
+          .map(l => l[0])
+          .join(', ');
 
         setGhStats({
           repos: userData.public_repos || 0,
           stars: totalStars,
           followers: userData.followers || 0,
-          latestCommit: lastCommit
+          topLanguages: sortedLangs || 'None',
+          totalCommits: searchCommitsData.total_count || 0
         });
       } catch (error) {
         console.error('Error fetching GitHub stats:', error);
@@ -515,6 +537,7 @@ export default function AboutPage() {
           </Dialog>
         </div>
 
+        {/* GitHub Metrics Hub */}
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
@@ -526,21 +549,39 @@ export default function AboutPage() {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
-            {[
-              { label: "Public Repos", val: ghStats.repos, icon: <Github className="text-blue-400" /> },
-              { label: "Total Stars", val: ghStats.stars, icon: <Sparkles className="text-yellow-400" /> },
-              { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> },
-              { label: "Latest Update", val: ghStats.latestCommit, icon: <Code2 className="text-purple-400" />, isCommit: true }
-            ].map((stat, i) => (
-              <div key={i} className="p-6 glass rounded-[2rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">{stat.icon}</div>
-                <div className={cn("text-2xl font-headline font-black text-white mb-1", stat.isCommit && "text-xs line-clamp-1")}>
-                  {loadingGh ? "..." : stat.val}
+          <div className="max-w-5xl mx-auto space-y-6">
+            {/* Row 1: 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                { label: "Public Repos", val: ghStats.repos, icon: <Github className="text-blue-400" /> },
+                { label: "Total Stars", val: ghStats.stars, icon: <Sparkles className="text-yellow-400" /> },
+                { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> }
+              ].map((stat, i) => (
+                <div key={i} className="p-8 glass rounded-[2.5rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 shadow-inner">{stat.icon}</div>
+                  <div className="text-3xl font-headline font-black text-white mb-2">
+                    {loadingGh ? "..." : stat.val}
+                  </div>
+                  <div className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{stat.label}</div>
                 </div>
-                <div className="text-[10px] font-bold text-primary uppercase tracking-widest">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Row 2: 2 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { label: "Top Languages", val: ghStats.topLanguages, icon: <Languages className="text-cyan-400" /> },
+                { label: "Total Commits (All-Time)", val: ghStats.totalCommits, icon: <GitCommit className="text-purple-400" /> }
+              ].map((stat, i) => (
+                <div key={i} className="p-8 glass rounded-[2.5rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 shadow-inner">{stat.icon}</div>
+                  <div className="text-2xl font-headline font-black text-white mb-2 tracking-tight">
+                    {loadingGh ? "..." : stat.val}
+                  </div>
+                  <div className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
