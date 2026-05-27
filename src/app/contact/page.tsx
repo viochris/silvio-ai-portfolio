@@ -38,19 +38,43 @@ import {
 const faqs = [
   {
     question: "What is your primary tech stack?",
-    answer: "My core expertise lies in Python-based AI development. I specialize in the Gemini ecosystem, LangGraph for agent orchestration, and FastAPI for production-grade backends. For data science, I rely on the classic stack: Pandas, Scikit-Learn, and SBERT for NLP tasks."
+    answer: "My core expertise lies in a Python-centric ecosystem. For Data Science, I rely on robust industry standards for tabular modeling and advanced NLP. For AI Engineering, I utilize modern LLM orchestration frameworks, scalable vector infrastructures for RAG, and asynchronous backends. Crucially, I bind these together with robust automation pipelines to ensure seamless, hands-free execution across external tools and APIs."
   },
   {
-    question: "Are you open to freelance or full-time roles?",
-    answer: "Yes, I am currently open to collaborations on innovative AI projects, data science research, or full-time roles that challenge my technical capabilities in Machine Learning and Agentic workflows."
+    question: "Are you open to freelance, internships, or full-time roles?",
+    answer: "Yes. As an Informatics Engineering student approaching my final year, I am actively taking on freelance projects and impactful internships. I am also highly open to full-time roles, specifically remote or online arrangements that allow me to deliver top-tier technical value while completing my academic requirements."
   },
   {
     question: "Can you build custom AI agents for specific business needs?",
-    answer: "Absolutely. I have experience building autonomous agents (like InsightSQL) that handle complex reasoning, tool calling, and self-correction. I can design agents for anything from data analysis to automated customer support."
+    answer: "Absolutely. I design autonomous, goal-oriented reasoning systems capable of executing multi-step logic, utilizing external tools, and performing autonomous self-correction. Whether it is automating complex data analysis, building conversational interfaces, or orchestrating multi-agent ecosystems (where distinct AI personas collaborate on a single workflow), I tailor the architecture to solve specific bottlenecks and ensure error-resistant execution."
   },
   {
-    question: "How do you handle data privacy in AI applications?",
-    answer: "Security is non-negotiable. I prioritize building stateless APIs whenever possible and utilize enterprise-grade vector databases with proper access controls. I also implement safety filters and sanitization layers to ensure LLM responses remain ethical and secure."
+    question: "How do you handle data privacy and AI hallucinations?",
+    answer: "Reliability is non-negotiable. I mitigate hallucinations by strictly grounding models using robust Retrieval-Augmented Generation (RAG) pipelines. For privacy, I prioritize building stateless APIs, utilizing secure vector databases, and implementing sanitization layers to ensure outputs are ethical and data remains protected."
+  },
+  {
+    question: "How do you deploy and integrate your AI solutions?",
+    answer: "An AI model is only useful if it is accessible. I build production-ready REST APIs and deploy seamless integrations for web interfaces, mobile platforms, and automated messaging bots. My focus is on creating high-performance endpoints that connect intelligent backends directly to end-users."
+  },
+  {
+    question: "What if a project requires custom data that isn't readily available?",
+    answer: "I have strong foundations in automated data extraction and web scraping architectures. If a clean dataset does not exist, I can engineer robust pipelines to autonomously harvest, clean, and structure raw data from across the web, effectively building custom datasets from scratch."
+  },
+  {
+    question: "What if a project requires frontend or mobile development outside your core AI stack?",
+    answer: "This is where I leverage the \"Vibe Coding\" philosophy. While my core lies in Data and AI Engineering, I am highly proficient in steering AI coding assistants to architect and deploy functional web or mobile frontends. This means I can deliver end-to-end, full-stack solutions without being bottlenecked by traditional UI/UX development cycles."
+  },
+  {
+    question: "How do you ensure your machine learning models are trustworthy?",
+    answer: "Accuracy alone isn't enough; transparency is key. I heavily incorporate Explainable AI (XAI) techniques into my workflow. By utilizing tools that highlight feature importance, I ensure that stakeholders can understand exactly how and why a model makes its predictions, especially for critical tabular data."
+  },
+  {
+    question: "Do you document your technical processes or share insights?",
+    answer: "Yes. I believe strong engineering requires strong documentation. I actively maintain clean, well-documented project repositories and write technical articles dissecting AI implementations and machine learning methodologies to share insights with the broader tech community."
+  },
+  {
+    question: "How do you approach a new, complex technical problem?",
+    answer: "I start with clarification and architecture design before writing any code. I break down the problem to understand the mathematical and logical constraints, select the most efficient framework (whether it is a simple predictive algorithm or a complex LLM agent), and build modularly to ensure the final product is scalable and latency-optimized."
   }
 ];
 
@@ -148,7 +172,7 @@ export default function ContactPage() {
     <div className="w-full max-w-full overflow-x-hidden pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="contact" className="max-w-7xl mx-auto space-y-24">
         
-        {/* 1. Standalone Header */}
+        {/* Header Section */}
         <div className="space-y-6 text-center">
           <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Connect</Badge>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
@@ -159,10 +183,9 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* 2. Contact Details Hub (Grid 2 columns) */}
+        {/* Contact Details Hub */}
         <div className="space-y-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-            {/* Email Card */}
             <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
               <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <Mail className="w-6 h-6 text-primary" />
@@ -183,7 +206,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Phone Card */}
             <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden">
               <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <Phone className="w-6 h-6 text-primary" />
@@ -216,7 +238,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Location Card (Spans 2 columns / full width) */}
             <div className="flex items-center gap-4 p-6 rounded-[2rem] glass border-white/10 hover:border-primary/30 transition-all group overflow-hidden sm:col-span-2">
               <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 shrink-0 group-hover:bg-primary/10 transition-all duration-300">
                 <MapPin className="w-6 h-6 text-primary" />
@@ -244,10 +265,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* 3. Interaction Hub: Form vs AI (Equal Height Grid) */}
+        {/* Interaction Hub: Form vs AI */}
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-          
-          {/* Column Left: Manual Message Form */}
           <div className="p-8 md:p-10 glass rounded-[3rem] border-primary/10 relative overflow-hidden flex flex-col h-full">
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] rounded-full -mr-32 -mt-32" />
             
@@ -335,7 +354,6 @@ export default function ContactPage() {
             </Form>
           </div>
 
-          {/* Column Right: AI Assistant Chatbot */}
           <div className="relative flex flex-col h-full min-h-[600px]">
             <div className="absolute -inset-10 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="relative w-full h-full flex flex-col overflow-hidden rounded-[3rem] shadow-2xl border border-white/10">
@@ -344,9 +362,8 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* 4. Bottom Stack: Info & FAQ */}
+        {/* Bottom Stack: Info & FAQ */}
         <div className="max-w-4xl mx-auto space-y-20">
-          {/* Quick Response Info */}
           <div className="p-8 rounded-[2rem] bg-primary/5 border border-primary/20 flex items-start gap-6 shadow-xl">
             <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
               <Clock className="text-primary w-6 h-6" />
@@ -357,7 +374,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* FAQ Section */}
           <div className="space-y-12">
             <div className="space-y-4 text-center">
               <div className="flex items-center justify-center gap-3">
@@ -371,7 +387,7 @@ export default function ContactPage() {
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-none">
                   <AccordionTrigger className="flex p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all text-left font-bold text-white hover:no-underline group [&[data-state=open]]:bg-primary/5">
-                    <span className="text-base md:text-lg pr-4">{faq.question}</span>
+                    <span className="text-base md:text-lg pr-4 font-headline uppercase tracking-wider">{faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="p-6 text-white/60 text-sm md:text-base leading-relaxed font-medium bg-white/[0.02] rounded-b-2xl -mt-4 border-x border-b border-white/5">
                     {faq.answer}
@@ -383,7 +399,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Success Dialog */}
       <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
         <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-md p-10 text-center">
           <DialogHeader>
