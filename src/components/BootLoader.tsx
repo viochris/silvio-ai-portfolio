@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -14,13 +15,13 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
   const [mounted, setMounted] = useState(false);
 
   const fullLogs = [
-    "CONTINUUM BIOS v2.0",
+    "SILVIO.AI BIOS v2.0",
     "Memory Check: OK",
     "Secure Boot: ENABLED",
     "Release: 2026.01.05",
     "Updated: 2026.05.27",
     "",
-    "MWBIOS (C)2026 Developer Portfolio System",
+    "MWBIOS (C)2026 Silvio Christian, Joe",
     "",
     "Loading Portfolio Resources...",
     "",

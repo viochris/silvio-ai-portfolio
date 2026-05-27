@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -185,7 +186,7 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          {/* Row 2: System Monitor */}
+          {/* Row 2: Infrastructure Pulse */}
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
@@ -291,18 +292,9 @@ export default function Home() {
                   </div>
                </div>
             </div>
-
-            {/* Link to Interests in About Page */}
-            <div className="flex justify-center pt-8">
-              <Link href="/about#interests">
-                <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
-                  View Full Expertise <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </Button>
-              </Link>
-            </div>
           </div>
 
-          {/* Row 4: Featured Projects Showcase */}
+          {/* Featured Projects Showcase */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
@@ -374,90 +366,6 @@ export default function Home() {
                 </Carousel>
              </div>
           </div>
-
-          {/* Row 5: My Workflow */}
-          <div className="mb-40 space-y-16">
-            <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
-              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                How I <span className="text-primary">Work</span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch auto-rows-fr">
-              {[
-                {
-                  title: "Research & Design",
-                  desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.",
-                  icon: <Terminal className="w-6 h-6" />,
-                  step: "01"
-                },
-                {
-                  title: "Architect & Build",
-                  desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.",
-                  icon: <Cpu className="w-6 h-6" />,
-                  step: "02"
-                },
-                {
-                  title: "Deploy & Scale",
-                  desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.",
-                  icon: <Layers className="w-6 h-6" />,
-                  step: "03"
-                },
-                {
-                  title: "Optimization",
-                  desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.",
-                  icon: <RefreshCw className="w-6 h-6" />,
-                  step: "04"
-                }
-              ].map((item, idx) => (
-                <div key={idx} className="relative p-12 bg-white/5 rounded-[3rem] border border-white/10 overflow-hidden group flex flex-col h-full">
-                  <div className="absolute -top-4 -right-2 text-8xl md:text-9xl font-black text-slate-200/50 dark:text-slate-700/30 z-0 select-none pointer-events-none transition-transform group-hover:scale-110">
-                    {item.step}
-                  </div>
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="text-primary">{item.icon}</div>
-                      <span className="text-primary font-mono text-sm font-bold tracking-widest uppercase">
-                        STEP {item.step}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[3rem] flex items-start">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/60 font-medium leading-relaxed flex-1">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 6: CTA Section */}
-          <div className="mb-20">
-            <div className="relative flex flex-col items-center justify-center text-center p-8 md:p-12 lg:p-16 gap-8 md:gap-10 rounded-[3rem] bg-primary overflow-hidden shadow-2xl shadow-primary/30 w-full h-auto">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />
-              
-              <div className="relative z-10 space-y-6 max-w-3xl">
-                <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                  Ready to Build the <span className="text-black">Future?</span>
-                </h2>
-                <p className="text-lg md:text-xl text-white/90 font-medium mx-auto">
-                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to turn your data into intelligence.
-                </p>
-              </div>
-              
-              <div className="relative z-10 w-full flex justify-center">
-                <Link href="/contact">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl transition-transform active:scale-95">
-                    Let's Collaborate
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 

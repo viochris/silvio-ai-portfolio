@@ -1,7 +1,8 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info, Layout, Search, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -20,6 +21,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+
+const commitData = [
+  { hour: '0', commits: 80 }, { hour: '1', commits: 65 }, { hour: '2', commits: 30 }, { hour: '3', commits: 5 },
+  { hour: '4', commits: 10 }, { hour: '5', commits: 40 }, { hour: '6', commits: 95 }, { hour: '7', commits: 88 },
+  { hour: '8', commits: 85 }, { hour: '9', commits: 45 }, { hour: '10', commits: 35 }, { hour: '11', commits: 10 },
+  { hour: '12', commits: 30 }, { hour: '13', commits: 20 }, { hour: '14', commits: 2 }, { hour: '15', commits: 0 },
+  { hour: '16', commits: 0 }, { hour: '17', commits: 0 }, { hour: '18', commits: 0 }, { hour: '19', commits: 2 },
+  { hour: '20', commits: 0 }, { hour: '21', commits: 0 }, { hour: '22', commits: 1 }, { hour: '23', commits: 18 }
+];
 
 const educationData = [
   {
@@ -111,33 +122,12 @@ const technicalMilestones = [
   }
 ];
 
-const orchestrationNodes = [
-  { 
-    title: "Input Processing", 
-    icon: <BrainCircuit className="w-8 h-8 text-primary" />, 
-    desc: "Unstructured data is parsed via NLP engines to extract intent and entities.",
-    details: "Leveraging modern NLP pipelines tailored to specific needs to bridge the gap between human language and machine understanding. Semantic classification and NER structure input before reasoning."
-  },
-  { 
-    title: "Agentic Reasoning", 
-    icon: <Workflow className="w-8 h-8 text-primary" />, 
-    desc: "Autonomous execution managed via stateful workflows and tool calling.",
-    details: "Utilizing cyclic graph architectures and reasoning patterns like ReAct. Leveraging multi-framework stacks (Google SDK, CrewAI, LangChain, LangGraph) to allow agents to query, validate, and self-correct logic."
-  },
-  { 
-    title: "Output Synthesis", 
-    icon: <Rocket className="w-8 h-8 text-primary" />, 
-    desc: "Final intelligence served through high-performance FastAPI and Next.js interfaces.",
-    details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensuring data integrity, safety filters, and optimized latency via streaming."
-  }
-];
-
 const interestData = [
   {
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "Focused on building intelligent systems that understand intent. Specializes in sophisticated semantic matching techniques and modern NLP pipelines tailored to specific high-precision retrieval needs.",
+    details: "Focused on building intelligent systems that understand intent using high-precision NLP pipelines tailored to specific needs. Specializes in building tools like ATS optimizers, sentiment engines, and multilingual processors.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -148,7 +138,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Building robust predictive models across diverse domains including medical, finance, and behavior. Ensures models are interpretable and reliable through rigorous feature engineering and cross-validation.",
+    details: "Building robust predictive models across diverse domains including medical, finance, and behavior. Ensures models are interpretable and reliable through rigorous feature engineering and handling class imbalance.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -181,7 +171,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "A philosophy of intent-driven development. Bridging AI expertise into web, mobile, and communication platforms by creating a seamless synergy between human intuition and AI execution.",
+    details: "A philosophy where engineering meets intuition. Bridging AI expertise into web, mobile, and communication platforms by creating a seamless synergy between human intuition and AI execution.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -197,7 +187,6 @@ export default function AboutPage() {
 
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
   const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
-  const [openArchIdx, setOpenArchIdx] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchGitHubData() {
@@ -304,6 +293,71 @@ export default function AboutPage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Commits Chart Section */}
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
+            <div className="h-[400px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={commitData}>
+                  <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
+                  <YAxis hide />
+                  <Tooltip 
+                    cursor={{fill: 'rgba(255,255,255,0.05)'}}
+                    contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
+                  />
+                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className="flex justify-between items-center mt-4">
+                <span className="text-4xl font-black text-slate-800">0</span>
+                <span className="text-4xl font-black text-slate-800">6</span>
+                <span className="text-4xl font-black text-slate-800">12</span>
+                <span className="text-4xl font-black text-slate-800">18</span>
+                <span className="text-4xl font-black text-slate-800">23</span>
+              </div>
+              <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Beyond the Code Section */}
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-primary/20 bg-primary/5 shadow-2xl relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Personal Interests</Badge>
+              <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                Beyond The <span className="text-primary">Code</span>
+              </h2>
+              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
+                <p>
+                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I'm a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
+                </p>
+                <p>
+                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
+                </p>
+                <p>
+                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              {[
+                { label: "Builder", sub: "PERSONAL PROJECTS", icon: <Layout className="w-6 h-6 text-primary" /> },
+                { label: "Explorer", sub: "HUGGING FACE & KAGGLE", icon: <Search className="w-6 h-6 text-primary" /> },
+                { label: "Creator", sub: "DATA EDU CONTENT", icon: <Sparkles className="w-6 h-6 text-primary" /> },
+                { label: "Learner", sub: "NEW AI FRAMEWORKS", icon: <BookOpen className="w-6 h-6 text-primary" /> }
+              ].map((item, i) => (
+                <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col items-center justify-center text-center group hover:bg-primary/10 transition-all shadow-xl">
+                  <div className="mb-4">{item.icon}</div>
+                  <div className="text-lg font-headline font-black text-primary uppercase mb-1">{item.label}</div>
+                  <div className="text-[10px] font-bold text-white/40 tracking-widest">{item.sub}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -519,78 +573,6 @@ export default function AboutPage() {
               )}
             </DialogContent>
           </Dialog>
-        </div>
-
-        <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-32">
-           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
-           <div className="relative z-10 space-y-16">
-              <div className="text-center space-y-4">
-                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Logic</Badge>
-                 <h3 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                   AI Engine <span className="text-primary">Orchestration</span>
-                 </h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                 {orchestrationNodes.map((arch, i) => (
-                   <div key={i} className="space-y-6 text-center cursor-pointer group" onClick={() => setOpenArchIdx(i)}>
-                      <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:border-primary/50 transition-all">
-                         {arch.icon}
-                      </div>
-                      <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors min-h-[3rem] flex items-center justify-center">{arch.title}</h5>
-                      <p className="text-white/50 text-sm leading-relaxed min-h-[4rem]">{arch.desc}</p>
-                   </div>
-                 ))}
-              </div>
-           </div>
-
-           <Dialog open={openArchIdx !== null} onOpenChange={(open) => !open && setOpenArchIdx(null)}>
-             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
-               <DialogTitle className="sr-only">Orchestration Logic Detail</DialogTitle>
-               <DialogDescription className="sr-only">Deep dive into the AI orchestration system logic.</DialogDescription>
-               {openArchIdx !== null && (
-                 <>
-                   <DialogHeader>
-                     <div className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
-                       {orchestrationNodes[openArchIdx].icon}
-                       {orchestrationNodes[openArchIdx].title}
-                     </div>
-                   </DialogHeader>
-                   <div className="space-y-6">
-                     <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
-                       <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
-                         <Info className="w-4 h-4" /> Technical Documentation
-                       </h6>
-                       <p className="text-foreground leading-relaxed text-sm font-medium">
-                         {orchestrationNodes[openArchIdx].details}
-                       </p>
-                     </div>
-
-                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenArchIdx(prev => prev! > 0 ? prev! - 1 : orchestrationNodes.length - 1)}
-                        >
-                          <ChevronLeft className="w-4 h-4" /> Previous
-                        </Button>
-                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
-                          {openArchIdx + 1} / {orchestrationNodes.length}
-                        </div>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenArchIdx(prev => prev! < orchestrationNodes.length - 1 ? prev! + 1 : 0)}
-                        >
-                          Next <ChevronRight className="w-4 h-4" />
-                        </Button>
-                     </div>
-                   </div>
-                 </>
-               )}
-             </DialogContent>
-           </Dialog>
         </div>
 
         <div className="mb-32 space-y-16">
