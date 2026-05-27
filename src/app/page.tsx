@@ -287,7 +287,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the <strong>"vibe"</strong>—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
+                        Vibe Coding adalah seni pengembangan berbasis intensi. Saya berfokus pada penciptaan sinergi yang mulus antara intuisi manusia dan eksekusi AI, memastikan setiap pengalaman digital yang dibangun mengalir secara alami, intuitif, dan berperforma tinggi sejalan dengan visi yang mendasarinya.
                      </p>
                   </div>
                </div>

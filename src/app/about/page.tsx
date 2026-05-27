@@ -189,7 +189,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "Vibe Coding is a philosophy where engineering meets intuition. I prioritize clean, modular, and AI-first coding practices. My focus isn't just on the syntax, but on the architecture of the 'vibe'—ensuring that the interaction between human intent and machine execution is fluid, intuitive, and high-performance.",
+    details: "Vibe Coding adalah seni pengembangan berbasis intensi. Saya berfokus pada penciptaan sinergi yang mulus antara intuisi manusia dan eksekusi AI, memastikan setiap pengalaman digital yang dibangun mengalir secara alami, intuitif, dan berperforma tinggi sejalan dengan visi yang mendasarinya.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
