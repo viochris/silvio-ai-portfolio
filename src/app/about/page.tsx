@@ -105,14 +105,15 @@ const technicalMilestones = [
   },
   {
     year: "2025 – Present",
-    title: "HANDS-ON PROJECT BUILDING",
-    shortSummary: "Shifted from theory to real-world projects and applied machine learning.",
+    title: "PROJECT & AGENTIC ERA",
+    shortSummary: "Building end-to-end ML, autonomous AI Agents, and mastering Vibe Coding.",
     details: [
-      "Transitioned from theory to active, project-based learning",
-      "Started building real ML/DL projects from data collection to deployment",
-      "Applied knowledge from previous semesters into complete end-to-end pipelines",
-      "Continued expanding skills through practical experimentation and iteration",
-      "Currently in Semester 6, actively developing portfolio-worthy projects"
+      "Transitioned from theory to active, project-based learning with an AI-first approach",
+      "Building end-to-end ML/DL projects from raw data collection to production-ready deployment",
+      "Architecting autonomous AI Agents and high-performance Automation workflows",
+      "Deepening expertise in NLP (Natural Language Processing) and hybrid semantic matching",
+      "Embracing the 'Vibe Coding' philosophy—engineering with intuition and rapid AI iteration",
+      "Currently in Semester 6, actively developing production-ready solutions and portfolio engines"
     ]
   }
 ];
