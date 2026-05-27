@@ -1,9 +1,7 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Github, Linkedin, Mail, GraduationCap, Target, Zap, ShieldCheck, BarChart3, Users, Download, Eye, Rocket, BrainCircuit, Workflow, Info, Brain, Database, Sparkles, Network, ExternalLink, ArrowUpRight, Code2, Star, GitBranch, MessageSquare, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -31,7 +29,7 @@ const educationData = [
     institution: "Universitas Dian Nuswantoro (UDINUS)",
     description: (
       <>
-        GPA: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
+        GPA: 3.95/4.00 (Cumulative GPA as of 5th Semester).<br />
         Focusing on AI Development, Data Engineering, and Computational Logic.
       </>
     )
@@ -75,8 +73,7 @@ const technicalMilestones = [
       "Practiced data visualization with Tableau and Looker Studio",
       "Used Microsoft Power BI for dashboard creation and reporting",
       "Leveraged Microsoft Excel for data analysis, pivot tables, and charting",
-      "Built end-to-end analytical workflows from raw data to visual insight",
-      "Began transitioning interest toward machine learning at the end of this period"
+      "Built end-to-end analytical workflows from raw data to visual insight"
     ]
   },
   {
@@ -95,13 +92,11 @@ const technicalMilestones = [
     title: "THEORETICAL DEEPDIVE",
     shortSummary: "Strengthened fundamentals through deep theoretical study of statistics and ML concepts.",
     details: [
-      "This was a purely theory-focused phase, mastering the 'why' before the 'how'",
-      "Practiced through exploratory trials: consulting AI to troubleshoot theoretical problems and performing logic testing without relying on fixed datasets",
-      "Studied statistical hypothesis testing: T-Test, Z-Test, ANOVA, and related methods",
+      "Mastered the 'why' before the 'how' through pure theoretical study",
+      "Studied statistical hypothesis testing: T-Test, Z-Test, ANOVA",
       "Learned evaluation metrics for Regression, Classification, Forecasting, and Clustering",
-      "Explored time-series forecasting models: ARIMA, SARIMA, SARIMAX, and Auto-ARIMA",
-      "Studied how ML models work under the hood: architectures and mechanics",
-      "Learned to use Hugging Face pipelines for loading and applying pretrained models"
+      "Explored time-series forecasting models: ARIMA, SARIMA, SARIMAX",
+      "Learned to use Hugging Face pipelines for pre-trained model implementation"
     ]
   },
   {
@@ -109,12 +104,10 @@ const technicalMilestones = [
     title: "PROJECT & AGENTIC ERA",
     shortSummary: "Building end-to-end ML, autonomous AI Agents, and mastering Vibe Coding.",
     details: [
-      "Transitioned from theory to active, project-based learning with an AI-first approach",
-      "Building end-to-end ML/DL projects from raw data collection to production-ready deployment",
-      "Architecting autonomous AI Agents and high-performance Automation workflows",
-      "Deepening expertise in NLP (Natural Language Processing) and hybrid semantic matching",
-      "Embracing the 'Vibe Coding' philosophy—engineering with intuition and rapid AI iteration",
-      "Currently in Semester 6, actively developing production-ready solutions and portfolio engines"
+      "Transitioned to active, project-based learning with an AI-first approach",
+      "Building end-to-end ML/DL projects from raw data to production-ready deployment",
+      "Architecting autonomous AI Agents and high-performance automation workflows",
+      "Embracing the 'Vibe Coding' philosophy—engineering with intuition and rapid AI iteration"
     ]
   }
 ];
@@ -124,19 +117,19 @@ const orchestrationNodes = [
     title: "Input Processing", 
     icon: <BrainCircuit className="w-8 h-8 text-primary" />, 
     desc: "Unstructured data is parsed via NLP engines to extract intent and entities.",
-    details: "Leveraging state-of-the-art transformer models (SBERT, RoBERTa) to convert raw text into high-dimensional embeddings. We perform semantic classification and named entity recognition (NER) to structure input before passing it to the reasoning layer."
+    details: "Leveraging state-of-the-art transformer models (SBERT, RoBERTa) to convert raw text into high-dimensional embeddings. Semantic classification and NER structure input before the reasoning phase."
   },
   { 
     title: "Agentic Reasoning", 
     icon: <Workflow className="w-8 h-8 text-primary" />, 
     desc: "LangGraph manages stateful workflows and tool calling for autonomous execution.",
-    details: "Utilizing cyclic graph architectures to allow agents to 'think-step-by-step'. The system uses ReAct (Reasoning and Acting) patterns, enabling it to call external tools, validate its own SQL queries, and self-correct logic errors through iterative loops."
+    details: "Utilizing cyclic graph architectures to allow agents to think step-by-step. ReAct patterns enable external tool calling, SQL validation, and iterative self-correction."
   },
   { 
     title: "Output Synthesis", 
     icon: <Rocket className="w-8 h-8 text-primary" />, 
     desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces.",
-    details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensures data integrity, applies safety filters, and optimizes latency via streaming responses and edge-cached delivery."
+    details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensuring data integrity, safety filters, and optimized latency via streaming."
   }
 ];
 
@@ -145,7 +138,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "Saya berfokus pada pengembangan sistem cerdas yang mampu memahami bahasa manusia secara mendalam. Keahlian saya mencakup pembangunan pipeline NLP modern dan model semantik yang disesuaikan dengan kebutuhan spesifik, mulai dari analisis sentimen hingga sistem RAG (Retrieval-Augmented Generation) yang presisi.",
+    details: "Focused on bridging the gap between human language and machine understanding. Specializes in Hybrid Semantic Matching, combining traditional methods with modern embeddings for highly precise information retrieval. Focused on building custom NLP pipelines tailored to specific needs.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -156,7 +149,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Saya menerapkan metodologi yang ketat dalam Feature Engineering dan pembangunan model prediktif untuk data tabular di berbagai domain seperti kesehatan, finansial, dan analisis perilaku. Fokus utama saya adalah memastikan model yang dihasilkan tidak hanya akurat, tetapi juga memiliki interpretibilitas tinggi dan bebas dari data leakage.",
+    details: "Believes data is the foundation of AI systems. Focused on rigorous Feature Engineering, handling class imbalance (SMOTE/SMOTENC), and building strong classification models across multiple domains (medical, financial, behavior). Ensures models are accurate, interpretable, and free from data leakage.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -167,7 +160,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Saya merancang sistem penalaran otonom dan framework multi-agen menggunakan berbagai teknologi seperti Google SDK, CrewAI, LangChain, dan LangGraph. Fokus saya adalah menciptakan agen yang mampu melakukan penalaran kompleks, pemanggilan tool eksternal, dan eksekusi tugas secara mandiri dengan presisi tinggi.",
+    details: "Focused on building Reasoning Agents that actively solve problems. Leverages frameworks like Google SDK, CrewAI, LangChain, and LangGraph architecture. Enables systems to perform database queries, call external APIs, and self-correct logic errors autonomously.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -178,7 +171,7 @@ const interestData = [
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
     desc: "High-performance AI ecosystems.",
-    details: "Saya berfokus pada pembangunan ekosistem berperforma tinggi di mana layanan AI terhubung secara mulus. Keahlian saya mencakup pembuatan agen stateful untuk manajemen jadwal, asisten kotak masuk otomatis, hingga pipeline pengiriman berita real-time untuk memaksimalkan efisiensi operasional.",
+    details: "Focused on building high-performance AI ecosystems where services connect seamlessly. Building Stateful Agents for calendar management, automated inbox assistants, and real-time news delivery pipelines. Goal: maximize efficiency by delegating repetitive tasks to intelligent bots.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -189,7 +182,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "Vibe Coding adalah seni pengembangan berbasis intensi yang memungkinkan saya menjembatani keahlian AI ke dalam pengembangan web, mobile, dan komunikasi. Saya berfokus pada sinergi antara intuisi manusia dan eksekusi AI untuk menciptakan pengalaman digital yang mengalir secara alami dan berperforma tinggi.",
+    details: "A philosophy where engineering meets intuition. Prioritizing clean, modular, and AI-first coding practices. Bridges AI expertise into web, mobile, and communication development, ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -203,7 +196,6 @@ export default function AboutPage() {
   const [ghStats, setGhStats] = useState({ repos: 0, stars: 0, followers: 0, latestCommit: '' });
   const [loadingGh, setLoadingGh] = useState(true);
 
-  // States for unified dialog navigation
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
   const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
   const [openArchIdx, setOpenArchIdx] = useState<number | null>(null);
@@ -255,10 +247,10 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              Saya adalah Silvio Christian Joe (Vio), mahasiswa Teknik Informatika di UDINUS. Fokus utama saya adalah membangun sistem cerdas yang memadukan data dan inteligensi—mulai dari <strong>pipeline NLP presisi tinggi</strong> dan <strong>model tabular prediktif</strong> hingga <strong>agen AI otonom</strong> dan <strong>otomatisasi alur kerja</strong>.
+              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>predictive tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              Saya tidak hanya membangun model; saya merancang sistem penalaran untuk menyelesaikan masalah kompleks. Meskipun spesialisasi utama saya ada di AI dan Data Engineering, saya memanfaatkan filosofi <strong>Vibe Coding</strong> untuk menjembatani pengembangan web, mobile, dan komunikasi—memastikan setiap solusi yang saya bangun didorong oleh inteligensi performa tinggi dan desain intuitif.
+              I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web, mobile, and communication development—ensuring every solution I build is driven by high-performance intelligence and intuitive design.
             </p>
 
             {/* Availability Status Card */}
@@ -328,7 +320,6 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                 Technical <span className="text-primary">Milestones</span>
               </h2>
-              <p className="text-white/40 text-[10px] font-bold tracking-[0.2em] uppercase">Click cards to explore deep breakdown</p>
            </div>
            
            <div className="relative max-w-5xl mx-auto px-12">
@@ -389,7 +380,6 @@ export default function AboutPage() {
                        </ul>
                      </div>
 
-                     {/* Navigation Buttons */}
                      <div className="flex items-center justify-between pt-4 border-t border-white/5">
                         <Button 
                           variant="ghost" 
@@ -425,7 +415,6 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
               Professional <span className="text-primary">Interests</span>
             </h2>
-            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Explore methodology and related work via carousel</p>
           </div>
 
           <div className="relative max-w-6xl mx-auto px-12">
@@ -478,7 +467,6 @@ export default function AboutPage() {
                   </DialogHeader>
                   
                   <div className="space-y-8">
-                    {/* Methodology Section */}
                     <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
                       <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
                         <BrainCircuit className="w-4 h-4" /> Methodology & Vision
@@ -488,7 +476,6 @@ export default function AboutPage() {
                       </p>
                     </div>
 
-                    {/* Top 3 Projects Section */}
                     <div className="space-y-4">
                       <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
                       <div className="grid gap-3">
@@ -511,7 +498,6 @@ export default function AboutPage() {
                       </div>
                     </div>
 
-                    {/* Navigation Buttons */}
                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
                         <Button 
                           variant="ghost" 
@@ -549,7 +535,6 @@ export default function AboutPage() {
                  <h3 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
                    AI Engine <span className="text-primary">Orchestration</span>
                  </h3>
-                 <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Click elements for technical deep-dive</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                  {orchestrationNodes.map((arch, i) => (
@@ -564,7 +549,6 @@ export default function AboutPage() {
               </div>
            </div>
 
-           {/* Unified Architecture Nodes Dialog */}
            <Dialog open={openArchIdx !== null} onOpenChange={(open) => !open && setOpenArchIdx(null)}>
              <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
                <DialogTitle className="sr-only">Orchestration Logic Detail</DialogTitle>
@@ -587,7 +571,6 @@ export default function AboutPage() {
                        </p>
                      </div>
 
-                     {/* Navigation Buttons */}
                      <div className="flex items-center justify-between pt-4 border-t border-white/5">
                         <Button 
                           variant="ghost" 
@@ -628,13 +611,12 @@ export default function AboutPage() {
             </div>
           </div>
           
-          {/* GitHub Live Stats Bar */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
             {[
-              { label: "Public Repos", val: ghStats.repos, icon: <GitBranch className="text-blue-400" /> },
-              { label: "Total Stars", val: ghStats.stars, icon: <Star className="text-yellow-400" /> },
+              { label: "Public Repos", val: ghStats.repos, icon: <Github className="text-blue-400" /> },
+              { label: "Total Stars", val: ghStats.stars, icon: <Sparkles className="text-yellow-400" /> },
               { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> },
-              { label: "Latest Update", val: ghStats.latestCommit, icon: <MessageSquare className="text-purple-400" />, isCommit: true }
+              { label: "Latest Update", val: ghStats.latestCommit, icon: <Code2 className="text-purple-400" />, isCommit: true }
             ].map((stat, i) => (
               <div key={i} className="p-6 glass rounded-[2rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">{stat.icon}</div>

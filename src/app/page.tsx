@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -21,7 +20,7 @@ const featuredProjects = [
     title: "InsightSQL — LangGraph Engine", 
     type: "GenAI / Graph Agent",
     impact: "State-of-the-Art",
-    desc: "The next evolution of database interaction using cyclic reasoning to autonomously query, validate, and self-correct SQL operations.",
+    desc: "The evolution of SQL Agents using Graph Architecture. Uses Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
     tech: "LangGraph • Gemini 2.5 Flash",
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web"
   },
@@ -29,7 +28,7 @@ const featuredProjects = [
     title: "DocuTalk-AI — Smart RAG", 
     type: "GenAI / Document Intelligence",
     impact: "High Precision",
-    desc: "A premier RAG assistant using ReAct agents to intelligently choose between vector retrieval or real-time web search.",
+    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval or real-time Web Search for hyper-accurate answers.",
     tech: "LangChain • FAISS • Gemini",
     link: "https://github.com/viochris/DocuTalk-AI"
   },
@@ -104,7 +103,7 @@ export default function Home() {
   const [isAnim, setIsAnim] = useState(false);
 
   useEffect(() => {
-    mounted && setMounted(true);
+    setMounted(true);
   }, []);
 
   if (!mounted) return null;
@@ -165,7 +164,7 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Membangun solusi cerdas berbasis data yang siap produksi. Spesialisasi dalam <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, dan <strong>Sistem Prediktif Modern</strong>.
+                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, and <strong>Modern Predictive Systems</strong>.
                 </p>
               </div>
 
@@ -232,25 +231,25 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Membangun sistem cerdas untuk memahami bahasa manusia melalui pipeline NLP modern dan model semantik yang disesuaikan dengan kebutuhan.",
+                  desc: "Bridging the gap between human language and machine understanding through modern NLP pipelines and tailored semantic models.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
                   label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Membangun model prediktif yang kuat di berbagai domain melalui feature engineering yang ketat untuk memastikan akurasi dan interpretibilitas tinggi.",
+                  desc: "Building strong predictive models across multiple domains through rigorous feature engineering to ensure high accuracy and interpretability.",
                   icon: <Database className="w-8 h-8 text-primary" />,
                   label: "DATA SCIENCE"
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Merancang sistem penalaran canggih dan framework multi-agen menggunakan Google SDK, CrewAI, dan LangChain untuk penyelesaian masalah otonom.",
+                  desc: "Designing advanced reasoning systems and multi-agent frameworks using Google SDK, CrewAI, and LangChain for autonomous problem solving.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "REASONING AGENTS"
                 },
                 {
                   title: "Automation & Orchestration",
-                  desc: "Membangun ekosistem berperforma tinggi di mana layanan AI terhubung secara mulus untuk otomatisasi tugas rutin melalui bot cerdas.",
+                  desc: "Building high-performance ecosystems where AI services connect seamlessly to automate routine tasks via intelligent bots.",
                   icon: <Workflow className="w-8 h-8 text-primary" />,
                   label: "ORCHESTRATION"
                 }
@@ -287,7 +286,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        Vibe Coding adalah seni pengembangan berbasis intensi. Saya berfokus pada penciptaan sinergi yang mulus antara intuisi manusia dan eksekusi AI, memastikan setiap pengalaman digital yang dibangun mengalir secara alami, intuitif, dan berperforma tinggi sejalan dengan visi yang mendasarinya.
+                        Vibe Coding is the art of intent-driven development. I focus on creating a seamless synergy between human intuition and AI execution, ensuring every digital experience flows naturally, intuitively, and performs at its peak.
                      </p>
                   </div>
                </div>
