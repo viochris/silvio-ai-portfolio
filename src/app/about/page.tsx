@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info, Layout, Search, BookOpen } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info, Layout, Search, BookOpen, MessageSquare, Send, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -623,36 +623,68 @@ export default function AboutPage() {
             <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
           </div>
           
-          <div className="w-full max-w-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8">
-            <a 
-              href={cvRawLink} 
-              download="vio-cv.pdf" 
-              className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 bg-primary"
-            >
-              <Download className="w-5 h-5" /> DOWNLOAD CV
-            </a>
+          <div className="w-full max-w-4xl mx-auto space-y-6 mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {/* Download CV */}
+              <a 
+                href={cvRawLink} 
+                download="vio-cv.pdf" 
+                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-red-600 hover:bg-red-700 uppercase tracking-widest text-xs"
+              >
+                <Download className="w-5 h-5" /> DOWNLOAD CV
+              </a>
 
-            <Dialog>
-              <DialogTrigger asChild>
-                <button 
-                  className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-xl font-bold text-white transition-all shadow-md hover:shadow-xl transform hover:-translate-y-1 border border-primary/50"
-                >
-                  <Eye className="w-5 h-5" /> VIEW CV
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
-                <DialogHeader className="pb-4 border-b border-border">
-                  <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
-                </DialogHeader>
-                <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
-                  <iframe 
-                    src={`${cvRawLink}#view=FitH&toolbar=0`} 
-                    className="w-full h-full border-none"
-                    title="CV Preview"
-                  />
-                </div>
-              </DialogContent>
-            </Dialog>
+              {/* View CV */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button 
+                    className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 uppercase tracking-widest text-xs"
+                  >
+                    <Eye className="w-5 h-5" /> VIEW CV
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
+                  <DialogHeader className="pb-4 border-b border-border">
+                    <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
+                    <iframe 
+                      src={`${cvRawLink}#view=FitH&toolbar=0`} 
+                      className="w-full h-full border-none"
+                      title="CV Preview"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              {/* Gmail Contact */}
+              <a 
+                href="mailto:viochristian12@gmail.com"
+                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#d44638] hover:bg-[#b03a2e] uppercase tracking-widest text-xs"
+              >
+                <Mail className="w-5 h-5" /> GMAIL CONTACT
+              </a>
+
+              {/* LinkedIn Profile */}
+              <a 
+                href="https://www.linkedin.com/in/silvio-christian-joe" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#0077b5] hover:bg-[#005a8a] uppercase tracking-widest text-xs"
+              >
+                <Linkedin className="w-5 h-5" /> LINKEDIN PROFILE
+              </a>
+            </div>
+
+            {/* Full-width WhatsApp button */}
+            <a 
+              href="https://wa.me/62895342637871" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#25D366] hover:bg-[#128C7E] uppercase tracking-widest text-xs"
+            >
+              <Phone className="w-5 h-5" /> WHATSAPP CONTACT
+            </a>
           </div>
         </div>
       </section>
