@@ -235,10 +235,13 @@ export default function AboutPage() {
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian, Joe, an Informatics Engineering student at UDINUS. My core focus is building intelligent systems that bridge data and intelligence—ranging from <strong>high-precision NLP pipelines</strong> and <strong>robust tabular models</strong> to <strong>autonomous AI agents</strong> and <strong>workflow orchestration</strong>.
+              I am Silvio Christian Joe, an Informatics Engineering student at UDINUS with a core focus as a Data Scientist and AI Engineer. My passion lies in transforming raw data into intelligent systems that seamlessly bridge data engineering and artificial intelligence.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web and mobile development—ensuring every solution is driven by high-performance intelligence.
+              On the data science front, I specialize in analyzing Tabular Data to build robust predictive models and designing high-precision Natural Language Processing (NLP) pipelines to extract actionable meaning from unstructured text. However, I don't just build traditional models—I design reasoning systems to solve complex problems. As an AI Engineer, my work revolves around developing autonomous AI Agents. I build practical, task-oriented systems using modern LLM frameworks, implementing RAG pipelines, engineering conversational bots, and creating ReAct agents that can independently reason and orchestrate complex workflows.
+            </p>
+            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
+              I firmly believe that AI should be practical and accessible. By leveraging the Vibe Coding philosophy, I bridge core AI development with web and mobile platforms—ensuring every solution is driven by high-performance intelligence. From analyzing datasets on Kaggle to deploying functional AI assistants on Telegram and web interfaces, my ultimate goal is to deliver real-world utility through reliable and intelligent execution.
             </p>
 
             <div className="p-6 rounded-2xl glass border-primary/20 bg-primary/5 flex items-center gap-4 mt-4 shadow-xl">
