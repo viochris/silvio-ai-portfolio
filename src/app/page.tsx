@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap, Workflow } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap, Workflow, Languages } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -96,6 +96,51 @@ const featuredProjects = [
     desc: "Automated Data Scientist that analyzes CSV/Excel files and auto-generates deep visualizations and insights.",
     tech: "Pandas Agent • Gemini • Python",
     link: "https://github.com/viochris/insight-data-ai-analyst"
+  }
+];
+
+const infrastructurePulseData = [
+  { 
+    status: "LIVE", 
+    title: "High-Performance Backend", 
+    subtitle: "Asynchronous APIs & Microservices", 
+    desc: "Architecting scalable, asynchronous server-side logic and robust API gateways to form the backbone of seamless AI integrations and data pipelines.",
+    icon: <Cpu className="text-blue-400" />
+  },
+  { 
+    status: "ACTIVE", 
+    title: "Multi-Agent Orchestration", 
+    subtitle: "Cognitive AI Architectures", 
+    desc: "Engineering autonomous agentic workflows and multi-step reasoning systems using modern LLM frameworks to execute complex, context-aware problem-solving logic.",
+    icon: <Sparkles className="text-yellow-400" />
+  },
+  { 
+    status: "SYNCED", 
+    title: "RAG & Vector Ecosystems", 
+    subtitle: "High-Precision Knowledge Retrieval", 
+    desc: "Designing robust semantic search pipelines and vector database integrations to ground language models with dynamic, real-time factual context.",
+    icon: <Database className="text-green-400" />
+  },
+  { 
+    status: "OPTIMIZED", 
+    title: "Advanced Machine Learning", 
+    subtitle: "Deep Learning & Explainable AI", 
+    desc: "Building highly accurate predictive models leveraging both traditional algorithms (Scikit-Learn) and neural networks (TensorFlow/Keras), enhanced by transparent XAI techniques like SHAP and LIME.",
+    icon: <Brain className="text-purple-400" />
+  },
+  { 
+    status: "PROCESSING", 
+    title: "Applied Natural Language Processing", 
+    subtitle: "Context Extraction & Intelligence", 
+    desc: "Designing comprehensive text processing pipelines to extract nuanced meaning, execute dynamic summarization, and analyze linguistic context from unstructured data.",
+    icon: <Languages className="text-cyan-400" />
+  },
+  { 
+    status: "DEPLOYED", 
+    title: "Production & Automation", 
+    subtitle: "CI/CD & Interactive Interfaces", 
+    desc: "Deploying reliable AI solutions via automated pipelines (GitHub Actions) and REST APIs (FastAPI), delivering utility through interactive web apps (Streamlit) and autonomous Telegram bots.",
+    icon: <Workflow className="text-orange-400" />
   }
 ];
 
@@ -206,7 +251,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16 overflow-hidden">
           <div className="mb-32 space-y-12">
              <div className="text-center space-y-4">
                 <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
@@ -214,28 +259,46 @@ export default function Home() {
                   Infrastructure <span className="text-primary">Pulse</span>
                 </h2>
              </div>
-             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch auto-rows-fr">
-                {[
-                  { label: "Backend Services", val: "Operational", icon: <Cpu className="text-blue-400" />, desc: "High-performance server-side logic and APIs" },
-                  { label: "Inference Engine", val: "Active", icon: <Zap className="text-yellow-400" />, desc: "LLM orchestration and reasoning agents" },
-                  { label: "Vector Database", val: "Synced", icon: <Database className="text-green-400" />, desc: "RAG infrastructure and semantic search" },
-                  { label: "API Endpoints", val: "Live", icon: <Layers className="text-purple-400" />, desc: "Active production-ready service nodes" }
-                ].map((m, i) => (
-                  <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl">
-                     <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">{m.icon}</div>
-                        <div className="flex items-center gap-1.5">
-                           <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                           <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">LIVE</span>
+             
+             {/* Infinite Marquee Carousel */}
+             <div className="w-full relative">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  plugins={[
+                    AutoScroll({
+                      speed: 1,
+                      stopOnInteraction: false,
+                      stopOnMouseEnter: true,
+                    }),
+                  ]}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-4">
+                    {infrastructurePulseData.map((m, i) => (
+                      <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden">
+                           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors" />
+                           <div className="flex justify-between items-start mb-6 relative z-10">
+                              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform border border-white/5">{m.icon}</div>
+                              <div className="flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-full border border-white/5">
+                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                                 <span className="text-[9px] font-black text-white/70 uppercase tracking-widest">{m.status}</span>
+                              </div>
+                           </div>
+                           <div className="relative z-10">
+                              <h3 className="text-2xl font-headline font-black text-white mb-1 group-hover:text-primary transition-colors leading-tight">{m.title}</h3>
+                              <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-4">{m.subtitle}</div>
+                              <p className="text-[11px] text-white/50 leading-relaxed font-medium">{m.desc}</p>
+                           </div>
                         </div>
-                     </div>
-                     <div>
-                        <div className="text-3xl font-headline font-black text-white mb-2">{m.val}</div>
-                        <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">{m.label}</div>
-                        <p className="text-[10px] text-white/50 leading-relaxed">{m.desc}</p>
-                     </div>
-                  </div>
-                ))}
+                      </CarouselItem>
+                    ))}
+                    {/* Duplicate for seamless looping if needed by embla, though loop: true handles it */}
+                  </CarouselContent>
+                </Carousel>
              </div>
           </div>
 
