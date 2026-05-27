@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -31,7 +32,7 @@ const educationData = [
     description: (
       <>
         GPA: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
-        Activities: UKM Dian Nuswantoro Computer Club - DNCC.
+        Focusing on AI Development, Data Engineering, and Computational Logic.
       </>
     )
   },
@@ -39,7 +40,7 @@ const educationData = [
     period: "Jul 2020 - May 2023",
     degree: "High School Diploma, Science",
     institution: "SMA Kristen YSKI",
-    description: "Activities: Photography, Entrepreneurship, and Scouting."
+    description: "Built foundational skills in logic and science while exploring early digital creative work."
   }
 ];
 
@@ -143,22 +144,22 @@ const interestData = [
   {
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
-    desc: "Semantic analysis and linguistic intelligence.",
-    details: "My passion for NLP lies in bridging the gap between human language and machine understanding. I specialize in hybrid semantic matching, combining traditional TF-IDF with modern SBERT embeddings to achieve ultra-precise information retrieval. I focus on building tools like ATS optimizers, sentiment engines, and multi-lingual document parsers that can handle nuances in both English and Indonesian.",
+    desc: "Bridging human language and machine understanding.",
+    details: "I focus on bridging the gap between human language and machine understanding. I specialize in Hybrid Semantic Matching, combining traditional TF-IDF with modern SBERT embeddings for highly precise information retrieval. My goal is to build high-performance tools like ATS optimizers, sentiment engines, and multilingual document processors.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
-      { name: "Insightify API (NLP)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
+      { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
       { name: "DocuTalk-AI (Smart RAG)", id: null, github: "https://github.com/viochris/DocuTalk-AI" }
     ]
   },
   {
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
-    desc: "Predictive power from structured datasets.",
-    details: "Data is the foundation of every AI system. I enjoy the rigorous process of feature engineering, handling data imbalance using SMOTE/SMOTENC, and building robust classifiers. My background includes replicating academic research for medical diagnosis and health analysis, ensuring that models are not just accurate, but also interpretable and leak-free.",
+    desc: "Predictive power from structured foundations.",
+    details: "Data is the foundation of every AI system. I focus on rigorous Feature Engineering, handling class imbalance using SMOTE/SMOTENC, and building strong classification models. My background includes replicating research for medical analytics, ensuring models are not only accurate but also interpretable and free from data leakage.",
     projects: [
-      { name: "Stunting Analysis", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
-      { name: "Diabetes Prediction", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
+      { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
+      { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
       { name: "Coming Soon", id: null, github: "#" }
     ]
   },
@@ -166,7 +167,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Agentic AI is the future of productivity. I am deeply interested in building 'reasoning agents' that don't just generate text, but actively problem-solve. By utilizing LangGraph and ReAct architectures, I create systems that can query databases, call external APIs, and self-correct their own logic errors. This interest drives me to build production-ready agents like InsightSQL and financial OCR assistants.",
+    details: "Agentic AI is the future of productivity. I am deeply interested in building Reasoning Agents that solve problems autonomously. Leveraging LangGraph and ReAct patterns, I create systems capable of database querying, tool calling, and self-correcting logic errors through iterative reasoning loops.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -176,8 +177,8 @@ const interestData = [
   {
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
-    desc: "Building autonomous pipelines & workflows.",
-    details: "Automation is about creating high-performance ecosystems where AI services connect seamlessly. I focus on building stateful agents for calendar management, autonomous inbox assistants, and real-time news delivery pipelines. My goal is to maximize efficiency by offloading repetitive tasks to intelligent, stateless and stateful bots.",
+    desc: "High-performance AI ecosystems.",
+    details: "Automation is about creating high-performance ecosystems where AI services connect seamlessly. I focus on building stateful agents for calendar management, autonomous inbox assistants, and real-time news delivery pipelines. My goal is to maximize efficiency by offloading repetitive tasks to intelligent, state-aware bots.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -187,8 +188,8 @@ const interestData = [
   {
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
-    desc: "Engineering the AI-first digital experience.",
-    details: "Vibe Coding is a philosophy where engineering meets intuition. I prioritize clean, modular, and AI-first coding practices, ensuring that the interaction between human intent and machine execution is fluid. This involves architecting systems that are not just high-performance, but also highly adaptable and user-centric.",
+    desc: "The AI-first digital experience.",
+    details: "Vibe Coding is a philosophy where engineering meets intuition. I prioritize clean, modular, and AI-first coding practices. My focus isn't just on the syntax, but on the architecture of the 'vibe'—ensuring that the interaction between human intent and machine execution is fluid, intuitive, and high-performance.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -247,17 +248,17 @@ export default function AboutPage() {
           {/* LEFT COLUMN: Text + Icons */}
           <div className="w-full lg:w-1/2 flex flex-col space-y-6">
             <div className="space-y-6">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Journey</Badge>
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Architect</Badge>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
-                About <span className="text-primary">Experience</span>
+                About <span className="text-primary">Me</span>
               </h2>
             </div>
             
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              My journey as a <strong>Data Scientist and AI Engineer</strong> is driven by a passion for transforming raw data into intelligent systems. On the data science front, I specialize in analyzing <strong>Tabular Data</strong> to build robust predictive models and applying <strong>Natural Language Processing (NLP)</strong> to extract meaning from unstructured text.
+              I am Silvio Christian Joe (Vio), an Informatics Engineering student at UDINUS. My passion lies at the intersection of data and intelligence, specializing in building state-of-the-art systems—from high-precision NLP pipelines and RAG applications to autonomous AI agents and automated workflows.
             </p>
             <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              Beyond traditional modeling, my work as an AI Engineer focuses on developing <strong>autonomous AI Agents</strong>. I build practical, task-oriented systems using modern LLM frameworks—implementing RAG pipelines, engineering conversational bots, and creating ReAct agents that can independently reason and execute complex workflows.
+              I don't just build models; I architect reasoning systems that solve complex problems. Whether it's analyzing tabular data for medical insights or mashing up LangGraph with Gemini to create autonomous agents, my goal is to transform raw information into production-ready intelligence.
             </p>
 
             {/* Availability Status Card */}
@@ -297,7 +298,7 @@ export default function AboutPage() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <GraduationCap className="text-primary" size={28} />
-                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Education Roadmap</h2>
+                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Academic Journey</h2>
                 </div>
 
                 <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
@@ -360,15 +361,17 @@ export default function AboutPage() {
            {/* Unified Technical Milestones Dialog */}
            <Dialog open={openMilestoneIdx !== null} onOpenChange={(open) => !open && setOpenMilestoneIdx(null)}>
              <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+               <DialogTitle className="sr-only">Technical Milestone Detail</DialogTitle>
+               <DialogDescription className="sr-only">Details about the selected technical milestone.</DialogDescription>
                {openMilestoneIdx !== null && (
                  <>
                    <DialogHeader>
-                     <DialogTitle className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
+                     <div className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
                        {technicalMilestones[openMilestoneIdx].year}
-                     </DialogTitle>
-                     <DialogDescription className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
+                     </div>
+                     <div className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
                        {technicalMilestones[openMilestoneIdx].title}
-                     </DialogDescription>
+                     </div>
                    </DialogHeader>
                    
                    <div className="space-y-6">
@@ -418,7 +421,7 @@ export default function AboutPage() {
         {/* Section: Professional Interests & Deep Dive */}
         <div id="interests" className="mb-32 scroll-mt-32">
           <div className="text-center space-y-4 mb-16">
-            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Passions</Badge>
+            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
             <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
               Professional <span className="text-primary">Interests</span>
             </h2>
@@ -461,15 +464,17 @@ export default function AboutPage() {
           {/* Unified Professional Interests Dialog */}
           <Dialog open={openInterestIdx !== null} onOpenChange={(open) => !open && setOpenInterestIdx(null)}>
             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogTitle className="sr-only">Expertise Detail</DialogTitle>
+              <DialogDescription className="sr-only">Detailed methodology and projects for the selected expertise.</DialogDescription>
               {openInterestIdx !== null && (
                 <>
                   <DialogHeader>
-                    <DialogTitle className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
+                    <div className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
                       <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                         {interestData[openInterestIdx].icon}
                       </div>
                       {interestData[openInterestIdx].title}
-                    </DialogTitle>
+                    </div>
                   </DialogHeader>
                   
                   <div className="space-y-8">
@@ -493,13 +498,6 @@ export default function AboutPage() {
                               {proj.name}
                             </span>
                             <div className="flex items-center gap-3">
-                              {proj.id && (
-                                <Link href={`/projects#project-${proj.id}`}>
-                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                    <Eye className="w-3 h-3" /> Project Details
-                                  </Button>
-                                </Link>
-                              )}
                               {proj.github !== "#" && (
                                 <a href={proj.github} target="_blank" rel="noopener noreferrer">
                                   <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
@@ -569,13 +567,15 @@ export default function AboutPage() {
            {/* Unified Architecture Nodes Dialog */}
            <Dialog open={openArchIdx !== null} onOpenChange={(open) => !open && setOpenArchIdx(null)}>
              <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-xl">
+               <DialogTitle className="sr-only">Orchestration Logic Detail</DialogTitle>
+               <DialogDescription className="sr-only">Deep dive into the AI orchestration system logic.</DialogDescription>
                {openArchIdx !== null && (
                  <>
                    <DialogHeader>
-                     <DialogTitle className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
+                     <div className="flex items-center gap-4 text-2xl font-headline font-bold text-foreground mb-4">
                        {orchestrationNodes[openArchIdx].icon}
                        {orchestrationNodes[openArchIdx].title}
-                     </DialogTitle>
+                     </div>
                    </DialogHeader>
                    <div className="space-y-6">
                      <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
@@ -623,7 +623,7 @@ export default function AboutPage() {
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
                 <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
-                <h2 className="text-3xl sm:text-4xl md:text-5 font-black text-white uppercase tracking-tight">GitHub Performance</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-5 font-black text-white uppercase tracking-tight">GitHub Metrics</h2>
               </div>
             </div>
           </div>
@@ -660,7 +660,7 @@ export default function AboutPage() {
         {/* Section: Connect & Resume */}
         <div className="text-center space-y-12">
           <div className="space-y-4">
-            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Connect & Resume</h3>
+            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Collaborate</h3>
             <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
           </div>
           

@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -17,36 +18,28 @@ import AutoScroll from "embla-carousel-auto-scroll";
 
 const featuredProjects = [
   { 
-    title: "InsightSQL (LangGraph Engine)", 
-    type: "GenAI Engine",
-    impact: "Production Ready",
-    desc: "Autonomous SQL agent with cyclic reasoning and self-correction capabilities using LangGraph.",
-    tech: "LangGraph • Gemini",
-    link: "https://insightsql-langgraph-engine-web.streamlit.app/"
+    title: "InsightSQL — LangGraph Engine", 
+    type: "GenAI / Graph Agent",
+    impact: "State-of-the-Art",
+    desc: "The next evolution of database interaction. This LangGraph-powered engine uses cyclic reasoning to autonomously query, validate, and self-correct SQL operations with complete 'Glass Box' transparency.",
+    tech: "LangGraph • Gemini 2.5 Flash",
+    link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web"
   },
   { 
-    title: "SpendSense (Financial AI)", 
-    type: "Data Science",
-    impact: "High Impact",
-    desc: "Conversational finance app with OCR receipt scanning and pandas reasoning for expense analysis.",
-    tech: "LangChain • Vision",
-    link: "https://app-spend-sense.streamlit.app/"
+    title: "DocuTalk-AI — Smart RAG", 
+    type: "GenAI / Document Intelligence",
+    impact: "High Precision",
+    desc: "A premier RAG assistant that thinks before it acts. Powered by ReAct agents, it intelligently chooses between FAISS-indexed document retrieval or real-time web search for maximum accuracy.",
+    tech: "LangChain • FAISS • Gemini",
+    link: "https://github.com/viochris/DocuTalk-AI"
   },
   { 
-    title: "Resume Scanner API", 
-    type: "NLP / Backend",
-    impact: "Research Oriented",
-    desc: "High-performance stateless API for ATS optimization using hybrid semantic matching.",
-    tech: "FastAPI • SBERT",
-    link: "https://silvio0-resume-scanner.hf.space/docs"
-  },
-  { 
-    title: "InsightData (AI Analyst)", 
-    type: "GenAI Analyst",
-    impact: "Automation Pro",
-    desc: "Automated Data Scientist agent that analyzes CSVs/Excel and autonomously writes execution code.",
-    tech: "Pandas Agent • Gemini",
-    link: "https://insight-data-ai-analyst.streamlit.app/"
+    title: "NovaCal AI — Stateful Assistant", 
+    type: "GenAI / Automation",
+    impact: "Stateful Design",
+    desc: "Redefining conversational scheduling. This Telegram bot utilizes a unique SQL-backed memory architecture to maintain deep context across multi-turn dialogues for seamless Google Calendar management.",
+    tech: "LangChain • SQL Memory • Gemini",
+    link: "https://github.com/viochris/telegram-calendar-ai-bot"
   }
 ];
 
@@ -91,7 +84,7 @@ export default function Home() {
                   </div>
                   <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
                     <Badge className="bg-primary text-white px-8 py-2 shadow-2xl font-headline font-black text-[10px] md:text-xs tracking-[0.2em] uppercase border-none whitespace-nowrap rounded-full">
-                      AI Engineer
+                      AI & Data Engineer
                     </Badge>
                   </div>
                 </div>
@@ -103,7 +96,7 @@ export default function Home() {
               <div className="space-y-4 w-full">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
-                    Data Scientist & AI Engineer
+                    Architecting Intelligent Systems
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
                     Silvio Christian <span className="text-primary">Joe</span>
@@ -116,19 +109,19 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  I am an Informatics Engineering student working as a <strong>Data Scientist</strong> and <strong>AI Engineer</strong>. My technical focus involves analyzing <strong>Tabular & NLP data</strong>, as well as developing functional <strong>AI Agents</strong> for practical applications.
+                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in **Agentic Workflows**, **NLP Pipelines**, and **Applied Machine Learning**.
                 </p>
               </div>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
                 <Link href="/projects">
                   <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20">
-                    View Projects <ChevronRight className="ml-2 w-4 h-4" />
+                    Explore Solutions <ChevronRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 border-white/20 text-white hover:bg-white/10 w-full sm:w-auto">
-                    Contact Me
+                    Let's Connect
                   </Button>
                 </Link>
               </div>
@@ -170,12 +163,12 @@ export default function Home() {
              </div>
           </div>
 
-          {/* Row 3: Core Focus */}
+          {/* Row 3: Expertise Section */}
           <div className="space-y-16 mb-40">
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
               <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                Core <span className="text-primary">Focus</span>
+                Core <span className="text-primary">Specialization</span>
               </h2>
             </div>
             
@@ -183,27 +176,27 @@ export default function Home() {
               {[
                 {
                   title: "Natural Language Processing",
-                  desc: "Analyzing text data to extract meaningful insights, from sentiment analysis to building custom document-processing tools.",
+                  desc: "I bridge the gap between human language and machine understanding using Hybrid Semantic Matching, combining TF-IDF with SBERT for high-precision retrieval.",
                   icon: <Brain className="w-8 h-8 text-primary" />,
-                  label: "TEXT (NLP)"
+                  label: "NLP SPECIALIST"
                 },
                 {
                   title: "Tabular Data Modeling",
-                  desc: "Cleaning and engineering features from structured datasets to build reliable predictive models for real-world scenarios.",
+                  desc: "Focused on rigorous feature engineering and robust modeling for medical analytics, ensuring models are both high-performing and interpretable.",
                   icon: <Database className="w-8 h-8 text-primary" />,
-                  label: "DATA (TABULAR)"
+                  label: "DATA SCIENCE"
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Developing intelligent, task-oriented agents using LLM frameworks to automate workflows and solve complex reasoning tasks.",
+                  desc: "Architecting reasoning systems using LangGraph and ReAct patterns that solve complex problems and perform autonomous self-correction.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
-                  label: "AI AGENTS"
+                  label: "REASONING AGENTS"
                 },
                 {
                   title: "Automation & Orchestration",
-                  desc: "Building autonomous pipelines that connect different AI services and APIs into a seamless, high-performance ecosystem.",
+                  desc: "Building high-performance ecosystems where AI services connect seamlessly to eliminate repetitive tasks through intelligent, stateful bots.",
                   icon: <Workflow className="w-8 h-8 text-primary" />,
-                  label: "AUTOMATION"
+                  label: "ORCHESTRATION"
                 }
               ].map((skill, idx) => (
                 <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group flex flex-col h-full">
@@ -232,11 +225,11 @@ export default function Home() {
                      <div className="flex flex-col md:flex-row items-center gap-4">
                         <Badge className="bg-primary text-white font-black px-4 py-1 uppercase text-[10px] tracking-widest">Philosophy</Badge>
                         <h3 className="text-2xl md:text-4xl font-headline font-black text-white uppercase tracking-tighter">
-                           Engineering the <span className="text-primary">Digital Vibe</span>
+                           Vibe <span className="text-primary">Coding</span>
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        I prioritize clean, modular, and AI-first coding practices. My focus isn't just on the syntax, but on the architecture of the <strong>"vibe"</strong>—ensuring that the interaction between human intent and machine execution is fluid, intuitive, and high-performance.
+                        I prioritize an AI-first, modular approach where engineering meets intuition. My focus is on the architecture of the **"vibe"**—ensuring that the interaction between human intent and machine execution is smooth, intuitive, and high-performing.
                      </p>
                   </div>
                </div>
@@ -246,19 +239,19 @@ export default function Home() {
             <div className="flex justify-center pt-8">
               <Link href="/about#interests">
                 <Button variant="outline" className="rounded-full px-12 h-14 border-primary/20 text-primary hover:bg-primary/10 font-headline font-bold uppercase tracking-widest shadow-xl group">
-                  Explore Interest Journey <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  View Full Expertise <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
             </div>
           </div>
 
-          {/* Row 4: Featured Work Auto-Carousel */}
+          {/* Row 4: Featured Projects Showcase */}
           <div className="mb-40 space-y-16">
              <div className="flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="space-y-4">
                    <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Portfolio Highlights</Badge>
                    <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                     Featured <span className="text-primary">Work</span>
+                     Featured <span className="text-primary">Projects</span>
                    </h2>
                 </div>
                 <Link href="/projects">
@@ -393,14 +386,14 @@ export default function Home() {
                   Ready to Build the <span className="text-black">Future?</span>
                 </h2>
                 <p className="text-lg md:text-xl text-white/90 font-medium mx-auto">
-                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
+                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to turn your data into intelligence.
                 </p>
               </div>
               
               <div className="relative z-10 w-full flex justify-center">
                 <Link href="/contact">
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-xl transition-transform active:scale-95">
-                    Start a Project
+                    Let's Collaborate
                   </Button>
                 </Link>
               </div>

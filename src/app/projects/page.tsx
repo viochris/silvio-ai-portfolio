@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -13,47 +14,36 @@ import Link from 'next/link';
 const featuredProjects = [
   { 
     id: 1, 
-    title: "InsightSQL (LangGraph Engine)", 
-    impact: "Production Ready",
-    desc: "State-of-the-Art Reasoning. The evolution of SQL Agents using Graph Architecture with self-correction capabilities. Uses Cyclic Reasoning to query and validate errors.",
+    title: "InsightSQL — LangGraph Engine", 
+    impact: "State-of-the-Art",
+    desc: "The next evolution of database interaction. This LangGraph-powered engine uses cyclic reasoning to autonomously query, validate, and self-correct SQL operations with complete 'Glass Box' transparency.",
     tech: ["LangGraph", "Gemini 2.5 Flash", "Python", "SQL"],
-    link: "https://insightsql-langgraph-engine-web.streamlit.app/",
-    problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency.",
-    solution: "Implemented Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
+    link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
+    problem: "Traditional SQL agents often fail on complex schemas or logic errors without clear transparency into their reasoning process.",
+    solution: "Implemented Cyclic Reasoning to query, validate, and self-correct errors in real-time. The architecture provides full visibility into the agent's thought process.",
     image: "/insight_sql_langgraph.png"
   },
   { 
     id: 2, 
-    title: "SpendSense (Financial AI)", 
-    impact: "High Impact",
-    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning.",
-    tech: ["Streamlit", "LangChain", "Gemini Vision", "Pandas"],
-    link: "https://app-spend-sense.streamlit.app/",
-    problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
-    solution: "Built an intelligent finance assistant that combines Gemini Vision for receipt processing and LangChain for conversational data analysis.",
-    image: "/streamlit_spendsense.png"
+    title: "DocuTalk-AI — Smart RAG", 
+    impact: "High Precision",
+    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval (FAISS — supports PDF, CSV, TXT, MD) or real-time Web Search for hyper-accurate answers.",
+    tech: ["LangChain", "Gemini 2.5 Flash", "FAISS", "Python"],
+    link: "https://github.com/viochris/DocuTalk-AI",
+    problem: "Standard RAG systems often suffer from hallucinations when answers aren't in the provided documents or are outdated.",
+    solution: "Built a ReAct agent that autonomously decides whether to retrieve from internal documents or search the web, ensuring the most accurate response.",
+    image: "/resume_scanner_api.png" // Using existing image for context
   },
   { 
     id: 3, 
-    title: "Resume Scanner API", 
-    impact: "Research Oriented",
-    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features dual-engine precise matching.",
-    tech: ["FastAPI", "SBERT", "TF-IDF", "NLP"],
-    link: "https://silvio0-resume-scanner.hf.space/docs",
-    problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
-    solution: "Developed a dual-engine API offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise job-resume matching.",
-    image: "/resume_scanner_api.png"
-  },
-  { 
-    id: 4, 
-    title: "InsightData (AI Analyst)", 
-    impact: "Automation Pro",
-    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Autonomously writes and executes Python code.",
-    tech: ["Pandas Agent", "Gemini 2.5 Flash", "Python", "Matplotlib"],
-    link: "https://insight-data-ai-analyst.streamlit.app/",
-    problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
-    solution: "Built a ReAct agent that autonomously writes and executes Python code for cleaning, analysis, and instant visualization.",
-    image: "/insight_data.png"
+    title: "NovaCal AI — Stateful Telegram", 
+    impact: "Stateful Design",
+    desc: "An advanced Telegram bot featuring an SQL-backed conversational memory architecture. Enables natural, multi-turn dialogue for Google Calendar management without context loss.",
+    tech: ["LangChain", "SQL Memory", "Gemini Flash", "Python"],
+    link: "https://github.com/viochris/telegram-calendar-ai-bot",
+    problem: "Most conversational bots are stateless or have very short memory spans, making complex multi-turn scheduling difficult.",
+    solution: "Architected a persistent SQL-backed memory system that maintains context across long sessions, enabling full CRUD calendar management through natural language.",
+    image: "/streamlit_spendsense.png" // Using existing image for context
   }
 ];
 
@@ -65,16 +55,16 @@ export default function ProjectsPage() {
         <div className="space-y-6 mb-12">
           <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Portfolio</Badge>
           <h2 className="text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
-            Featured <span className="text-primary">Projects</span>
+            Featured <span className="text-primary">Solutions</span>
           </h2>
-          <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">Production-grade AI solutions solving real-world challenges through data science and engineering.</p>
+          <p className="text-muted-foreground text-lg lg:text-xl max-w-2xl font-medium">High-impact AI implementations solving real-world challenges through reasoning and data science.</p>
         </div>
 
         {/* Explore Repository Link */}
         <div className="flex justify-end mb-8 pr-4">
           <Button variant="link" className="font-headline font-bold uppercase tracking-widest gap-2 text-primary h-auto p-0 hover:no-underline hover:text-primary/80 transition-all" asChild>
             <Link href="/repository">
-              Explore Repository <ChevronRight className="w-4 h-4" />
+              Full Archive <ChevronRight className="w-4 h-4" />
             </Link>
           </Button>
         </div>
@@ -101,7 +91,7 @@ export default function ProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6 md:p-10">
                   <Button size="lg" className="rounded-full font-bold shadow-xl px-8 md:px-10 h-12 md:h-14 text-sm md:text-base" asChild>
                     <a href={p.link} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
+                      <ExternalLink className="w-4 h-4 mr-2" /> View GitHub
                     </a>
                   </Button>
                 </div>
@@ -142,13 +132,13 @@ export default function ProjectsPage() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full rounded-xl md:rounded-2xl font-headline font-bold uppercase tracking-widest text-[10px] md:text-xs h-12 md:h-14 hover:bg-primary hover:text-primary-foreground transition-all">
-                      Case Study Details
+                      Project Pitch & Methodology
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-[1.5rem] md:rounded-[2.5rem] border-border bg-card p-6 md:p-10">
                     <DialogHeader>
                       <DialogTitle className="text-2xl md:text-4xl font-headline font-bold mb-4 md:mb-8 text-foreground">{p.title}</DialogTitle>
-                      <DialogDescription className="text-muted-foreground text-sm font-medium">Detailed case study of the project including the problem statement and technical solution.</DialogDescription>
+                      <DialogDescription className="text-muted-foreground text-sm font-medium">Product pitch and technical overview.</DialogDescription>
                     </DialogHeader>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
                       <div className="space-y-6 md:space-y-10">
@@ -173,14 +163,14 @@ export default function ProjectsPage() {
                       <div className="space-y-8 md:space-y-10">
                         <div>
                           <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                            <Info className="w-4 h-4" /> Overview
+                            <Info className="w-4 h-4" /> Pitch
                           </h4>
                           <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.desc}</p>
                         </div>
 
                         <div>
                           <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                            <Brain className="w-4 h-4" /> The Problem
+                            <Brain className="w-4 h-4" /> The Challenge
                           </h4>
                           <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.problem}</p>
                         </div>
@@ -192,7 +182,7 @@ export default function ProjectsPage() {
                         </div>
                         <Separator className="bg-border/50" />
                         <Button className="w-full rounded-xl md:rounded-[1.5rem] font-headline font-bold h-12 md:h-14 text-base md:text-lg" asChild>
-                          <a href={p.link} target="_blank" rel="noopener noreferrer">Visit Repository <ExternalLink className="ml-2 w-5 h-5" /></a>
+                          <a href={p.link} target="_blank" rel="noopener noreferrer">Open Repository <ExternalLink className="ml-2 w-5 h-5" /></a>
                         </Button>
                       </div>
                     </div>
