@@ -305,7 +305,7 @@ export default function Home() {
                         </h3>
                      </div>
                      <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        Vibe Coding is the art of intent-driven development. I focus on creating a seamless synergy between human intuition and AI execution, ensuring every digital experience flows naturally and performs at its peak.
+                        Vibe Coding is the art of intent-driven development. I leverage this philosophy to build products outside my primary expertise—such as Computer Vision, Web, and Mobile development—while significantly accelerating repetitive workflows through a seamless synergy between human intuition and AI execution.
                      </p>
                   </div>
                </div>
