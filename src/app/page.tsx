@@ -185,6 +185,26 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Stats Bar Section */}
+        <div className="w-full border-y border-white/10 bg-white/[0.02] py-12 mb-20 relative overflow-hidden">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-around items-center gap-12 md:gap-0">
+            <div className="flex flex-col items-center text-center">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2">15+</div>
+              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Projects Completed</div>
+            </div>
+            <div className="hidden md:block w-px h-16 bg-white/10" />
+            <div className="flex flex-col items-center text-center">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2">20+</div>
+              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Verified Certifications</div>
+            </div>
+            <div className="hidden md:block w-px h-16 bg-white/10" />
+            <div className="flex flex-col items-center text-center">
+              <div className="text-4xl md:text-5xl font-black text-primary mb-2">7+</div>
+              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">GenAI Agents Deployed</div>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           {/* Row 2: Infrastructure Pulse */}
           <div className="mb-32 space-y-12">
