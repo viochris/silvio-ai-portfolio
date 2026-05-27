@@ -155,7 +155,7 @@ export default function Home() {
                     DATA SCIENTIST & AI ENGINEER
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian <br />
+                    Silvio Christian, <br />
                     <span className="text-primary">Joe</span>
                   </h1>
                 </div>
@@ -169,7 +169,7 @@ export default function Home() {
                   I am an Informatics Engineering student working as a <strong>Data Scientist</strong> and <strong>AI Engineer</strong>. My technical focus involves analyzing <strong>Tabular & NLP data</strong>, as well as developing functional <strong>AI Agents</strong> for practical applications.
                 </p>
 
-                <p className="text-sm md:text-base text-white/90 font-black italic tracking-tight pt-2">
+                <p className="text-sm md:text-base text-white/90 font-black italic tracking-tight pt-2 text-center w-full">
                   Focusing on Data Science (Tabular & NLP) and autonomous AI Agent Engineering.
                 </p>
               </div>

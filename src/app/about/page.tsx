@@ -424,10 +424,10 @@ export default function AboutPage() {
                       <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shrink-0">
                         {item.icon}
                       </div>
-                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[5rem] flex items-center justify-center">
+                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[5.5rem] flex items-center justify-center">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[6rem] flex items-center justify-center">
+                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[7rem] flex items-center justify-center">
                         {item.desc}
                       </p>
                     </div>
