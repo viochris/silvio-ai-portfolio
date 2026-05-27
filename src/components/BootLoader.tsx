@@ -18,7 +18,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
     "SILVIO.AI BIOS v2.0",
     "Memory Check: OK",
     "Secure Boot: ENABLED",
-    "Release: 2026.01.05",
+    "Release: 2026.01.18",
     "Updated: 2026.05.27",
     "",
     "MWBIOS (C)2026 Silvio Christian, Joe",
