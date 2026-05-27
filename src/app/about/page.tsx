@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -95,12 +94,13 @@ const technicalMilestones = [
     title: "THEORETICAL DEEPDIVE",
     shortSummary: "Strengthened fundamentals through deep theoretical study of statistics and ML concepts.",
     details: [
+      "This was a purely theory-focused phase, mastering the 'why' before the 'how'",
+      "Practiced through exploratory trials: consulting AI to troubleshoot theoretical problems and performing logic testing without relying on fixed datasets",
       "Studied statistical hypothesis testing: T-Test, Z-Test, ANOVA, and related methods",
       "Learned evaluation metrics for Regression, Classification, Forecasting, and Clustering",
       "Explored time-series forecasting models: ARIMA, SARIMA, SARIMAX, and Auto-ARIMA",
       "Studied how ML models work under the hood: architectures and mechanics",
-      "Learned to use Hugging Face pipelines for loading and applying pretrained models",
-      "Focused entirely on theoretical mastery before moving to applied work"
+      "Learned to use Hugging Face pipelines for loading and applying pretrained models"
     ]
   },
   {
@@ -634,7 +634,7 @@ export default function AboutPage() {
               { label: "Public Repos", val: ghStats.repos, icon: <GitBranch className="text-blue-400" /> },
               { label: "Total Stars", val: ghStats.stars, icon: <Star className="text-yellow-400" /> },
               { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> },
-              { label: "Latest Action", val: ghStats.latestCommit, icon: <MessageSquare className="text-purple-400" />, isCommit: true }
+              { label: "Latest Update", val: ghStats.latestCommit, icon: <MessageSquare className="text-purple-400" />, isCommit: true }
             ].map((stat, i) => (
               <div key={i} className="p-6 glass rounded-[2rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">{stat.icon}</div>
