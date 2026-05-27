@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, Workflow, RefreshCw, Code2, ExternalLink, Zap, ArrowRight } from 'lucide-react';
+import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { Button } from '@/components/ui/button';
@@ -402,35 +402,42 @@ export default function Home() {
                   step: "01", 
                   title: "Research & Design", 
                   desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.", 
-                  icon: <Terminal className="w-6 h-6 text-primary" /> 
+                  icon: <Terminal className="w-5 h-5" /> 
                 },
                 { 
                   step: "02", 
                   title: "Architect & Build", 
                   desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.", 
-                  icon: <Cpu className="w-6 h-6 text-primary" /> 
+                  icon: <Cpu className="w-5 h-5" /> 
                 },
                 { 
                   step: "03", 
                   title: "Deploy & Scale", 
                   desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.", 
-                  icon: <Layers className="w-6 h-6 text-primary" /> 
+                  icon: <Layers className="w-5 h-5" /> 
                 },
                 { 
                   step: "04", 
                   title: "Optimization", 
                   desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.", 
-                  icon: <RefreshCw className="w-6 h-6 text-primary" /> 
+                  icon: <RefreshCw className="w-5 h-5" /> 
                 }
               ].map((w, i) => (
-                <div key={i} className="p-10 glass rounded-[2.5rem] border-white/10 hover:border-primary/30 transition-all group relative overflow-hidden h-full flex flex-col">
-                  <div className="absolute top-4 right-8 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-colors">{w.step}</div>
-                  <div className="flex items-center gap-3 mb-8 relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-primary border border-white/10">{w.icon}</div>
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
+                <div key={i} className="p-10 bg-white/[0.03] rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all group relative overflow-hidden h-full flex flex-col shadow-2xl">
+                  {/* Large background number */}
+                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.05] leading-none -mr-8 -mt-4 transition-colors select-none pointer-events-none">
+                    {w.step}
                   </div>
-                  <h3 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest min-h-[3rem] flex items-center">{w.title}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed font-medium flex-1">{w.desc}</p>
+                  
+                  {/* Step label row */}
+                  <div className="flex items-center gap-3 mb-10 relative z-10">
+                    <div className="text-primary">{w.icon}</div>
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-3xl font-headline font-black text-white mb-6 leading-tight relative z-10">{w.title}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed font-medium flex-1 relative z-10">{w.desc}</p>
                 </div>
               ))}
             </div>

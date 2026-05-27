@@ -2,7 +2,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Rocket, Info, Layout, Search, BookOpen, MessageSquare, Send, Phone } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -324,11 +324,9 @@ export default function AboutPage() {
                         className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl w-full"
                       >
                         <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                        {/* Strictly aligned title with fixed min-height */}
                         <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest min-h-[5rem] flex items-center justify-center">
                           {m.title}
                         </h4>
-                        {/* Strictly aligned summary with fixed min-height */}
                         <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[6rem] flex items-center justify-center">
                           {m.shortSummary}
                         </p>
@@ -426,11 +424,9 @@ export default function AboutPage() {
                       <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shrink-0">
                         {item.icon}
                       </div>
-                      {/* Strictly aligned title with fixed min-height */}
                       <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[5rem] flex items-center justify-center">
                         {item.title}
                       </h4>
-                      {/* Strictly aligned description with fixed min-height */}
                       <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[6rem] flex items-center justify-center">
                         {item.desc}
                       </p>
@@ -625,7 +621,6 @@ export default function AboutPage() {
           
           <div className="w-full max-w-4xl mx-auto space-y-6 mt-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {/* Download CV */}
               <a 
                 href={cvRawLink} 
                 download="vio-cv.pdf" 
@@ -634,7 +629,6 @@ export default function AboutPage() {
                 <Download className="w-5 h-5" /> DOWNLOAD CV
               </a>
 
-              {/* View CV */}
               <Dialog>
                 <DialogTrigger asChild>
                   <button 
@@ -657,7 +651,6 @@ export default function AboutPage() {
                 </DialogContent>
               </Dialog>
 
-              {/* Gmail Contact */}
               <a 
                 href="mailto:viochristian12@gmail.com"
                 className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#d44638] hover:bg-[#b03a2e] uppercase tracking-widest text-xs"
@@ -665,7 +658,6 @@ export default function AboutPage() {
                 <Mail className="w-5 h-5" /> GMAIL CONTACT
               </a>
 
-              {/* LinkedIn Profile */}
               <a 
                 href="https://www.linkedin.com/in/silvio-christian-joe" 
                 target="_blank" 
@@ -676,7 +668,6 @@ export default function AboutPage() {
               </a>
             </div>
 
-            {/* Full-width WhatsApp button */}
             <a 
               href="https://wa.me/62895342637871" 
               target="_blank" 
