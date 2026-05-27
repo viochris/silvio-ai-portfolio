@@ -22,7 +22,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
 const commitData = [
   { hour: '0', commits: 80 }, { hour: '1', commits: 65 }, { hour: '2', commits: 30 }, { hour: '3', commits: 5 },
@@ -298,71 +298,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Commits Chart Section */}
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
-          <div className="relative z-10">
-            <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
-            <div className="h-[400px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={commitData}>
-                  <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
-                  <YAxis hide />
-                  <Tooltip 
-                    cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                    contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
-                  />
-                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-              <div className="flex justify-between items-center mt-4">
-                <span className="text-4xl font-black text-slate-800">0</span>
-                <span className="text-4xl font-black text-slate-800">6</span>
-                <span className="text-4xl font-black text-slate-800">12</span>
-                <span className="text-4xl font-black text-slate-800">18</span>
-                <span className="text-4xl font-black text-slate-800">23</span>
-              </div>
-              <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Beyond the Code Section */}
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-primary/20 bg-primary/5 shadow-2xl relative overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Personal Interests</Badge>
-              <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
-                Beyond The <span className="text-primary">Code</span>
-              </h2>
-              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
-                <p>
-                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I'm a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
-                </p>
-                <p>
-                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
-                </p>
-                <p>
-                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { label: "Builder", sub: "PERSONAL PROJECTS", icon: <Layout className="w-6 h-6 text-primary" /> },
-                { label: "Explorer", sub: "HUGGING FACE & KAGGLE", icon: <Search className="w-6 h-6 text-primary" /> },
-                { label: "Creator", sub: "DATA EDU CONTENT", icon: <Sparkles className="w-6 h-6 text-primary" /> },
-                { label: "Learner", sub: "NEW AI FRAMEWORKS", icon: <BookOpen className="w-6 h-6 text-primary" /> }
-              ].map((item, i) => (
-                <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col items-center justify-center text-center group hover:bg-primary/10 transition-all shadow-xl">
-                  <div className="mb-4">{item.icon}</div>
-                  <div className="text-lg font-headline font-black text-primary uppercase mb-1">{item.label}</div>
-                  <div className="text-[10px] font-bold text-white/40 tracking-widest">{item.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
+        {/* Technical Milestones Section */}
         <div className="mb-32 space-y-16">
            <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
@@ -460,6 +396,7 @@ export default function AboutPage() {
            </Dialog>
         </div>
 
+        {/* Professional Interests Section */}
         <div id="interests" className="mb-32 scroll-mt-32">
           <div className="text-center space-y-4 mb-16">
             <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
@@ -576,6 +513,7 @@ export default function AboutPage() {
           </Dialog>
         </div>
 
+        {/* GitHub Metrics Section */}
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
@@ -615,6 +553,72 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Commits Chart Section */}
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
+            <div className="h-[400px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={commitData}>
+                  <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
+                  <YAxis hide />
+                  <Tooltip 
+                    cursor={{fill: 'rgba(255,255,255,0.05)'}}
+                    contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
+                  />
+                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+              <div className="flex justify-between items-center mt-4">
+                <span className="text-4xl font-black text-slate-800">0</span>
+                <span className="text-4xl font-black text-slate-800">6</span>
+                <span className="text-4xl font-black text-slate-800">12</span>
+                <span className="text-4xl font-black text-slate-800">18</span>
+                <span className="text-4xl font-black text-slate-800">23</span>
+              </div>
+              <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Beyond the Code Section */}
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-primary/20 bg-primary/5 shadow-2xl relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Personal Interests</Badge>
+              <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+                Beyond The <span className="text-primary">Code</span>
+              </h2>
+              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed">
+                <p>
+                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I'm a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
+                </p>
+                <p>
+                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
+                </p>
+                <p>
+                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              {[
+                { label: "Builder", sub: "PERSONAL PROJECTS", icon: <Layout className="w-6 h-6 text-primary" /> },
+                { label: "Explorer", sub: "HUGGING FACE & KAGGLE", icon: <Search className="w-6 h-6 text-primary" /> },
+                { label: "Creator", sub: "DATA EDU CONTENT", icon: <Sparkles className="w-6 h-6 text-primary" /> },
+                { label: "Learner", sub: "NEW AI FRAMEWORKS", icon: <BookOpen className="w-6 h-6 text-primary" /> }
+              ].map((item, i) => (
+                <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col items-center justify-center text-center group hover:bg-primary/10 transition-all shadow-xl">
+                  <div className="mb-4">{item.icon}</div>
+                  <div className="text-lg font-headline font-black text-primary uppercase mb-1">{item.label}</div>
+                  <div className="text-[10px] font-bold text-white/40 tracking-widest">{item.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Collaborate Section */}
         <div className="text-center space-y-12">
           <div className="space-y-4">
             <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Collaborate</h3>
