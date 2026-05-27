@@ -570,13 +570,6 @@ export default function AboutPage() {
                   <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
-              <div className="flex justify-between items-center mt-4">
-                <span className="text-4xl font-black text-slate-800">0</span>
-                <span className="text-4xl font-black text-slate-800">6</span>
-                <span className="text-4xl font-black text-slate-800">12</span>
-                <span className="text-4xl font-black text-slate-800">18</span>
-                <span className="text-4xl font-black text-slate-800">23</span>
-              </div>
               <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
             </div>
           </div>
