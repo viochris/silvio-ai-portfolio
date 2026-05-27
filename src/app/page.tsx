@@ -287,10 +287,10 @@ export default function Home() {
                                  <span className="text-[9px] font-black text-white/70 uppercase tracking-widest">{m.status}</span>
                               </div>
                            </div>
-                           <div className="relative z-10">
-                              <h3 className="text-2xl font-headline font-black text-white mb-1 group-hover:text-primary transition-colors leading-tight">{m.title}</h3>
-                              <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-4">{m.subtitle}</div>
-                              <p className="text-[11px] text-white/50 leading-relaxed font-medium">{m.desc}</p>
+                           <div className="relative z-10 flex flex-col">
+                              <h3 className="text-2xl font-headline font-black text-white mb-1 group-hover:text-primary transition-colors leading-tight min-h-[4rem]">{m.title}</h3>
+                              <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-4 min-h-[1rem]">{m.subtitle}</div>
+                              <p className="text-[11px] text-white/50 leading-relaxed font-medium min-h-[5rem]">{m.desc}</p>
                            </div>
                         </div>
                       </CarouselItem>
