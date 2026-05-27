@@ -263,13 +263,13 @@ export default function Home() {
                 },
                 {
                   title: "AI Agent Engineering",
-                  desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving and complex orchestration.",
+                  desc: "Architecting cognitive systems and multi-agent frameworks using modern LLMs. Focused on complex reasoning, context-aware decision making, and RAG pipelines for autonomous problem-solving.",
                   icon: <Sparkles className="w-8 h-8 text-primary" />,
                   label: "REASONING AGENTS"
                 },
                 {
                   title: "Automation & Orchestration",
-                  desc: "Building high-performance ecosystems where AI services connect seamlessly to automate routine tasks via intelligent bots.",
+                  desc: "Building robust backend ecosystems and automated workflows. Connecting AI services, APIs, and data pipelines to seamlessly power real-world applications like intelligent bots and web interfaces.",
                   icon: <Workflow className="w-8 h-8 text-primary" />,
                   label: "ORCHESTRATION"
                 }
