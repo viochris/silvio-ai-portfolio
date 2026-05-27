@@ -202,7 +202,6 @@ export default function AboutPage() {
         const [userRes, reposRes, commitsRes] = await Promise.all([
           fetch('https://api.github.com/users/viochris'),
           fetch('https://api.github.com/users/viochris/repos?per_page=100'),
-          // Fetching commit count via search API (Estimated)
           fetch('https://api.github.com/search/commits?q=author:viochris', {
             headers: { 'Accept': 'application/vnd.github.cloak-preview' }
           })
@@ -212,10 +211,8 @@ export default function AboutPage() {
         const reposData = await reposRes.json();
         const searchCommitsData = await commitsRes.json();
 
-        // Calculate Total Stars
         const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
         
-        // Calculate Top Languages
         const langCount: Record<string, number> = {};
         reposData.forEach((repo: any) => {
           if (repo.language) {
@@ -587,9 +584,9 @@ export default function AboutPage() {
           <div className="w-full px-4 sm:px-0 flex flex-col gap-6 max-w-full overflow-hidden">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 p-6 rounded-3xl bg-[#0d1117] border border-slate-800 w-full shadow-2xl">
               <img 
-                src="https://github-readme-streak-stats.herokuapp.com/?user=viochris&theme=radical&hide_border=true" 
-                alt="GitHub Streak" 
-                className="w-full h-auto max-w-lg object-contain"
+                src="https://ghchart.rshah.org/22c55e/viochris" 
+                alt="GitHub Contributions" 
+                className="w-full h-auto max-w-4xl object-contain invert dark:invert-0"
               />
             </div>
           </div>
