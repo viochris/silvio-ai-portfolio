@@ -450,7 +450,7 @@ export default function Home() {
             <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Philosophy</Badge>
               <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
-                How <span className="text-primary">I Work</span>
+                HOW <span className="text-primary">I WORK</span>
               </h2>
             </div>
             
@@ -460,39 +460,40 @@ export default function Home() {
                   step: "01", 
                   title: "Research & Design", 
                   desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.", 
-                  icon: <Terminal className="w-5 h-5" /> 
+                  icon: <Terminal className="w-5 h-5 text-primary" /> 
                 },
                 { 
                   step: "02", 
                   title: "Architect & Build", 
                   desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.", 
-                  icon: <Cpu className="w-5 h-5" /> 
+                  icon: <Cpu className="w-5 h-5 text-primary" /> 
                 },
                 { 
                   step: "03", 
                   title: "Deploy & Scale", 
                   desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.", 
-                  icon: <Layers className="w-5 h-5" /> 
+                  icon: <Layers className="w-5 h-5 text-primary" /> 
                 },
                 { 
                   step: "04", 
                   title: "Optimization", 
                   desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.", 
-                  icon: <RefreshCw className="w-5 h-5" /> 
+                  icon: <RefreshCw className="w-5 h-5 text-primary" /> 
                 }
               ].map((w, i) => (
-                <div key={i} className="p-10 bg-white/[0.03] rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all group relative overflow-hidden h-full flex flex-col shadow-2xl">
-                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.05] leading-none -mr-8 -mt-4 transition-colors select-none pointer-events-none">
+                <div key={i} className="p-10 bg-black rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden h-full flex flex-col shadow-2xl">
+                  {/* Background Number Layer */}
+                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.03] group-hover:text-primary/[0.08] group-hover:scale-125 group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.4)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
                     {w.step}
                   </div>
                   
-                  <div className="flex items-center gap-3 mb-10 relative z-10">
-                    <div className="text-primary shrink-0">{w.icon}</div>
-                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">Step {w.step}</span>
+                  <div className="flex justify-between items-start mb-12 relative z-10">
+                    <div className="shrink-0">{w.icon}</div>
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">STEP {w.step}</span>
                   </div>
                   
-                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white mb-6 leading-tight relative z-10">{w.title}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed font-medium flex-1 relative z-10">{w.desc}</p>
+                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white group-hover:opacity-100 opacity-90 mb-6 leading-tight relative z-10 transition-opacity">{w.title}</h3>
+                  <p className="text-sm text-white/50 group-hover:text-white/80 leading-relaxed font-medium flex-1 relative z-10 transition-colors">{w.desc}</p>
                 </div>
               ))}
             </div>
