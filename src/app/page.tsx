@@ -140,7 +140,7 @@ export default function Home() {
                   </div>
                   <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
                     <Badge className="bg-primary text-white px-8 py-2 shadow-2xl font-headline font-black text-[10px] md:text-xs tracking-[0.2em] uppercase border-none whitespace-nowrap rounded-full">
-                      AI & Data Engineer
+                      AI ENGINEER
                     </Badge>
                   </div>
                 </div>
@@ -152,10 +152,10 @@ export default function Home() {
               <div className="space-y-4 w-full">
                 <div className="space-y-4">
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
-                    Architecting Intelligent Systems
+                    DATA SCIENTIST & AI ENGINEER
                   </Badge>
                   <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian, <br />
+                    Silvio Christian <br />
                     <span className="text-primary">Joe</span>
                   </h1>
                 </div>
@@ -166,19 +166,23 @@ export default function Home() {
                 </div>
                 
                 <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  Transforming unstructured data into intelligent, production-ready solutions. Specializing in <strong>Agentic Workflows</strong>, <strong>NLP Pipelines</strong>, and <strong>Modern Predictive Systems</strong>.
+                  I am an Informatics Engineering student working as a <strong>Data Scientist</strong> and <strong>AI Engineer</strong>. My technical focus involves analyzing <strong>Tabular & NLP data</strong>, as well as developing functional <strong>AI Agents</strong> for practical applications.
+                </p>
+
+                <p className="text-sm md:text-base text-white/90 font-black italic tracking-tight pt-2">
+                  Focusing on Data Science (Tabular & NLP) and autonomous AI Agent Engineering.
                 </p>
               </div>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
                 <Link href="/projects">
                   <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20">
-                    Explore Solutions <ChevronRight className="ml-2 w-4 h-4" />
+                    VIEW PROJECTS <ChevronRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
                 <Link href="/contact">
                   <Button size="lg" variant="outline" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 border-white/20 text-white hover:bg-white/10 w-full sm:w-auto">
-                    Let's Connect
+                    CONTACT ME
                   </Button>
                 </Link>
               </div>
