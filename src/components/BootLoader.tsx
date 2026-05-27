@@ -13,7 +13,6 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
   const [isFinished, setIsFinished] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Updated timeline as requested
   const fullLogs = [
     "CONTINUUM BIOS v2.0",
     "Memory Check: OK",

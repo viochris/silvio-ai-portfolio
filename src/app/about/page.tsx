@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -13,7 +12,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Carousel,
@@ -118,18 +116,18 @@ const orchestrationNodes = [
     title: "Input Processing", 
     icon: <BrainCircuit className="w-8 h-8 text-primary" />, 
     desc: "Unstructured data is parsed via NLP engines to extract intent and entities.",
-    details: "Leveraging state-of-the-art transformer models (SBERT, RoBERTa) to convert raw text into high-dimensional embeddings. Semantic classification and NER structure input before the reasoning phase."
+    details: "Leveraging modern NLP pipelines tailored to specific needs to bridge the gap between human language and machine understanding. Semantic classification and NER structure input before reasoning."
   },
   { 
     title: "Agentic Reasoning", 
     icon: <Workflow className="w-8 h-8 text-primary" />, 
-    desc: "LangGraph manages stateful workflows and tool calling for autonomous execution.",
-    details: "Utilizing cyclic graph architectures to allow agents to think step-by-step. ReAct patterns enable external tool calling, SQL validation, and iterative self-correction."
+    desc: "Autonomous execution managed via stateful workflows and tool calling.",
+    details: "Utilizing cyclic graph architectures and reasoning patterns like ReAct. Leveraging multi-framework stacks (Google SDK, CrewAI, LangChain, LangGraph) to allow agents to query, validate, and self-correct logic."
   },
   { 
     title: "Output Synthesis", 
     icon: <Rocket className="w-8 h-8 text-primary" />, 
-    desc: "Final intelligence is served through high-performance FastAPI and Next.js interfaces.",
+    desc: "Final intelligence served through high-performance FastAPI and Next.js interfaces.",
     details: "Synthesizing complex reasoning traces into user-friendly formats. The output layer ensuring data integrity, safety filters, and optimized latency via streaming."
   }
 ];
@@ -139,7 +137,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding.",
-    details: "Focused on bridging the gap between human language and machine understanding through modern NLP pipelines tailored to specific needs. Specializes in sophisticated semantic matching techniques to achieve high-precision information retrieval.",
+    details: "Focused on building intelligent systems that understand intent. Specializes in sophisticated semantic matching techniques and modern NLP pipelines tailored to specific high-precision retrieval needs.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -150,7 +148,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations.",
-    details: "Building robust predictive models across diverse domains through rigorous feature engineering and cross-validation. Ensures models are not only accurate but also interpretable and reliable for real-world deployment.",
+    details: "Building robust predictive models across diverse domains including medical, finance, and behavior. Ensures models are interpretable and reliable through rigorous feature engineering and cross-validation.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -161,7 +159,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Building autonomous reasoning engines.",
-    details: "Designing advanced reasoning systems and multi-agent frameworks using Google SDK, CrewAI, and LangChain. Enables systems to perform complex tasks, call external APIs, and self-correct logic autonomously.",
+    details: "Designing advanced reasoning systems and multi-agent frameworks. Leverages a diverse stack including Google SDK, CrewAI, LangChain, and LangGraph for autonomous problem solving and tool calling.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -172,7 +170,7 @@ const interestData = [
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
     desc: "High-performance AI ecosystems.",
-    details: "Focused on building high-performance AI ecosystems where services connect seamlessly. Architecting stateful agents for automated workflows, inbox management, and real-time data pipelines to maximize efficiency.",
+    details: "Focused on building seamless AI ecosystems where services connect. Architecting stateful agents for automated workflows, inbox management, and real-time data pipelines to maximize efficiency.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -183,7 +181,7 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience.",
-    details: "A philosophy where engineering meets intuition. Prioritizing clean, modular, and AI-first coding practices. This approach bridges AI expertise into web and mobile development, ensuring smooth and high-performing human-machine interaction.",
+    details: "A philosophy of intent-driven development. Bridging AI expertise into web, mobile, and communication platforms by creating a seamless synergy between human intuition and AI execution.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -236,9 +234,7 @@ export default function AboutPage() {
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
       <section id="about" className="max-w-7xl mx-auto">
-        {/* Section: Experience & Education */}
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 w-full items-start mb-32">
-          {/* LEFT COLUMN: Text + Icons */}
           <div className="w-full lg:w-1/2 flex flex-col space-y-6">
             <div className="space-y-6">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Architect</Badge>
@@ -254,7 +250,6 @@ export default function AboutPage() {
               I don't just build models; I design reasoning systems to solve complex problems. While my primary specialization lies in AI and Data Engineering, I leverage the <strong>Vibe Coding</strong> philosophy to bridge web and mobile development—ensuring every solution is driven by high-performance intelligence.
             </p>
 
-            {/* Availability Status Card */}
             <div className="p-6 rounded-2xl glass border-primary/20 bg-primary/5 flex items-center gap-4 mt-4 shadow-xl">
               <div className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -285,7 +280,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Education Roadmap */}
           <div className="w-full lg:w-1/2">
             <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] border-primary/10 shadow-2xl">
               <div>
@@ -314,7 +308,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Technical Evolution */}
         <div className="mb-32 space-y-16">
            <div className="text-center space-y-4">
               <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
@@ -354,7 +347,6 @@ export default function AboutPage() {
               </Carousel>
            </div>
 
-           {/* Unified Technical Milestones Dialog */}
            <Dialog open={openMilestoneIdx !== null} onOpenChange={(open) => !open && setOpenMilestoneIdx(null)}>
              <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                <DialogTitle className="sr-only">Technical Milestone Detail</DialogTitle>
@@ -413,7 +405,6 @@ export default function AboutPage() {
            </Dialog>
         </div>
 
-        {/* Section: Professional Interests & Deep Dive */}
         <div id="interests" className="mb-32 scroll-mt-32">
           <div className="text-center space-y-4 mb-16">
             <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
@@ -455,7 +446,6 @@ export default function AboutPage() {
             </Carousel>
           </div>
 
-          {/* Unified Professional Interests Dialog */}
           <Dialog open={openInterestIdx !== null} onOpenChange={(open) => !open && setOpenInterestIdx(null)}>
             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogTitle className="sr-only">Expertise Detail</DialogTitle>
@@ -531,7 +521,6 @@ export default function AboutPage() {
           </Dialog>
         </div>
 
-        {/* Section: Project Architecture */}
         <div className="p-10 md:p-16 lg:p-24 glass rounded-[4rem] border-primary/10 relative overflow-hidden mb-32">
            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[100px] rounded-full -mr-48 -mt-48" />
            <div className="relative z-10 space-y-16">
@@ -604,7 +593,6 @@ export default function AboutPage() {
            </Dialog>
         </div>
 
-        {/* Section: GitHub Performance */}
         <div className="mb-32 space-y-16">
           <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
             <div className="flex flex-col items-center justify-center gap-2 w-full">
@@ -644,7 +632,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Section: Connect & Resume */}
         <div className="text-center space-y-12">
           <div className="space-y-4">
             <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Collaborate</h3>
