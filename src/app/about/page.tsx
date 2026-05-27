@@ -332,14 +332,16 @@ export default function AboutPage() {
               >
                 <CarouselContent className="-ml-4">
                   {technicalMilestones.map((m, i) => (
-                    <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                    <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 flex">
                       <div 
                         onClick={() => setOpenMilestoneIdx(i)}
-                        className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl"
+                        className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl w-full"
                       >
                         <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest">{m.title}</h4>
-                        <p className="text-sm text-white/50 leading-relaxed">{m.shortSummary}</p>
+                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest min-h-[3.5rem] flex items-center justify-center">
+                          {m.title}
+                        </h4>
+                        <p className="text-sm text-white/50 leading-relaxed flex-1">{m.shortSummary}</p>
                       </div>
                     </CarouselItem>
                   ))}
@@ -427,18 +429,18 @@ export default function AboutPage() {
             >
               <CarouselContent className="-ml-4">
                 {interestData.map((item, i) => (
-                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2">
+                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 flex">
                     <div 
                       onClick={() => setOpenInterestIdx(i)}
-                      className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full"
+                      className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full w-full"
                     >
-                      <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                      <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shrink-0">
                         {item.icon}
                       </div>
-                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors">
+                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[3.5rem] flex items-center justify-center">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-white/50 leading-relaxed">
+                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[4rem]">
                         {item.desc}
                       </p>
                     </div>
@@ -542,8 +544,8 @@ export default function AboutPage() {
                       <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto shadow-xl group-hover:scale-110 group-hover:border-primary/50 transition-all">
                          {arch.icon}
                       </div>
-                      <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors">{arch.title}</h5>
-                      <p className="text-white/50 text-sm leading-relaxed">{arch.desc}</p>
+                      <h5 className="text-xl font-bold text-white uppercase tracking-widest group-hover:text-primary transition-colors min-h-[3rem] flex items-center justify-center">{arch.title}</h5>
+                      <p className="text-white/50 text-sm leading-relaxed min-h-[4rem]">{arch.desc}</p>
                    </div>
                  ))}
               </div>
