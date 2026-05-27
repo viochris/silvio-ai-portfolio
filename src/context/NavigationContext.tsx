@@ -3,7 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type Vibe = 'blue' | 'lime' | 'purple';
+type Vibe = 'blue' | 'lime' | 'purple' | 'red' | 'amber' | 'rose';
 
 interface NavigationContextType {
   isReturning: boolean;
@@ -34,16 +34,18 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
   // Apply Vibe Theme to Root
   useEffect(() => {
     const root = document.documentElement;
-    if (vibe === 'lime') {
-      root.style.setProperty('--primary', '142 71% 45%');
-      root.style.setProperty('--ring', '142 71% 45%');
-    } else if (vibe === 'purple') {
-      root.style.setProperty('--primary', '270 91% 60%');
-      root.style.setProperty('--ring', '270 91% 60%');
-    } else {
-      root.style.setProperty('--primary', '217 91% 60%');
-      root.style.setProperty('--ring', '217 91% 60%');
-    }
+    const themes = {
+      blue: { primary: '217 91% 60%' },
+      lime: { primary: '142 71% 45%' },
+      purple: { primary: '270 91% 60%' },
+      red: { primary: '0 84% 60%' },
+      amber: { primary: '38 92% 50%' },
+      rose: { primary: '330 81% 60%' }
+    };
+
+    const theme = themes[vibe];
+    root.style.setProperty('--primary', theme.primary);
+    root.style.setProperty('--ring', theme.primary);
   }, [vibe]);
 
   return (

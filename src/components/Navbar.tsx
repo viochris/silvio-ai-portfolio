@@ -163,15 +163,24 @@ export const Navbar: React.FC = () => {
                 <Palette className="w-5 h-5 text-primary" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-card border-border rounded-xl">
-              <DropdownMenuItem onClick={() => setVibe('blue')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
+            <DropdownMenuContent align="end" className="bg-card border-border rounded-xl p-2 grid grid-cols-2 gap-1 min-w-[240px]">
+              <DropdownMenuItem onClick={() => setVibe('blue')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
                 <div className="w-3 h-3 rounded-full bg-blue-500" /> Neural Blue
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setVibe('lime')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
+              <DropdownMenuItem onClick={() => setVibe('lime')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
                 <div className="w-3 h-3 rounded-full bg-lime-500" /> Cyber Lime
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setVibe('purple')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest">
-                <div className="w-3 h-3 rounded-full bg-purple-500" /> Synthetic Purple
+              <DropdownMenuItem onClick={() => setVibe('purple')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-purple-500" /> Synth Purple
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setVibe('red')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-red-500" /> Volcanic Red
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setVibe('amber')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-amber-500" /> Amber Circuit
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setVibe('rose')} className="gap-2 cursor-pointer font-bold text-[10px] uppercase tracking-widest p-2 rounded-lg">
+                <div className="w-3 h-3 rounded-full bg-rose-500" /> Neon Rose
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
