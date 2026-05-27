@@ -1,8 +1,8 @@
 
 "use client"
 
-import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -22,15 +22,30 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, LabelList } from "recharts";
 
-const commitData = [
-  { hour: '0', commits: 80 }, { hour: '1', commits: 65 }, { hour: '2', commits: 30 }, { hour: '3', commits: 5 },
-  { hour: '4', commits: 10 }, { hour: '5', commits: 40 }, { hour: '6', commits: 95 }, { hour: '7', commits: 88 },
-  { hour: '8', commits: 85 }, { hour: '9', commits: 45 }, { hour: '10', commits: 35 }, { hour: '11', commits: 10 },
-  { hour: '12', commits: 30 }, { hour: '13', commits: 20 }, { hour: '14', commits: 2 }, { hour: '15', commits: 0 },
-  { hour: '16', commits: 0 }, { hour: '17', commits: 0 }, { hour: '18', commits: 0 }, { hour: '19', commits: 2 },
-  { hour: '20', commits: 0 }, { hour: '21', commits: 0 }, { hour: '22', commits: 1 }, { hour: '23', commits: 18 }
+const rawCommitData = [
+  { hour: 0, commits: 80 }, { hour: 1, commits: 65 }, { hour: 2, commits: 30 }, { hour: 3, commits: 5 },
+  { hour: 4, commits: 10 }, { hour: 5, commits: 40 }, { hour: 6, commits: 95 }, { hour: 7, commits: 88 },
+  { hour: 8, commits: 85 }, { hour: 9, commits: 45 }, { hour: 10, commits: 35 }, { hour: 11, commits: 10 },
+  { hour: 12, commits: 30 }, { hour: 13, commits: 20 }, { hour: 14, commits: 2 }, { hour: 15, commits: 0 },
+  { hour: 16, commits: 0 }, { hour: 17, commits: 0 }, { hour: 18, commits: 0 }, { hour: 19, commits: 2 },
+  { hour: 20, commits: 0 }, { hour: 21, commits: 0 }, { hour: 22, commits: 1 }, { hour: 23, commits: 18 }
+];
+
+const timezones = [
+  { label: "UTC (Coordinated Universal Time)", value: "0", display: "UTC +0:00" },
+  { label: "Jakarta (WIB - Western Indonesia Time)", value: "7", display: "GMT +7:00" },
+  { label: "Tokyo (JST - Japan Standard Time)", value: "9", display: "GMT +9:00" },
+  { label: "London (GMT - Greenwich Mean Time)", value: "0", display: "GMT +0:00" },
+  { label: "New York (EST - Eastern Standard Time)", value: "-5", display: "GMT -5:00" },
 ];
 
 const educationData = [
@@ -192,6 +207,7 @@ export default function AboutPage() {
     totalCommits: 0 
   });
   const [loadingGh, setLoadingGh] = useState(true);
+  const [offset, setOffset] = useState(0);
 
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
   const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
@@ -240,6 +256,23 @@ export default function AboutPage() {
     }
     fetchGitHubData();
   }, []);
+
+  const shiftedCommitData = useMemo(() => {
+    return rawCommitData.map(d => {
+      // Calculate shifted hour: (hour + offset + 24) % 24 to handle negative results
+      const shiftedHour = (d.hour + offset + 24) % 24;
+      return { 
+        hour: shiftedHour.toString(), 
+        commits: d.commits,
+        originalHour: d.hour 
+      };
+    }).sort((a, b) => parseInt(a.hour) - parseInt(b.hour));
+  }, [offset]);
+
+  const currentTimezoneLabel = useMemo(() => {
+    const tz = timezones.find(t => parseInt(t.value) === offset);
+    return tz ? tz.display : "UTC +0:00";
+  }, [offset]);
 
   return (
     <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
@@ -585,15 +618,37 @@ export default function AboutPage() {
         {/* Bar Chart Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
-            <h3 className="text-4xl md:text-6xl font-headline font-black text-primary mb-12 uppercase tracking-tighter">Commits (UTC +0.00)</h3>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+              <h3 className="text-3xl md:text-5xl font-headline font-black text-primary uppercase tracking-tighter">
+                Commits ({currentTimezoneLabel})
+              </h3>
+              
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl">
+                <Globe className="w-4 h-4 text-primary ml-2" />
+                <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
+                  <SelectTrigger className="w-[240px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0">
+                    <SelectValue placeholder="Select Timezone" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-card border-border">
+                    {timezones.map(tz => (
+                      <SelectItem key={tz.label} value={tz.value} className="text-white font-bold uppercase tracking-widest text-[10px] cursor-pointer">
+                        {tz.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
             <div className="h-[400px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={commitData} margin={{ top: 30 }}>
+                <BarChart data={shiftedCommitData} margin={{ top: 30 }}>
                   <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
                   <YAxis hide />
                   <Tooltip 
                     cursor={{fill: 'rgba(255,255,255,0.05)'}}
                     contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
+                    labelFormatter={(label) => `Hour: ${label}:00`}
                   />
                   <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]}>
                     <LabelList 
