@@ -621,10 +621,10 @@ export default function AboutPage() {
         </div>
 
         {/* Bar Chart Section */}
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative">
           <div className="relative z-10">
             <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 mb-12">
-              <div className="flex flex-col">
+              <div className="flex flex-col items-start">
                 <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-[0.85] mb-2">
                   Commits
                 </h3>
@@ -633,10 +633,10 @@ export default function AboutPage() {
                 </span>
               </div>
               
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl min-w-[280px] md:min-w-[340px] w-full md:w-auto self-center">
-                <Globe className="w-5 h-5 text-primary ml-2 shrink-0" />
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-2xl w-full md:w-[400px] shrink-0">
+                <Globe className="w-5 h-5 text-primary shrink-0" />
                 <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
-                  <SelectTrigger className="w-full bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10">
+                  <SelectTrigger className="flex-1 bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10 px-0 justify-start gap-4 hover:bg-transparent shadow-none">
                     <SelectValue placeholder="Select Timezone" />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border max-h-[300px]">
