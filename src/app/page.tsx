@@ -196,9 +196,8 @@ export default function Home() {
                   <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
                     DATA SCIENTIST & AI ENGINEER
                   </Badge>
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian, <br />
-                    <span className="text-primary">Joe</span>
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-headline font-black leading-tight tracking-tighter text-white">
+                    Silvio Christian, <span className="text-primary">Joe</span>
                   </h1>
                 </div>
                 
