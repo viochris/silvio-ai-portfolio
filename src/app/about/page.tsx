@@ -46,6 +46,13 @@ const timezones = [
   { label: "Tokyo (JST - Japan Standard Time)", value: "9", display: "GMT +9:00" },
   { label: "London (GMT - Greenwich Mean Time)", value: "0", display: "GMT +0:00" },
   { label: "New York (EST - Eastern Standard Time)", value: "-5", display: "GMT -5:00" },
+  { label: "San Francisco (PST - Pacific Standard Time)", value: "-8", display: "GMT -8:00" },
+  { label: "Austin / Chicago (CST - Central Standard Time)", value: "-6", display: "GMT -6:00" },
+  { label: "Berlin / Amsterdam (CET - Central European Time)", value: "1", display: "GMT +1:00" },
+  { label: "Dubai (GST - Gulf Standard Time)", value: "4", display: "GMT +4:00" },
+  { label: "Beijing / Shanghai (CST - China Standard Time)", value: "8", display: "GMT +8:00" },
+  { label: "Singapore (SGT - Singapore Standard Time)", value: "8", display: "GMT +8:00" },
+  { label: "Sydney (AEST - Australian Eastern Standard Time)", value: "10", display: "GMT +10:00" },
 ];
 
 const educationData = [
