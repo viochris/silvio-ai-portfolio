@@ -19,7 +19,7 @@ export const BootLoader: React.FC<BootLoaderProps> = ({ onComplete }) => {
     "Memory Check: OK",
     "Secure Boot: ENABLED",
     "Release: 2026.01.18",
-    "Updated: 2026.05.27",
+    "Updated: 2026.05.28",
     "",
     "MWBIOS (C)2026 Silvio Christian, Joe",
     "",
