@@ -629,13 +629,13 @@ export default function AboutPage() {
                 <div className="text-xl md:text-3xl opacity-80">({currentTimezoneLabel})</div>
               </h3>
               
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl">
-                <Globe className="w-4 h-4 text-primary ml-2" />
+              <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-2.5 rounded-2xl min-w-[280px] md:min-w-[340px]">
+                <Globe className="w-5 h-5 text-primary ml-2 shrink-0" />
                 <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
-                  <SelectTrigger className="w-[240px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0">
+                  <SelectTrigger className="w-full bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10">
                     <SelectValue placeholder="Select Timezone" />
                   </SelectTrigger>
-                  <SelectContent className="bg-card border-border">
+                  <SelectContent className="bg-card border-border max-h-[300px]">
                     {timezones.map(tz => (
                       <SelectItem key={tz.label} value={tz.value} className="text-white font-bold uppercase tracking-widest text-[10px] cursor-pointer">
                         {tz.label}
