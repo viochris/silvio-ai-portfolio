@@ -54,7 +54,7 @@ const featuredProjects = [
     link: "https://github.com/viochris/insight-data-ai-analyst",
     problem: "Data analysis often requires manual effort to write code, clean data, and generate meaningful visualizations.",
     solution: "Built an end-to-end AI Analyst leveraging LLMs to autonomously perform EDA, statistical calculations, and generate visual insights from any structured dataset.",
-    image: "/insight_data_ai_analyst.png"
+    image: "/insight_data.png"
   }
 ];
 
