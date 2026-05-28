@@ -247,6 +247,6 @@ Feel free to reach out for collaborations or just a technical chat!
 ---
 
 <div align="center">
-  <p>Forged from raw data and pure logic by Silvio Christian, Joe</p>
+  <p>Orchestrated with ☕ and 🤖 by Silvio Christian, Joe</p>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=viochris&theme=radical&hide_border=true" alt="GitHub Streak" />
 </div>
