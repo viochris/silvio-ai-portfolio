@@ -88,11 +88,6 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
                         Open for Job, Freelance & Collaborators
                       </span>
                     </div>
-                    <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 w-fit">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
-                        Response Time: &lt; 24 Hours
-                      </span>
-                    </div>
                   </div>
                 </div>
 
