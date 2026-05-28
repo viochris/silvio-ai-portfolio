@@ -279,6 +279,7 @@ export default function AboutPage() {
       } catch (error) {
         console.error('Error fetching GitHub stats:', error);
       } finally {
+        setGhStats(prev => ({ ...prev }));
         setLoadingGh(false);
       }
     }
@@ -682,11 +683,7 @@ export default function AboutPage() {
 
           {/* Introductory Text */}
           <p className="text-slate-400 text-sm md:text-base leading-relaxed font-medium mb-12 max-w-4xl">
-            My commit history reflects a disciplined, consistent approach to software engineering and AI development. 
-            Operating primarily within the local Jakarta timezone (UTC+7), these records represent daily momentum in 
-            architecting autonomous agents, optimizing data pipelines, and leveraging Vibe Coding for rapid interface 
-            deployment. Each commit is a deliberate step toward transforming complex backend logic into tangible, 
-            high-performance systems.
+            Building models, debugging agents, and pushing code. A snapshot of my daily development activity, recorded in my local timezone: Asia/Jakarta (UTC+7).
           </p>
 
           {/* Chart Area */}
