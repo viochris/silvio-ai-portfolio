@@ -219,9 +219,9 @@ const interestData = [
     desc: "Bridging backend models and end-user accessibility through high-performance APIs and interfaces.",
     details: "Bridging the gap between intelligent backend models and end-user accessibility. Specializing in deploying high-performance REST APIs (FastAPI) and rapidly prototyping interactive interfaces—ranging from web applications (Streamlit) to autonomous messaging bots (Telegram)—ensuring AI solutions deliver immediate real-world utility.",
     projects: [
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" }
+      { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
+      { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
+      { name: "NovaCal AI (Stateful Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
     ]
   }
 ];
@@ -849,4 +849,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
