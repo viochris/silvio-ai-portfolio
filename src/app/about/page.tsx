@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -368,7 +367,7 @@ export default function AboutPage() {
               </h2>
            </div>
            
-           <div className="relative max-w-5xl mx-auto px-12">
+           <div className="relative relative max-w-5xl mx-auto px-12">
               <Carousel 
                 opts={{
                   align: "start",
@@ -625,8 +624,9 @@ export default function AboutPage() {
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-              <h3 className="text-3xl md:text-5xl font-headline font-black text-primary uppercase tracking-tighter leading-tight">
-                Commits <br /> ({currentTimezoneLabel})
+              <h3 className="font-headline font-black text-primary uppercase tracking-tighter leading-none">
+                <div className="text-4xl md:text-7xl mb-2">Commits</div>
+                <div className="text-xl md:text-3xl opacity-80">({currentTimezoneLabel})</div>
               </h3>
               
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl">
