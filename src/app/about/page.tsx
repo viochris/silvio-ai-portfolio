@@ -1,7 +1,8 @@
+
 "use client"
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages, Globe } from 'lucide-react';
+import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages, Globe, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -150,7 +151,7 @@ const interestData = [
     title: "Natural Language Processing",
     icon: <Brain className="w-10 h-10 text-primary" />,
     desc: "Bridging human language and machine understanding through high-precision NLP pipelines.",
-    details: "Focused on building intelligent systems that understand intent using high-precision NLP pipelines tailored to specific needs. Specializes in building tools like ATS optimizers, sentiment engines, and multilingual processors.",
+    details: "Focused on engineering high-precision Natural Language Processing pipelines that bridge human intent and machine comprehension. Specializing in transforming unstructured text into structured, actionable intelligence across multilingual contexts and diverse semantic architectures.",
     projects: [
       { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -161,7 +162,7 @@ const interestData = [
     title: "Tabular Data Modeling",
     icon: <Database className="w-10 h-10 text-primary" />,
     desc: "Predictive power from structured foundations using rigorous cross-validation and feature engineering.",
-    details: "Building robust predictive models across diverse domains including medical, finance, and behavior. Ensures models are interpretable and reliable through rigorous feature engineering and handling class imbalance.",
+    details: "Building robust, highly accurate predictive models from complex structured data across any domain. Ensuring that every model is not only performant but also fully interpretable and reliable through rigorous feature engineering and Explainable AI (XAI) methodologies.",
     projects: [
       { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -172,7 +173,7 @@ const interestData = [
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-10 h-10 text-primary" />,
     desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving.",
-    details: "Designing advanced reasoning systems and multi-agent frameworks. Leverages a diverse stack including modern LLM frameworks and agentic architectures for autonomous problem solving and tool calling.",
+    details: "Architecting advanced, goal-oriented reasoning systems and multi-agent ecosystems. Leveraging modern LLM frameworks to build autonomous agents capable of complex logic execution, dynamic tool calling, and resilient self-correction without human intervention.",
     projects: [
       { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -183,7 +184,7 @@ const interestData = [
     title: "Automation & Orchestration",
     icon: <Workflow className="w-10 h-10 text-primary" />,
     desc: "Building high-performance AI ecosystems where services connect seamlessly via intelligent bots.",
-    details: "Focused on building seamless AI ecosystems where services connect. Architecting stateful agents for automated workflows, inbox management, and real-time data pipelines to maximize efficiency.",
+    details: "Constructing the robust backbone of intelligent systems. Architecting stateful, high-performance backends and automated data pipelines that seamlessly connect discrete AI models to real-world applications, APIs, and ubiquitous communication platforms.",
     projects: [
       { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -194,7 +195,29 @@ const interestData = [
     title: "Vibe Coding",
     icon: <Code2 className="w-10 h-10 text-primary" />,
     desc: "The AI-first digital experience, creating a synergy between human intuition and AI execution.",
-    details: "A philosophy where engineering meets intuition. Bridging AI expertise into web, mobile, and communication platforms by creating a seamless synergy between human intuition and AI execution.",
+    details: "A rapid-development methodology leveraging AI assistance for quick prototyping. While my core expertise is in Data and AI, understanding fundamental programming concepts allows me to steer coding agents effectively. This enables me to rapidly generate basic user interfaces and Proof of Concepts (PoCs) when an immediate, functional prototype is needed to demonstrate backend AI capabilities.",
+    projects: [
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" }
+    ]
+  },
+  {
+    title: "Custom Data Sourcing & Pipelines",
+    icon: <Globe className="w-10 h-10 text-primary" />,
+    desc: "Aggregating data through third-party APIs and automated web scraping architectures.",
+    details: "Overcoming data limitations by building custom extraction pipelines. Focused on aggregating data through third-party APIs and automated web scraping architectures. Skilled in designing focused ETL and ELT workflows to clean, structure, and load raw information into high-quality custom datasets for predictive modeling.",
+    projects: [
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" },
+      { name: "Coming Soon", id: null, github: "#" }
+    ]
+  },
+  {
+    title: "Deployment & Interfaces",
+    icon: <Rocket className="w-10 h-10 text-primary" />,
+    desc: "Bridging backend models and end-user accessibility through high-performance APIs and interfaces.",
+    details: "Bridging the gap between intelligent backend models and end-user accessibility. Specializing in deploying high-performance REST APIs (FastAPI) and rapidly prototyping interactive interfaces—ranging from web applications (Streamlit) to autonomous messaging bots (Telegram)—ensuring AI solutions deliver immediate real-world utility.",
     projects: [
       { name: "Coming Soon", id: null, github: "#" },
       { name: "Coming Soon", id: null, github: "#" },
@@ -826,3 +849,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
