@@ -36,25 +36,25 @@ const featuredProjects = [
   },
   { 
     id: 3, 
-    title: "DocuTalk-AI — Smart RAG", 
-    impact: "High Precision",
-    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval or real-time Web Search for hyper-accurate answers.",
-    tech: ["LANGCHAIN", "GEMINI 2.5 FLASH", "FAISS", "PYTHON"],
-    link: "https://github.com/viochris/DocuTalk-AI",
-    problem: "Standard RAG systems often suffer from hallucinations when answers aren't in the provided documents or are outdated.",
-    solution: "Built a ReAct agent that autonomously decides whether to retrieve from internal documents or search the web, ensuring the most accurate response.",
+    title: "Resume Scanner API", 
+    impact: "Research Oriented",
+    desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features dual-engine precise matching.",
+    tech: ["FASTAPI", "SBERT", "TF-IDF", "NLP"],
+    link: "https://github.com/viochris/resume-scanner-api",
+    problem: "Candidates often struggle to optimize their resumes for automated Applicant Tracking Systems (ATS) without clear feedback.",
+    solution: "Developed a dual-engine API that compares resumes against job descriptions using both statistical (TF-IDF) and semantic (SBERT) embeddings.",
     image: "/resume_scanner_api.png"
   },
   { 
     id: 4, 
-    title: "NovaCal AI (Stateful Assistant)", 
+    title: "InsightData (AI Analyst)", 
     impact: "Automation Pro",
-    desc: "Redefining conversational scheduling with an SQL-backed memory architecture to maintain deep context across multi-turn dialogues.",
-    tech: ["LANGCHAIN", "SQL MEMORY", "GEMINI", "TELEGRAM"],
-    link: "https://github.com/viochris/telegram-calendar-ai-bot",
-    problem: "Chatbots often lose context during long scheduling conversations, leading to repetitive or incorrect inputs.",
-    solution: "Implemented a robust SQL database as conversational memory, allowing the agent to recall user preferences and past interactions accurately.",
-    image: "/vio-image.png"
+    desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Autonomously writes and executes Python code.",
+    tech: ["PANDAS AGENT", "GEMINI 2.5 FLASH", "PYTHON", "MATPLOTLIB"],
+    link: "https://github.com/viochris/insight-data-ai-analyst",
+    problem: "Data analysis often requires manual effort to write code, clean data, and generate meaningful visualizations.",
+    solution: "Built an end-to-end AI Analyst leveraging LLMs to autonomously perform EDA, statistical calculations, and generate visual insights from any structured dataset.",
+    image: "/insight_data_ai_analyst.png"
   }
 ];
 
@@ -97,6 +97,7 @@ export default function ProjectsPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105" 
                     priority
+                    data-ai-hint="software project screenshot"
                   />
                   <div className="absolute top-4 right-4 z-20">
                     <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-2 py-0.5 shadow-2xl border-none">
