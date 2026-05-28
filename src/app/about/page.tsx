@@ -41,18 +41,18 @@ const rawCommitData = [
 ];
 
 const timezones = [
-  { label: "UTC (Coordinated Universal Time)", value: "0", display: "UTC +0:00" },
-  { label: "Jakarta (WIB - Western Indonesia Time)", value: "7", display: "GMT +7:00" },
-  { label: "Tokyo (JST - Japan Standard Time)", value: "9", display: "GMT +9:00" },
-  { label: "London (GMT - Greenwich Mean Time)", value: "0", display: "GMT +0:00" },
-  { label: "New York (EST - Eastern Standard Time)", value: "-5", display: "GMT -5:00" },
-  { label: "San Francisco (PST - Pacific Standard Time)", value: "-8", display: "GMT -8:00" },
-  { label: "Austin / Chicago (CST - Central Standard Time)", value: "-6", display: "GMT -6:00" },
-  { label: "Berlin / Amsterdam (CET - Central European Time)", value: "1", display: "GMT +1:00" },
-  { label: "Dubai (GST - Gulf Standard Time)", value: "4", display: "GMT +4:00" },
-  { label: "Beijing / Shanghai (CST - China Standard Time)", value: "8", display: "GMT +8:00" },
-  { label: "Singapore (SGT - Singapore Standard Time)", value: "8", display: "GMT +8:00" },
-  { label: "Sydney (AEST - Australian Eastern Standard Time)", value: "10", display: "GMT +10:00" },
+  { label: "UTC (Coordinated Universal Time)", short: "UTC", value: "0", display: "UTC +0:00" },
+  { label: "Jakarta (WIB - Western Indonesia Time)", short: "Jakarta", value: "7", display: "GMT +7:00" },
+  { label: "Tokyo (JST - Japan Standard Time)", short: "Tokyo", value: "9", display: "GMT +9:00" },
+  { label: "London (GMT - Greenwich Mean Time)", short: "London", value: "0", display: "GMT +0:00" },
+  { label: "New York (EST - Eastern Standard Time)", short: "New York", value: "-5", display: "GMT -5:00" },
+  { label: "San Francisco (PST - Pacific Standard Time)", short: "San Francisco", value: "-8", display: "GMT -8:00" },
+  { label: "Austin / Chicago (CST - Central Standard Time)", short: "Austin/Chicago", value: "-6", display: "GMT -6:00" },
+  { label: "Berlin / Amsterdam (CET - Central European Time)", short: "Berlin", value: "1", display: "GMT +1:00" },
+  { label: "Dubai (GST - Gulf Standard Time)", short: "Dubai", value: "4", display: "GMT +4:00" },
+  { label: "Beijing / Shanghai (CST - China Standard Time)", short: "Beijing", value: "8", display: "GMT +8:00" },
+  { label: "Singapore (SGT - Singapore Standard Time)", short: "Singapore", value: "8", display: "GMT +8:00" },
+  { label: "Sydney (AEST - Australian Eastern Standard Time)", short: "Sydney", value: "10", display: "GMT +10:00" },
 ];
 
 const educationData = [
@@ -300,6 +300,11 @@ export default function AboutPage() {
   const currentTimezoneLabel = useMemo(() => {
     const tz = timezones.find(t => parseInt(t.value) === offset);
     return tz ? tz.display : "UTC +0:00";
+  }, [offset]);
+
+  const currentTimezoneShort = useMemo(() => {
+    const tz = timezones.find(t => parseInt(t.value) === offset);
+    return tz ? tz.short : "UTC";
   }, [offset]);
 
   return (
@@ -646,7 +651,7 @@ export default function AboutPage() {
         {/* Bar Chart Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl flex flex-col">
           {/* Header Row: Combined Title and Dropdown */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full mb-8 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center w-full mb-8 gap-6">
             <div className="flex flex-col items-start">
               <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-none">
                 Commits
@@ -657,11 +662,13 @@ export default function AboutPage() {
             </div>
 
             {/* Timezone Selector - Right Side */}
-            <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-2xl w-full md:w-fit shrink-0">
-              <Globe className="w-5 h-5 text-primary shrink-0" />
+            <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl w-fit shrink-0">
+              <Globe className="w-4 h-4 text-primary shrink-0" />
               <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
-                <SelectTrigger className="w-[280px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10 px-0 hover:bg-transparent shadow-none">
-                  <SelectValue placeholder="Select Timezone" />
+                <SelectTrigger className="w-[120px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-8 px-0 hover:bg-transparent shadow-none">
+                   <div className="flex items-center gap-1.5">
+                    <span>{currentTimezoneShort}</span>
+                   </div>
                 </SelectTrigger>
                 <SelectContent className="bg-card border-border max-h-[300px]">
                   {timezones.map(tz => (
