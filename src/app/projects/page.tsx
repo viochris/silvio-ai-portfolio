@@ -41,8 +41,8 @@ const featuredProjects = [
     desc: "A high-performance stateless API for ATS optimization using hybrid TF-IDF and SBERT semantic analysis. Features dual-engine precise matching.",
     tech: ["FASTAPI", "SBERT", "TF-IDF", "NLP"],
     link: "https://github.com/viochris/resume-scanner-api",
-    problem: "Candidates often struggle to optimize their resumes for automated Applicant Tracking Systems (ATS) without clear feedback.",
-    solution: "Developed a dual-engine API that compares resumes against job descriptions using both statistical (TF-IDF) and semantic (SBERT) embeddings.",
+    problem: "Traditional keyword-based ATS tools miss qualified candidates due to lack of semantic understanding.",
+    solution: "Developed a dual-engine API offering Strict Mode (TF-IDF) and Flexible Mode (SBERT) for precise job-resume matching.",
     image: "/resume_scanner_api.png"
   },
   { 
@@ -168,26 +168,26 @@ export default function ProjectsPage() {
                         <div className="space-y-8 md:space-y-10">
                           <div>
                             <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                              <Info className="w-4 h-4" /> Overview
+                              <Info className="w-4 h-4" /> OVERVIEW
                             </h4>
                             <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.desc}</p>
                           </div>
 
                           <div>
                             <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                              <Brain className="w-4 h-4" /> The Problem
+                              <Brain className="w-4 h-4" /> THE PROBLEM
                             </h4>
                             <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.problem}</p>
                           </div>
                           <div>
                             <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                              <Sparkles className="w-4 h-4" /> The Solution
+                              <Sparkles className="w-4 h-4" /> THE SOLUTION
                             </h4>
                             <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.solution}</p>
                           </div>
                           <Separator className="bg-border/50" />
                           <Button className="w-full rounded-2xl font-headline font-bold h-14 text-base md:text-lg" asChild>
-                            <a href={p.link} target="_blank" rel="noopener noreferrer">Open Repository <ExternalLink className="ml-2 w-5 h-5" /></a>
+                            <a href={p.link} target="_blank" rel="noopener noreferrer">Visit Repository <ExternalLink className="ml-2 w-5 h-5" /></a>
                           </Button>
                         </div>
                       </div>
