@@ -259,7 +259,6 @@ export default function AboutPage() {
 
   const shiftedCommitData = useMemo(() => {
     return rawCommitData.map(d => {
-      // Calculate shifted hour: (hour + offset + 24) % 24 to handle negative results
       const shiftedHour = (d.hour + offset + 24) % 24;
       return { 
         hour: shiftedHour.toString(), 
@@ -619,8 +618,8 @@ export default function AboutPage() {
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-              <h3 className="text-3xl md:text-5xl font-headline font-black text-primary uppercase tracking-tighter">
-                Commits ({currentTimezoneLabel})
+              <h3 className="text-3xl md:text-5xl font-headline font-black text-primary uppercase tracking-tighter leading-tight">
+                Commits <br /> ({currentTimezoneLabel})
               </h3>
               
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl">
