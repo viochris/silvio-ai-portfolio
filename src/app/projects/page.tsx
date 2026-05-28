@@ -30,8 +30,8 @@ const featuredProjects = [
     desc: "Conversational finance app with OCR receipt scanning and natural language expense queries. Integrates Pandas Agent for complex financial reasoning.",
     tech: ["STREAMLIT", "LANGCHAIN", "GEMINI VISION", "PANDAS"],
     link: "https://github.com/viochris/Streamlit-SpendSense",
-    problem: "Manual expense tracking is tedious and users often struggle to derive meaningful insights from their raw financial data.",
-    solution: "Developed a vision-enabled assistant that extracts data from receipts and allows users to query their spending habits using natural language.",
+    problem: "Manual expense tracking is tedious and users often lack instant insights into their spending patterns.",
+    solution: "Built an intelligent finance assistant that combines Gemini Vision for receipt processing and LangChain for conversational data analysis.",
     image: "/streamlit_spendsense.png"
   },
   { 
@@ -168,14 +168,14 @@ export default function ProjectsPage() {
                         <div className="space-y-8 md:space-y-10">
                           <div>
                             <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                              <Info className="w-4 h-4" /> Pitch
+                              <Info className="w-4 h-4" /> Overview
                             </h4>
                             <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.desc}</p>
                           </div>
 
                           <div>
                             <h4 className="text-xs md:text-sm font-bold uppercase text-primary mb-3 md:mb-4 flex items-center gap-3 tracking-[0.2em]">
-                              <Brain className="w-4 h-4" /> The Challenge
+                              <Brain className="w-4 h-4" /> The Problem
                             </h4>
                             <p className="text-foreground font-medium text-base md:text-lg leading-relaxed">{p.problem}</p>
                           </div>
