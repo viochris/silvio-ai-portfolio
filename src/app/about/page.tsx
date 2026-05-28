@@ -623,17 +623,17 @@ export default function AboutPage() {
         {/* Bar Chart Section */}
         <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-6 mb-12">
+            <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 mb-12">
               <div className="flex flex-col">
-                <h3 className="text-4xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-none mb-2">
+                <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-[0.85] mb-2">
                   Commits
                 </h3>
-                <span className="text-xl md:text-3xl font-headline font-black text-primary/80 uppercase tracking-tighter leading-none">
+                <span className="text-lg md:text-2xl font-headline font-bold text-primary/70 uppercase tracking-tighter leading-none">
                   ({currentTimezoneLabel})
                 </span>
               </div>
               
-              <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-2.5 rounded-2xl min-w-[280px] md:min-w-[340px] w-full md:w-auto">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 p-2 rounded-2xl min-w-[280px] md:min-w-[340px] w-full md:w-auto self-center">
                 <Globe className="w-5 h-5 text-primary ml-2 shrink-0" />
                 <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
                   <SelectTrigger className="w-full bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10">
