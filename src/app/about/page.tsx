@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -359,7 +358,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2 lg:sticky lg:top-40">
             <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] border-primary/10 shadow-2xl">
               <div>
                 <div className="flex items-center gap-3 mb-8">
