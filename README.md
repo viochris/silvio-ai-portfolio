@@ -9,6 +9,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![Genkit](https://img.shields.io/badge/Genkit-AI-blue?style=for-the-badge)](https://firebase.google.com/docs/genkit)
+[![Vibe Coding](https://img.shields.io/badge/Built_with-Vibe_Coding-FFD700?style=for-the-badge)](https://github.com/viochris/silvio-ai-portfolio)
 
 **Data Scientist | AI Engineer | Informatics Undergraduate**  
 *Transforming unstructured data into intelligent, production-ready solutions.*
@@ -22,6 +23,8 @@
 ## 🚀 About The Project
 
 **Silvio.AI** is a high-performance personal portfolio designed to showcase the intersection of Data Science and AI Engineering. Built with a futuristic "Cyberpunk-Hacker" aesthetic, it prioritizes technical transparency, interactive user experience, and seamless integration with external AI engines.
+
+This project was developed using an AI-first methodology, primarily through **Vibe Coding**—a synergy of human architectural intent and AI-driven execution.
 
 This project serves as a living laboratory for my work in **Natural Language Processing (NLP)**, **Predictive Modeling**, and **Autonomous AI Agents**. Unlike standard static portfolios, Silvio.AI utilizes **Genkit** as an orchestration layer to communicate with specialized backends on Hugging Face Spaces.
 
