@@ -52,8 +52,8 @@ const featuredProjects = [
     desc: "An automated Data Scientist agent that analyzes CSVs, Excel, and Sheets with auto-visualization. Autonomously writes and executes Python code.",
     tech: ["PANDAS AGENT", "GEMINI 2.5 FLASH", "PYTHON", "MATPLOTLIB"],
     link: "https://github.com/viochris/insight-data-ai-analyst",
-    problem: "Data analysis often requires manual effort to write code, clean data, and generate meaningful visualizations.",
-    solution: "Built an end-to-end AI Analyst leveraging LLMs to autonomously perform EDA, statistical calculations, and generate visual insights from any structured dataset.",
+    problem: "Manual data cleaning and basic statistical analysis are time-consuming for non-technical users.",
+    solution: "Built a ReAct agent that autonomously writes and executes Python code for cleaning, analysis, and instant visualization.",
     image: "/insight_data.png"
   }
 ];
