@@ -644,58 +644,58 @@ export default function AboutPage() {
         </div>
 
         {/* Bar Chart Section */}
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl relative">
-          <div className="relative z-10">
-            {/* Timezone Selector - Top Right Above Title */}
-            <div className="flex justify-end mb-10">
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-2xl w-full md:w-fit">
-                <Globe className="w-5 h-5 text-primary shrink-0" />
-                <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
-                  <SelectTrigger className="w-[280px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10 px-0 hover:bg-transparent shadow-none">
-                    <SelectValue placeholder="Select Timezone" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-card border-border max-h-[300px]">
-                    {timezones.map(tz => (
-                      <SelectItem key={tz.label} value={tz.value} className="text-white font-bold uppercase tracking-widest text-[10px] cursor-pointer">
-                        {tz.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start mb-12">
-              <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-[0.85] mb-2">
+        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl flex flex-col">
+          {/* Header Row: Combined Title and Dropdown */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full mb-8 gap-6">
+            <div className="flex flex-col items-start">
+              <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-none">
                 Commits
               </h3>
-              <span className="text-lg md:text-2xl font-headline font-bold text-primary/70 uppercase tracking-tighter leading-none">
+              <span className="text-lg md:text-2xl font-headline font-bold text-primary/70 uppercase tracking-tighter mt-2">
                 ({currentTimezoneLabel})
               </span>
             </div>
 
-            <div className="h-[400px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={shiftedCommitData} margin={{ top: 30 }}>
-                  <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
-                  <YAxis hide />
-                  <Tooltip 
-                    cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                    contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
-                    labelFormatter={(label) => `Hour: ${label}:00`}
-                  />
-                  <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]}>
-                    <LabelList 
-                      dataKey="commits" 
-                      position="top" 
-                      style={{ fill: 'hsl(var(--primary))', fontSize: '12px', fontWeight: 'bold' }} 
-                      offset={10} 
-                    />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-              <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
+            {/* Timezone Selector - Right Side */}
+            <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-2xl w-full md:w-fit shrink-0">
+              <Globe className="w-5 h-5 text-primary shrink-0" />
+              <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
+                <SelectTrigger className="w-[280px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-10 px-0 hover:bg-transparent shadow-none">
+                  <SelectValue placeholder="Select Timezone" />
+                </SelectTrigger>
+                <SelectContent className="bg-card border-border max-h-[300px]">
+                  {timezones.map(tz => (
+                    <SelectItem key={tz.label} value={tz.value} className="text-white font-bold uppercase tracking-widest text-[10px] cursor-pointer">
+                      {tz.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
+          </div>
+
+          {/* Chart Area */}
+          <div className="h-[400px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={shiftedCommitData} margin={{ top: 30 }}>
+                <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
+                <YAxis hide />
+                <Tooltip 
+                  cursor={{fill: 'rgba(255,255,255,0.05)'}}
+                  contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
+                  labelFormatter={(label) => `Hour: ${label}:00`}
+                />
+                <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]}>
+                  <LabelList 
+                    dataKey="commits" 
+                    position="top" 
+                    style={{ fill: 'hsl(var(--primary))', fontSize: '12px', fontWeight: 'bold' }} 
+                    offset={10} 
+                  />
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
           </div>
         </div>
 
