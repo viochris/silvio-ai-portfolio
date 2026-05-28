@@ -235,7 +235,7 @@ export default function AboutPage() {
     totalCommits: 0 
   });
   const [loadingGh, setLoadingGh] = useState(true);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(7); // Default to Jakarta (UTC+7)
 
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
   const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
