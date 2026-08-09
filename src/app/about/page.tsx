@@ -61,7 +61,7 @@ const educationData = [
     institution: "Universitas Dian Nuswantoro (UDINUS)",
     description: (
       <>
-        IPK: 3.95/4.00 (Cumulative GPA in 5th Semester).<br />
+        IPK: 3.96/4.00 (Cumulative GPA in 6th Semester).<br />
         Activities: UKM Dian Nuswantoro Computer Club - DNCC.<br />
         Focusing on AI Development, Data Engineering, and Computational Logic.
       </>
