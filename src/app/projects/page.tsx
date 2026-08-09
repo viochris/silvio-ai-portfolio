@@ -121,12 +121,16 @@ export default function ProjectsPage() {
 
                 {/* Content Section */}
                 <div className="flex-1 flex flex-col space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight group-hover:text-primary transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
-                    {p.desc}
-                  </p>
+                  <div className="min-h-[5.5rem] md:min-h-[6.5rem] flex items-start">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight group-hover:text-primary transition-colors">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <div className="min-h-[4.5rem]">
+                    <p className="text-white/60 text-sm md:text-base font-medium leading-relaxed line-clamp-3">
+                      {p.desc}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Button Section */}
