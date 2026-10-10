@@ -1,4 +1,3 @@
-
 "use client"
 
 import React, { useState } from 'react';
@@ -40,7 +39,7 @@ export const Navbar: React.FC = () => {
   
   const { setIsReturning, setActiveTab, vibe, setVibe } = useNavigation();
 
-  const cvRawLink = "/vio-cv.pdf";
+  const cvRawLink = "/Silvio Christian, Joe-resume.pdf";
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -89,7 +88,7 @@ export const Navbar: React.FC = () => {
       ) : (
         <div className="flex flex-col gap-4 py-4">
           <Button className="w-full h-16 rounded-2xl gap-3 font-headline font-bold uppercase tracking-widest text-xs shadow-lg shadow-primary/20" asChild>
-            <a href={cvRawLink} download="vio-cv.pdf">
+            <a href={cvRawLink} download="Silvio Christian, Joe-resume.pdf">
               <Download className="w-5 h-5" /> Download PDF Version
             </a>
           </Button>

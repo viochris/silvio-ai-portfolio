@@ -226,7 +226,7 @@ const interestData = [
 ];
 
 export default function AboutPage() {
-  const cvRawLink = "/vio-cv.pdf";
+  const cvRawLink = "/Silvio Christian, Joe-resume.pdf";
   const [ghStats, setGhStats] = useState({ 
     repos: 0, 
     stars: 0, 
@@ -802,7 +802,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <a 
                 href={cvRawLink} 
-                download="vio-cv.pdf" 
+                download="Silvio Christian, Joe-resume.pdf" 
                 className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-primary hover:bg-primary/90 uppercase tracking-widest text-xs"
               >
                 <Download className="w-5 h-5" /> DOWNLOAD CV
