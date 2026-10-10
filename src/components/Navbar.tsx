@@ -55,20 +55,22 @@ export const Navbar: React.FC = () => {
       "bg-card/95 backdrop-blur-xl border-border rounded-[2rem] transition-all duration-300 overflow-hidden",
       showViewer ? "sm:max-w-4xl w-[95vw] h-[90vh] flex flex-col" : "sm:max-w-md"
     )}>
-      <DialogHeader className={showViewer ? "pb-4 border-b border-border" : ""}>
-        <div className="flex items-center justify-between pr-8">
-          <DialogTitle className="text-2xl font-headline font-bold text-foreground">
-            {showViewer ? "Curriculum Vitae Preview" : "Curriculum Vitae"}
-          </DialogTitle>
-          <DialogDescription className={cn("text-muted-foreground font-medium", showViewer && "sr-only")}>
-            {showViewer ? "Preview of my professional profile." : "Choose how you would like to access Silvio's professional profile."}
-          </DialogDescription>
+      <DialogHeader className={cn(showViewer ? "pb-4 border-b border-border" : "text-left")}>
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-1.5">
+            <DialogTitle className="text-2xl font-headline font-bold text-foreground">
+              {showViewer ? "Curriculum Vitae Preview" : "Curriculum Vitae"}
+            </DialogTitle>
+            <DialogDescription className={cn("text-muted-foreground font-medium text-sm leading-relaxed", showViewer && "sr-only")}>
+              {showViewer ? "Preview of my professional profile." : "Choose how you would like to access Silvio's professional profile."}
+            </DialogDescription>
+          </div>
           {showViewer && (
             <Button 
               variant="ghost" 
               size="sm" 
               onClick={() => setShowViewer(false)}
-              className="flex items-center gap-2 text-primary hover:bg-primary/10"
+              className="flex items-center gap-2 text-primary hover:bg-primary/10 shrink-0"
             >
               <ArrowLeft className="w-4 h-4" /> Back
             </Button>
