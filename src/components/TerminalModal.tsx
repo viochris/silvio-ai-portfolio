@@ -8,10 +8,11 @@ import { useNavigation, type Vibe } from '@/context/NavigationContext';
 import { repos, categories } from '@/lib/repos-data';
 import { professionalCertifications } from '@/lib/credentials-data';
 import { chatWithAIAssistant } from '@/ai/flows/chat-with-ai-assistant';
+import { renderMarkdown } from '@/lib/markdown';
 
 interface TerminalLine {
   id: number;
-  type: 'command' | 'output' | 'error' | 'highlight';
+  type: 'command' | 'output' | 'error' | 'highlight' | 'ai';
   text?: string;
   links?: { label: string; url: string }[];
 }
@@ -382,8 +383,8 @@ export const TerminalModal: React.FC = () => {
         });
         appendLines([
           {
-            type: 'highlight',
-            text: `Silvio.AI> ${res?.answer || 'No response received.'}`,
+            type: 'ai',
+            text: res?.answer || 'No response received.',
           },
         ]);
       } catch {
@@ -515,6 +516,17 @@ export const TerminalModal: React.FC = () => {
               {line.type === 'highlight' && (
                 <div className="text-primary font-semibold whitespace-pre-wrap break-words">
                   {line.text}
+                </div>
+              )}
+              {line.type === 'ai' && (
+                <div className="rounded-xl bg-primary/[0.06] border border-primary/25 p-3 sm:p-3.5 space-y-1.5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                    Silvio.AI&gt;
+                  </div>
+                  <div
+                    className="text-zinc-200 font-code text-xs sm:text-[13px] leading-relaxed break-words"
+                    dangerouslySetInnerHTML={{ __html: renderMarkdown(line.text, 'terminal') }}
+                  />
                 </div>
               )}
               {line.type === 'error' && (
