@@ -1,11 +1,42 @@
 "use client"
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Github, Linkedin, Mail, GraduationCap, BarChart3, Users, Download, Eye, BrainCircuit, Workflow, Brain, Database, Sparkles, Code2, ChevronLeft, ChevronRight, Info, Layout, Search, BookOpen, Phone, GitCommit, Languages, Globe, Rocket } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { ParallaxLayer } from '@/components/Parallax';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  GraduationCap,
+  BarChart3,
+  Users,
+  Download,
+  Eye,
+  BrainCircuit,
+  Workflow,
+  Brain,
+  Database,
+  Sparkles,
+  Code2,
+  ChevronLeft,
+  ChevronRight,
+  Info,
+  Layout,
+  Search,
+  BookOpen,
+  Phone,
+  GitCommit,
+  Languages,
+  Globe,
+  Rocket,
+  Copy,
+  Check,
+  FileText,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ResumePreviewFrame } from '@/components/ResumePreviewFrame';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -26,9 +57,17 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, LabelList } from "recharts";
+import { GITHUB_FALLBACK_STATS, fetchCachedGitHubStats, readCachedGitHubStats, type GitHubStats } from '@/lib/github-stats';
+
+const CommitActivityChart = dynamic(() => import('@/components/CommitActivityChart'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[340px] sm:h-[380px] w-full rounded-xl bg-secondary/40 animate-pulse flex items-center justify-center text-xs font-semibold uppercase tracking-wider text-zinc-400">
+      Loading commit activity chart...
+    </div>
+  ),
+});
 
 const rawCommitData = [
   { hour: 0, commits: 80 }, { hour: 1, commits: 65 }, { hour: 2, commits: 30 }, { hour: 3, commits: 5 },
@@ -36,7 +75,7 @@ const rawCommitData = [
   { hour: 8, commits: 85 }, { hour: 9, commits: 45 }, { hour: 10, commits: 35 }, { hour: 11, commits: 10 },
   { hour: 12, commits: 30 }, { hour: 13, commits: 20 }, { hour: 14, commits: 2 }, { hour: 15, commits: 0 },
   { hour: 16, commits: 0 }, { hour: 17, commits: 0 }, { hour: 18, commits: 0 }, { hour: 19, commits: 2 },
-  { hour: 20, commits: 0 }, { hour: 21, commits: 0 }, { hour: 22, commits: 1 }, { hour: 23, commits: 18 }
+  { hour: 20, commits: 0 }, { hour: 21, commits: 0 }, { hour: 22, commits: 1 }, { hour: 23, commits: 18 },
 ];
 
 const timezones = [
@@ -61,538 +100,459 @@ const educationData = [
     institution: "Universitas Dian Nuswantoro (UDINUS)",
     description: (
       <>
-        IPK: 3.96/4.00 (Cumulative GPA in 6th Semester).<br />
-        Activities: UKM Dian Nuswantoro Computer Club - DNCC.<br />
-        Focusing on AI Development, Data Engineering, and Computational Logic.
+        Status: Currently in 7th Semester.<br />
+        GPA: 3.96/4.00 (Cumulative GPA through 6th Semester).<br />
+        Activities: Dian Nuswantoro Computer Club (DNCC).<br />
+        Focus: AI Engineering, Data Science, and Computational Logic.
       </>
-    )
+    ),
   },
   {
     period: "Jul 2020 - May 2023",
-    degree: "High School Diploma, Science",
+    degree: "High School Diploma, Science Track",
     institution: "SMA Kristen YSKI",
-    description: "Activities: Photography, Entrepreneurship, and Scout."
-  }
+    description: "Activities: Photography, Entrepreneurship, and Scouting.",
+  },
 ];
 
 const technicalMilestones = [
   {
     year: "2023",
-    title: "WEB & CODING FOUNDATIONS",
-    shortSummary: "Started programming journey with a focus on frontend web development and UI design.",
+    title: "Web & Coding Foundations",
+    shortSummary: "Started programming from scratch with frontend web development and UI fundamentals.",
     details: [
-      "Began learning programming from scratch in Semester 1",
-      "Explored frontend web development: HTML, CSS, JavaScript",
-      "Developed strong interest in UI/UX design principles and visual aesthetics",
-      "Focused on building clean, responsive, and visually appealing interfaces"
-    ]
+      "Began learning programming fundamentals in Semester 1",
+      "Explored frontend web development with HTML, CSS, and JavaScript",
+      "Studied UI/UX principles and visual hierarchy",
+      "Built clean, responsive web layouts",
+    ],
   },
   {
     year: "Early 2024",
-    title: "DATA ANALYTICS ENTRY",
-    shortSummary: "Dived into data analytics through SQL and Python data libraries like Pandas and NumPy.",
+    title: "Data Analytics Entry",
+    shortSummary: "Entered data analytics with SQL querying and Python libraries like Pandas and NumPy.",
     details: [
-      "Learned SQL for querying and manipulating relational databases",
-      "Explored Python data stack: Pandas for data wrangling, NumPy for numerical computing",
-      "Studied data cleaning, transformation, and exploratory data analysis (EDA) techniques",
-      "Applied knowledge to small analytical exercises and datasets"
-    ]
+      "Learned SQL for querying and shaping relational databases",
+      "Practiced Python data wrangling with Pandas and NumPy",
+      "Studied data cleaning, transformation, and exploratory data analysis (EDA)",
+      "Completed structured analytical exercises on real-world datasets",
+    ],
   },
   {
     year: "2024",
-    title: "BI TOOLS & VISUALIZATION",
-    shortSummary: "Explored major data analytics and business intelligence tools for visual storytelling.",
+    title: "BI Tools & Visualization",
+    shortSummary: "Built analytical dashboards across Tableau, Power BI, Looker Studio, and Excel.",
     details: [
-      "Practiced data visualization with Tableau and Looker Studio",
-      "Used Microsoft Power BI for dashboard creation and reporting",
-      "Leveraged Microsoft Excel for data analysis, pivot tables, and charting",
-      "Built end-to-end analytical workflows from raw data to visual insight"
-    ]
+      "Designed interactive dashboards in Tableau and Looker Studio",
+      "Built business reporting views with Microsoft Power BI",
+      "Used Microsoft Excel pivot tables and charts for rapid exploration",
+      "Delivered end-to-end workflows from raw CSV data to stakeholder visuals",
+    ],
   },
   {
     year: "Mid 2024",
-    title: "ML & DL EXPLORATION",
-    shortSummary: "Explored machine learning and deep learning across computer vision and NLP domains.",
+    title: "ML & Deep Learning",
+    shortSummary: "Explored classical machine learning and neural networks across tabular, vision, and NLP.",
     details: [
-      "Studied and implemented Machine Learning (ML) and Deep Learning (DL) models",
-      "Explored three major domains: Computer Vision, NLP, and Tabular Data",
-      "Experimented with image and video processing tasks",
-      "Built familiarity with model training pipelines and frameworks (TensorFlow / PyTorch)"
-    ]
+      "Trained and evaluated classical ML and deep learning models",
+      "Worked across Tabular Data, Computer Vision, and NLP tasks",
+      "Built reproducible preprocessing and model evaluation pipelines",
+      "Gained hands-on experience with Scikit-Learn and TensorFlow",
+    ],
   },
   {
-    year: "Late 2024 – Early 2025",
-    title: "THEORETICAL DEEPDIVE",
-    shortSummary: "Strengthened fundamentals through deep theoretical study of statistics and ML concepts.",
+    year: "Late 2024 - Early 2025",
+    title: "Theoretical Deep Dive",
+    shortSummary: "Strengthened statistical inference, hypothesis testing, and forecasting theory.",
     details: [
-      "Mastered the 'why' before the 'how' through pure theoretical study",
-      "Studied statistical hypothesis testing: T-Test, Z-Test, ANOVA",
-      "Learned evaluation metrics for Regression, Classification, Forecasting, and Clustering",
-      "Explored time-series forecasting models: ARIMA, SARIMA, SARIMAX",
-      "Learned to use Hugging Face pipelines for pre-trained model implementation"
-    ]
+      "Focused on mathematical reasoning before implementation",
+      "Studied statistical hypothesis tests: T-Test, Z-Test, and ANOVA",
+      "Mastered evaluation metrics for Regression, Classification, Forecasting, and Clustering",
+      "Explored time-series models (ARIMA, SARIMA, SARIMAX) and Hugging Face pipelines",
+    ],
   },
   {
-    year: "2025 – Present",
-    title: "PROJECT & AGENTIC ERA",
-    shortSummary: "Building end-to-end ML, autonomous AI Agents, and mastering Vibe Coding philosophy.",
+    year: "2025 - Present",
+    title: "Project & Agentic Era",
+    shortSummary: "Shipping production ML APIs, stateful AI Agents, and rapid full-stack prototypes.",
     details: [
-      "Transitioned to active, project-based learning with an AI-first approach",
-      "Building end-to-end ML/DL projects from raw data to production-ready deployment",
-      "Architecting autonomous AI Agents and high-performance automation workflows",
-      "Embracing the 'Vibe Coding' philosophy—engineering with intuition and rapid AI iteration"
-    ]
-  }
+      "Shifted to end-to-end project delivery with an AI-first mindset",
+      "Built production FastAPI inference services from raw datasets",
+      "Engineered stateful AI Agents and automated Telegram/Prefect workflows",
+      "Applied Vibe Coding to ship responsive frontends alongside backend AI engines",
+    ],
+  },
 ];
 
 const interestData = [
   {
     title: "Natural Language Processing",
-    icon: <Brain className="w-10 h-10 text-primary" />,
+    icon: <Brain className="w-8 h-8 text-primary" aria-hidden="true" />,
     desc: "Bridging human language and machine understanding through high-precision NLP pipelines.",
-    details: "Focused on engineering high-precision Natural Language Processing pipelines that bridge human intent and machine comprehension. Specializing in transforming unstructured text into structured, actionable intelligence across multilingual contexts and diverse semantic architectures.",
+    details: "Focused on engineering NLP pipelines for entity extraction, semantic similarity, and multilingual sentiment analytics across English and Indonesian text.",
     projects: [
-      { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
-      { name: "Insightify API (NLP Sentiment)", id: null, github: "https://github.com/viochris/Insightify-Sentiment-API" },
-      { name: "DocuTalk-AI (Smart RAG)", id: null, github: "https://github.com/viochris/DocuTalk-AI" }
-    ]
+      { name: "Resume Scanner API", github: "https://github.com/viochris/resume-scanner-api" },
+      { name: "Insightify API (NLP Sentiment)", github: "https://github.com/viochris/Insightify-Sentiment-API" },
+      { name: "DocuTalk-AI (Smart RAG)", github: "https://github.com/viochris/DocuTalk-AI" },
+    ],
   },
   {
     title: "Tabular Data Modeling",
-    icon: <Database className="w-10 h-10 text-primary" />,
-    desc: "Predictive power from structured foundations using rigorous cross-validation and feature engineering.",
-    details: "Building robust, highly accurate predictive models from complex structured data across any domain. Ensuring that every model is not only performant but also fully interpretable and reliable through rigorous feature engineering and Explainable AI (XAI) methodologies.",
+    icon: <Database className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Predictive modeling on structured data using strict cross-validation and feature engineering.",
+    details: "Building reliable predictive models from structured datasets while preventing data leakage and explaining predictions through Explainable AI (XAI) techniques.",
     projects: [
-      { name: "Stunting Analysis (Medical)", id: null, github: "https://github.com/viochris/Stunting-prediction-project" },
-      { name: "Diabetes Prediction (Tuned)", id: null, github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
-      { name: "Coming Soon", id: null, github: "#" }
-    ]
+      { name: "Stunting Analysis (Medical)", github: "https://github.com/viochris/Stunting-prediction-project" },
+      { name: "Diabetes Prediction (Tuned)", github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
+    ],
   },
   {
     title: "AI Agent Engineering",
-    icon: <Sparkles className="w-10 h-10 text-primary" />,
-    desc: "Designing advanced reasoning systems and multi-agent frameworks for autonomous problem solving.",
-    details: "Architecting advanced, goal-oriented reasoning systems and multi-agent ecosystems. Leveraging modern LLM frameworks to build autonomous agents capable of complex logic execution, dynamic tool calling, and resilient self-correction without human intervention.",
+    icon: <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Designing stateful reasoning loops and multi-agent frameworks for autonomous problem solving.",
+    details: "Architecting goal-oriented LLM systems capable of structured tool calling, cyclic graph validation, and autonomous error recovery.",
     projects: [
-      { name: "InsightSQL (LangGraph)", id: null, github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
-      { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
-      { name: "NovaCal AI (Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
-    ]
+      { name: "InsightSQL (LangGraph)", github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
+      { name: "SpendSense (Financial AI)", github: "https://github.com/viochris/Streamlit-SpendSense" },
+      { name: "NovaCal AI (Telegram)", github: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
+    ],
   },
   {
     title: "Automation & Orchestration",
-    icon: <Workflow className="w-10 h-10 text-primary" />,
-    desc: "Building high-performance AI ecosystems where services connect seamlessly via intelligent bots.",
-    details: "Constructing the robust backbone of intelligent systems. Architecting stateful, high-performance backends and automated data pipelines that seamlessly connect discrete AI models to real-world applications, APIs, and ubiquitous communication platforms.",
+    icon: <Workflow className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Connecting AI models, external APIs, and scheduled workflows into hands-free utilities.",
+    details: "Constructing stateful backends and Prefect pipelines that link language models directly to Gmail, Google Calendar, Google Sheets, and Telegram.",
     projects: [
-      { name: "Daily Agenda Broadcaster", id: null, github: "https://github.com/viochris/auto-daily-scheduler.git" },
-      { name: "NovaMail AI (Autoresponder)", id: null, github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
-      { name: "Daily AI News Digest", id: null, github: "https://github.com/viochris/daily-ai-news-digest" }
-    ]
+      { name: "Daily Agenda Broadcaster", github: "https://github.com/viochris/auto-daily-scheduler.git" },
+      { name: "NovaMail AI (Autoresponder)", github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
+      { name: "Daily AI News Digest", github: "https://github.com/viochris/daily-ai-news-digest" },
+    ],
   },
   {
     title: "Vibe Coding",
-    icon: <Code2 className="w-10 h-10 text-primary" />,
-    desc: "The AI-first digital experience, creating a synergy between human intuition and AI execution.",
-    details: "A rapid-development methodology leveraging AI assistance for quick prototyping. While my core expertise is in Data and AI, understanding fundamental programming concepts allows me to steer coding agents effectively. This enables me to rapidly generate basic user interfaces and Proof of Concepts (PoCs) when an immediate, functional prototype is needed to demonstrate backend AI capabilities.",
+    icon: <Code2 className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Rapidly pairing systems engineering intuition with AI coding assistants to ship complete apps.",
+    details: "Using AI-assisted iteration to build clean, interactive web and mobile prototypes on top of Python and FastAPI AI backends.",
     projects: [
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" }
-    ]
+      { name: "Silvio.AI Portfolio", github: "https://github.com/viochris/silvio-ai-portfolio" },
+    ],
   },
   {
     title: "Custom Data Sourcing & Pipelines",
-    icon: <Globe className="w-10 h-10 text-primary" />,
-    desc: "Aggregating data through third-party APIs and automated web scraping architectures.",
-    details: "Overcoming data limitations by building custom extraction pipelines. Focused on aggregating data through third-party APIs and automated web scraping architectures. Skilled in designing focused ETL and ELT workflows to clean, structure, and load raw information into high-quality custom datasets for predictive modeling.",
+    icon: <Globe className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Aggregating clean datasets through third-party APIs and automated extraction pipelines.",
+    details: "Designing focused ETL and ELT workflows to harvest, clean, and structure raw web or API data into model-ready datasets.",
     projects: [
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" },
-      { name: "Coming Soon", id: null, github: "#" }
-    ]
+      { name: "Daily AI News Digest", github: "https://github.com/viochris/daily-ai-news-digest" },
+    ],
   },
   {
     title: "Deployment & Interfaces",
-    icon: <Rocket className="w-10 h-10 text-primary" />,
-    desc: "Bridging backend models and end-user accessibility through high-performance APIs and interfaces.",
-    details: "Bridging the gap between intelligent backend models and end-user accessibility. Specializing in deploying high-performance REST APIs (FastAPI) and rapidly prototyping interactive interfaces—ranging from web applications (Streamlit) to autonomous messaging bots (Telegram)—ensuring AI solutions deliver immediate real-world utility.",
+    icon: <Rocket className="w-8 h-8 text-primary" aria-hidden="true" />,
+    desc: "Delivering backend intelligence through FastAPI endpoints, Streamlit apps, and bots.",
+    details: "Bridging model code and end-user accessibility with containerized REST APIs, interactive Streamlit dashboards, and Telegram bots.",
     projects: [
-      { name: "Resume Scanner API", id: null, github: "https://github.com/viochris/resume-scanner-api" },
-      { name: "SpendSense (Financial AI)", id: null, github: "https://github.com/viochris/Streamlit-SpendSense" },
-      { name: "NovaCal AI (Stateful Telegram)", id: null, github: "https://github.com/viochris/telegram-calendar-ai-bot.git" }
-    ]
-  }
+      { name: "Resume Scanner API", github: "https://github.com/viochris/resume-scanner-api" },
+      { name: "SpendSense (Financial AI)", github: "https://github.com/viochris/Streamlit-SpendSense" },
+      { name: "NovaCal AI (Stateful Telegram)", github: "https://github.com/viochris/telegram-calendar-ai-bot.git" },
+    ],
+  },
 ];
 
 export default function AboutPage() {
-  const cvRawLink = "/Silvio Christian, Joe-resume.pdf";
-  const [ghStats, setGhStats] = useState({ 
-    repos: 0, 
-    stars: 0, 
-    followers: 0, 
-    topLanguages: '...', 
-    totalCommits: 0 
-  });
+  const cvRawLink = "/Silvio-Christian-Joe-resume.pdf";
+  const cvDownloadLink = "/api/resume?download=1";
+  const [ghStats, setGhStats] = useState<GitHubStats>(GITHUB_FALLBACK_STATS);
   const [loadingGh, setLoadingGh] = useState(true);
-  const [offset, setOffset] = useState(7); // Default to Jakarta (UTC+7)
+  const [offset, setOffset] = useState(7);
 
   const [openMilestoneIdx, setOpenMilestoneIdx] = useState<number | null>(null);
   const [openInterestIdx, setOpenInterestIdx] = useState<number | null>(null);
+  const [copiedSummary, setCopiedSummary] = useState(false);
+
+  const candidateSummaryText = `CANDIDATE SUMMARY: SILVIO CHRISTIAN, JOE
+Role Focus: Data Scientist, AI & LLM Engineer, NLP & RAG Specialist
+Location: Semarang, Central Java, Indonesia (Open to Remote, Hybrid & On-Site)
+Education: B.Sc. in Informatics Engineering, Dian Nuswantoro University (UDINUS) (2023 - 2027, Currently in 7th Semester)
+Cumulative GPA: 3.96 / 4.00 (through 6th Semester)
+
+CORE TECHNICAL STACK:
+- GenAI, Agents & LLMOps: LangGraph, CrewAI, LlamaIndex, LangChain, Google Gemini, Groq, LiteLLM, Arize Phoenix (OpenTelemetry)
+- Vector & Graph Databases: ChromaDB Cloud, Neo4j Property Graph, FAISS, Pinecone, MySQL
+- Machine Learning & NLP: Python, SQL, Pandas, NumPy, Scikit-Learn, TensorFlow, Hugging Face (SBERT, Cross-Encoder Rerankers)
+- Backend, UI & Automation: FastAPI, Flask, Streamlit, React 19 / TypeScript, Prefect, Docker, Telegram Bot API
+- BI & Analytics: Tableau, Power BI, Looker Studio, Matplotlib, Seaborn
+
+KEY PROOF-OF-WORK (65+ PUBLIC REPOSITORIES):
+1. InsightSQL (LangGraph Engine): Cyclic SQL reasoning agent with real-time schema inspection & error self-correction (https://github.com/viochris/InsightSQL-LangGraph-Engine-Web)
+2. YouTube Hybrid RAG & Cost Benchmark: Empirical token/USD comparison across Vector (ChromaDB), Graph (Neo4j), and Hybrid RRF RAG (https://github.com/viochris/rag-token-benchmark-vector-graph-hybrid)
+3. Auto-README Generator (CrewAI): Multi-agent documentation pipeline parsing .py and .ipynb repositories (https://github.com/viochris/auto-readme-generator)
+4. Botanica AI: Full-stack React 19 + Express multimodal Gemini Vision application with 3-tier model fallback (https://github.com/viochris/botanica-ai)
+5. Resume Scanner API: Dual-engine FastAPI microservice combining TF-IDF and SBERT semantic similarity (https://github.com/viochris/resume-scanner-api)
+
+VERIFIED CERTIFICATIONS (22+ CREDENTIALS):
+- Oracle AI Vector Search Certified Professional
+- Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
+- Oracle Cloud Infrastructure 2025 Certified Data Science Professional
+- IBM Machine Learning Specialization (6-Course Credential)
+
+LINKS & CONTACT:
+- Portfolio: https://silvio-ai-portfolio.vercel.app
+- GitHub: https://github.com/viochris
+- LinkedIn: https://www.linkedin.com/in/silvio-christian-joe
+- Medium: https://medium.com/@silviochristian
+- Email: viochristian12@gmail.com | WhatsApp: +62 895-3426-37871`;
+
+  const handleCopyCandidateSummary = async () => {
+    try {
+      await navigator.clipboard.writeText(candidateSummaryText);
+      setCopiedSummary(true);
+      window.setTimeout(() => setCopiedSummary(false), 3000);
+    } catch {
+      // Fallback if clipboard permission is restricted
+    }
+  };
 
   useEffect(() => {
-    async function fetchGitHubData() {
-      try {
-        const [userRes, reposRes, commitsRes] = await Promise.all([
-          fetch('https://api.github.com/users/viochris'),
-          fetch('https://api.github.com/users/viochris/repos?per_page=100'),
-          fetch('https://api.github.com/search/commits?q=author:viochris', {
-            headers: { 'Accept': 'application/vnd.github.cloak-preview' }
-          })
-        ]);
+    let active = true;
+    const cached = readCachedGitHubStats();
+    if (cached) {
+      setGhStats(cached);
+      setLoadingGh(false);
+    }
 
-        const userData = await userRes.json();
-        const reposData = await reposRes.json();
-        const searchCommitsData = await commitsRes.json();
-
-        const totalStars = reposData.reduce((acc: number, repo: any) => acc + (repo.stargazers_count || 0), 0);
-        
-        const langCount: Record<string, number> = {};
-        reposData.forEach((repo: any) => {
-          if (repo.language) {
-            langCount[repo.language] = (langCount[repo.language] || 0) + 1;
-          }
-        });
-        const sortedLangs = Object.entries(langCount)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 1) // Only take top 1
-          .map(l => l[0])
-          .join(', ');
-
-        setGhStats({
-          repos: userData.public_repos || 0,
-          stars: totalStars,
-          followers: userData.followers || 0,
-          topLanguages: sortedLangs || 'None',
-          totalCommits: searchCommitsData.total_count || 0
-        });
-      } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
-      } finally {
-        setGhStats(prev => ({ ...prev }));
+    fetchCachedGitHubStats().then((stats) => {
+      if (active) {
+        setGhStats(stats);
         setLoadingGh(false);
       }
-    }
-    fetchGitHubData();
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const shiftedCommitData = useMemo(() => {
-    return rawCommitData.map(d => {
-      const shiftedHour = (d.hour + offset + 24) % 24;
-      return { 
-        hour: shiftedHour.toString(), 
-        commits: d.commits,
-        originalHour: d.hour 
-      };
-    }).sort((a, b) => parseInt(a.hour) - parseInt(b.hour));
+    return rawCommitData
+      .map((d) => {
+        const shiftedHour = (d.hour + offset + 24) % 24;
+        return {
+          hour: shiftedHour.toString(),
+          commits: d.commits,
+          originalHour: d.hour,
+        };
+      })
+      .sort((a, b) => parseInt(a.hour, 10) - parseInt(b.hour, 10));
   }, [offset]);
 
   const currentTimezoneLabel = useMemo(() => {
-    const tz = timezones.find(t => parseInt(t.value) === offset);
+    const tz = timezones.find((t) => parseInt(t.value, 10) === offset);
     return tz ? tz.display : "UTC +0:00";
   }, [offset]);
 
   const currentTimezoneShort = useMemo(() => {
-    const tz = timezones.find(t => parseInt(t.value) === offset);
+    const tz = timezones.find((t) => parseInt(t.value, 10) === offset);
     return tz ? tz.short : "UTC";
   }, [offset]);
 
   return (
-    <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
-      <section id="about" className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 w-full items-start mb-32">
+    <div className="pt-28 lg:pt-36 pb-20 px-4 sm:px-6 lg:px-12 min-h-screen">
+      <section id="about" className="max-w-7xl mx-auto space-y-24">
+        {/* Intro + Education Sticky */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 w-full items-start">
           <div className="w-full lg:w-1/2 flex flex-col space-y-6">
-            <div className="space-y-6">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">The Architect</Badge>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-foreground">
+            <div className="space-y-4">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase px-3.5 border-primary/30 text-[11px]">
+                The Architect
+              </Badge>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tight text-foreground">
                 About <span className="text-primary">Me</span>
-              </h2>
+              </h1>
             </div>
-            
-            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I am Silvio Christian, Joe—an Informatics Engineering student at Dian Nuswantoro University (UDINUS) with a core focus as a Data Scientist and AI Engineer. My passion lies in transforming raw data into intelligent systems—seamlessly bridging the gap between data and artificial intelligence. This journey begins at the source: when off-the-shelf datasets are insufficient, I overcome limitations by building custom data sourcing workflows and ETL pipelines. With high-quality data secured, I specialize in analyzing Tabular Data to build robust predictive models and designing high-precision Natural Language Processing (NLP) pipelines to extract actionable meaning from unstructured text.
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              However, I don't just build traditional models—I design reasoning systems to solve complex problems. As an AI Engineer, my work revolves around developing autonomous AI Agents and the infrastructure that supports them. I architect automation and orchestration workflows, building the stateful backends and data pipelines that power seamless AI ecosystems. From implementing RAG pipelines to creating ReAct agents that independently reason and call tools, I ensure these discrete models are connected into cohesive, high-performance engines.
-            </p>
-            <p className="text-muted-foreground leading-relaxed text-lg lg:text-xl font-medium">
-              I firmly believe that AI should be practical and accessible. To bridge core AI development with end-user utility, I focus heavily on deployment and interfaces—delivering high-performance REST APIs (FastAPI) and rapidly prototyping interactive applications (Streamlit) alongside autonomous messaging bots (Telegram). When an immediate, fully functional web or mobile interface is needed beyond standard frameworks, I leverage the Vibe Coding philosophy. By steering coding agents with my foundational engineering knowledge, I rapidly generate interfaces, ensuring that every intelligent solution I build translates directly into real-world utility and reliable execution.
-            </p>
 
-            <div className="p-6 rounded-2xl glass border-primary/20 bg-primary/5 flex items-center gap-4 mt-4 shadow-xl">
-              <div className="relative flex h-3 w-3">
+            <div className="space-y-5 text-zinc-300 leading-relaxed text-base sm:text-lg">
+              <p>
+                I am Silvio Christian, Joe, an Informatics Engineering student at Dian Nuswantoro University (UDINUS) focused on Data Science and AI Engineering. My work centers on turning raw data into reliable systems, starting from custom ETL pipelines when off-the-shelf datasets fall short, through predictive Tabular Modeling and Natural Language Processing (NLP).
+              </p>
+              <p>
+                Beyond traditional predictive models, I design stateful reasoning systems and autonomous AI Agents. From grounded Retrieval-Augmented Generation (RAG) workflows to ReAct and LangGraph agents that invoke tools and self-correct, I build the orchestration backends that keep intelligent components dependable.
+              </p>
+              <p>
+                To deliver real-world utility, I deploy models behind FastAPI services, interactive Streamlit dashboards, and Telegram bots. When rapid web or mobile interfaces are needed, I use Vibe Coding alongside core software engineering practices to ship end-to-end applications cleanly.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl border border-primary/25 bg-primary/5 flex items-center gap-4">
+              <span className="relative flex h-3 w-3 shrink-0" aria-hidden="true">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </div>
+              </span>
               <div className="flex-1">
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-1">Status</div>
-                <div className="text-sm font-bold text-white uppercase tracking-widest">Open for Job, Freelance & Collaborators</div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-primary mb-0.5">
+                  Availability
+                </div>
+                <div className="text-sm font-bold text-white uppercase tracking-wide">
+                  Open for Roles, Freelance &amp; Collaborations
+                </div>
               </div>
             </div>
 
-            <div className="flex gap-4 sm:gap-6 pt-4">
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
-                <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-6 h-6" />
+            <div className="flex gap-3 pt-2">
+              <Button variant="outline" size="icon" className="w-12 h-12 rounded-xl text-primary hover:bg-primary/10 border-primary/25" asChild>
+                <a href="https://github.com/viochris" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                  <Github className="w-5 h-5" aria-hidden="true" />
                 </a>
               </Button>
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
-                <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-6 h-6" />
+              <Button variant="outline" size="icon" className="w-12 h-12 rounded-xl text-primary hover:bg-primary/10 border-primary/25" asChild>
+                <a href="https://www.linkedin.com/in/silvio-christian-joe" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                  <Linkedin className="w-5 h-5" aria-hidden="true" />
                 </a>
               </Button>
-              <Button variant="outline" size="icon" className="w-14 h-14 rounded-2xl text-primary hover:bg-primary/10 border-primary/20 transition-all" asChild>
-                <a href="mailto:viochristian12@gmail.com">
-                  <Mail className="w-6 h-6" />
+              <Button variant="outline" size="icon" className="w-12 h-12 rounded-xl text-primary hover:bg-primary/10 border-primary/25" asChild>
+                <a href="mailto:viochristian12@gmail.com" aria-label="Send email">
+                  <Mail className="w-5 h-5" aria-hidden="true" />
                 </a>
               </Button>
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 lg:sticky lg:top-40">
-            <div className="p-8 md:p-10 lg:p-12 glass rounded-[2.5rem] border-primary/10 shadow-2xl">
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <GraduationCap className="text-primary" size={28} />
-                  <h2 className="text-2xl font-black text-white tracking-widest uppercase">Education Roadmap</h2>
-                </div>
+          <div className="w-full lg:w-1/2 lg:sticky lg:top-28">
+            <div className="p-6 sm:p-8 lg:p-10 bg-card rounded-2xl border border-border/80">
+              <div className="flex items-center gap-3 mb-7">
+                <GraduationCap className="text-primary w-6 h-6 shrink-0" aria-hidden="true" />
+                <h2 className="text-xl font-headline font-bold text-white tracking-wider uppercase">
+                  Education Roadmap
+                </h2>
+              </div>
 
-                <div className="relative border-l-2 border-slate-800 dark:border-slate-700 ml-3 md:ml-4">
-                  {educationData.map((edu, index) => (
-                    <div key={index} className="mb-10 ml-8 relative group">
-                      <span className="absolute flex items-center justify-center w-4 h-4 bg-primary rounded-full -left-[35px] top-1 ring-4 ring-slate-50 dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></span>
-                      <div className="flex flex-col">
-                        <span className="text-primary font-bold text-sm mb-1 tracking-wider">{edu.period}</span>
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-1">{edu.degree}</h3>
-                        <h4 className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-medium mb-3">{edu.institution}</h4>
-                        <div className="text-sm md:text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
-                          {edu.description}
-                        </div>
+              <div className="relative border-l-2 border-border ml-3">
+                {educationData.map((edu, index) => (
+                  <div key={index} className="mb-8 last:mb-0 ml-7 relative">
+                    <span
+                      aria-hidden="true"
+                      className="absolute flex items-center justify-center w-3.5 h-3.5 bg-primary rounded-full -left-[35px] top-1.5 ring-4 ring-card"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-primary font-bold text-xs uppercase tracking-wider mb-1">
+                        {edu.period}
+                      </span>
+                      <h3 className="text-lg sm:text-xl font-headline font-bold text-white mb-0.5">
+                        {edu.degree}
+                      </h3>
+                      <div className="text-sm sm:text-base text-zinc-300 font-medium mb-2">
+                        {edu.institution}
+                      </div>
+                      <div className="text-sm text-zinc-400 leading-relaxed">
+                        {edu.description}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mb-32 space-y-16">
-           <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Evolution</Badge>
-              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                Technical <span className="text-primary">Milestones</span>
-              </h2>
-           </div>
-           
-           <div className="relative relative max-w-5xl mx-auto px-12">
-              <Carousel 
-                opts={{
-                  align: "start",
-                  loop: false,
-                }}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-4">
-                  {technicalMilestones.map((m, i) => (
-                    <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 flex">
-                      <div 
-                        onClick={() => setOpenMilestoneIdx(i)}
-                        className="p-10 glass rounded-[2.5rem] border-white/5 flex flex-col items-center text-center group hover:bg-primary/5 hover:border-primary/20 transition-all h-full cursor-pointer shadow-xl w-full"
-                      >
-                        <div className="text-3xl font-headline font-black text-primary/20 group-hover:text-primary transition-colors mb-4">{m.year}</div>
-                        <h4 className="text-xl font-headline font-bold text-white mb-2 uppercase tracking-widest min-h-[5rem] flex items-center justify-center">
-                          {m.title}
-                        </h4>
-                        <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[6rem] flex items-center justify-center">
-                          {m.shortSummary}
-                        </p>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex -left-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
-                <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
-              </Carousel>
-           </div>
-
-           <Dialog open={openMilestoneIdx !== null} onOpenChange={(open) => !open && setOpenMilestoneIdx(null)}>
-             <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-               <DialogTitle className="sr-only">Technical Milestone Detail</DialogTitle>
-               <DialogDescription className="sr-only">Details about the selected technical milestone.</DialogDescription>
-               {openMilestoneIdx !== null && (
-                 <>
-                   <DialogHeader>
-                     <div className="text-3xl font-headline font-black text-primary tracking-tighter uppercase mb-2">
-                       {technicalMilestones[openMilestoneIdx].year}
-                     </div>
-                     <div className="text-xl font-headline font-bold text-foreground uppercase tracking-widest mb-6">
-                       {technicalMilestones[openMilestoneIdx].title}
-                     </div>
-                   </DialogHeader>
-                   
-                   <div className="space-y-6">
-                     <div className="p-8 bg-primary/5 rounded-[2rem] border border-primary/10">
-                       <h6 className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-2">
-                         <Info className="w-4 h-4" /> Detailed Breakdown
-                       </h6>
-                       <ul className="space-y-4">
-                         {technicalMilestones[openMilestoneIdx].details.map((detail, idx) => (
-                           <li key={idx} className="flex items-start gap-3 text-foreground/80 leading-relaxed text-sm font-medium">
-                             <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
-                             {detail}
-                           </li>
-                         ))}
-                       </ul>
-                     </div>
-
-                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenMilestoneIdx(prev => prev! > 0 ? prev! - 1 : technicalMilestones.length - 1)}
-                        >
-                          <ChevronLeft className="w-4 h-4" /> Previous
-                        </Button>
-                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
-                          {openMilestoneIdx + 1} / {technicalMilestones.length}
-                        </div>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenMilestoneIdx(prev => prev! < technicalMilestones.length - 1 ? prev! + 1 : 0)}
-                        >
-                          Next <ChevronRight className="w-4 h-4" />
-                        </Button>
-                     </div>
-                   </div>
-                 </>
-               )}
-             </DialogContent>
-           </Dialog>
-        </div>
-
-        <div id="interests" className="mb-32 scroll-mt-32">
-          <div className="text-center space-y-4 mb-16">
-            <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
-            <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
-              Professional <span className="text-primary">Interests</span>
+        {/* Technical Milestones */}
+        <div className="space-y-10">
+          <div className="text-center space-y-3">
+            <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+              Evolution
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+              Technical <span className="text-primary">Milestones</span>
             </h2>
           </div>
 
-          <div className="relative max-w-6xl mx-auto px-12">
-            <Carousel 
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {interestData.map((item, i) => (
-                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 flex">
-                    <div 
-                      onClick={() => setOpenInterestIdx(i)}
-                      className="p-10 glass rounded-[3rem] border border-white/5 hover:border-primary/50 transition-all group cursor-pointer flex flex-col items-center text-center shadow-xl hover:bg-primary/5 h-full w-full"
+          <div className="relative w-full">
+            <Carousel opts={{ align: "start", loop: false }} className="w-full">
+              <CarouselContent className="-ml-4 items-stretch">
+                {technicalMilestones.map((m, i) => (
+                  <CarouselItem key={m.title} className="pl-4 basis-full md:basis-1/2 flex">
+                    <button
+                      type="button"
+                      onClick={() => setOpenMilestoneIdx(i)}
+                      className="p-7 bg-card rounded-2xl border border-border/80 flex flex-col items-center text-center group hover:border-primary/40 transition-colors h-full w-full"
                     >
-                      <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shrink-0">
-                        {item.icon}
+                      <div className="text-2xl font-headline font-black text-primary/40 group-hover:text-primary transition-colors mb-3">
+                        {m.year}
                       </div>
-                      <h4 className="text-xl font-headline font-bold text-white mb-4 uppercase tracking-widest group-hover:text-primary transition-colors min-h-[5.5rem] flex items-center justify-center">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-white/50 leading-relaxed flex-1 min-h-[7rem] flex items-center justify-center">
-                        {item.desc}
+                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider">
+                        {m.title}
+                      </h3>
+                      <p className="text-sm text-zinc-400 leading-relaxed">
+                        {m.shortSummary}
                       </p>
-                    </div>
+                      <span className="mt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
+                        View Details
+                      </span>
+                    </button>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
-              <CarouselNext className="hidden md:flex -right-12 h-10 w-10 border-white/10 hover:bg-primary hover:text-white" />
+              <CarouselPrevious className="hidden sm:flex left-3 h-10 w-10 bg-card/90 border-border hover:bg-primary hover:text-primary-foreground" />
+              <CarouselNext className="hidden sm:flex right-3 h-10 w-10 bg-card/90 border-border hover:bg-primary hover:text-primary-foreground" />
             </Carousel>
           </div>
 
-          <Dialog open={openInterestIdx !== null} onOpenChange={(open) => !open && setOpenInterestIdx(null)}>
-            <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-[2.5rem] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-              <DialogTitle className="sr-only">Expertise Detail</DialogTitle>
-              <DialogDescription className="sr-only">Detailed methodology and projects for the selected expertise.</DialogDescription>
-              {openInterestIdx !== null && (
+          <Dialog open={openMilestoneIdx !== null} onOpenChange={(open) => !open && setOpenMilestoneIdx(null)}>
+            <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-2xl sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogTitle className="sr-only">Technical Milestone Detail</DialogTitle>
+              <DialogDescription className="sr-only">Details about the selected technical milestone.</DialogDescription>
+              {openMilestoneIdx !== null && (
                 <>
                   <DialogHeader>
-                    <div className="flex items-center gap-4 text-2xl md:text-3xl font-headline font-bold text-foreground mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                        {interestData[openInterestIdx].icon}
-                      </div>
-                      {interestData[openInterestIdx].title}
+                    <div className="text-2xl font-headline font-black text-primary uppercase">
+                      {technicalMilestones[openMilestoneIdx].year}
+                    </div>
+                    <div className="text-xl font-headline font-bold text-foreground uppercase tracking-wider">
+                      {technicalMilestones[openMilestoneIdx].title}
                     </div>
                   </DialogHeader>
-                  
-                  <div className="space-y-8">
-                    <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
-                      <h6 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
-                        <BrainCircuit className="w-4 h-4" /> Methodology & Vision
-                      </h6>
-                      <p className="text-foreground leading-relaxed text-sm font-medium">
-                        {interestData[openInterestIdx].details}
-                      </p>
-                    </div>
 
-                    <div className="space-y-4">
-                      <h6 className="text-foreground font-black uppercase tracking-[0.2em] text-xs px-2">Top Related Projects</h6>
-                      <div className="grid gap-3">
-                        {interestData[openInterestIdx].projects.map((proj, idx) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/20 transition-all group/proj">
-                            <span className="text-sm font-bold text-white group-hover/proj:text-primary transition-colors mb-3 sm:mb-0">
-                              {proj.name}
-                            </span>
-                            <div className="flex items-center gap-3">
-                              {proj.github !== "#" && (
-                                <a href={proj.github} target="_blank" rel="noopener noreferrer">
-                                  <Button variant="ghost" size="sm" className="h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest bg-white/5 hover:bg-primary hover:text-white transition-all gap-1.5">
-                                    <Github className="w-3 h-3" /> Repository
-                                  </Button>
-                                </a>
-                              )}
-                            </div>
-                          </div>
+                  <div className="space-y-5 mt-2">
+                    <div className="p-6 bg-primary/5 rounded-xl border border-primary/15">
+                      <h4 className="text-primary font-bold uppercase tracking-wider text-xs mb-4 flex items-center gap-2">
+                        <Info className="w-4 h-4" aria-hidden="true" /> Detailed Breakdown
+                      </h4>
+                      <ul className="space-y-3">
+                        {technicalMilestones[openMilestoneIdx].details.map((detail, idx) => (
+                          <li key={idx} className="flex items-start gap-3 text-zinc-200 leading-relaxed text-sm">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" aria-hidden="true" />
+                            <span>{detail}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenInterestIdx(prev => prev! > 0 ? prev! - 1 : interestData.length - 1)}
-                        >
-                          <ChevronLeft className="w-4 h-4" /> Previous
-                        </Button>
-                        <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em]">
-                          {openInterestIdx + 1} / {interestData.length}
-                        </div>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="font-headline font-bold uppercase text-[10px] tracking-widest gap-2 hover:bg-primary/10"
-                          onClick={() => setOpenInterestIdx(prev => prev! < interestData.length - 1 ? prev! + 1 : 0)}
-                        >
-                          Next <ChevronRight className="w-4 h-4" />
-                        </Button>
-                     </div>
+                    <div className="flex items-center justify-between pt-3 border-t border-border">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="font-headline font-bold uppercase text-xs tracking-wider gap-1.5 hover:bg-primary/10"
+                        onClick={() =>
+                          setOpenMilestoneIdx((prev) => (prev! > 0 ? prev! - 1 : technicalMilestones.length - 1))
+                        }
+                      >
+                        <ChevronLeft className="w-4 h-4" aria-hidden="true" /> Previous
+                      </Button>
+                      <div className="text-xs font-bold text-zinc-400">
+                        {openMilestoneIdx + 1} / {technicalMilestones.length}
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="font-headline font-bold uppercase text-xs tracking-wider gap-1.5 hover:bg-primary/10"
+                        onClick={() =>
+                          setOpenMilestoneIdx((prev) => (prev! < technicalMilestones.length - 1 ? prev! + 1 : 0))
+                        }
+                      >
+                        Next <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                      </Button>
+                    </div>
                   </div>
                 </>
               )}
@@ -600,79 +560,222 @@ export default function AboutPage() {
           </Dialog>
         </div>
 
-        {/* GitHub Metrics Hub */}
-        <div className="mb-32 space-y-16">
-          <div className="w-full flex flex-col items-center justify-center text-center gap-4 mb-8">
-            <div className="flex flex-col items-center justify-center gap-2 w-full">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Activity</Badge>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2">
-                <BarChart3 className="text-primary w-8 h-8 sm:w-10 sm:h-10" />
-                <h2 className="text-3xl sm:text-4xl md:text-5 font-black text-white uppercase tracking-tight">GitHub Metrics</h2>
-              </div>
+        {/* Professional Interests */}
+        <div id="interests" className="scroll-mt-28 space-y-10">
+          <div className="text-center space-y-3">
+            <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+              Focus Areas
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+              Professional <span className="text-primary">Interests</span>
+            </h2>
+          </div>
+
+          <div className="relative w-full">
+            <Carousel opts={{ align: "start", loop: false }} className="w-full">
+              <CarouselContent className="-ml-4 items-stretch">
+                {interestData.map((item, i) => (
+                  <CarouselItem key={item.title} className="pl-4 basis-full md:basis-1/2 flex">
+                    <button
+                      type="button"
+                      onClick={() => setOpenInterestIdx(i)}
+                      className="p-7 bg-card rounded-2xl border border-border/80 hover:border-primary/40 transition-colors group flex flex-col items-center text-center h-full w-full"
+                    >
+                      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 shrink-0">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-zinc-400 leading-relaxed flex-1">
+                        {item.desc}
+                      </p>
+                      <span className="mt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
+                        Inspect Projects
+                      </span>
+                    </button>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:flex left-3 h-10 w-10 bg-card/90 border-border hover:bg-primary hover:text-primary-foreground" />
+              <CarouselNext className="hidden sm:flex right-3 h-10 w-10 bg-card/90 border-border hover:bg-primary hover:text-primary-foreground" />
+            </Carousel>
+          </div>
+
+          <Dialog open={openInterestIdx !== null} onOpenChange={(open) => !open && setOpenInterestIdx(null)}>
+            <DialogContent className="bg-card/95 backdrop-blur-xl border-border rounded-2xl sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogTitle className="sr-only">Expertise Detail</DialogTitle>
+              <DialogDescription className="sr-only">
+                Detailed methodology and related projects for the selected focus area.
+              </DialogDescription>
+              {openInterestIdx !== null && (
+                <>
+                  <DialogHeader>
+                    <div className="flex items-center gap-3.5 text-xl md:text-2xl font-headline font-bold text-foreground">
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        {interestData[openInterestIdx].icon}
+                      </div>
+                      <span>{interestData[openInterestIdx].title}</span>
+                    </div>
+                  </DialogHeader>
+
+                  <div className="space-y-6 mt-2">
+                    <div className="p-5 bg-primary/5 rounded-xl border border-primary/15">
+                      <h4 className="text-primary font-bold uppercase tracking-wider text-xs mb-2.5 flex items-center gap-2">
+                        <BrainCircuit className="w-4 h-4" aria-hidden="true" /> Methodology &amp; Vision
+                      </h4>
+                      <p className="text-zinc-200 leading-relaxed text-sm">
+                        {interestData[openInterestIdx].details}
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h4 className="text-foreground font-bold uppercase tracking-wider text-xs">
+                        Related Repositories
+                      </h4>
+                      <div className="grid gap-2.5">
+                        {interestData[openInterestIdx].projects.map((proj) => (
+                          <div
+                            key={proj.name}
+                            className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 rounded-xl bg-background/70 border border-border hover:border-primary/30 transition-colors"
+                          >
+                            <span className="text-sm font-semibold text-white">{proj.name}</span>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-9 px-3 rounded-lg text-xs font-bold uppercase tracking-wider bg-white/5 hover:bg-primary hover:text-primary-foreground w-fit gap-1.5"
+                              asChild
+                            >
+                              <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                                <Github className="w-3.5 h-3.5" aria-hidden="true" /> Repository
+                              </a>
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-3 border-t border-border">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="font-headline font-bold uppercase text-xs tracking-wider gap-1.5 hover:bg-primary/10"
+                        onClick={() =>
+                          setOpenInterestIdx((prev) => (prev! > 0 ? prev! - 1 : interestData.length - 1))
+                        }
+                      >
+                        <ChevronLeft className="w-4 h-4" aria-hidden="true" /> Previous
+                      </Button>
+                      <div className="text-xs font-bold text-zinc-400">
+                        {openInterestIdx + 1} / {interestData.length}
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="font-headline font-bold uppercase text-xs tracking-wider gap-1.5 hover:bg-primary/10"
+                        onClick={() =>
+                          setOpenInterestIdx((prev) => (prev! < interestData.length - 1 ? prev! + 1 : 0))
+                        }
+                      >
+                        Next <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
+        </div>
+
+        {/* GitHub Metrics */}
+        <div className="space-y-10">
+          <div className="flex flex-col items-center text-center gap-3">
+            <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase px-3.5 border-primary/30 text-[11px]">
+              Activity
+            </Badge>
+            <div className="flex items-center justify-center gap-3">
+              <BarChart3 className="text-primary w-8 h-8" aria-hidden="true" />
+              <h2 className="text-3xl md:text-5xl font-headline font-black text-white uppercase tracking-tight">
+                GitHub Metrics
+              </h2>
             </div>
           </div>
-          
-          <div className="max-w-5xl mx-auto space-y-6">
-            {/* Row 1: 3 Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <div className="w-full space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
-                { label: "Public Repos", val: ghStats.repos, icon: <Github className="text-blue-400" /> },
-                { label: "Total Stars", val: ghStats.stars, icon: <Sparkles className="text-yellow-400" /> },
-                { label: "Followers", val: ghStats.followers, icon: <Users className="text-green-400" /> }
-              ].map((stat, i) => (
-                <div key={i} className="p-8 glass rounded-[2.5rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 shadow-inner">{stat.icon}</div>
-                  <div className="text-3xl font-headline font-black text-white mb-2">
+                { label: "Public Repos", val: ghStats.repos, icon: <Github className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Total Stars", val: ghStats.stars, icon: <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Followers", val: ghStats.followers > 0 || ghStats.source !== 'fallback' ? ghStats.followers : "--", icon: <Users className="w-5 h-5 text-primary" aria-hidden="true" /> },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-6 bg-card rounded-2xl border border-border/80 flex flex-col items-center text-center"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl font-headline font-black text-white mb-1 tabular-nums">
                     {loadingGh ? "..." : stat.val}
                   </div>
-                  <div className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{stat.label}</div>
+                  <div className="text-xs font-bold text-primary uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
 
-            {/* Row 2: 2 Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
-                { label: "TOP 1 LANGUAGE", val: ghStats.topLanguages, icon: <Languages className="text-cyan-400" /> },
-                { label: "Total Commits (All-Time)", val: ghStats.totalCommits, icon: <GitCommit className="text-purple-400" /> }
-              ].map((stat, i) => (
-                <div key={i} className="p-8 glass rounded-[2.5rem] border-white/10 flex flex-col justify-center items-center text-center shadow-xl hover:bg-primary/5 transition-all">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 shadow-inner">{stat.icon}</div>
-                  <div className="text-2xl font-headline font-black text-white mb-2 tracking-tight">
+                { label: "Top Language", val: ghStats.topLanguages, icon: <Languages className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Total Commits (All-Time)", val: ghStats.totalCommits > 0 || ghStats.source !== 'fallback' ? ghStats.totalCommits : "--", icon: <GitCommit className="w-5 h-5 text-primary" aria-hidden="true" /> },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="p-6 bg-card rounded-2xl border border-border/80 flex flex-col items-center text-center"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    {stat.icon}
+                  </div>
+                  <div className="text-2xl font-headline font-black text-white mb-1 tracking-tight tabular-nums">
                     {loadingGh ? "..." : stat.val}
                   </div>
-                  <div className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">{stat.label}</div>
+                  <div className="text-xs font-bold text-primary uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Bar Chart Section */}
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-white/10 shadow-2xl flex flex-col">
-          {/* Header Row: Combined Title and Dropdown */}
-          <div className="flex flex-col md:flex-row justify-between items-center w-full mb-8 gap-6">
-            <div className="flex flex-col items-start">
-              <h3 className="text-5xl md:text-7xl font-headline font-black text-primary uppercase tracking-tighter leading-none">
+        {/* Commit Activity Bar Chart (Lazy Loaded) */}
+        <ParallaxLayer offsetY={-20} mobileOffsetY={8} scaleRange={[0.97, 1.01]}>
+          <div className="p-6 sm:p-10 bg-card rounded-2xl border border-border/80 flex flex-col">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full mb-6 gap-4">
+            <div>
+              <h3 className="text-3xl sm:text-5xl font-headline font-black text-primary uppercase tracking-tight leading-none">
                 Commits
               </h3>
-              <span className="text-lg md:text-2xl font-headline font-bold text-primary/70 uppercase tracking-tighter mt-2">
-                ({currentTimezoneLabel})
+              <span className="block text-sm sm:text-lg font-headline font-bold text-zinc-300 uppercase tracking-wide mt-1.5">
+                {currentTimezoneLabel}
               </span>
             </div>
 
-            {/* Timezone Selector - Right Side */}
-            <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl w-fit shrink-0">
-              <Globe className="w-4 h-4 text-primary shrink-0" />
-              <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v))}>
-                <SelectTrigger className="w-[120px] bg-transparent border-none text-white font-bold uppercase tracking-widest text-[10px] focus:ring-0 h-8 px-0 hover:bg-transparent shadow-none">
-                   <div className="flex items-center gap-1.5">
-                    <span>{currentTimezoneShort}</span>
-                   </div>
+            <div className="flex items-center gap-2 bg-background border border-border px-3 py-1.5 rounded-xl w-fit shrink-0">
+              <Globe className="w-4 h-4 text-primary shrink-0" aria-hidden="true" />
+              <Select value={offset.toString()} onValueChange={(v) => setOffset(parseInt(v, 10))}>
+                <SelectTrigger
+                  aria-label="Select chart timezone"
+                  className="w-[130px] bg-transparent border-none text-white font-bold uppercase tracking-wider text-xs focus:ring-0 h-8 px-1 shadow-none"
+                >
+                  <span>{currentTimezoneShort}</span>
                 </SelectTrigger>
                 <SelectContent className="bg-card border-border max-h-[300px]">
-                  {timezones.map(tz => (
-                    <SelectItem key={tz.label} value={tz.value} className="text-white font-bold uppercase tracking-widest text-[10px] cursor-pointer">
+                  {timezones.map((tz) => (
+                    <SelectItem
+                      key={tz.label}
+                      value={tz.value}
+                      className="text-white font-semibold text-xs cursor-pointer"
+                    >
                       {tz.label}
                     </SelectItem>
                   ))}
@@ -681,180 +784,354 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Introductory Text */}
-          <p className="text-slate-400 text-sm md:text-base leading-relaxed font-medium mb-12 max-w-4xl">
-            Building models, debugging agents, and pushing code. A snapshot of my daily development activity, recorded in my local timezone: Asia/Jakarta (UTC+7).
+          <p className="text-zinc-400 text-sm sm:text-base leading-relaxed mb-8 max-w-3xl">
+            Snapshot of my daily coding rhythm across model training, agent debugging, and backend work, normalized from my local Asia/Jakarta (UTC+7) schedule.
           </p>
 
-          {/* Chart Area */}
-          <div className="h-[400px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={shiftedCommitData} margin={{ top: 30 }}>
-                <XAxis dataKey="hour" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
-                <YAxis hide />
-                <Tooltip 
-                  cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                  contentStyle={{backgroundColor: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px'}}
-                  labelFormatter={(label) => `Hour: ${label}:00`}
-                />
-                <Bar dataKey="commits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]}>
-                  <LabelList 
-                    dataKey="commits" 
-                    position="top" 
-                    style={{ fill: 'hsl(var(--primary))', fontSize: '12px', fontWeight: 'bold' }} 
-                    offset={10} 
-                  />
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-            <div className="text-right text-primary font-headline font-bold text-xl mt-2">per day hour</div>
-          </div>
+          <CommitActivityChart data={shiftedCommitData} />
         </div>
+        </ParallaxLayer>
 
-        {/* GitHub Contribution Grid Section */}
-        <div className="mb-32 space-y-8">
-          <div className="p-8 md:p-12 glass rounded-[3rem] border border-white/10 shadow-2xl bg-[#0d1117]/80 backdrop-blur-xl flex flex-col gap-8">
-            <div className="flex items-center justify-between px-2">
-              <div className="flex items-center gap-2 text-white/40 text-[10px] font-black uppercase tracking-widest">
-                <span className="flex items-center gap-1.5"><Github size={14} className="text-primary" /> GitHub Activity Grid</span>
-              </div>
-              <div className="flex items-center gap-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                <span>Less</span>
-                <div className="flex gap-1">
-                  <div className="w-3 h-3 bg-[#0d1117] border border-white/5 rounded-sm"></div>
-                  <div className="w-3 h-3 bg-[#0e4429] rounded-sm"></div>
-                  <div className="w-3 h-3 bg-[#006d32] rounded-sm"></div>
-                  <div className="w-3 h-3 bg-[#26a641] rounded-sm"></div>
-                  <div className="w-3 h-3 bg-[#39d353] rounded-sm"></div>
-                </div>
-                <span>More</span>
-              </div>
+        {/* GitHub Contribution Grid */}
+        <div className="p-6 sm:p-8 bg-card rounded-2xl border border-border/80 flex flex-col gap-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-zinc-300 text-xs font-bold uppercase tracking-wider">
+              <Github size={15} className="text-primary" aria-hidden="true" />
+              <span>GitHub Contribution Graph</span>
             </div>
+            <div className="flex items-center gap-2 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+              <span>Less</span>
+              <div className="flex gap-1" aria-hidden="true">
+                <div className="w-3 h-3 bg-secondary border border-border rounded-sm" />
+                <div className="w-3 h-3 bg-[#0e4429] rounded-sm" />
+                <div className="w-3 h-3 bg-[#006d32] rounded-sm" />
+                <div className="w-3 h-3 bg-[#26a641] rounded-sm" />
+                <div className="w-3 h-3 bg-[#39d353] rounded-sm" />
+              </div>
+              <span>More</span>
+            </div>
+          </div>
 
-            <div className="w-full flex flex-col gap-2 overflow-x-auto scrollbar-hide">
-              {/* Month Labels */}
-              <div className="flex justify-between text-[10px] text-slate-500 font-bold uppercase tracking-widest px-12 min-w-[700px]">
-                <span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span>
-              </div>
-              
-              <div className="flex gap-4 min-w-[700px]">
-                {/* Day Labels */}
-                <div className="flex flex-col justify-between text-[10px] text-slate-500 font-bold uppercase py-4 shrink-0">
-                  <span>Mon</span><span>Wed</span><span>Fri</span>
-                </div>
-                
-                {/* The Real Grid Image */}
-                <div className="flex-1">
-                  <img 
-                    src="https://ghchart.rshah.org/22c55e/viochris" 
-                    alt="GitHub Contributions Grid" 
-                    className="w-full h-auto object-contain invert dark:invert-0"
-                  />
-                </div>
-              </div>
+          <div className="w-full overflow-x-auto [color-scheme:dark] rounded-lg">
+            <div className="min-w-[540px] md:min-w-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://ghchart.rshah.org/22c55e/viochris"
+                alt="GitHub annual contribution activity chart for viochris"
+                loading="lazy"
+                className="w-full h-auto object-contain rounded-lg bg-black/30 p-3"
+              />
             </div>
           </div>
         </div>
 
-        <div className="mb-32 p-10 md:p-16 glass rounded-[3rem] border-primary/20 bg-primary/5 shadow-2xl relative overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Personal Interests</Badge>
-              <h2 className="text-4xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">
+        {/* Technical Writing & Medium Articles */}
+        <div id="writing" className="scroll-mt-28 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-3 text-center md:text-left">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                Technical Writing
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+                Latest <span className="text-primary">Articles</span>
+              </h2>
+              <p className="text-zinc-400 text-sm sm:text-base max-w-2xl">
+                Practical breakdowns on Large Language Model internals, Prompt Engineering foundations, and production Machine Learning feature engineering published on Medium.
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              className="rounded-xl border-border hover:border-primary/50 hover:bg-white/5 text-white font-headline font-bold uppercase tracking-wider text-xs h-11 px-5 w-fit mx-auto md:mx-0 shrink-0"
+              asChild
+            >
+              <a href="https://medium.com/@silviochristian" target="_blank" rel="noopener noreferrer">
+                <BookOpen className="w-4 h-4 mr-2 text-primary" aria-hidden="true" />
+                View Medium Profile
+              </a>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            {[
+              {
+                title: "Before You Use AI, Understand This First",
+                subtitle: "Part 1: Prompt Engineering Series & AI Literacy Guide",
+                category: "AI Literacy & LLMs",
+                tags: ["Artificial Intelligence", "Technology", "Machine Learning", "Programming", "Data Science"],
+                summary:
+                  "The concepts that most people skip, and why they should not. Before learning prompt engineering techniques, this guide cuts through the hype to explain how Large Language Models (ChatGPT, Gemini, Claude) actually process text, manage memory, and generate responses under the hood.",
+                takeaways: [
+                  {
+                    heading: "LLMs Predict, They Do Not Think",
+                    detail: "Models calculate the most probable next word repeatedly from billions of frozen training parameters rather than reasoning or learning live from your chat.",
+                  },
+                  {
+                    heading: "Tokens: The Currency of AI",
+                    detail: "Text is split into subword units (~3-4 chars, e.g. \"cat\" = 1 token, \"unbelievable\" = 3 tokens: un / believ / able). Covers both Input tokens (prompt, history, system instructions) and Output tokens (including internal thinking/reasoning steps).",
+                  },
+                  {
+                    heading: "Context Window & Hallucinations",
+                    detail: "AI working memory is finite; information outside the window is forgotten. When facing knowledge gaps, LLMs predict plausible-sounding false answers instead of saying \"I don't know.\"",
+                  },
+                  {
+                    heading: "Temperature & Knowledge Cutoff",
+                    detail: "Low temperature (near 0) enforces consistency for code and factual Q&A, while high temperature (near 1) boosts creativity (0.3-0.7 middle ground, testable in Google AI Studio). Events past the training cutoff require RAG / web search or prompt context.",
+                  },
+                ],
+                link: "https://medium.com/@silviochristian/before-you-use-ai-understand-this-first-875525807755",
+              },
+              {
+                title: "Why Label Encoding is Ruining Your ML Models (And How to Fix It)",
+                subtitle: "Categorical Feature Engineering from Pandas to Scikit-Learn",
+                category: "Feature Engineering & ML",
+                tags: ["Machine Learning", "Feature Engineering", "Artificial Intelligence", "Python", "Data Science"],
+                summary:
+                  "Machine learning algorithms like Linear Regression (Y = mX + c) and Neural Networks cannot multiply raw text strings like \"Paris\", \"Tokyo\", or \"New York\". This article explains how to design a numerical translation layer without injecting fatal mathematical bias into production models.",
+                takeaways: [
+                  {
+                    heading: "The Architectural Trap of Label Encoding",
+                    detail: "Assigning sequential integers (Paris = 1, Tokyo = 2, New York = 3) to equal Nominal categories forces a fake ordinal hierarchy (New York > Tokyo > Paris), tricking the loss function into assuming 3x scalar magnitude.",
+                  },
+                  {
+                    heading: "Binary Matrices via One-Hot Encoding (OHE)",
+                    detail: "Splits N unique categories into N orthogonal binary (1/0 or True/False) vector dimensions (Is_Paris, Is_Tokyo, Is_New_York) so every category has equidistant mathematical weight.",
+                  },
+                  {
+                    heading: "Pandas get_dummies() vs. Scikit-Learn OneHotEncoder",
+                    detail: "pd.get_dummies() works for Jupyter EDA but lacks state memory and breaks on single-row FastAPI inference requests. Production pipelines require stateful Scikit-Learn OneHotEncoder(sparse_output=False) and get_feature_names_out().",
+                  },
+                  {
+                    heading: "Curse of Dimensionality & Dummy Variable Trap",
+                    detail: "Addresses 500+ high-cardinality sparse columns (solved via Target Encoding or Deep Learning Embeddings) and eliminates multicollinearity between redundant columns using drop_first=True or OneHotEncoder(drop='first').",
+                  },
+                ],
+                link: "https://medium.com/@silviochristian/why-label-encoding-is-ruining-your-ml-models-and-how-to-fix-it-d83eab34e7f3",
+              },
+            ].map((post) => (
+              <article
+                key={post.title}
+                className="p-7 sm:p-8 bg-card rounded-2xl border border-border/80 hover:border-primary/40 transition-colors flex flex-col h-full group"
+              >
+                {/* Row 1: Category & Source Pill */}
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <Badge className="bg-primary/15 text-primary border-none text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">
+                    {post.category}
+                  </Badge>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                    Medium Article
+                  </span>
+                </div>
+
+                {/* Row 2: Fixed-Height Title & Subtitle Zone for Horizontal Alignment */}
+                <div className="lg:min-h-[5.25rem] flex flex-col justify-between mb-4">
+                  <h3 className="text-xl sm:text-2xl font-headline font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                    {post.title}
+                  </h3>
+                  <div className="text-xs font-bold uppercase tracking-wider text-primary/85 mt-1.5">
+                    {post.subtitle}
+                  </div>
+                </div>
+
+                {/* Row 3: Official Medium Tags */}
+                <div className="flex flex-wrap items-center gap-1.5 lg:min-h-[2rem] mb-4">
+                  {post.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="outline"
+                      className="bg-background/60 border-border text-zinc-300 text-[10px] font-semibold px-2.5 py-0.5"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+
+                {/* Row 4: Fixed-Height Overview Paragraph */}
+                <p className="text-sm text-zinc-300 leading-relaxed lg:min-h-[5.25rem] mb-5">
+                  {post.summary}
+                </p>
+
+                {/* Row 5: Equal-Height Structured Section Breakdown Box */}
+                <div className="p-5 rounded-xl bg-background/70 border border-border/80 flex-1 flex flex-col justify-between space-y-3.5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-primary border-b border-border/60 pb-2.5">
+                    Key Concepts Covered in the Article
+                  </div>
+                  <ul className="space-y-3 flex-1 flex flex-col justify-between">
+                    {post.takeaways.map((item, idx) => (
+                      <li key={item.heading} className="flex items-start gap-3 text-xs sm:text-sm leading-relaxed">
+                        <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-primary/15 text-primary font-code font-bold text-[11px] shrink-0 mt-0.5">
+                          0{idx + 1}
+                        </span>
+                        <div className="text-zinc-300">
+                          <strong className="text-white font-semibold">{item.heading}:</strong>{' '}
+                          <span>{item.detail}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Row 6: Footer Button */}
+                <div className="pt-6 mt-6 border-t border-border/60">
+                  <Button
+                    variant="outline"
+                    className="w-full h-12 rounded-xl border-border hover:bg-primary hover:text-primary-foreground hover:border-primary text-white font-headline font-bold uppercase tracking-wider text-xs transition-colors"
+                    asChild
+                  >
+                    <a href={post.link} target="_blank" rel="noopener noreferrer">
+                      <BookOpen className="w-4 h-4 mr-2" aria-hidden="true" />
+                      Read Full Article on Medium
+                    </a>
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Beyond The Code */}
+        <div className="p-8 sm:p-12 bg-card rounded-2xl border border-primary/25">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="space-y-5">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                Personal Interests
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-headline font-black uppercase tracking-tight text-white">
                 Beyond The <span className="text-primary">Code</span>
               </h2>
-              <div className="space-y-6 text-muted-foreground text-lg font-medium leading-relaxed font-body">
+              <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Outside of my regular coursework, I spend my time exploring the practical side of AI. I'm a strong believer in learning by building. Rather than just reading about new frameworks, I prefer testing them hands-on—whether that means deploying a new agentic workflow to Hugging Face or analyzing datasets on Kaggle.
+                  Outside coursework, I spend most of my time building practical AI prototypes. Rather than only reading release notes, I test new frameworks hands-on by deploying agent workflows to Hugging Face or experimenting with tabular datasets on Kaggle.
                 </p>
                 <p>
-                  I also enjoy sharing these insights by occasionally creating simple, bite-sized educational content for the data science community.
+                  I also create bite-sized educational content to share practical data science and AI engineering lessons with the developer community.
                 </p>
                 <p>
-                  Ultimately, I want to take complex AI tools and turn them into intuitive, everyday applications that people can actually use without needing a manual.
+                  My goal is consistent: take complex AI tooling and package it into intuitive applications anyone can use without reading a manual.
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 items-stretch">
               {[
-                { label: "Builder", sub: "PERSONAL PROJECTS", icon: <Layout className="w-6 h-6 text-primary" /> },
-                { label: "Explorer", sub: "HUGGING FACE & KAGGLE", icon: <Search className="w-6 h-6 text-primary" /> },
-                { label: "Creator", sub: "DATA EDU CONTENT", icon: <Sparkles className="w-6 h-6 text-primary" /> },
-                { label: "Learner", sub: "NEW AI FRAMEWORKS", icon: <BookOpen className="w-6 h-6 text-primary" /> }
-              ].map((item, i) => (
-                <div key={i} className="p-8 glass rounded-[2rem] border-white/10 flex flex-col items-center justify-center text-center group hover:bg-primary/10 transition-all shadow-xl">
-                  <div className="mb-4">{item.icon}</div>
-                  <div className="text-lg font-headline font-black text-primary uppercase mb-1">{item.label}</div>
-                  <div className="text-[10px] font-bold text-white/40 tracking-widest">{item.sub}</div>
+                { label: "Builder", sub: "Personal Projects", icon: <Layout className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Explorer", sub: "Hugging Face & Kaggle", icon: <Search className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Creator", sub: "Data Edu Content", icon: <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" /> },
+                { label: "Learner", sub: "New AI Frameworks", icon: <BookOpen className="w-5 h-5 text-primary" aria-hidden="true" /> },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="p-6 bg-background/70 rounded-xl border border-border flex flex-col items-center justify-center text-center h-full"
+                >
+                  <div className="mb-3">{item.icon}</div>
+                  <div className="text-base font-headline font-bold text-white uppercase mb-0.5">{item.label}</div>
+                  <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">{item.sub}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="text-center space-y-12">
-          <div className="space-y-4">
-            <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">Collaborate</h3>
-            <Separator className="w-24 h-1 bg-primary mx-auto rounded-full" />
+        {/* Collaborate Actions */}
+        <div className="text-center space-y-8">
+          <div className="space-y-3">
+            <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+              Collaborate
+            </h2>
+            <Separator className="w-20 h-1 bg-primary mx-auto rounded-full" />
           </div>
-          
-          <div className="w-full max-w-4xl mx-auto space-y-6 mt-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <a 
-                href={cvRawLink} 
-                download="Silvio Christian, Joe-resume.pdf" 
-                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-primary hover:bg-primary/90 uppercase tracking-widest text-xs"
+
+          <div className="w-full space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a
+                href={cvDownloadLink}
+                download="Silvio-Christian-Joe-resume.pdf"
+                className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-headline font-bold text-primary-foreground transition-colors bg-primary hover:bg-primary/90 uppercase tracking-wider text-xs min-h-[48px]"
               >
-                <Download className="w-5 h-5" /> DOWNLOAD CV
+                <Download className="w-4 h-4" aria-hidden="true" /> Download Resume
               </a>
 
               <Dialog>
                 <DialogTrigger asChild>
-                  <button 
-                    className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-blue-600 hover:bg-blue-700 uppercase tracking-widest text-xs"
+                  <button
+                    type="button"
+                    className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-headline font-bold text-white transition-colors bg-card border border-border hover:border-primary/50 hover:bg-white/5 uppercase tracking-wider text-xs min-h-[48px]"
                   >
-                    <Eye className="w-5 h-5" /> VIEW CV
+                    <Eye className="w-4 h-4 text-primary" aria-hidden="true" /> Preview Resume
                   </button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-[2rem] flex flex-col">
-                  <DialogHeader className="pb-4 border-b border-border">
-                    <DialogTitle className="text-2xl font-headline font-bold text-foreground">Curriculum Vitae Preview</DialogTitle>
+                <DialogContent className="sm:max-w-4xl w-[95vw] h-[90vh] bg-card/95 backdrop-blur-xl border-border rounded-2xl flex flex-col">
+                  <DialogHeader className="pb-4 border-b border-border pr-10">
+                    <DialogTitle className="text-2xl font-headline font-bold text-foreground">
+                      Curriculum Vitae Preview
+                    </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Preview of Silvio Christian, Joe&apos;s resume
+                    </DialogDescription>
                   </DialogHeader>
-                  <div className="flex-1 w-full mt-4 overflow-hidden rounded-xl border border-border bg-black/20">
-                    <iframe 
-                      src={`${cvRawLink}#view=FitH&toolbar=0`} 
-                      className="w-full h-full border-none"
-                      title="CV Preview"
-                    />
-                  </div>
+                  <ResumePreviewFrame downloadHref={cvDownloadLink} rawPdfHref={cvRawLink} />
                 </DialogContent>
               </Dialog>
 
-              <a 
+              <a
                 href="mailto:viochristian12@gmail.com"
-                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#d44638] hover:bg-[#b03a2e] uppercase tracking-widest text-xs"
+                className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-headline font-bold text-white transition-colors bg-card border border-border hover:border-primary/50 hover:bg-white/5 uppercase tracking-wider text-xs min-h-[48px]"
               >
-                <Mail className="w-5 h-5" /> GMAIL CONTACT
+                <Mail className="w-4 h-4 text-primary" aria-hidden="true" /> Email Directly
               </a>
 
-              <a 
-                href="https://www.linkedin.com/in/silvio-christian-joe" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/silvio-christian-joe"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#0077b5] hover:bg-[#005a8a] uppercase tracking-widest text-xs"
+                className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-headline font-bold text-white transition-colors bg-card border border-border hover:border-primary/50 hover:bg-white/5 uppercase tracking-wider text-xs min-h-[48px]"
               >
-                <Linkedin className="w-5 h-5" /> LINKEDIN PROFILE
+                <Linkedin className="w-4 h-4 text-primary" aria-hidden="true" /> LinkedIn Profile
               </a>
             </div>
 
-            <a 
-              href="https://wa.me/62895342637871" 
-              target="_blank" 
+            <a
+              href="https://wa.me/62895342637871"
+              target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-3 py-5 px-6 rounded-2xl font-black text-white transition-all shadow-xl transform hover:-translate-y-1 bg-[#25D366] hover:bg-[#128C7E] uppercase tracking-widest text-xs"
+              className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-headline font-bold text-white transition-colors bg-card border border-border hover:border-primary/50 hover:bg-white/5 uppercase tracking-wider text-xs min-h-[48px]"
             >
-              <Phone className="w-5 h-5" /> WHATSAPP CONTACT
+              <Phone className="w-4 h-4 text-primary" aria-hidden="true" /> WhatsApp Message
             </a>
+
+            {/* Quick Candidate Summary for Recruiters & HR Tools */}
+            <div className="mt-6 p-6 sm:p-7 rounded-2xl bg-card border border-primary/30 text-left space-y-5">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+                    <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>For Recruiters, Hiring Managers &amp; AI Assistants</span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-headline font-bold uppercase tracking-wide text-white">
+                    1-Click Candidate Executive Summary
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-3xl">
+                    <strong>What is this for?</strong> If you are a recruiter or hiring manager evaluating my profile, click the button to copy a structured plain-text summary of my education (3.96 GPA), core AI/ML stack, top repositories, Oracle/IBM certifications, and direct contact links, ready to paste directly into hiring team notes, Slack/WhatsApp, or internal HR/ATS AI tools.
+                  </p>
+                </div>
+
+                <Button
+                  type="button"
+                  onClick={handleCopyCandidateSummary}
+                  className="h-12 px-6 rounded-xl font-headline font-bold uppercase tracking-wider text-xs shrink-0 gap-2"
+                >
+                  {copiedSummary ? (
+                    <>
+                      <Check className="w-4 h-4" aria-hidden="true" />
+                      <span>Copied to Clipboard!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" aria-hidden="true" />
+                      <span>Copy Candidate Summary</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

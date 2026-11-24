@@ -1,106 +1,81 @@
 import React from 'react';
-import Image from 'next/image';
+import { TechIcon } from '@/components/TechIcon';
 
 const techStack = [
-  { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
-  { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" },
-  { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" },
-  { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" },
-  { name: "Scikit-Learn", icon: "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" },
-  { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" },
-  { name: "Google Gemini", icon: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg" },
-  { name: "Hugging Face", icon: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-  { name: "LangChain", icon: "https://cdn.simpleicons.org/langchain/white" },
-  { name: "FAISS", icon: "https://cdn.simpleicons.org/meta/white" },
-  { name: "Pinecone", icon: "https://tse1.mm.bing.net/th/id/OIP.dIiAlq1gr59JEXq0qq8sjgHaHa?w=600&h=600&rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "CrewAI", icon: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/crewai-color.png" },
-  { name: "LangGraph", icon: "https://cdn.simpleicons.org/langchain/white" },
-  { name: "DSPy", icon: "https://tse4.mm.bing.net/th/id/OIP.BX9A57mu9tXK6grXTD9gkgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "Streamlit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg" },
-  { name: "FastAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
-  { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" },
-  { name: "Telegram Bot", icon: "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" },
-  { name: "Prefect", icon: "https://cdn.simpleicons.org/prefect/white" },
-  { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
-  { name: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
-  { name: "Tableau", icon: "https://tse1.mm.bing.net/th/id/OIP.jVA94Ufbp0OiqyZUUex8CQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "Matplotlib", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg" },
-  { name: "Seaborn", icon: "https://tse3.mm.bing.net/th/id/OIP.iJbEyBJE25whTlMSyTtHdwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
-  { name: "Google Colab", icon: "https://cdn.simpleicons.org/googlecolab/F9AB00" },
-  { name: "Kaggle", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kaggle/kaggle-original.svg" },
-  { name: "Jupyter", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg" },
-  { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" }
+  "Python",
+  "SQL",
+  "TypeScript",
+  "Pandas",
+  "NumPy",
+  "Scikit-Learn",
+  "XGBoost",
+  "CatBoost",
+  "TensorFlow",
+  "Google Gemini",
+  "Hugging Face",
+  "LangChain",
+  "LangGraph",
+  "LlamaIndex",
+  "ChromaDB",
+  "Neo4j",
+  "FAISS",
+  "Pinecone",
+  "CrewAI",
+  "LiteLLM",
+  "Phoenix Arize",
+  "FastAPI",
+  "Flask",
+  "Streamlit",
+  "Gradio",
+  "React",
+  "Next.js",
+  "PostgreSQL",
+  "Supabase",
+  "MySQL",
+  "Telegram Bot API",
+  "Prefect",
+  "Docker",
+  "Tableau",
+  "Matplotlib",
+  "Seaborn",
+  "Git",
 ];
+
+const TechList = ({ prefix }: { prefix: string }) => (
+  <div className="flex shrink-0 items-center gap-4 pr-4 animate-marquee group-hover:[animation-play-state:paused]">
+    {techStack.map((name, index) => (
+      <span
+        key={`${prefix}-${index}`}
+        className="inline-flex items-center gap-2.5 rounded-xl border border-border/80 bg-card/80 px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-200 tracking-wide whitespace-nowrap"
+      >
+        <TechIcon name={name} className="w-4 h-4 shrink-0" />
+        <span>{name}</span>
+      </span>
+    ))}
+  </div>
+);
 
 export const TechMarquee: React.FC = () => {
   return (
-    <div className="relative w-full overflow-hidden bg-slate-900/50 border-y border-slate-800/50 py-4 sm:py-6 mb-12 flex">
-      {/* Left & Right Gradients */}
-      <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#0d1117] to-transparent z-10 pointer-events-none"></div>
+    <section
+      aria-label="Core technology stack"
+      className="group relative w-full overflow-hidden border-y border-border/70 bg-card/40 py-5 flex select-none"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"
+      />
 
-      {/* Flex Container - NO ANIMATION HERE */}
       <div className="flex w-max">
-        
-        {/* First Set - Animates 100% of its own width */}
-        <div className="flex shrink-0 animate-[marquee_40s_linear_infinite]">
-          {techStack.map((tech, index) => (
-            <span 
-              key={index} 
-              className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
-            >
-              {tech.icon && (
-                <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
-                  <Image 
-                    src={tech.icon} 
-                    alt={tech.name} 
-                    width={24}
-                    height={24}
-                    className="object-contain drop-shadow-md"
-                    style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-                    unoptimized
-                  />
-                </div>
-              )}
-              {tech.name}
-            </span>
-          ))}
+        <TechList prefix="a" />
+        <div className="flex shrink-0" aria-hidden="true">
+          <TechList prefix="b" />
         </div>
-
-        {/* Second Set - Exact duplicate, also animates 100% of its own width */}
-        <div className="flex shrink-0 animate-[marquee_40s_linear_infinite]" aria-hidden="true">
-          {techStack.map((tech, index) => (
-            <span 
-              key={`dup-${index}`} 
-              className="flex items-center gap-2 sm:gap-3 mx-4 sm:mx-8 text-sm sm:text-base font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap"
-            >
-              {tech.icon && (
-                <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
-                  <Image 
-                    src={tech.icon} 
-                    alt={tech.name} 
-                    width={24}
-                    height={24}
-                    className="object-contain drop-shadow-md"
-                    style={tech.name === "Flask" || tech.name === "Next.js" || tech.name === "OpenAI" ? { filter: 'invert(1) opacity(0.8)' } : {}}
-                    unoptimized
-                  />
-                </div>
-              )}
-              {tech.name}
-            </span>
-          ))}
-        </div>
-
       </div>
-      
-      {/* Updated Keyframes to use -100% */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes marquee {
-          from { transform: translateX(0%); }
-          to { transform: translateX(-100%); }
-        }
-      `}} />
-    </div>
+    </section>
   );
 };

@@ -1,11 +1,25 @@
-
 "use client"
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Brain, Database, Sparkles, Terminal, Cpu, Layers, RefreshCw, Code2, ExternalLink, Zap, Workflow, Languages } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
+import {
+  ChevronRight,
+  Brain,
+  Database,
+  Sparkles,
+  Terminal,
+  Cpu,
+  Layers,
+  RefreshCw,
+  Code2,
+  ExternalLink,
+  Workflow,
+  Languages,
+} from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
+import { ParallaxLayer } from '@/components/Parallax';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
@@ -17,504 +31,629 @@ import {
 import AutoScroll from "embla-carousel-auto-scroll";
 
 const featuredProjects = [
-  { 
-    title: "InsightSQL — LangGraph Engine", 
+  {
+    title: "InsightSQL: LangGraph Engine",
     type: "GenAI / Graph Agent",
     impact: "State-of-the-Art",
-    desc: "The evolution of SQL Agents using Graph Architecture. Uses Cyclic Reasoning to query, validate, and self-correct errors in real-time with full 'Glass Box' transparency.",
+    desc: "Graph-based SQL agent using cyclic reasoning to query, validate, and self-correct errors in real time with transparent execution traces.",
     tech: "LangGraph • Gemini 2.5 Flash",
-    link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web"
+    link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
   },
-  { 
-    title: "DocuTalk-AI — Smart RAG", 
+  {
+    title: "DocuTalk-AI: Smart RAG",
     type: "GenAI / Document Intelligence",
     impact: "High Precision",
-    desc: "An intelligent document assistant using ReAct Agents to decide between Document Retrieval or real-time Web Search for hyper-accurate answers.",
+    desc: "Intelligent document assistant using ReAct agents to choose between vector retrieval and live web search for grounded answers.",
     tech: "LangChain • FAISS • Gemini",
-    link: "https://github.com/viochris/DocuTalk-AI"
+    link: "https://github.com/viochris/DocuTalk-AI",
   },
-  { 
-    title: "NovaCal AI — Stateful Assistant", 
+  {
+    title: "NovaCal AI: Stateful Assistant",
     type: "GenAI / Automation",
     impact: "Stateful Design",
-    desc: "Redefining conversational scheduling with an SQL-backed memory architecture to maintain deep context across multi-turn dialogues.",
+    desc: "Conversational scheduling assistant backed by SQL memory architecture to preserve context across multi-turn dialogues.",
     tech: "LangChain • SQL Memory • Gemini",
-    link: "https://github.com/viochris/telegram-calendar-ai-bot"
+    link: "https://github.com/viochris/telegram-calendar-ai-bot",
   },
-  { 
-    title: "SpendSense — Financial AI", 
+  {
+    title: "SpendSense: Financial AI",
     type: "Data Science / Vision",
     impact: "Utility Pro",
-    desc: "Conversational finance app with OCR receipt scanning and natural language expense queries for smart money management.",
+    desc: "Conversational finance app with OCR receipt scanning and natural-language expense queries for personal money tracking.",
     tech: "Streamlit • Vision • Gemini",
-    link: "https://github.com/viochris/Streamlit-SpendSense"
+    link: "https://github.com/viochris/Streamlit-SpendSense",
   },
-  { 
-    title: "Resume Scanner API", 
+  {
+    title: "Resume Scanner API",
     type: "Backend / NLP",
     impact: "Research Oriented",
-    desc: "Dual-Engine ATS API using TF-IDF and SBERT embeddings for high-precision resume-job description matching.",
+    desc: "Dual-engine ATS API combining TF-IDF and SBERT embeddings for accurate resume-to-job semantic matching.",
     tech: "FastAPI • SBERT • Docker",
-    link: "https://github.com/viochris/resume-scanner-api"
+    link: "https://github.com/viochris/resume-scanner-api",
   },
-  { 
-    title: "Insightify API — Sentiment", 
+  {
+    title: "Insightify API: Sentiment",
     type: "NLP / Analytics",
     impact: "Dual-Lingual",
-    desc: "High-performance sentiment analytics API supporting both English and Indonesian using RoBERTa transformer models.",
+    desc: "Sentiment analytics API supporting both English and Indonesian text using RoBERTa transformer models.",
     tech: "FastAPI • RoBERTa • Transformers",
-    link: "https://github.com/viochris/Insightify-Sentiment-API"
+    link: "https://github.com/viochris/Insightify-Sentiment-API",
   },
-  { 
-    title: "Daily Agenda Broadcaster", 
+  {
+    title: "Daily Agenda Broadcaster",
     type: "Automation / Workflow",
     impact: "Efficiency Pro",
-    desc: "Automated workflow that fetches upcoming GCalendar events and dispatches structured daily briefings to Telegram.",
+    desc: "Automated pipeline that fetches upcoming Google Calendar events and sends structured daily briefings to Telegram.",
     tech: "Python • GCalendar • Telegram",
-    link: "https://github.com/viochris/auto-daily-scheduler.git"
+    link: "https://github.com/viochris/auto-daily-scheduler.git",
   },
-  { 
-    title: "NovaMail AI — Autoresponder", 
+  {
+    title: "NovaMail AI: Autoresponder",
     type: "Automation / LLMOps",
     impact: "Autonomous Inbox",
-    desc: "An intelligent inbox assistant that autonomously parses incoming emails and generates professional AI replies.",
+    desc: "Inbox automation assistant that parses incoming emails and drafts context-aware replies via Gmail API.",
     tech: "Gmail API • Gemini • Python",
-    link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git"
+    link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git",
   },
-  { 
-    title: "Stuntify API — MLOps", 
+  {
+    title: "Stuntify API: MLOps",
     type: "Backend / MLOps",
     impact: "Production Ready",
-    desc: "Robust inference system for real-time stunting risk prediction based on rigorous health analytics research.",
+    desc: "Inference API for real-time stunting risk prediction grounded in reproducible health analytics modeling.",
     tech: "FastAPI • Scikit-Learn • Docker",
-    link: "https://github.com/viochris/Stuntify-API"
+    link: "https://github.com/viochris/Stuntify-API",
   },
-  { 
-    title: "InsightData — AI Analyst", 
+  {
+    title: "InsightData: AI Analyst",
     type: "GenAI / Analytics",
     impact: "Automation Pro",
-    desc: "Automated Data Scientist that analyzes CSV/Excel files and auto-generates deep visualizations and insights.",
+    desc: "Automated data analyst agent that inspects CSV and Excel files to generate clean charts and statistical summaries.",
     tech: "Pandas Agent • Gemini • Python",
-    link: "https://github.com/viochris/insight-data-ai-analyst"
-  }
+    link: "https://github.com/viochris/insight-data-ai-analyst",
+  },
 ];
 
 const infrastructurePulseData = [
-  { 
-    status: "LIVE", 
-    title: "High-Performance Backend", 
-    subtitle: "ASYNCHRONOUS APIS & MICROSERVICES", 
-    desc: "Architecting scalable, asynchronous server-side logic and robust API gateways to form the backbone of seamless AI integrations and data pipelines.",
-    icon: <Cpu className="text-blue-400" />
+  {
+    status: "Backend APIs",
+    title: "High-Performance Backend",
+    subtitle: "ASYNCHRONOUS APIS & MICROSERVICES",
+    desc: "Architecting scalable, asynchronous server-side logic and clean API gateways that power AI integrations and data pipelines.",
+    icon: <Cpu className="w-5 h-5 text-primary" aria-hidden="true" />,
   },
-  { 
-    status: "ACTIVE", 
-    title: "Multi-Agent Orchestration", 
-    subtitle: "COGNITIVE AI ARCHITECTURES", 
-    desc: "Engineering autonomous agentic workflows and multi-step reasoning systems using modern LLM frameworks to execute complex, context-aware problem-solving logic.",
-    icon: <Sparkles className="text-yellow-400" />
+  {
+    status: "AI Agents",
+    title: "Multi-Agent Orchestration",
+    subtitle: "AUTONOMOUS AGENT WORKFLOWS",
+    desc: "Engineering autonomous agent workflows and multi-step reasoning loops using modern LLM frameworks for tool-assisted problem solving.",
+    icon: <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />,
   },
-  { 
-    status: "SYNCED", 
-    title: "RAG & Vector Ecosystems", 
-    subtitle: "HIGH-PRECISION KNOWLEDGE RETRIEVAL", 
-    desc: "Designing robust semantic search pipelines and vector database integrations to ground language models with dynamic, real-time factual context.",
-    icon: <Database className="text-green-400" />
+  {
+    status: "RAG Systems",
+    title: "RAG & Vector Ecosystems",
+    subtitle: "HIGH-PRECISION KNOWLEDGE RETRIEVAL",
+    desc: "Designing semantic search pipelines and vector database integrations to ground language models with dynamic factual context.",
+    icon: <Database className="w-5 h-5 text-primary" aria-hidden="true" />,
   },
-  { 
-    status: "OPTIMIZED", 
-    title: "Advanced Machine Learning", 
-    subtitle: "DEEP LEARNING & EXPLAINABLE AI", 
-    desc: "Building highly accurate predictive models leveraging both traditional algorithms (Scikit-Learn) and neural networks (TensorFlow/Keras), enhanced by transparent XAI techniques like SHAP and LIME.",
-    icon: <Brain className="text-purple-400" />
+  {
+    status: "Machine Learning",
+    title: "Applied Machine Learning",
+    subtitle: "DEEP LEARNING & EXPLAINABLE AI",
+    desc: "Building predictive models with Scikit-Learn and TensorFlow/Keras, supported by XAI diagnostics such as SHAP and LIME.",
+    icon: <Brain className="w-5 h-5 text-primary" aria-hidden="true" />,
   },
-  { 
-    status: "PROCESSING", 
-    title: "Applied Natural Language Processing", 
-    subtitle: "CONTEXT EXTRACTION & INTELLIGENCE", 
-    desc: "Designing comprehensive text processing pipelines to extract nuanced meaning, execute dynamic summarization, and analyze linguistic context from unstructured data.",
-    icon: <Languages className="text-cyan-400" />
+  {
+    status: "Text & NLP",
+    title: "Natural Language Processing",
+    subtitle: "CONTEXT EXTRACTION & INTELLIGENCE",
+    desc: "Designing text processing pipelines for entity extraction, summarization, and multilingual sentiment analysis from raw text.",
+    icon: <Languages className="w-5 h-5 text-primary" aria-hidden="true" />,
   },
-  { 
-    status: "DEPLOYED", 
-    title: "Production & Automation", 
-    subtitle: "CI/CD & INTERACTIVE INTERFACES", 
-    desc: "Deploying reliable AI solutions via automated pipelines (GitHub Actions) and REST APIs (FastAPI), delivering utility through interactive web apps (Streamlit) and autonomous Telegram bots.",
-    icon: <Workflow className="text-orange-400" />
-  }
+  {
+    status: "Deployment",
+    title: "Production & Automation",
+    subtitle: "CI/CD & INTERACTIVE INTERFACES",
+    desc: "Shipping reliable AI services via GitHub Actions and FastAPI, delivered through Streamlit apps and automated Telegram bots.",
+    icon: <Workflow className="w-5 h-5 text-primary" aria-hidden="true" />,
+  },
+];
+
+const specializations = [
+  {
+    title: "Natural Language Processing",
+    desc: "High-precision NLP pipelines for context extraction, summarization, and bilingual sentiment analysis that turn unstructured text into structured intelligence.",
+    icon: <Brain className="w-7 h-7 text-primary" aria-hidden="true" />,
+    label: "NLP Specialist",
+  },
+  {
+    title: "Tabular Data Modeling",
+    desc: "Predictive modeling on complex structured datasets using feature engineering, strict validation splits, and Explainable AI (XAI) techniques.",
+    icon: <Database className="w-7 h-7 text-primary" aria-hidden="true" />,
+    label: "Data Science",
+  },
+  {
+    title: "AI Agent Engineering",
+    desc: "Stateful multi-step reasoning systems and RAG pipelines with tool calling and cyclic self-correction for autonomous execution.",
+    icon: <Sparkles className="w-7 h-7 text-primary" aria-hidden="true" />,
+    label: "Reasoning Agents",
+  },
+  {
+    title: "Automation & Orchestration",
+    desc: "Resilient backends and scheduled data workflows connecting LLMs, external APIs, and messaging bots into reliable end-to-end tools.",
+    icon: <Workflow className="w-7 h-7 text-primary" aria-hidden="true" />,
+    label: "Orchestration",
+  },
+];
+
+const workSteps = [
+  {
+    step: "01",
+    title: "Research & Design",
+    subtitle: "Problem Framing & Data Audit",
+    desc: "Before writing model or agent code, I start by understanding the problem constraints and inspecting the raw data. Checking distributions, missing values, and edge cases early helps determine whether a simple statistical baseline or an LLM workflow is the right fit.",
+    points: [
+      "Exploratory data analysis (EDA) and schema checks",
+      "Strict train-test splitting to prevent data leakage",
+      "Choosing a simple baseline before adding complexity",
+    ],
+    icon: <Terminal className="w-5 h-5 text-primary" aria-hidden="true" />,
+  },
+  {
+    step: "02",
+    title: "Architect & Build",
+    subtitle: "Pipeline & Agent Implementation",
+    desc: "I build the core pipeline in modular steps so each component can be verified independently. For tabular ML, this means reproducible feature engineering and cross-validation; for GenAI systems, it means grounded retrieval, structured outputs, and error handling.",
+    points: [
+      "Feature engineering, imbalance handling, and model tuning",
+      "RAG indexing, reranking, and tool-calling workflows",
+      "Model interpretability checks (LIME) and execution tracing",
+    ],
+    icon: <Cpu className="w-5 h-5 text-primary" aria-hidden="true" />,
+  },
+  {
+    step: "03",
+    title: "Deploy & Integrate",
+    subtitle: "APIs, Containers & Usable Interfaces",
+    desc: "A model becomes genuinely useful when people can interact with it directly. I package trained models and agent workflows behind clean REST endpoints or straightforward web and messaging interfaces so anyone can test them without setup friction.",
+    points: [
+      "FastAPI and Flask endpoints with input validation",
+      "Docker containerization for reproducible deployment",
+      "Interactive UIs via Streamlit, Gradio, React, or Telegram bots",
+    ],
+    icon: <Layers className="w-5 h-5 text-primary" aria-hidden="true" />,
+  },
+  {
+    step: "04",
+    title: "Evaluate & Refine",
+    subtitle: "Testing, Cost Tracking & Iteration",
+    desc: "After deployment, I test how the system handles edge-case inputs, review response latency and token cost, and tighten the weak spots. Documenting both the results and known limitations keeps every project transparent and easy to maintain.",
+    points: [
+      "Tracking token consumption, latency, and fallback behavior",
+      "Reviewing error cases to refine prompts or thresholds",
+      "Writing clear documentation and reproducible notebooks",
+    ],
+    icon: <RefreshCw className="w-5 h-5 text-primary" aria-hidden="true" />,
+  },
 ];
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
   const [isAnim, setIsAnim] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const prefersReduced = useReducedMotion();
+
+  // Hero scroll parallax temporarily commented out for performance comparison:
+  // const { scrollY } = useScroll();
+  // const smoothScrollY = useSpring(scrollY, {
+  //   stiffness: 85,
+  //   damping: 24,
+  //   mass: 0.4,
+  //   restDelta: 0.001,
+  // });
+  // const heroGlowY = useTransform(smoothScrollY, [0, 560], [0, 90]);
+  // const heroGlowScale = useTransform(smoothScrollY, [0, 560], [1, 1.2]);
+  // const heroRingY = useTransform(smoothScrollY, [0, 560], [0, 36]);
 
   useEffect(() => {
-    setMounted(true);
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
-  if (!mounted) return null;
+  const disableMotion = reducedMotion || Boolean(prefersReduced);
+
+  const carouselPlugins = disableMotion
+    ? []
+    : [
+        AutoScroll({
+          speed: 0.9,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ];
 
   return (
-    <div className="pt-12 lg:pt-16 min-h-screen">
-      <section id="home" className="pb-20">
-        
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 lg:pt-12 lg:pb-20">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
-            
-            <div className="w-full lg:w-1/2 flex justify-center items-center relative lg:pr-4 lg:pl-8">
-              <div className="relative group shrink-0">
-                <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full animate-pulse-glow" />
-                <div className="relative z-10 w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80">
-                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary animate-[spin_30s_linear_infinite]" />
-                  <div 
-                    className="absolute inset-4 rounded-full p-2 bg-black shadow-2xl overflow-hidden border border-primary/20 cursor-pointer active:scale-95 transition-all duration-300"
-                    onClick={() => setIsAnim(!isAnim)}
-                    title="Click to see my AI Avatar!"
-                  >
-                    <Image 
-                      src={isAnim ? "/vio-image-animation.png" : "/vio-image.png"} 
-                      alt="Silvio Christian, Joe" 
-                      width={320}
-                      height={320}
-                      sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 320px"
-                      priority
-                      className="w-full h-full object-cover rounded-full transition-opacity duration-500"
-                    />
-                  </div>
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20">
-                    <Badge className="bg-primary text-white px-8 py-2 shadow-2xl font-headline font-black text-[10px] md:text-xs tracking-[0.2em] uppercase border-none whitespace-nowrap rounded-full">
-                      AI ENGINEER
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl mx-auto lg:mx-0 lg:pl-4 space-y-6">
-              <div className="space-y-4 w-full">
-                <div className="space-y-4">
-                  <Badge variant="outline" className="text-primary font-headline uppercase tracking-[0.3em] py-1.5 border-primary/30 text-[10px] md:text-xs">
-                    DATA SCIENTIST & AI ENGINEER
-                  </Badge>
-                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-headline font-black leading-tight tracking-tighter text-white">
-                    Silvio Christian, <span className="text-primary">Joe</span>
-                  </h1>
-                </div>
-                
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xl md:text-2xl lg:text-3xl font-headline text-white/90 min-h-[40px] animate-fade-in whitespace-nowrap overflow-hidden" style={{ animationDelay: '0.2s' }}>
-                  <span>I</span>
-                  <TypewriterEffect />
-                </div>
-                
-                <p className="text-base md:text-lg text-white/80 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-                  I am an Informatics Engineering student working as a <strong>Data Scientist</strong> and <strong>AI Engineer</strong>. My technical focus involves analyzing <strong>Tabular & NLP data</strong>, as well as developing functional <strong>AI Agents</strong> for practical applications.
-                </p>
-
-                <p className="text-sm md:text-base text-white/90 font-black italic tracking-tight pt-2 text-center w-full">
-                  Focusing on Data Science (Tabular & NLP) and autonomous AI Agent Engineering.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full">
-                <Link href="/projects">
-                  <Button size="lg" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 w-full sm:w-auto shadow-lg shadow-primary/20">
-                    VIEW PROJECTS <ChevronRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline" className="rounded-full px-10 font-headline uppercase font-bold tracking-widest h-14 border-white/20 text-white hover:bg-white/10 w-full sm:w-auto">
-                    CONTACT ME
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full border-y border-white/10 bg-white/[0.02] py-12 mb-20 relative overflow-hidden">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-around items-center gap-12 md:gap-0">
-            <div className="flex flex-col items-center text-center">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">15+</div>
-              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Projects Completed</div>
-            </div>
-            <div className="hidden md:block w-px h-16 bg-white/10" />
-            <div className="flex flex-col items-center text-center">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">20+</div>
-              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">Verified Certifications</div>
-            </div>
-            <div className="hidden md:block w-px h-16 bg-white/10" />
-            <div className="flex flex-col items-center text-center">
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2">7+</div>
-              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em]">GenAI Agents Deployed</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="max-w-full mx-auto px-6 md:px-12 lg:px-16 overflow-hidden">
-          <div className="mb-32 space-y-12">
-             <div className="text-center space-y-4">
-                <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">System Monitor</Badge>
-                <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                  Infrastructure <span className="text-primary">Pulse</span>
-                </h2>
-             </div>
-             
-             <div className="w-full relative">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  plugins={[
-                    AutoScroll({
-                      speed: 1,
-                      stopOnInteraction: false,
-                      stopOnMouseEnter: true,
-                    }),
-                  ]}
-                  className="w-full"
+    <div className="pt-20 sm:pt-24">
+      {/* Hero Section */}
+      <section id="home" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-10 pb-16 lg:pt-16 lg:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12">
+          <div className="lg:col-span-5 lg:order-2 flex justify-center">
+            <div className="relative group">
+              <div
+                aria-hidden="true"
+                style={{
+                  background: 'radial-gradient(circle, hsl(var(--primary) / 0.32) 0%, transparent 70%)',
+                }}
+                className="absolute -inset-10 rounded-full pointer-events-none"
+              />
+              <div className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[25rem] xl:h-[25rem]">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full border-2 border-dashed border-primary/70 animate-[spin_36s_linear_infinite] pointer-events-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setIsAnim((prev) => !prev)}
+                  aria-label={isAnim ? "Switch to portrait photo" : "Switch to AI avatar illustration"}
+                  title="Click to toggle portrait and AI avatar"
+                  className="absolute inset-3.5 rounded-full p-1.5 bg-background shadow-2xl overflow-hidden border border-primary/30 active:scale-95 transition-transform duration-200 focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  <CarouselContent className="-ml-4">
-                    {infrastructurePulseData.map((m, i) => (
-                      <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                        <div className="p-8 glass rounded-[2rem] border-white/10 flex flex-col justify-between h-full hover:bg-primary/5 transition-all group shadow-xl relative overflow-hidden min-h-[480px]">
-                           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-primary/10 transition-colors" />
-                           <div className="flex justify-between items-start mb-6 relative z-10">
-                              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform border border-white/5">{m.icon}</div>
-                              <div className="flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-full border border-white/5">
-                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]"></div>
-                                 <span className="text-[9px] font-black text-white/70 uppercase tracking-widest">{m.status}</span>
-                              </div>
-                           </div>
-                           <div className="relative z-10 flex flex-col flex-1">
-                              <header className="space-y-1">
-                                <h3 className="text-2xl font-headline font-black text-white group-hover:text-primary transition-colors leading-tight min-h-[6.5rem] flex items-center">{m.title}</h3>
-                                <div className="text-[10px] font-bold text-primary/60 uppercase tracking-widest min-h-[2.5rem] flex items-start">{m.subtitle}</div>
-                              </header>
-                              <p className="text-[11px] text-white/50 leading-relaxed font-medium mt-4 min-h-[7rem] flex-1">{m.desc}</p>
-                           </div>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
-             </div>
+                  <Image
+                    src={isAnim ? "/vio-image-animation.jpg" : "/vio-image.png"}
+                    alt="Silvio Christian, Joe portrait"
+                    width={400}
+                    height={400}
+                    sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 400px"
+                    priority
+                    fetchPriority="high"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </button>
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20">
+                  <Badge className="bg-primary text-primary-foreground px-5 py-1.5 shadow-lg font-headline font-bold text-[11px] tracking-[0.18em] uppercase border-none whitespace-nowrap rounded-full">
+                    AI Engineer
+                  </Badge>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-16 mb-40">
-            <div className="text-center space-y-4">
-              <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Expertise</Badge>
-              <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                Core <span className="text-primary">Specialization</span>
+          <div className="lg:col-span-7 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-5">
+            <Badge
+              variant="outline"
+              className="bg-card/95 text-primary font-headline font-bold uppercase tracking-[0.22em] py-1.5 px-4 border-primary/45 shadow-md shadow-primary/10 text-[11px]"
+            >
+              Data Scientist &amp; AI Engineer
+            </Badge>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-headline font-black leading-[1.08] tracking-tight text-white">
+              Silvio Christian, <span className="text-primary">Joe</span>
+            </h1>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-lg sm:text-2xl lg:text-[26px] font-headline text-zinc-200 min-h-[36px]">
+              <span>I</span>
+              <TypewriterEffect />
+            </div>
+
+            <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-2xl">
+              Informatics Engineering undergraduate building production{' '}
+              <strong className="text-white font-semibold">Machine Learning</strong>,{' '}
+              <strong className="text-white font-semibold">NLP</strong>, and{' '}
+              <strong className="text-white font-semibold">autonomous AI Agent</strong> systems
+              that turn raw data into usable products.
+            </p>
+
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3.5 pt-2 w-full">
+              <Button
+                size="lg"
+                className="rounded-full px-8 font-headline uppercase font-bold tracking-wider h-12 shadow-lg shadow-primary/20"
+                asChild
+              >
+                <Link href="/projects">
+                  View Projects <ChevronRight className="ml-1.5 w-4 h-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full px-8 font-headline uppercase font-bold tracking-wider h-12 border-border text-foreground hover:bg-white/5"
+                asChild
+              >
+                <Link href="/contact">Contact Me</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Metrics Strip */}
+      <section aria-label="Portfolio highlights" className="w-full border-y border-border/70 bg-card/50 py-10 mb-20">
+        <ParallaxLayer offsetY={-12} mobileOffsetY={6}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-4xl font-headline font-black text-primary mb-1">65+</div>
+              <div className="text-xs font-semibold text-zinc-400 uppercase tracking-[0.2em]">Projects Shipped</div>
+            </div>
+            <div className="flex flex-col items-center sm:border-x sm:border-border/60">
+              <div className="text-3xl sm:text-4xl font-headline font-black text-primary mb-1">20+</div>
+              <div className="text-xs font-semibold text-zinc-400 uppercase tracking-[0.2em]">Verified Certifications</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-4xl font-headline font-black text-primary mb-1">7+</div>
+              <div className="text-xs font-semibold text-zinc-400 uppercase tracking-[0.2em]">GenAI Agents Deployed</div>
+            </div>
+          </div>
+        </ParallaxLayer>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-24 pb-20">
+        {/* Technical Domains */}
+        <section aria-labelledby="pulse-heading" className="space-y-10">
+          <ParallaxLayer offsetY={-16} mobileOffsetY={8}>
+            <div className="text-center space-y-3">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                What I Build
+              </Badge>
+              <h2 id="pulse-heading" className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+                Technical <span className="text-primary">Domains</span>
               </h2>
             </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch auto-rows-fr">
-              {[
-                {
-                  title: "Natural Language Processing",
-                  desc: "Bridging human language and machine understanding through high-precision NLP pipelines. Designing comprehensive systems for context extraction, dynamic summarization, and deep sentiment analysis to transform unstructured text into actionable semantic intelligence.",
-                  icon: <Brain className="w-8 h-8 text-primary" />,
-                  label: "NLP SPECIALIST"
-                },
-                {
-                  title: "Tabular Data Modeling",
-                  desc: "Building robust predictive systems from complex structured data using both traditional algorithms and neural networks. Focused on rigorous feature engineering, deep model validation, and Explainable AI (XAI) techniques to ensure transparent decision-making.",
-                  icon: <Database className="w-8 h-8 text-primary" />,
-                  label: "DATA SCIENCE"
-                },
-                {
-                  title: "AI Agent Engineering",
-                  desc: "Architecting cognitive systems and multi-agent frameworks using modern LLMs. Focused on complex reasoning, context-aware decision making, and RAG pipelines for autonomous problem-solving.",
-                  icon: <Sparkles className="w-8 h-8 text-primary" />,
-                  label: "REASONING AGENTS"
-                },
-                {
-                  title: "Automation & Orchestration",
-                  desc: "Building robust backend ecosystems and automated workflows. Connecting AI services, APIs, and data pipelines to seamlessly power real-world applications like intelligent bots and web interfaces.",
-                  icon: <Workflow className="w-8 h-8 text-primary" />,
-                  label: "ORCHESTRATION"
-                }
-              ].map((skill, idx) => (
-                <div key={idx} className="p-10 glass rounded-[2.5rem] border-white/5 hover:border-primary/30 transition-all duration-500 group flex flex-col h-full shadow-xl">
-                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+          </ParallaxLayer>
+
+          <ParallaxLayer offsetY={16} mobileOffsetY={8}>
+            <Carousel
+              opts={{ align: "start", loop: true }}
+              plugins={carouselPlugins}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 items-stretch">
+                {infrastructurePulseData.map((m, i) => (
+                  <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex">
+                    <div className="p-6 bg-card border border-border/80 rounded-2xl flex flex-col justify-between w-full h-full hover:border-primary/40 transition-colors">
+                      <div>
+                        <div className="flex justify-between items-center mb-5">
+                          <div className="w-11 h-11 rounded-xl bg-white/[0.04] flex items-center justify-center border border-border/70">
+                            {m.icon}
+                          </div>
+                          <div className="flex items-center gap-1.5 bg-background/80 px-2.5 py-1 rounded-full border border-border/80">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true" />
+                            <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">{m.status}</span>
+                          </div>
+                        </div>
+                        <h3 className="text-lg font-headline font-bold text-white leading-snug mb-1.5">
+                          {m.title}
+                        </h3>
+                        <div className="text-[10px] font-bold text-primary/80 uppercase tracking-wider mb-3">
+                          {m.subtitle}
+                        </div>
+                      </div>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{m.desc}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </ParallaxLayer>
+        </section>
+
+        {/* Core Specializations */}
+        <section aria-labelledby="specialization-heading" className="space-y-10">
+          <ParallaxLayer offsetY={-16} mobileOffsetY={8}>
+            <div className="text-center space-y-3">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                Expertise
+              </Badge>
+              <h2 id="specialization-heading" className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+                Core <span className="text-primary">Specializations</span>
+              </h2>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offsetY={16} mobileOffsetY={8}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+              {specializations.map((skill) => (
+                <div
+                  key={skill.title}
+                  className="p-7 bg-card border border-border/80 hover:border-primary/40 rounded-2xl transition-colors flex flex-col h-full"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
                     {skill.icon}
                   </div>
-                  <div className="min-h-[1.5rem] mb-6">
-                    <Badge className="bg-primary/10 text-primary border-none uppercase text-[10px] font-bold tracking-widest w-fit">{skill.label}</Badge>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-headline font-bold text-white mb-4 leading-tight min-h-[6.5rem] sm:min-h-[7.5rem] flex items-start">
+                  <Badge className="bg-primary/10 text-primary border-none uppercase text-[10px] font-bold tracking-wider w-fit mb-3">
+                    {skill.label}
+                  </Badge>
+                  <h3 className="text-xl font-headline font-bold text-white mb-3 leading-snug">
                     {skill.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed font-medium flex-1 min-h-[12rem]">
+                  <p className="text-sm text-zinc-400 leading-relaxed flex-1">
                     {skill.desc}
                   </p>
                 </div>
               ))}
             </div>
+          </ParallaxLayer>
 
-            <div className="w-full p-10 md:p-16 glass rounded-[3rem] border border-primary/20 relative overflow-hidden group hover:bg-primary/5 transition-all duration-700">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[80px] rounded-full -mr-32 -mt-32 group-hover:bg-primary/20 transition-all" />
-               <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                  <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-white/5 flex items-center justify-center shrink-0 shadow-2xl group-hover:scale-110 transition-transform border border-white/10">
-                     <Code2 className="w-10 h-10 md:w-14 md:h-14 text-primary" />
-                  </div>
-                  <div className="space-y-4 text-center md:text-left flex-1">
-                     <div className="flex flex-col md:flex-row items-center gap-4">
-                        <Badge className="bg-primary text-white font-black px-4 py-1 uppercase text-[10px] tracking-widest">Philosophy</Badge>
-                        <h3 className="text-2xl md:text-4xl font-headline font-black text-white uppercase tracking-tighter">
-                           Vibe <span className="text-primary">Coding</span>
-                        </h3>
-                     </div>
-                     <p className="text-white/70 text-base md:text-xl font-medium leading-relaxed max-w-4xl">
-                        Vibe Coding is the art of intent-driven development. I leverage this philosophy to build products outside my primary expertise—such as Computer Vision, Web, and Mobile development—while significantly accelerating repetitive workflows through a synergy between human intuition and AI execution.
-                     </p>
-                  </div>
-               </div>
-            </div>
-          </div>
-
-          <div className="mb-40 space-y-16">
-             <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-                <div className="space-y-4">
-                   <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase py-1 px-4">Portfolio Highlights</Badge>
-                   <h2 className="text-3xl md:text-5 font-headline font-black uppercase tracking-tighter text-white">
-                     Featured <span className="text-primary">Projects</span>
-                   </h2>
+          {/* Vibe Coding Philosophy Callout */}
+          <ParallaxLayer offsetY={-16} mobileOffsetY={8} scaleRange={[0.97, 1.01]}>
+            <div className="w-full p-7 sm:p-10 bg-card border border-primary/25 rounded-2xl flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+                <Code2 className="w-8 h-8 md:w-10 md:h-10 text-primary" aria-hidden="true" />
+              </div>
+              <div className="space-y-2.5 text-center md:text-left flex-1">
+                <div className="flex flex-col md:flex-row items-center gap-3">
+                  <Badge className="bg-primary text-primary-foreground font-bold px-3 py-0.5 uppercase text-[10px] tracking-wider">
+                    Development Approach
+                  </Badge>
+                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white uppercase tracking-tight">
+                    Vibe <span className="text-primary">Coding</span>
+                  </h3>
                 </div>
-                <Link href="/projects">
-                   <Button variant="link" className="text-primary font-headline font-bold uppercase tracking-widest p-0 h-auto group">
-                      Explore Full Repo <ChevronRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                   </Button>
-                </Link>
-             </div>
-             
-             <div className="w-full">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  plugins={[
-                    AutoScroll({
-                      speed: 1,
-                      stopOnInteraction: false,
-                      stopOnMouseEnter: true,
-                    }),
-                  ]}
-                  className="w-full"
-                >
-                  <CarouselContent className="-ml-4">
-                    {featuredProjects.map((p, i) => (
-                      <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                        <a 
-                          href={p.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="block h-full"
-                        >
-                          <div className="p-10 glass rounded-[2.5rem] border-white/10 flex flex-col justify-between h-full hover:border-primary/50 transition-all group relative">
-                             <div className="flex flex-col flex-1">
-                                <div className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-3 min-h-[1.5rem]">{p.type}</div>
-                                
-                                <div className="mb-4">
-                                   <Badge className="bg-primary text-white font-black uppercase tracking-widest text-[9px] px-3 py-1 shadow-2xl border-none">
-                                     {p.impact}
-                                   </Badge>
-                                </div>
-
-                                <div className="min-h-[5.5rem] flex items-start">
-                                  <h3 className="text-2xl font-headline font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">{p.title}</h3>
-                                </div>
-                                <div className="min-h-[6.5rem] flex-1">
-                                  <p className="text-sm text-white/60 leading-relaxed mb-8 line-clamp-3">{p.desc}</p>
-                                </div>
-                             </div>
-                             <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
-                                <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{p.tech}</span>
-                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary transition-all duration-300">
-                                   <ExternalLink className="w-4 h-4 text-white" />
-                                </div>
-                             </div>
-                          </div>
-                        </a>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
-             </div>
-          </div>
-
-          <div className="mb-40 space-y-16">
-            <div className="text-center space-y-4">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-white">HOW</span>
-                <span className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tighter text-primary">I WORK</span>
+                <p className="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-4xl">
+                  Intent-driven engineering that pairs core systems thinking with AI coding tools. This workflow lets me ship complete prototypes across web, mobile, and computer vision without sacrificing architectural clarity.
+                </p>
               </div>
             </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch auto-rows-fr">
-              {[
-                { 
-                  step: "01", 
-                  title: "Research & Design", 
-                  desc: "Deep analysis of problem statements and data exploration to find the most efficient mathematical approach.", 
-                  icon: <Terminal className="w-5 h-5 text-primary" /> 
-                },
-                { 
-                  step: "02", 
-                  title: "Architect & Build", 
-                  desc: "Constructing modular pipelines and model architectures that are robust, testable, and optimized for latency.", 
-                  icon: <Cpu className="w-5 h-5 text-primary" /> 
-                },
-                { 
-                  step: "03", 
-                  title: "Deploy & Scale", 
-                  desc: "Transitioning models into production environments via high-performance APIs and containerized microservices.", 
-                  icon: <Layers className="w-5 h-5 text-primary" /> 
-                },
-                { 
-                  step: "04", 
-                  title: "Optimization", 
-                  desc: "Continuous monitoring and fine-tuning of models to ensure long-term reliability and peak performance.", 
-                  icon: <RefreshCw className="w-5 h-5 text-primary" /> 
-                }
-              ].map((w, i) => (
-                <div key={i} className="p-10 bg-black rounded-[3rem] border border-white/5 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden h-full flex flex-col shadow-2xl">
-                  {/* Background Number Layer */}
-                  <div className="absolute top-0 right-0 text-[10rem] font-black text-white/[0.08] group-hover:text-primary/[0.18] group-hover:scale-125 group-hover:drop-shadow-[0_0_35px_rgba(6,182,212,0.8)] leading-none -mr-8 -mt-4 transition-all duration-700 select-none pointer-events-none">
-                    {w.step}
-                  </div>
-                  
-                  <div className="flex justify-between items-start mb-12 relative z-10">
-                    <div className="shrink-0">{w.icon}</div>
-                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.3em]">STEP {w.step}</span>
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white group-hover:opacity-100 opacity-90 mb-6 leading-tight relative z-10 transition-opacity">{w.title}</h3>
-                  <p className="text-sm text-white/50 group-hover:text-white/80 leading-relaxed font-medium flex-1 relative z-10 transition-colors">{w.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          </ParallaxLayer>
+        </section>
 
-          <div className="mb-20">
-             <div className="w-full p-12 md:p-20 rounded-[3rem] bg-primary flex flex-col items-center text-center space-y-8 shadow-[0_0_50px_rgba(6,182,212,0.3)]">
-                <h2 className="text-4xl md:text-6xl font-headline font-black text-white uppercase tracking-tighter max-w-3xl">
-                  Ready to Build the <span className="text-black">Future?</span>
-                </h2>
-                <p className="text-white/90 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
-                  Whether you need a custom LLM solution or a high-performance data pipeline, I'm here to help turn your data into intelligence.
-                </p>
-                <Link href="/contact">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95">
-                    Start a Project
-                  </Button>
-                </Link>
-             </div>
+        {/* Featured Projects */}
+        <section aria-labelledby="featured-heading" className="space-y-10">
+          <ParallaxLayer offsetY={-16} mobileOffsetY={8}>
+            <div className="flex flex-col items-center text-center space-y-3">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                Portfolio Highlights
+              </Badge>
+              <h2 id="featured-heading" className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+                Featured <span className="text-primary">Projects</span>
+              </h2>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offsetY={16} mobileOffsetY={8}>
+            <Carousel
+              opts={{ align: "start", loop: true }}
+              plugins={carouselPlugins}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4 items-stretch">
+                {featuredProjects.map((p, i) => (
+                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3 flex">
+                    <a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full h-full group"
+                    >
+                      <div className="p-7 bg-card border border-border/80 rounded-2xl flex flex-col justify-between h-full hover:border-primary/50 transition-colors">
+                        <div>
+                          <div className="flex items-center justify-between gap-2 mb-4">
+                            <span className="text-[11px] font-bold text-primary uppercase tracking-wider">
+                              {p.type}
+                            </span>
+                            <Badge className="bg-primary/15 text-primary font-bold uppercase tracking-wider text-[10px] px-2.5 py-0.5 border-none">
+                              {p.impact}
+                            </Badge>
+                          </div>
+                          <h3 className="text-xl font-headline font-bold text-white mb-2.5 group-hover:text-primary transition-colors leading-snug">
+                            {p.title}
+                          </h3>
+                          <p className="text-sm text-zinc-400 leading-relaxed mb-6 line-clamp-3">
+                            {p.desc}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-between pt-4 border-t border-border/60 mt-auto">
+                          <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+                            {p.tech}
+                          </span>
+                          <span className="w-9 h-9 rounded-full bg-white/[0.04] flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </ParallaxLayer>
+
+          <div className="flex justify-center pt-2">
+            <Button
+              variant="outline"
+              className="rounded-full px-7 h-11 border-primary/40 bg-card/90 hover:bg-primary hover:text-primary-foreground text-primary font-headline font-bold uppercase tracking-wider text-xs group transition-colors"
+              asChild
+            >
+              <Link href="/repository">
+                Explore All Projects{' '}
+                <ChevronRight className="ml-1.5 w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* How I Work (Equal Cards + Independent Inner Watermark Parallax) */}
+        <section aria-labelledby="workflow-heading" className="space-y-10">
+          <ParallaxLayer offsetY={-16} mobileOffsetY={8}>
+            <div className="text-center space-y-3">
+              <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase py-1 px-3.5 border-primary/30 text-[11px]">
+                Methodology
+              </Badge>
+              <h2 id="workflow-heading" className="text-3xl md:text-5xl font-headline font-black uppercase tracking-tight text-white">
+                How <span className="text-primary">I Work</span>
+              </h2>
+            </div>
+          </ParallaxLayer>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            {workSteps.map((w) => (
+              <div
+                key={w.step}
+                className="p-8 sm:p-10 lg:p-12 bg-card rounded-3xl border border-border/80 hover:border-primary/40 transition-all duration-500 group relative overflow-hidden flex flex-col h-full min-h-[360px] lg:min-h-[400px]"
+              >
+                <div
+                  aria-hidden="true"
+                  className="absolute top-0 right-0 -mr-6 -mt-4 select-none pointer-events-none"
+                >
+                  <ParallaxLayer offsetY={48} mobileOffsetY={24}>
+                    <span className="text-[8rem] sm:text-[10rem] font-headline font-black leading-none text-white/[0.07] group-hover:text-primary/[0.16] transition-colors duration-500">
+                      {w.step}
+                    </span>
+                  </ParallaxLayer>
+                </div>
+                <div className="flex justify-between items-center mb-8 relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                    {w.icon}
+                  </div>
+                  <span className="text-xs font-bold text-primary uppercase tracking-[0.25em]">
+                    Step {w.step}
+                  </span>
+                </div>
+                <div className="mb-4 relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-headline font-black text-white mb-1.5 leading-tight">
+                    {w.title}
+                  </h3>
+                  <div className="text-xs font-bold uppercase tracking-wider text-primary/85">
+                    {w.subtitle}
+                  </div>
+                </div>
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6 relative z-10">
+                  {w.desc}
+                </p>
+                <ul className="mt-auto pt-5 border-t border-border/60 space-y-2.5 relative z-10">
+                  {w.points.map((pt) => (
+                    <li key={pt} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-400 group-hover:text-zinc-200 transition-colors">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" aria-hidden="true" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section aria-label="Contact call to action">
+          <ParallaxLayer offsetY={-20} mobileOffsetY={10} scaleRange={[0.97, 1.01]}>
+            <div className="w-full p-12 md:p-20 rounded-[2.5rem] md:rounded-[3rem] bg-primary flex flex-col items-center text-center space-y-8 shadow-[0_0_50px_hsl(var(--primary)/0.3)]">
+              <h2 className="text-4xl md:text-6xl font-headline font-black text-white uppercase tracking-tighter max-w-3xl leading-[1.08]">
+                Interested in Working <span className="text-black">Together?</span>
+              </h2>
+              <p className="text-white/90 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                Whether you need a custom LLM agent or a reproducible data pipeline, let&apos;s turn your data into reliable software.
+              </p>
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90 rounded-full px-12 h-16 text-lg font-headline font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95"
+                asChild
+              >
+                <Link href="/contact">Get in Touch</Link>
+              </Button>
+            </div>
+          </ParallaxLayer>
+        </section>
+      </div>
 
       <TechMarquee />
     </div>

@@ -1,0 +1,35 @@
+# Silvio.AI | Silvio Christian, Joe (Vio)
+
+> Official portfolio of Silvio Christian, Joe (Vio / viochris), an Informatics Engineering student at Universitas Dian Nuswantoro (UDINUS, GPA 3.96/4.00), Data Scientist, and AI Engineer based in Semarang, Indonesia, specializing in Tabular Machine Learning, Natural Language Processing (NLP), Vector/Graph/Hybrid RAG, Text-to-SQL, Autonomous AI Agents, FastAPI MLOps, and Workflow Automation.
+
+## Canonical Pages
+- [Home](https://silvio-ai-portfolio.vercel.app/): Overview of Silvio's core specializations, technical domains, engineering methodology, and featured AI solutions.
+- [About Me](https://silvio-ai-portfolio.vercel.app/about): Education at Universitas Dian Nuswantoro (UDINUS), learning timeline, technical focus areas, and GitHub open-source activity.
+- [Featured Projects](https://silvio-ai-portfolio.vercel.app/projects): Detailed case studies of flagship systems including InsightSQL (LangGraph Engine), SpendSense (Financial AI), Resume Scanner API, and InsightData (AI Analyst).
+- [Full Repository Catalog (65 Projects)](https://silvio-ai-portfolio.vercel.app/repository): Complete searchable catalog of 65 projects across GenAI & RAG (19), Backend & MLOps (6), Automation & Orchestration (15), Data Science & Applied ML (14), Data Analytics (2), Vibe Coding Web Apps (7), and Experimental Projects (2).
+- [Skills & Verified Credentials](https://silvio-ai-portfolio.vercel.app/skills): Technical stack, tools, 22 professional certifications (Oracle, IBM, Dicoding), and 11 specialization badges (Coursera, IBM).
+- [Contact & Portfolio AI Assistant](https://silvio-ai-portfolio.vercel.app/contact): Direct contact channels, technical FAQ, and live interactive RAG assistant.
+- [Complete LLM Profile & 65 Project Index](https://silvio-ai-portfolio.vercel.app/llms-full.txt): Exhaustive project descriptions, tech stacks, live demos, and credential verification links for AI search engines.
+
+## Key Profile Facts
+- **Full Name**: Silvio Christian, Joe (Nickname: Vio, GitHub: `viochris`)
+- **Role**: Data Scientist & AI Engineer
+- **Education**: Bachelor of Informatics Engineering, Universitas Dian Nuswantoro (UDINUS), Semarang, Indonesia (2023-2027, Currently in 7th Semester, Cumulative GPA: 3.96 / 4.00 through 6th Semester)
+- **Location**: Semarang, Central Java, Indonesia (Asia/Jakarta, UTC+7)
+- **Core Stack**: Python, SQL, Pandas, NumPy, Scikit-Learn, TensorFlow, LightGBM, CatBoost, XGBoost, LIME, PySpark, Google Gemini, Groq, Hugging Face, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, Arize Phoenix, FAISS, Pinecone, ChromaDB, Neo4j, FastAPI, Flask, Streamlit, Gradio, Prefect, Docker, MySQL, PostgreSQL, Tableau, Power BI, Looker Studio, React, TypeScript.
+- **Flagship Certifications**:
+  - Oracle Cloud Infrastructure 2025 Certified Data Science Professional
+  - Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
+  - Oracle AI Vector Search Certified Professional
+  - Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate
+  - IBM Machine Learning Specialization (Coursera)
+- **Published Technical Articles (Medium)**:
+  - [Before You Use AI, Understand This First](https://medium.com/@silviochristian/before-you-use-ai-understand-this-first-875525807755): AI literacy and Prompt Engineering foundations covering LLM next-token prediction, input/output and reasoning tokens, context windows, hallucinations, temperature tuning, and knowledge cutoffs.
+  - [Why Label Encoding is Ruining Your ML Models (And How to Fix It)](https://medium.com/@silviochristian/why-label-encoding-is-ruining-your-ml-models-and-how-to-fix-it-d83eab34e7f3): Feature engineering guide explaining why Label Encoding introduces false ordinal bias on nominal categorical variables and how to implement One-Hot Encoding in Pandas and Scikit-Learn while avoiding high-cardinality and multicollinearity traps.
+- **Contact & Profiles**:
+  - Website: https://silvio-ai-portfolio.vercel.app
+  - GitHub: https://github.com/viochris
+  - LinkedIn: https://www.linkedin.com/in/silvio-christian-joe
+  - Kaggle: https://www.kaggle.com/viochristian
+  - Medium: https://medium.com/@silviochristian
+  - Email: mailto:viochristian12@gmail.com

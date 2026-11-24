@@ -1,0 +1,110 @@
+# Silvio.AI - Full Technical Portfolio & 65-Project Knowledge Base (llms-full.txt)
+
+> Exhaustive machine-readable portfolio reference for Silvio Christian, Joe (Vio / viochris), Data Scientist and AI Engineer based in Semarang, Indonesia.
+
+## 1. Identity & Academic Background
+- **Name**: Silvio Christian, Joe (also known as Vio / `viochris`)
+- **Title**: Data Scientist & AI Engineer
+- **University**: Universitas Dian Nuswantoro (UDINUS), Semarang, Indonesia
+- **Degree**: Bachelor of Informatics Engineering (Computer Science), 2023-2027
+- **Academic Standing**: Currently in 7th Semester (3.96 / 4.00 Cumulative GPA through 6th Semester)
+- **Location**: Semarang, Central Java, Indonesia
+- **Availability**: Open for Data Science, AI Engineering, ML/NLP Internships, Freelance Projects, and Full-Time Roles.
+
+## 2. Core Technical Stack
+- **Languages**: Python, SQL, TypeScript
+- **Data Science & Machine Learning**: Pandas, NumPy, Scikit-Learn, TensorFlow, LightGBM, CatBoost, XGBoost, Imbalanced-Learn (SMOTE/SMOTENC), Optuna, LIME, SHAP, Scikit-Surprise (SVD), PySpark MLlib (ALS)
+- **NLP, GenAI & LLMOps**: Google Gemini, Groq, Hugging Face Transformers, Sentence-Transformers (SBERT), OpenAI CLIP, LangChain, LangGraph, LlamaIndex, CrewAI, LiteLLM, Arize Phoenix, FAISS, Pinecone, ChromaDB Cloud, Neo4j
+- **Backend, Web & UI**: FastAPI, Flask, Streamlit, Gradio, React, Next.js, Tailwind CSS
+- **Automation, Bots & DevOps**: python-telegram-bot (PTB), Prefect, Docker, Gmail API, Google Calendar API, Google Tasks API, Google Sheets API
+- **Databases & BI**: MySQL, PostgreSQL (AsyncPG / SQLAlchemy), SQLite, Supabase, Tableau, Power BI, Looker Studio, Microsoft Excel, Matplotlib, Seaborn
+
+## 3. Complete 65-Project Catalog
+
+### A. GenAI, RAG & Interactive Applications (19 Projects)
+1. **YouTube Vector RAG (LlamaIndex)** (`https://github.com/viochris/youtube-vector-rag-llamaindex`) - CLI YouTube transcript RAG pipeline using ChromaDB Cloud dense vector retrieval, Cross-Encoder reranking, LiteLLM Gemini routing, PostgreSQL chat memory, and Arize Phoenix tracing.
+2. **YouTube Graph RAG (LlamaIndex)** (`https://github.com/viochris/youtube-graph-rag-llamaindex`) - Property-graph RAG engine extracting entity-relation triplets from YouTube transcripts into Neo4j with Cross-Encoder reranking, PostgreSQL memory, and Arize Phoenix observability.
+3. **YouTube Hybrid RAG (LlamaIndex)** (`https://github.com/viochris/youtube-hybrid-rag-llamaindex`) - Hybrid RAG architecture fusing ChromaDB dense vector search and Neo4j knowledge-graph traversal via Reciprocal Rank Fusion and Cross-Encoder reranking.
+4. **NL2SQL All-Schema Engine** (`https://github.com/viochris/nl2sql-all-schema-llamaindex`) - Natural-language-to-SQL query and chat scripts injecting full relational table schemas into NLSQLTableQueryEngine with PostgreSQL conversation history and Phoenix tracing.
+5. **NL2SQL Selected-Schema Engine** (`https://github.com/viochris/nl2sql-selected-schema-llamaindex`) - Token-efficient Text-to-SQL pipeline using ObjectIndex, SQLTableNodeMapping, and ChromaDB Cloud to retrieve only the top-3 relevant table schemas before SQL generation.
+6. **LlamaIndex RAG & Agents Lab** (`https://github.com/viochris/llamaindex-rag-agents-practice`) - Six progressive scripts covering ingestion, chunking, ChromaDB vector persistence, SentenceTransformer reranking, conversational memory, FunctionAgent, and ReActAgent workflows.
+7. **Website Reader RAG Chatbot** (`https://github.com/viochris/website-reader-rag-chatbot`) - Interactive CLI assistant that scrapes live web articles via TrafilaturaWebReader, indexes embeddings in ChromaDB Cloud, reranks chunks, and persists chat history in PostgreSQL.
+8. **YouTube Multimodal RAG Chatbot** (`https://github.com/viochris/youtube-multimodal-rag-chatbot`) - Multimodal video QA system combining yt-dlp audio transcripts and OpenCV frame extraction with dual Gemini text and CLIP image embeddings in MultiModalVectorStoreIndex.
+9. **RAG Token & Cost Benchmark** (`https://github.com/viochris/rag-token-benchmark-vector-graph-hybrid`) - Comparative evaluation suite measuring prompt/completion tokens, latency, and USD cost across Vector, Graph, and Hybrid RAG pipelines using TokenCountingHandler and Arize Phoenix.
+10. **InsightSQL (LangGraph Engine)** (`https://github.com/viochris/InsightSQL-LangGraph-Engine-Web`, Live Demo: `https://insightsql-langgraph-engine-web.streamlit.app/`) - SQL agent using graph architecture with cyclic reasoning and error self-correction.
+11. **InsightData (AI Analyst)** (`https://github.com/viochris/insight-data-ai-analyst`, Live Demo: `https://insight-data-ai-analyst.streamlit.app/`) - Automated data scientist agent that inspects CSV/Excel files and generates visualizations.
+12. **InsightSQL (ReAct Engine)** (`https://github.com/viochris/InsightSQL-ReAct-Engine`, Live Demo: `https://insightsql-react-engine.streamlit.app/`) - Database assistant using ReAct architecture for transparent and self-correcting SQL queries.
+13. **InsightSQL (Simple)** (`https://github.com/viochris/InsightSQL-Simple`, Live Demo: `https://insightsql-simple.streamlit.app/`) - Streamlined Text-to-SQL assistant using standard SQL agent mapping.
+14. **Auto README Generator (CrewAI)** (`https://github.com/viochris/auto-readme-generator`, Live Demo: `https://crewai-auto-readme-generator.streamlit.app/`) - Multi-agent documentation generator that parses Python scripts and Jupyter Notebooks (.py and .ipynb) to synthesize structured GitHub README files.
+15. **Chat with Vio (Portfolio AI)** (`https://github.com/viochris/personal-ai-assistant`, Live Demo: `https://vio-personal-ai-assistant.streamlit.app/`) - Personalized RAG assistant that answers questions from professional profile data.
+16. **DocuTalk-AI (Smart RAG)** (`https://github.com/viochris/DocuTalk-AI`, Live Demo: `https://docutalk-ai-rag.streamlit.app/`) - Document assistant using ReAct agents to choose between local retrieval or web search.
+17. **DocuFlow-AI (Fast RAG)** (`https://github.com/viochris/DocuFlow-AI`, Live Demo: `https://docuflow-ai-rag.streamlit.app/`) - Fast RAG pipeline using ConversationalRetrievalChain for rapid document QA.
+18. **DocuChat AI (Long Context)** (`https://github.com/viochris/Gemini-Long-Context-Chat`) - Analyzes full PDF documents without chunking using Gemini 2.5 Flash long-context windows.
+19. **AI Recipe Generator** (`https://github.com/viochris/ai-recipe-generator`, Live Demo: `https://ai-recipe-generator-6fajjxbnjpb2dcnqjvvvvy.streamlit.app/`) - Cooking assistant that detects ingredients from photos and generates step-by-step recipes.
+
+### B. Backend & Deployment / MLOps (6 Projects)
+20. **Maternal Health Risk API** (`https://github.com/viochris/Maternal-Health-Risk-API`) - Containerized clinical REST API serving real-time maternal risk classification (Low, Mid, High) and instance-level LIME feature explanations from 6 vital signs.
+21. **Resume Scanner API** (`https://github.com/viochris/resume-scanner-api`, API Docs: `https://silvio0-resume-scanner.hf.space/docs`) - Dual-engine ATS API using TF-IDF and SBERT for resume-to-job matching.
+22. **Portfolio API (Backend)** (`https://github.com/viochris/silvio-portfolio-api`, API Docs: `https://silvio0-silvio-portfolio-api.hf.space/docs`) - Headless RAG engine serving portfolio data with structured JSON responses.
+23. **Stuntify API (MLOps)** (`https://github.com/viochris/Stuntify-API`, API Docs: `https://silvio0-stunting-api.hf.space/docs`) - FastAPI inference service for real-time stunting risk prediction.
+24. **Insightify API (NLP)** (`https://github.com/viochris/Insightify-Sentiment-API`, API Docs: `https://silvio0-simple-sentiment-analyst.hf.space/docs`) - Bilingual sentiment analytics API supporting English and Indonesian text using RoBERTa.
+25. **Stunting Prediction API (Flask)** (`https://github.com/viochris/API-Stuntify`, Live API: `https://silvio0-api-stuntify.hf.space`) - Flask REST API for real-time stunting risk inference.
+
+### C. Automation & Orchestration (15 Projects)
+26. **NovaCal AI (Stateful Telegram)** (`https://github.com/viochris/telegram-calendar-ai-bot`)
+27. **NovaCal AI (Ephemeral Telegram)** (`https://github.com/viochris/NovaCal-Ephemeral-AI`)
+28. **NovaCal AI (Stateless Telegram)** (`https://github.com/viochris/NovaCal-AI-Telegram`)
+29. **NovaCal AI (Streamlit Edition)** (`https://github.com/viochris/NovaCal-AI-Streamlit`, Live Demo: `https://novacal-ai-app.streamlit.app/`)
+30. **NovaTasks AI (Ephemeral Telegram)** (`https://github.com/viochris/NovaTasks-AI-Telegram`)
+31. **NovaMail AI (Gmail Autoresponder)** (`https://github.com/viochris/NovaMail-AI-Autoresponder`)
+32. **Daily Agenda Broadcaster** (`https://github.com/viochris/auto-daily-scheduler`)
+33. **AI Vision Generator** (`https://github.com/viochris/telegram-image-generator`)
+34. **Conversational AI Interface** (`https://github.com/viochris/qna-telegram-bot-ptb`)
+35. **Daily AI News Digest** (`https://github.com/viochris/daily-ai-news-digest`)
+36. **Automated Image Pipeline** (`https://github.com/viochris/automated-image-pipeline`)
+37. **Daily Prompt Generator** (`https://github.com/viochris/daily-prompt-generator-bot`)
+38. **Batch Prompt Generator** (`https://github.com/viochris/daily-batch-prompt-bot`)
+39. **Daily Quote Automator** (`https://github.com/viochris/trial-simple-quote-bot`)
+40. **Daily Quote Bot (PTB)** (`https://github.com/viochris/daily-quote-bot-ptb`)
+
+### D. Data Science: Applied ML & Model Building (14 Projects)
+41. **Medical Cost Prediction** (`https://github.com/viochris/medical-cost-prediction`, Kaggle: `https://www.kaggle.com/code/viochristian/medical-cost-prediction`) - Benchmarks 9 regressors with Grid/Random/Optuna tuning, LightGBM quantile prediction intervals, and LIME local explanations.
+42. **Movie Recommendation (SVD)** (`https://github.com/viochris/movie-recommendation-svd`, Kaggle: `https://www.kaggle.com/code/viochristian/movie-recomendation-svd`) - Collaborative filtering on 100,836 MovieLens ratings using Scikit-Surprise SVD.
+43. **Movie Recommendation (PySpark ALS)** (`https://github.com/viochris/movie-recommendation-als`, Kaggle: `https://www.kaggle.com/code/viochristian/movie-recomendation-als`) - Distributed collaborative filtering using Apache Spark MLlib Alternating Least Squares (ALS).
+44. **Maternal Health Risk Research** (`https://github.com/viochris/Maternal-Health-Risk-Model-Research`) - Evaluates 6 classifiers across 6 class-imbalance techniques on UCI Maternal Health Risk data with LIME.
+45. **Maternal Health Risk (Streamlit)** (`https://github.com/viochris/Maternal-Health-Risk-Streamlit`) - Dual-architecture Streamlit clinical risk app (monolithic CatBoost+LIME vs FastAPI client).
+46. **Maternal Health Risk (Gradio)** (`https://github.com/viochris/Maternal-Health-Risk-Gradio`) - Dual-architecture Gradio clinical risk triage interface.
+47. **Maternal Health Binary Triage (LIME)** (`https://github.com/viochris/maternal_health_risk_streamlit_2_target_lime`, Live Demo: `https://maternal-health-risk-2-target-lime.streamlit.app/`) - Binary maternal risk screening web app powered by AdaBoost and LIME.
+48. **Depression Risk Prediction** (`https://github.com/viochris/Depression-Prediction`, Live Demo: `https://depression-prediction-form.streamlit.app/`) - Mental health screening app using Scikit-Learn and imbalanced-learn.
+49. **SpendSense (Financial AI)** (`https://github.com/viochris/Streamlit-SpendSense`, Live Demo: `https://app-spend-sense.streamlit.app/`) - Conversational finance app with Gemini Vision OCR receipt scanning.
+50. **Streamlit Resume Scanner** (`https://github.com/viochris/streamlit-resume-scanner`, Live Demo: `https://app-resume-scanner.streamlit.app/`) - Dual-engine CV analyzer using SBERT and TF-IDF.
+51. **Diabetes Prediction (Robust)** (`https://github.com/viochris/Diabetes-prediction-fine-tuned-project`) - Leak-free ML pipeline applying SMOTE strictly after train-test splitting.
+52. **Stunting Analysis** (`https://github.com/viochris/Stunting-prediction-project`) - Categorical imbalance handling with SMOTENC and decision-path interpretability.
+53. **Review Sentiment Analyzer** (`https://github.com/viochris/Simple-Sentiment-Analysis`) - NLP sentiment classifier powered by Hugging Face transformers.
+54. **Diabetes Paper Replication** (`https://github.com/viochris/Diabetes-prediction-project`) - Empirical replication study benchmarking published diabetes prediction methodology.
+
+### E. Data Analytics & Visualization (2 Projects)
+55. **Supermarket Sales Dashboard** (`https://public.tableau.com/views/SupermarketSalesDashboard_17081427139270/Dashboard1`)
+56. **Bike Sales Executive Dashboard** (`https://public.tableau.com/views/BikeSalesDashboard_17081369078430/Dashboard1`)
+
+### F. Vibe Coding Full-Stack & Frontend Projects (7 Projects)
+57. **ForeverCard (Anniversary Experience)** (`https://github.com/viochris/forevercard-anniversary`, Live Demo: `https://forevercard-anniversary.vercel.app/`)
+58. **WishBox (Interactive Birthday Card)** (`https://github.com/viochris/wishbox-birthday-card`, Live Demo: `https://wishbox-birthday-card.vercel.app/`)
+59. **LinkNest (Full-Stack Link-in-Bio)** (`https://github.com/viochris/linknest-link-in-bio`, Live Demo: `https://linknest-link-in-bio.vercel.app/`)
+60. **AutoVista Motors (Dealership Showcase)** (`https://github.com/viochris/autovista-car-dealership`, Live Demo: `https://autovista-car-dealership.vercel.app/`)
+61. **Hanami (Japan Destination Showcase)** (`https://github.com/viochris/hanami-japan-showcase`, Live Demo: `https://hanami-japan-showcase.vercel.app/`)
+62. **Skycast (Ambient Weather Dashboard)** (`https://github.com/viochris/skycast-weather-dashboard`, Live Demo: `https://skycast-weather-dashboard-one.vercel.app/`)
+63. **Botanica AI (Plant Care Companion)** (`https://github.com/viochris/botanica-ai`, Live Demo: `https://botanica-ai-mu.vercel.app/`)
+
+### G. Experimental & Fun Projects (2 Projects)
+64. **Conversational Persona** (`https://github.com/viochris/Simple-AI-Girlfriend`)
+65. **Real-time Chat Socket** (`https://github.com/viochris/chat-group`)
+
+## 4. Published Technical Writing (Medium - @silviochristian)
+1. **Before You Use AI, Understand This First** (`https://medium.com/@silviochristian/before-you-use-ai-understand-this-first-875525807755`)
+   - **Focus**: GenAI Literacy & Prompt Engineering Foundations (Part 1)
+   - **Summary**: Explains how Large Language Models (ChatGPT, Gemini, Claude) generate text via next-token probability prediction from frozen training parameters, how subword tokenization and input/output/reasoning token budgets work, and how to handle context window limits, hallucinations, temperature tuning, and knowledge cutoffs.
+2. **Why Label Encoding is Ruining Your ML Models (And How to Fix It)** (`https://medium.com/@silviochristian/why-label-encoding-is-ruining-your-ml-models-and-how-to-fix-it-d83eab34e7f3`)
+   - **Focus**: Feature Engineering & Tabular Machine Learning Architecture
+   - **Summary**: Demonstrates why assigning arbitrary integers via Label Encoding to nominal categorical variables injects false ordinal hierarchy into regression and neural network models, and walks through One-Hot Encoding with Pandas and Scikit-Learn alongside remedies for the Curse of Dimensionality and the Dummy Variable Trap.
+

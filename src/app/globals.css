@@ -4,43 +4,145 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%; /* Pure Black Background */
-    --foreground: 0 0% 100%; /* Pure White Text */
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 217 91% 60%;
+    --background: 230 35% 4.5%;
+    --foreground: 220 25% 98%;
+    --card: 230 28% 7.5%;
+    --card-foreground: 220 25% 98%;
+    --popover: 230 28% 7.5%;
+    --popover-foreground: 220 25% 98%;
+    --primary: 268 92% 68%;
+    --primary-glow: 322 88% 66%;
+    --accent-warm: 40 96% 70%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 85%; /* Bright enough for readability */
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 217 91% 60%;
-    --radius: 1rem;
+    --secondary: 232 24% 12%;
+    --secondary-foreground: 220 20% 98%;
+    --muted: 232 24% 12%;
+    --muted-foreground: 220 16% 72%;
+    --accent: 232 22% 16%;
+    --accent-foreground: 220 20% 98%;
+    --destructive: 0 62.8% 35%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 232 22% 17%;
+    --input: 232 22% 17%;
+    --ring: 268 92% 68%;
+    --radius: 1.1rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground selection:bg-primary/30 font-body antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    letter-spacing: -0.004em;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-headline;
+  }
+
+  h1 {
+    letter-spacing: -0.025em;
+  }
+
+  h2, h3, h4 {
+    letter-spacing: -0.012em;
+  }
+
+  /* Luminous multi-tone jewel gradient for accented heading words */
+  h1 > span.text-primary,
+  h2 > span.text-primary {
+    background-image: linear-gradient(
+      125deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-glow)) 55%,
+      hsl(var(--accent-warm)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  a[href],
+  button:not(:disabled),
+  summary,
+  select,
+  label[for],
+  [role="button"],
+  [role="tab"],
+  [role="switch"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
+  .surface-card {
+    @apply bg-card/90 border border-border/80;
+    background-image: linear-gradient(
+      155deg,
+      hsl(var(--primary) / 0.07) 0%,
+      hsl(var(--card) / 0.92) 42%,
+      hsl(var(--primary-glow) / 0.05) 100%
+    );
+    box-shadow:
+      0 14px 36px -16px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .bg-card {
+    background-image: linear-gradient(
+      155deg,
+      hsl(var(--primary) / 0.08) 0%,
+      hsl(var(--card) / 0.93) 45%,
+      hsl(var(--primary-glow) / 0.06) 100%
+    );
+    box-shadow:
+      0 14px 38px -16px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .bg-card:hover {
+    box-shadow:
+      0 20px 46px -16px hsl(var(--primary) / 0.22),
+      0 0 28px -10px hsl(var(--primary-glow) / 0.18),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  }
+
+  .bg-primary {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary-glow)) 100%
+    );
+    box-shadow: 0 8px 24px -6px hsl(var(--primary) / 0.45);
+  }
+
+  .glass-nav {
+    @apply bg-background/85 backdrop-blur-lg border-b border-border/80;
+    box-shadow: 0 10px 30px -12px hsl(var(--primary) / 0.14);
+  }
+
   .glass {
-    @apply bg-background/60 backdrop-blur-md border border-border;
+    @apply bg-card/90 border border-border/80;
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  @apply bg-background text-foreground selection:bg-primary/30 font-body antialiased;
-}
-
-h1, h2, h3, h4 {
-  @apply font-headline;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

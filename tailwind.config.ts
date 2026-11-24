@@ -12,6 +12,7 @@ export default {
       fontFamily: {
         body: ['var(--font-inter)', 'sans-serif'],
         headline: ['var(--font-space-grotesk)', 'sans-serif'],
+        editorial: ['var(--font-playfair)', 'serif'],
         code: ['var(--font-source-code-pro)', 'monospace'],
       },
       colors: {
@@ -56,13 +57,17 @@ export default {
       },
       animation: {
         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'typing': 'typing 1s infinite',
-        'marquee': 'marquee 25s linear infinite',
-        'fade-in': 'fade-in 0.5s ease-out forwards',
-        'slide-up': 'slide-up 0.5s ease-out forwards',
+        'typing': 'typing 1s step-end infinite',
+        'marquee': 'marquee 30s linear infinite',
+        'fade-in': 'fade-in 0.35s ease-out forwards',
+        'slide-up': 'slide-up 0.4s ease-out forwards',
         'float': 'float 3s ease-in-out infinite',
       },
       keyframes: {
+        'typing': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
         'pulse-glow': {
           '0%, 100%': { opacity: '1', transform: 'scale(1)' },
           '50%': { opacity: '.5', transform: 'scale(1.05)' },

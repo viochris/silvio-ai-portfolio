@@ -1,125 +1,436 @@
 "use client"
 
-import React, { useEffect } from 'react';
-import { Languages, Brain, Code, Database, Cloud, Award, Sparkles, Wrench, ShieldCheck, GraduationCap, ChevronRight, Rocket, Zap } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Languages,
+  Brain,
+  Code,
+  Database,
+  Cloud,
+  Award,
+  Sparkles,
+  Wrench,
+  GraduationCap,
+  ChevronRight,
+  Rocket,
+  Zap,
+  Briefcase,
+  ExternalLink,
+  Github,
+  CheckCircle2,
+  Workflow,
+} from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
+import { ParallaxLayer } from '@/components/Parallax';
+import { TechIcon } from '@/components/TechIcon';
+import { IssuerLogo } from '@/components/IssuerLogo';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
 import { AllCredentialsPage } from '@/components/AllCredentialsPage';
 import { useNavigation } from '@/context/NavigationContext';
 
+const roleProfiles = [
+  {
+    id: "ai-engineer",
+    role: "AI & LLM Engineer",
+    tagline: "Stateful Agent Orchestration, Multi-Agent Workflows & LLMOps",
+    fitSummary:
+      "Designs and deploys autonomous AI agents using LangGraph, CrewAI, and LangChain with cyclic self-correction, structured JSON outputs, cascaded model fallback, and OpenTelemetry tracing via Arize Phoenix and LiteLLM.",
+    coreStack: [
+      "Python",
+      "Google Gemini",
+      "LangGraph",
+      "CrewAI",
+      "LangChain",
+      "LlamaIndex",
+      "LiteLLM",
+      "Phoenix Arize",
+      "Groq",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "Express",
+      "Streamlit",
+    ],
+    projects: [
+      {
+        name: "InsightSQL (LangGraph Engine)",
+        desc: "Cyclic SQL reasoning agent with real-time schema inspection and error self-correction.",
+        github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
+        demo: "https://insightsql-langgraph-engine-web.streamlit.app/",
+      },
+      {
+        name: "Auto-README Generator (CrewAI)",
+        desc: "2-node autonomous CrewAI pipeline parsing .py and .ipynb files into technical documentation.",
+        github: "https://github.com/viochris/auto-readme-generator",
+        demo: "https://crewai-auto-readme-generator.streamlit.app/",
+      },
+      {
+        name: "Botanica AI (Plant Care Companion)",
+        desc: "Full-stack React 19 + Express multimodal Gemini Vision app with 3-tier model fallback.",
+        github: "https://github.com/viochris/botanica-ai",
+        demo: "https://botanica-ai-mu.vercel.app/",
+      },
+      {
+        name: "SpendSense (Financial AI)",
+        desc: "Multimodal receipt OCR and conversational Pandas financial ledger.",
+        github: "https://github.com/viochris/Streamlit-SpendSense",
+        demo: "https://app-spend-sense.streamlit.app/",
+      },
+    ],
+    credentials: [
+      {
+        title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+        issuer: "Oracle",
+        link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=40E9CE3B4043AABCE1D5A50A49B186938C1CA875CE938837F73EAA2D40B3FE4F",
+      },
+      {
+        title: "Generative AI: Prompt Engineering Basics",
+        issuer: "IBM",
+        link: "https://www.coursera.org/account/accomplishments/verify/KK8QSSBWX0BO",
+      },
+      {
+        title: "Code Generation and Optimization Using IBM Granite",
+        issuer: "IBM",
+        link: "https://www.credly.com/badges/85551651-e483-41e7-8395-f0b63f41f5c4/linked_in_profile",
+      },
+    ],
+  },
+  {
+    id: "nlp-rag",
+    role: "NLP & RAG Specialist",
+    tagline: "Vector, Graph & Hybrid Retrieval with Cross-Encoder Reranking",
+    fitSummary:
+      "Builds grounded Retrieval-Augmented Generation and semantic NLP systems across ChromaDB, Neo4j Property Graphs, FAISS, and Pinecone, benchmarked for token efficiency and reranked with Hugging Face Cross-Encoders and SBERT.",
+    coreStack: [
+      "Python",
+      "LlamaIndex",
+      "ChromaDB",
+      "Neo4j",
+      "FAISS",
+      "Pinecone",
+      "Hugging Face",
+      "LangChain",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "LiteLLM",
+      "Phoenix Arize",
+      "Trafilatura",
+      "FastAPI",
+    ],
+    projects: [
+      {
+        name: "YouTube Hybrid RAG (ChromaDB + Neo4j)",
+        desc: "Reciprocal Rank Fusion over vector embeddings and LLM-extracted Neo4j knowledge graph triplets.",
+        github: "https://github.com/viochris/youtube-hybrid-rag-llamaindex",
+      },
+      {
+        name: "RAG Token & Cost Benchmark Lab",
+        desc: "Empirical token and USD cost comparison across Vector, Graph, and Hybrid RAG architectures.",
+        github: "https://github.com/viochris/rag-token-benchmark-vector-graph-hybrid",
+      },
+      {
+        name: "Resume Scanner API (SBERT + TF-IDF)",
+        desc: "Dual-engine FastAPI service combining strict TF-IDF keyword matching with SBERT semantic similarity.",
+        github: "https://github.com/viochris/resume-scanner-api",
+        demo: "https://silvio0-resume-scanner.hf.space/docs",
+      },
+      {
+        name: "Rule-Grounded RAG Bot",
+        desc: "Citation-enforced document Q&A pipeline designed to minimize ungrounded hallucinations.",
+        github: "https://github.com/viochris/Rule-Grounded-RAG-Bot",
+      },
+    ],
+    credentials: [
+      {
+        title: "Oracle AI Vector Search Certified Professional",
+        issuer: "Oracle",
+        link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=4813172AB028B1405B6E5A45DB8E4BE52AD4CE92F78A90BAE7FDFD4F43D6C909",
+      },
+      {
+        title: "Data Classification and Summarization Using IBM Granite",
+        issuer: "IBM",
+        link: "https://www.credly.com/badges/1cbf6431-f4e9-4ab6-8af5-fb42dcbcd43f/linked_in_profile",
+      },
+      {
+        title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+        issuer: "Oracle",
+        link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=40E9CE3B4043AABCE1D5A50A49B186938C1CA875CE938837F73EAA2D40B3FE4F",
+      },
+    ],
+  },
+  {
+    id: "data-scientist",
+    role: "Data Scientist (Tabular & ML)",
+    tagline: "Feature Engineering, Predictive Modeling & Automated EDA",
+    fitSummary:
+      "Executes end-to-end machine learning pipelines from statistical hypothesis testing and stateful Scikit-Learn feature encoding to supervised classification, regression, clustering, and interactive BI dashboards.",
+    coreStack: [
+      "Python",
+      "SQL",
+      "Pandas",
+      "NumPy",
+      "Scikit-Learn",
+      "XGBoost",
+      "CatBoost",
+      "LightGBM",
+      "Optuna",
+      "LIME & SHAP",
+      "TensorFlow",
+      "Keras",
+      "Tableau",
+      "Gradio",
+    ],
+    projects: [
+      {
+        name: "InsightData (AI Data Scientist Agent)",
+        desc: "ReAct Pandas agent that profiles CSV/Excel datasets, cleans missing values, and plots charts.",
+        github: "https://github.com/viochris/insight-data-ai-analyst",
+        demo: "https://insight-data-ai-analyst.streamlit.app/",
+      },
+      {
+        name: "Credit Card Fraud Detection",
+        desc: "Imbalanced classification pipeline evaluating precision-recall trade-offs on financial transactions.",
+        github: "https://github.com/viochris/credit-card-fraud-detection",
+      },
+      {
+        name: "Data Science Salary Predictor",
+        desc: "End-to-end regression model and interactive salary estimation web app.",
+        github: "https://github.com/viochris/ds-salary-predictor",
+        demo: "https://ds-salary-predictor.streamlit.app/",
+      },
+      {
+        name: "E-Commerce Analytics Dashboard",
+        desc: "Executive Tableau and Python customer behavior and revenue performance analytics.",
+        github: "https://github.com/viochris/ecommerce-analytics-dashboard",
+      },
+    ],
+    credentials: [
+      {
+        title: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional",
+        issuer: "Oracle",
+        link: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=50CEB7D6BF8197A8FA3F0E350EAC9B23927763A843112293AE7418E973E631F1",
+      },
+      {
+        title: "IBM Machine Learning Specialization (6-Course Credential)",
+        issuer: "IBM",
+        link: "https://www.coursera.org/account/accomplishments/specialization/DK8C6XS82OR3",
+      },
+      {
+        title: "Statistics for Data Science with Python",
+        issuer: "IBM",
+        link: "https://www.coursera.org/account/accomplishments/verify/WQD6NXX2GWIX",
+      },
+    ],
+  },
+  {
+    id: "backend-automation",
+    role: "Backend & Automation Engineer",
+    tagline: "FastAPI Microservices, ETL Pipelines & Telegram Bot Systems",
+    fitSummary:
+      "Packages AI and data workflows into stateless REST APIs, scheduled Prefect ETL pipelines, containerized Docker services, and real-time Telegram bots with rate limiting and input validation.",
+    coreStack: [
+      "Python",
+      "SQL",
+      "FastAPI",
+      "Flask",
+      "Express",
+      "PostgreSQL",
+      "Supabase",
+      "MySQL",
+      "SQLite",
+      "SQLAlchemy",
+      "Prefect",
+      "Docker",
+      "Telegram Bot API",
+      "Google Apps Script",
+    ],
+    projects: [
+      {
+        name: "Resume Scanner FastAPI Service",
+        desc: "Production-deployed FastAPI microservice on Hugging Face Spaces with Swagger OpenAPI docs.",
+        github: "https://github.com/viochris/resume-scanner-api",
+        demo: "https://silvio0-resume-scanner.hf.space/docs",
+      },
+      {
+        name: "Toxicity Shield API",
+        desc: "Real-time content moderation REST API for detecting toxic and abusive user comments.",
+        github: "https://github.com/viochris/toxicity-shield-api",
+        demo: "https://silvio0-toxicity-shield-api.hf.space/docs",
+      },
+      {
+        name: "Automated Crypto ETL Pipeline",
+        desc: "Scheduled data extraction, transformation, and database loading workflow orchestrated with Prefect.",
+        github: "https://github.com/viochris/crypto-etl-pipeline",
+      },
+      {
+        name: "AI Financial Tracker Telegram Bot",
+        desc: "Conversational Telegram bot logging daily expenses and querying financial summaries.",
+        github: "https://github.com/viochris/ai-financial-tracker-bot",
+      },
+    ],
+    credentials: [
+      {
+        title: "Structured Query Language (SQL) Fundamentals",
+        issuer: "Dicoding",
+        link: "https://www.dicoding.com/certificates/2VX35VJQJPYQ",
+      },
+      {
+        title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+        issuer: "Oracle",
+        link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=2B33EA8062DFC9C8C1FE58518F6E32D13E126A9A8F2482ADFACAA2B47FB491AA",
+      },
+      {
+        title: "Practical AI for Productivity",
+        issuer: "Dicoding",
+        link: "https://www.dicoding.com/certificates/4EXGVW86DXRL",
+      },
+    ],
+  },
+];
+
 const skills = [
   { name: "GenAI", value: 95 },
-  { name: "Vibe Coding", value: 82 },
   { name: "NLP", value: 88 },
+  { name: "Automation", value: 85 },
   { name: "Data", value: 85 },
   { name: "ML", value: 82 },
+  { name: "Vibe Coding", value: 82 },
+  { name: "Deployment", value: 78 },
   { name: "Backend", value: 75 },
-  { name: "Cloud", value: 50 }
+  { name: "Cloud", value: 50 },
 ];
 
 const techStacks = [
   {
     category: "Languages",
-    badges: [
-      { name: "Python", url: "https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" },
-      { name: "SQL", url: "https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" }
-    ]
+    items: ["Python", "SQL", "TypeScript"],
   },
   {
-    category: "Data Science & Machine Learning",
-    badges: [
-      { name: "Pandas", url: "https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" },
-      { name: "NumPy", url: "https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" },
-      { name: "Scikit-Learn", url: "https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" },
-      { name: "TensorFlow", url: "https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" }
-    ]
+    category: "Data Science, ML & XAI",
+    items: [
+      "Pandas",
+      "NumPy",
+      "Scikit-Learn",
+      "XGBoost",
+      "CatBoost",
+      "LightGBM",
+      "TensorFlow",
+      "Keras",
+      "Optuna",
+      "LIME & SHAP",
+    ],
   },
   {
     category: "NLP, GenAI & LLMOps",
-    badges: [
-      { name: "Google Gemini", url: "https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" },
-      { name: "Groq", url: "https://img.shields.io/badge/Groq-F55036?style=for-the-badge" },
-      { name: "Hugging Face", url: "https://img.shields.io/badge/-HuggingFace-FDEE21?style=for-the-badge&logo=HuggingFace&logoColor=black" },
-      { name: "LangChain", url: "https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=LangChain&logoColor=white" },
-      { name: "CrewAI", url: "https://img.shields.io/badge/CrewAI-0769AD?style=for-the-badge&logo=probot&logoColor=white" },
-      { name: "FAISS", url: "https://img.shields.io/badge/FAISS-092E20?style=for-the-badge&logo=meta&logoColor=white" },
-      { name: "Pinecone", url: "https://img.shields.io/badge/Pinecone-000000?style=for-the-badge&logo=pinecone&logoColor=white" }
-    ]
+    items: [
+      "Google Gemini",
+      "Groq",
+      "Hugging Face",
+      "LangChain",
+      "LangGraph",
+      "LlamaIndex",
+      "CrewAI",
+      "LiteLLM",
+      "Phoenix Arize",
+      "FAISS",
+      "Pinecone",
+      "ChromaDB",
+      "OpenCV",
+    ],
   },
   {
-    category: "Web Frameworks & UI",
-    badges: [
-      { name: "Streamlit", url: "https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" },
-      { name: "FastAPI", url: "https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white" },
-      { name: "Flask", url: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" }
-    ]
+    category: "Web Frameworks, UI & Full-Stack",
+    items: [
+      "FastAPI",
+      "Flask",
+      "Streamlit",
+      "Gradio",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Express",
+    ],
+  },
+  {
+    category: "Databases & ORM",
+    items: ["PostgreSQL", "Neo4j", "MySQL", "SQLite", "Supabase", "SQLAlchemy"],
   },
   {
     category: "Automation, Bots & DevOps",
-    badges: [
-      { name: "Telegram", url: "https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" },
-      { name: "Prefect", url: "https://img.shields.io/badge/Prefect-0052FF?style=for-the-badge&logo=prefect&logoColor=white" },
-      { name: "Docker", url: "https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" }
-    ]
+    items: [
+      "Telegram Bot API",
+      "Prefect",
+      "Docker",
+      "Trafilatura",
+      "Google Apps Script",
+    ],
   },
   {
-    category: "Databases",
-    badges: [
-      { name: "MySQL", url: "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" }
-    ]
+    category: "Analytics & Visualization",
+    items: ["Tableau", "Power BI", "Looker Studio", "Microsoft Excel", "Matplotlib", "Seaborn"],
   },
   {
-    category: "Data Analytics & Visualization",
-    badges: [
-      { name: "Tableau", url: "https://img.shields.io/badge/Tableau-E97627?style=for-the-badge&logo=tableau&logoColor=white" },
-      { name: "Power BI", url: "https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" },
-      { name: "Looker Studio", url: "https://img.shields.io/badge/Looker_Studio-4285F4?style=for-the-badge&logo=looker&logoColor=white" },
-      { name: "Excel", url: "https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" },
-      { name: "Matplotlib", url: "https://img.shields.io/badge/Matplotlib-ffffff?style=for-the-badge&logo=matplotlib&logoColor=black" },
-      { name: "Seaborn", url: "https://img.shields.io/badge/Seaborn-444876?style=for-the-badge&logo=python&logoColor=white" }
-    ]
+    category: "Environment & Tooling",
+    items: ["Google Colab", "Kaggle", "Jupyter", "Git", "VS Code", "Google Antigravity", "Firebase Studio"],
   },
-  {
-    category: "Environment & Tools",
-    badges: [
-      { name: "Google Colab", url: "https://img.shields.io/badge/Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white" },
-      { name: "Kaggle", url: "https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=Kaggle&logoColor=white" },
-      { name: "Jupyter", url: "https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white" },
-      { name: "Git", url: "https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" },
-      { name: "VS Code", url: "https://img.shields.io/badge/VS_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" },
-      { name: "Google Antigravity", url: "https://img.shields.io/badge/Google_Antigravity-4285F4?style=for-the-badge&logo=google&logoColor=white" },
-      { name: "Firebase Studio (IDX)", url: "https://img.shields.io/badge/Firebase_Studio_(IDX)-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" }
-    ]
-  }
 ];
 
 const nextRadar = [
-  { name: "LangGraph", url: "https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" },
-  { name: "DSPy", url: "https://img.shields.io/badge/DSPy-2A2B2E?style=for-the-badge&logo=python&logoColor=white" },
-  { name: "LiteLLM", url: "https://img.shields.io/badge/LiteLLM-1A9E38?style=for-the-badge" },
-  { name: "Langfuse", url: "https://img.shields.io/badge/Langfuse-000000?style=for-the-badge" },
-  { name: "Phoenix Arize", url: "https://img.shields.io/badge/Phoenix%20Arize-E15E28?style=for-the-badge" },
-  { name: "FastMCP", url: "https://img.shields.io/badge/FastMCP-009688?style=for-the-badge&logo=fastapi&logoColor=white" },
-  { name: "Google ADK", url: "https://img.shields.io/badge/Google_ADK-4285F4?style=for-the-badge&logo=google&logoColor=white" },
-  { name: "PyTorch", url: "https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" },
-  { name: "BeautifulSoup / BS4", url: "https://img.shields.io/badge/BS4-000000?style=for-the-badge&logo=python&logoColor=white" },
-  { name: "Scrapy", url: "https://img.shields.io/badge/Scrapy-60A817?style=for-the-badge&logo=scrapy&logoColor=white" },
-  { name: "Selenium", url: "https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" },
-  { name: "Playwright", url: "https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" }
+  "DSPy",
+  "Langfuse",
+  "FastMCP",
+  "Google ADK",
+  "PyTorch",
+  "BeautifulSoup (BS4)",
+  "Scrapy",
+  "Selenium",
+  "Playwright",
 ];
 
+function getSkillIcon(name: string) {
+  const cls = "w-5 h-5 text-primary shrink-0";
+  switch (name) {
+    case 'NLP':
+      return <Languages className={cls} aria-hidden="true" />;
+    case 'GenAI':
+      return <Sparkles className={cls} aria-hidden="true" />;
+    case 'Vibe Coding':
+      return <Zap className={cls} aria-hidden="true" />;
+    case 'Automation':
+      return <Workflow className={cls} aria-hidden="true" />;
+    case 'Deployment':
+      return <Rocket className={cls} aria-hidden="true" />;
+    case 'Backend':
+      return <Code className={cls} aria-hidden="true" />;
+    case 'Data':
+      return <Database className={cls} aria-hidden="true" />;
+    case 'ML':
+      return <Brain className={cls} aria-hidden="true" />;
+    case 'Cloud':
+      return <Cloud className={cls} aria-hidden="true" />;
+    default:
+      return null;
+  }
+}
+
 export default function SkillsPage() {
-  const { 
-    activeTab, setActiveTab, 
-    credentialTab, setCredentialTab,
-    isReturning, setIsReturning 
+  const {
+    activeTab,
+    setActiveTab,
+    credentialTab,
+    setCredentialTab,
+    isReturning,
+    setIsReturning,
   } = useNavigation();
+  const [selectedRoleId, setSelectedRoleId] = useState<string>("ai-engineer");
+  const activeRole = roleProfiles.find((r) => r.id === selectedRoleId) || roleProfiles[0];
 
   useEffect(() => {
     if (isReturning) {
-      const timer = setTimeout(() => {
+      const timer = window.setTimeout(() => {
         const targetId = credentialTab === 'Certifications' ? 'certifications-section' : 'badges-section';
         const element = document.getElementById(targetId);
         if (element) {
@@ -129,16 +440,17 @@ export default function SkillsPage() {
         }
         setIsReturning(false);
       }, 100);
-      return () => clearTimeout(timer);
+      return () => window.clearTimeout(timer);
     }
+    return undefined;
   }, [isReturning, credentialTab, setIsReturning]);
 
   if (activeTab === 'Credentials') {
     return (
-      <AllCredentialsPage 
-        setActiveTab={setActiveTab} 
-        credentialTab={credentialTab} 
-        setCredentialTab={setCredentialTab} 
+      <AllCredentialsPage
+        setActiveTab={setActiveTab}
+        credentialTab={credentialTab}
+        setCredentialTab={setCredentialTab}
         setIsReturning={setIsReturning}
       />
     );
@@ -152,164 +464,416 @@ export default function SkillsPage() {
   ];
 
   return (
-    <div className="pt-32 lg:pt-40 pb-24 px-6 md:px-12 lg:px-16 min-h-screen">
-      <section id="skills" className="max-w-7xl mx-auto overflow-hidden">
-        <div className="text-center mb-24 space-y-6">
-          <Badge variant="outline" className="text-primary tracking-[0.3em] uppercase px-4">Core Capabilities</Badge>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tighter text-white">
-            Skill <span className="text-primary">Architecture</span>
-          </h2>
-          <p className="text-white/70 max-w-2xl mx-auto text-lg lg:text-xl font-medium">A technical breakdown of my proficiency in Artificial Intelligence and Data Engineering.</p>
+    <div className="pt-28 lg:pt-36 pb-20 px-4 sm:px-6 lg:px-12 min-h-screen">
+      <section id="skills" className="max-w-7xl mx-auto space-y-24">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <Badge variant="outline" className="text-primary tracking-[0.22em] uppercase px-3.5 border-primary/30 text-[11px]">
+            Technical Overview
+          </Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-headline font-black uppercase tracking-tight text-white">
+            Skills &amp; <span className="text-primary">Tech Stack</span>
+          </h1>
+          <p className="text-zinc-300 max-w-2xl mx-auto text-base sm:text-lg">
+            A structured breakdown of my proficiency across Artificial Intelligence, NLP, and Data Engineering.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-40">
-          <div className="p-8 lg:p-14 glass rounded-[3rem] relative border border-primary/10 shadow-2xl flex justify-center items-center overflow-hidden w-full max-w-[550px] mx-auto aspect-square sm:aspect-auto">
-            <div className="absolute top-8 left-8 text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] text-white hidden sm:block">Expertise Radar Map</div>
-            <div className="w-full flex justify-center">
-              <RadarChart skills={skills} />
-            </div>
-          </div>
-          
-          <div className="grid gap-10 md:gap-12 w-full">
-            {skills.map((s) => (
-              <div key={s.name} className="space-y-4">
-                <div className="flex justify-between items-center font-headline font-bold text-sm md:text-base uppercase tracking-widest text-white">
-                  <span className="flex items-center gap-4">
-                    {s.name === 'NLP' && <Languages className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'GenAI' && <Sparkles className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'Vibe Coding' && <Zap className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'Backend' && <Code className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'Data' && <Database className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'ML' && <Brain className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name === 'Cloud' && <Cloud className="w-5 h-5 text-primary shrink-0" />}
-                    {s.name}
-                  </span>
-                  <span className="text-primary ml-4">{s.value}%</span>
+        {/* Radar & Proficiency Bars */}
+        <ParallaxLayer offsetY={-12} mobileOffsetY={6}>
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+            {/* Left Card: Competency Radar Map */}
+            <div className="p-6 sm:p-8 bg-card rounded-2xl relative border border-border/80 flex flex-col justify-between w-full h-full">
+              <div className="mb-5">
+                <div className="text-[11px] font-bold text-primary uppercase tracking-[0.2em] mb-1">
+                  Radar Visualization
                 </div>
-                <div className="relative pt-1">
-                  <Progress value={s.value} className="h-3.5 bg-white/5 border border-white/10" />
-                </div>
+                <h2 className="text-xl sm:text-2xl font-headline font-bold text-white uppercase tracking-wide">
+                  Core Competency Map
+                </h2>
+                <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+                  Visual balance across my core AI, data science, automation, and deployment domains.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="mb-40 space-y-20">
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="text-primary animate-float">
-                <Wrench className="w-8 h-8" />
+              <div className="p-4 sm:p-6 rounded-xl bg-background/60 border border-border/80 flex-1 flex items-center justify-center w-full">
+                <RadarChart skills={skills} />
               </div>
-              <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white">
-                Tech Stack & Tools
-              </h3>
             </div>
-            <p className="text-white/50 font-medium">The comprehensive ecosystem I use to build intelligent solutions.</p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch auto-rows-fr">
-            {techStacks.map((stack, idx) => (
-              <div key={idx} className="p-8 glass rounded-[2.5rem] border border-white/5 hover:border-primary/20 transition-all group flex flex-col h-full shadow-lg">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-6 min-h-[2.5rem] flex items-start">
-                  {stack.category}
-                </h4>
-                <div className="flex flex-wrap gap-3">
-                  {stack.badges.map((badge, bIdx) => (
-                    <img 
-                      key={bIdx} 
-                      src={badge.url} 
-                      alt={badge.name} 
-                      className="h-7 md:h-8 hover:scale-125 hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_8px_rgba(59,130,246,0.1)]" 
+            {/* Right Card: Domain Proficiency Breakdown */}
+            <div className="p-6 sm:p-8 bg-card rounded-2xl relative border border-border/80 flex flex-col justify-between w-full h-full">
+              <div className="mb-5">
+                <div className="text-[11px] font-bold text-primary uppercase tracking-[0.2em] mb-1">
+                  Proficiency Metrics
+                </div>
+                <h2 className="text-xl sm:text-2xl font-headline font-bold text-white uppercase tracking-wide">
+                  Domain Proficiency Breakdown
+                </h2>
+                <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+                  Relative depth of hands-on implementation across each specialization.
+                </p>
+              </div>
+
+              <div className="p-5 sm:p-6 rounded-xl bg-background/60 border border-border/80 flex-1 flex flex-col justify-between gap-4 w-full">
+                {skills.map((s) => (
+                  <div key={s.name} className="space-y-2">
+                    <div className="flex justify-between items-center font-headline font-bold text-sm uppercase tracking-wider text-white">
+                      <span className="flex items-center gap-3">
+                        {getSkillIcon(s.name)}
+                        <span>{s.name}</span>
+                      </span>
+                      <span className="text-primary tabular-nums">{s.value}%</span>
+                    </div>
+                    <Progress
+                      value={s.value}
+                      aria-label={`${s.name} proficiency ${s.value}%`}
+                      className="h-3 bg-secondary border border-border/80"
                     />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        {/* Interactive Role Fit & Specialization Matcher */}
+        <div id="role-fit-matcher" className="scroll-mt-28 space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="outline" className="text-primary tracking-[0.2em] uppercase px-3.5 py-1 text-[11px] border-primary/30">
+              For Recruiters &amp; Hiring Teams
+            </Badge>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <Briefcase className="w-7 h-7 text-primary shrink-0" aria-hidden="true" />
+              <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+                Role Fit &amp; Specialization Matcher
+              </h2>
+            </div>
+            <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto">
+              Select a target engineering role to inspect my most relevant production repositories, primary tools, and verified credentials for that track.
+            </p>
+          </div>
+
+          {/* Role Selector Tabs */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5" role="tablist" aria-label="Target Engineering Roles">
+            {roleProfiles.map((profile) => {
+              const isSelected = profile.id === activeRole.id;
+              return (
+                <button
+                  key={profile.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setSelectedRoleId(profile.id)}
+                  className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between gap-2 ${
+                    isSelected
+                      ? "bg-primary/15 border-primary shadow-md ring-1 ring-primary/40"
+                      : "bg-card border-border/80 hover:border-primary/40 hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-headline font-bold uppercase tracking-wide text-sm text-white">
+                      {profile.role}
+                    </span>
+                    {isSelected && <CheckCircle2 className="w-4 h-4 text-primary shrink-0" aria-hidden="true" />}
+                  </div>
+                  <p className="text-xs text-zinc-400 leading-snug line-clamp-2">{profile.tagline}</p>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Role Details Card */}
+          <div className="p-6 sm:p-8 bg-card rounded-2xl border border-border/80 space-y-8">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-border/80">
+              <div className="space-y-2 max-w-3xl">
+                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+                  Target Role Alignment
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-headline font-black uppercase text-white tracking-tight">
+                  {activeRole.role}
+                </h3>
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
+                  {activeRole.fitSummary}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 lg:max-w-lg lg:justify-end">
+                {activeRole.coreStack.map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-zinc-100"
+                  >
+                    <TechIcon name={item} className="w-3.5 h-3.5 shrink-0" />
+                    <span>{item}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Top 4 Matching Projects */}
+              <div className="lg:col-span-7 space-y-4">
+                <h4 className="text-xs font-headline font-bold uppercase tracking-wider text-primary">
+                  Top 4 Proof-of-Work Repositories
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {activeRole.projects.map((proj) => (
+                    <div
+                      key={proj.name}
+                      className="p-4 rounded-xl bg-background/70 border border-border/80 hover:border-primary/40 transition-colors flex flex-col justify-between gap-3 h-full"
+                    >
+                      <div className="space-y-1.5">
+                        <div className="text-sm font-headline font-bold text-white leading-snug">
+                          {proj.name}
+                        </div>
+                        <p className="text-xs text-zinc-400 leading-relaxed">
+                          {proj.desc}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 pt-2 border-t border-border/60">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-8 px-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border-border hover:bg-white/5 flex-1"
+                          asChild
+                        >
+                          <a href={proj.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-3.5 h-3.5 mr-1" aria-hidden="true" /> Source
+                          </a>
+                        </Button>
+                        {proj.demo && (
+                          <Button
+                            size="sm"
+                            className="h-8 px-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-primary/15 hover:bg-primary/25 text-primary border border-primary/30 flex-1"
+                            asChild
+                          >
+                            <a href={proj.demo} target="_blank" rel="noopener noreferrer">
+                              Demo <ExternalLink className="w-3 h-3 ml-1" aria-hidden="true" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
+
+              {/* Relevant Verified Certifications */}
+              <div className="lg:col-span-5 space-y-4">
+                <h4 className="text-xs font-headline font-bold uppercase tracking-wider text-primary">
+                  Relevant Verified Certifications
+                </h4>
+                <div className="space-y-3">
+                  {activeRole.credentials.map((cred) => (
+                    <a
+                      key={cred.title}
+                      href={cred.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-4 rounded-xl bg-background/70 border border-border/80 hover:border-primary/40 transition-colors flex items-center gap-3.5 group"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center shrink-0">
+                        <IssuerLogo issuer={cred.issuer} className="w-6 h-6" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs sm:text-sm font-headline font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                          {cred.title}
+                        </div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mt-0.5">
+                          Issued by {cred.issuer}
+                        </div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-zinc-400 group-hover:text-primary shrink-0" aria-hidden="true" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack Grid */}
+        <div className="space-y-10">
+          <ParallaxLayer offsetY={-14} mobileOffsetY={6}>
+            <div className="text-center space-y-3">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+                <Wrench className="w-7 h-7 text-primary shrink-0" aria-hidden="true" />
+                <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+                  Tech Stack &amp; Tools
+                </h2>
+              </div>
+              <p className="text-zinc-400 text-sm sm:text-base">
+                The core ecosystem I use to build, evaluate, and ship intelligent systems.
+              </p>
+            </div>
+          </ParallaxLayer>
+
+          <ParallaxLayer offsetY={14} mobileOffsetY={6}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+              {techStacks.map((stack) => (
+                <div
+                  key={stack.category}
+                  className="p-6 bg-card rounded-2xl border border-border/80 hover:border-primary/40 transition-colors flex flex-col h-full"
+                >
+                  <h3 className="text-xs font-headline font-bold uppercase tracking-wider text-primary mb-4">
+                    {stack.category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {stack.items.map((item) => (
+                      <span
+                        key={item}
+                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/80 px-3 py-1.5 text-xs font-semibold text-zinc-200 hover:border-primary/40 hover:text-white transition-colors"
+                      >
+                        <TechIcon name={item} className="w-4 h-4 shrink-0" />
+                        <span>{item}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ParallaxLayer>
+        </div>
+
+        {/* Next on Radar */}
+        <div className="space-y-8">
+          <div className="text-center space-y-3">
+            <Badge variant="outline" className="text-primary tracking-[0.2em] uppercase px-3.5 py-1 text-[11px] border-primary/30">
+              Currently Exploring
+            </Badge>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <Rocket className="text-primary w-7 h-7 shrink-0" aria-hidden="true" />
+              <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+                Exploring &amp; Next on My Radar
+              </h2>
+            </div>
+            <p className="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto">
+              Tools and frameworks I am currently learning and integrating into upcoming data science and AI agent projects.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 w-full p-6 sm:p-8 rounded-2xl bg-card border border-border/80">
+            {nextRadar.map((tool) => (
+              <span
+                key={tool}
+                className="inline-flex items-center gap-2.5 rounded-xl border border-primary/25 bg-primary/5 px-4 py-2 text-xs sm:text-sm font-semibold text-zinc-100 hover:border-primary/50 transition-colors"
+              >
+                <TechIcon name={tool} className="w-4 h-4 shrink-0" />
+                <span>{tool}</span>
+              </span>
             ))}
           </div>
         </div>
 
-        <div className="mb-40 space-y-16">
-          <div className="text-center space-y-6">
-             <div className="flex flex-col items-center justify-center gap-3">
-                <Badge variant="outline" className="text-primary/70 tracking-[0.2em] uppercase px-4 py-1 text-[10px]">Future Vision</Badge>
-                
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full mb-6">
-                  <div className="flex-shrink-0 animate-float">
-                     <Rocket className="text-primary w-10 h-10" />
-                  </div>
-                  <h3 className="text-center text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-white leading-tight">
-                    Currently Exploring & Next on My Radar
-                  </h3>
-                </div>
-
-             </div>
-             <p className="text-white/50 font-medium max-w-xl mx-auto">Foundations established. Currently targeting these technologies for advanced project integration.</p>
+        {/* Certifications */}
+        <div id="certifications-section" className="space-y-8">
+          <div className="text-center space-y-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <Award className="w-7 h-7 text-primary shrink-0" aria-hidden="true" />
+              <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+                Professional Certifications
+              </h2>
+            </div>
+            <p className="text-zinc-400 text-sm sm:text-base">
+              Verified industry credentials from Oracle, IBM, and Dicoding.
+            </p>
           </div>
-
-          <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto p-10 rounded-[3rem] bg-white/5 border border-white/10">
-             {nextRadar.map((badge, idx) => (
-                <img 
-                   key={idx} 
-                   src={badge.url} 
-                   alt={badge.name} 
-                   className="h-8 md:h-10 hover:scale-125 hover:brightness-110 transition-all duration-300 shadow-xl" 
-                />
-             ))}
-          </div>
-        </div>
-
-        <div id="certifications-section" className="mb-40">
-          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Professional Certifications</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch auto-rows-fr">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {diverseCertifications.map((c) => (
-              <div key={c.id} className="p-8 md:p-10 glass rounded-[2rem] border border-white/10 flex items-center gap-6 sm:gap-8 hover:border-primary/50 transition-all group shadow-xl h-full">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                  <Award className="w-6 h-6" />
+              <div
+                key={c.id}
+                className="p-6 bg-card rounded-2xl border border-border/80 flex items-center gap-5 hover:border-primary/40 transition-colors h-full"
+              >
+                <div className="relative w-14 h-14 rounded-xl bg-background border border-border/80 flex items-center justify-center shrink-0">
+                  <IssuerLogo issuer={c.issuer} className="w-8 h-8" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-1.5 -right-1.5 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center ring-2 ring-card shadow-sm"
+                  >
+                    <Award className="w-3.5 h-3.5" />
+                  </span>
                 </div>
-                <div className="min-w-0 flex-1 flex flex-col items-start">
-                  <div className="text-lg md:text-xl font-headline font-bold text-white leading-tight min-h-[3.5rem] md:min-h-[4rem] flex items-center">{c.title}</div>
-                  <div className="text-[11px] font-bold uppercase text-white/50 tracking-tighter mt-3">{c.issuer}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-base sm:text-lg font-headline font-bold text-white leading-snug">
+                    {c.title}
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="inline-flex items-center rounded-md border border-primary/25 bg-primary/10 px-2.5 py-0.5 text-[11px] font-bold uppercase text-primary tracking-wider">
+                      {c.issuer}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex justify-center mt-12">
-            <button 
+          <div className="flex justify-center pt-2">
+            <button
+              type="button"
               onClick={() => {
                 setCredentialTab('Certifications');
                 setActiveTab('Credentials');
-              }} 
-              className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
+              }}
+              className="text-primary hover:text-primary/80 font-headline font-bold uppercase tracking-wider text-xs flex items-center gap-1.5 py-2.5 px-4 rounded-xl hover:bg-primary/10 transition-colors"
             >
-              Explore All Certifications <ChevronRight className="w-4 h-4" />
+              Explore All Certifications ({professionalCertifications.length}){' '}
+              <ChevronRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        <div id="badges-section" className="mt-20">
-          <h3 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-widest text-center mb-16 text-white">Course Badges & Specializations</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch auto-rows-fr">
+        {/* Course Badges */}
+        <div id="badges-section" className="space-y-8">
+          <div className="text-center space-y-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <GraduationCap className="w-7 h-7 text-primary shrink-0" aria-hidden="true" />
+              <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-wider text-white">
+                Course Badges &amp; Specializations
+              </h2>
+            </div>
+            <p className="text-zinc-400 text-sm sm:text-base">
+              Specialized coursework badges earned through Coursera and IBM.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {courseBadges.slice(0, 4).map((b) => (
-              <div key={b.id} className="p-6 bg-white/5 rounded-[2rem] border border-white/10 flex flex-col gap-4 hover:border-primary/50 transition-all group shadow-xl h-full">
-                <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors">
-                  <GraduationCap className="w-6 h-6" />
+              <div
+                key={b.id}
+                className="p-6 bg-card rounded-2xl border border-border/80 flex items-center gap-5 hover:border-primary/40 transition-colors h-full"
+              >
+                <div className="relative w-14 h-14 rounded-xl bg-background border border-border/80 flex items-center justify-center shrink-0">
+                  <IssuerLogo issuer={b.issuer} className="w-8 h-8" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-1.5 -right-1.5 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center ring-2 ring-card shadow-sm"
+                  >
+                    <GraduationCap className="w-3.5 h-3.5" />
+                  </span>
                 </div>
-                <div className="min-w-0 flex flex-col items-start">
-                  <div className="text-sm font-bold text-white mb-2 leading-tight min-h-[2.5rem] md:min-h-[3rem] flex items-center">{b.title}</div>
-                  <div className="text-[10px] font-bold uppercase text-white/30 tracking-widest">{b.issuer}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-base sm:text-lg font-headline font-bold text-white leading-snug">
+                    {b.title}
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="inline-flex items-center rounded-md border border-primary/25 bg-primary/10 px-2.5 py-0.5 text-[11px] font-bold uppercase text-primary tracking-wider">
+                      {b.issuer}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex justify-center mt-12">
-            <button 
+          <div className="flex justify-center pt-2">
+            <button
+              type="button"
               onClick={() => {
                 setCredentialTab('Badges');
                 setActiveTab('Credentials');
-              }} 
-              className="text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs flex items-center gap-2 transition-all hover:gap-4"
+              }}
+              className="text-primary hover:text-primary/80 font-headline font-bold uppercase tracking-wider text-xs flex items-center gap-1.5 py-2.5 px-4 rounded-xl hover:bg-primary/10 transition-colors"
             >
-              Explore All Badges <ChevronRight className="w-4 h-4" />
+              Explore All Badges ({courseBadges.length}){' '}
+              <ChevronRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
