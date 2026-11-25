@@ -119,67 +119,73 @@ const technicalMilestones = [
   {
     year: "2023",
     title: "Web & Coding Foundations",
-    shortSummary: "Started programming from scratch with frontend web development and UI fundamentals.",
+    shortSummary:
+      "Started computer science from scratch in Semester 1, mastering programming logic alongside responsive HTML, CSS, JavaScript, and UI/UX visual hierarchy before branching into data engineering.",
     details: [
-      "Began learning programming fundamentals in Semester 1",
-      "Explored frontend web development with HTML, CSS, and JavaScript",
-      "Studied UI/UX principles and visual hierarchy",
-      "Built clean, responsive web layouts",
+      "Began learning programming fundamentals and algorithmic logic from scratch in Semester 1",
+      "Explored frontend web development with semantic HTML, CSS, and JavaScript",
+      "Studied UI/UX layout principles, spacing, and visual hierarchy",
+      "Built responsive multi-device web layouts as an engineering baseline",
     ],
   },
   {
     year: "Early 2024",
     title: "Data Analytics Entry",
-    shortSummary: "Entered data analytics with SQL querying and Python libraries like Pandas and NumPy.",
+    shortSummary:
+      "Transitioned into data analytics through relational SQL querying and Python wrangling with Pandas and NumPy, focusing on data cleaning, missing-value handling, and exploratory data analysis (EDA).",
     details: [
-      "Learned SQL for querying and shaping relational databases",
-      "Practiced Python data wrangling with Pandas and NumPy",
-      "Studied data cleaning, transformation, and exploratory data analysis (EDA)",
-      "Completed structured analytical exercises on real-world datasets",
+      "Learned SQL for querying, joining, aggregating, and shaping relational databases",
+      "Practiced Python data wrangling with Pandas and NumPy on tabular datasets",
+      "Studied data cleaning, outlier inspection, transformation, and exploratory data analysis (EDA)",
+      "Completed structured analytical exercises across retail and operational datasets",
     ],
   },
   {
     year: "2024",
     title: "BI Tools & Visualization",
-    shortSummary: "Built analytical dashboards across Tableau, Power BI, Looker Studio, and Excel.",
+    shortSummary:
+      "Designed executive business intelligence dashboards across Tableau Public, Microsoft Power BI, Looker Studio, and Excel—turning raw operational CSV datasets into decision-ready KPI visuals.",
     details: [
-      "Designed interactive dashboards in Tableau and Looker Studio",
-      "Built business reporting views with Microsoft Power BI",
-      "Used Microsoft Excel pivot tables and charts for rapid exploration",
-      "Delivered end-to-end workflows from raw CSV data to stakeholder visuals",
+      "Designed interactive executive dashboards in Tableau Public and Looker Studio",
+      "Built multi-dimensional business reporting views with Microsoft Power BI",
+      "Used Microsoft Excel pivot tables and charts for rapid exploratory slicing",
+      "Delivered end-to-end workflows from raw CSV data to stakeholder-ready KPI visuals",
     ],
   },
   {
     year: "Mid 2024",
     title: "ML & Deep Learning",
-    shortSummary: "Explored classical machine learning and neural networks across tabular, vision, and NLP.",
+    shortSummary:
+      "Trained and benchmarked classical ML models and deep neural networks across tabular data, computer vision, and NLP using Scikit-Learn, PyTorch, and TensorFlow with leak-free validation.",
     details: [
-      "Trained and evaluated classical ML and deep learning models",
+      "Trained and evaluated classical ML ensembles and neural networks",
       "Worked across Tabular Data, Computer Vision, and NLP tasks",
-      "Built reproducible preprocessing and model evaluation pipelines",
-      "Gained hands-on experience with Scikit-Learn and TensorFlow",
+      "Built reproducible preprocessing, SMOTE resampling, and model evaluation pipelines",
+      "Gained hands-on experience with Scikit-Learn, TensorFlow/Keras, and PyTorch",
     ],
   },
   {
     year: "Late 2024 - Early 2025",
     title: "Theoretical Deep Dive",
-    shortSummary: "Strengthened statistical inference, hypothesis testing, and forecasting theory.",
+    shortSummary:
+      "Strengthened mathematical and statistical foundations before implementation—covering T-Test, Z-Test, ANOVA, regression/classification metrics, ARIMA/SARIMAX forecasting, and Hugging Face pipelines.",
     details: [
-      "Focused on mathematical reasoning before implementation",
-      "Studied statistical hypothesis tests: T-Test, Z-Test, and ANOVA",
-      "Mastered evaluation metrics for Regression, Classification, Forecasting, and Clustering",
-      "Explored time-series models (ARIMA, SARIMA, SARIMAX) and Hugging Face pipelines",
+      "Focused on mathematical and statistical reasoning before code implementation",
+      "Studied statistical hypothesis tests including T-Test, Z-Test, and ANOVA",
+      "Mastered evaluation metrics across Regression, Classification, Forecasting, and Clustering",
+      "Explored time-series models (ARIMA, SARIMA, SARIMAX) and Hugging Face transformer pipelines",
     ],
   },
   {
     year: "2025 - Present",
     title: "Project & Agentic Era",
-    shortSummary: "Shipping production ML APIs, stateful AI Agents, and rapid full-stack prototypes.",
+    shortSummary:
+      "Shipping production FastAPI/Docker ML services, stateful LangGraph/LlamaIndex RAG & agent systems, full-stack React 19/Next.js apps, and copyright-registered health software (StuntiFy No. 001072491).",
     details: [
-      "Shifted to end-to-end project delivery with an AI-first mindset",
-      "Built production FastAPI inference services from raw datasets",
-      "Engineered stateful AI Agents and automated Telegram/Prefect workflows",
-      "Applied Vibe Coding to ship responsive frontends alongside backend AI engines",
+      "Shifted to end-to-end production delivery spanning ML APIs, Vector/Graph RAG (ChromaDB & Neo4j), and LLMOps observability (Arize Phoenix)",
+      "Co-created StuntiFy (Registered Copyright No. 001072491, Dec 2025) and validated its toddler stunting detection model using field data collected while volunteering at a local community health post",
+      "Engineered stateful AI Agents (LangGraph, CrewAI, LangChain) and Prefect-orchestrated Telegram/Gmail/Google Workspace automations",
+      "Completed IBM AI Engineering Specialization alongside Oracle AI Vector Search, Generative AI, and Data Science certifications",
     ],
   },
 ];
@@ -188,8 +194,9 @@ const interestData = [
   {
     title: "Natural Language Processing",
     icon: <Brain className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Bridging human language and machine understanding through high-precision NLP pipelines.",
-    details: "Focused on engineering NLP pipelines for entity extraction, semantic similarity, and multilingual sentiment analytics across English and Indonesian text.",
+    desc: "Engineering high-precision bilingual NLP pipelines (English and Indonesian) spanning TF-IDF + SBERT semantic similarity matching, RoBERTa sentiment analytics, and N-Gram keyword extraction.",
+    details:
+      "Focused on building production-ready language processing systems for ATS resume scoring, context-grounded document RAG with FAISS/ChromaDB, cross-encoder reranking, and bilingual RoBERTa sentiment microservices deployed via FastAPI and Docker.",
     projects: [
       { name: "Resume Scanner API", github: "https://github.com/viochris/resume-scanner-api" },
       { name: "Insightify API (NLP Sentiment)", github: "https://github.com/viochris/Insightify-Sentiment-API" },
@@ -199,8 +206,9 @@ const interestData = [
   {
     title: "Tabular Data Modeling",
     icon: <Database className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Predictive modeling on structured data using strict cross-validation and feature engineering.",
-    details: "Building reliable predictive models from structured datasets while preventing data leakage and explaining predictions through Explainable AI (XAI) techniques.",
+    desc: "Designing leakage-free predictive pipelines for structured clinical and financial datasets using SMOTE/SMOTE-NC resampling, Optuna tuning, and Explainable AI (XAI) diagnostics with LIME and SHAP.",
+    details:
+      "Specializing in rigorous train-test isolation where scalers and oversamplers fit strictly on training folds to prevent data leakage, benchmarking CatBoost, XGBoost, LightGBM, and AdaBoost while explaining individual predictions via LIME feature contributions.",
     projects: [
       { name: "Stunting Analysis (Medical)", github: "https://github.com/viochris/Stunting-prediction-project" },
       { name: "Diabetes Prediction (Tuned)", github: "https://github.com/viochris/Diabetes-prediction-fine-tuned-project" },
@@ -209,8 +217,9 @@ const interestData = [
   {
     title: "AI Agent Engineering",
     icon: <Sparkles className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Designing stateful reasoning loops and multi-agent frameworks for autonomous problem solving.",
-    details: "Architecting goal-oriented LLM systems capable of structured tool calling, cyclic graph validation, and autonomous error recovery.",
+    desc: "Architecting stateful multi-step LLM systems with LangGraph cyclic validation, ReAct reasoning, and LangChain tool-calling agents—complete with SQL/ephemeral memory and automatic error recovery.",
+    details:
+      "Building reliable goal-oriented AI agents rather than fragile prompt wrappers: enforcing schema validation, SQL/Python sandboxed execution loops, transparent glass-box Thought-Action-Observation traces, and hybrid vector + knowledge-graph retrieval with Neo4j.",
     projects: [
       { name: "InsightSQL (LangGraph)", github: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web" },
       { name: "SpendSense (Financial AI)", github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -220,8 +229,9 @@ const interestData = [
   {
     title: "Automation & Orchestration",
     icon: <Workflow className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Connecting AI models, external APIs, and scheduled workflows into hands-free utilities.",
-    details: "Constructing stateful backends and Prefect pipelines that link language models directly to Gmail, Google Calendar, Google Sheets, and Telegram.",
+    desc: "Connecting language models, external workspace APIs, and scheduled Prefect ETL pipelines with retry policies to power hands-free Telegram bots, calendar agents, and inbox autoresponders.",
+    details:
+      "Designing resilient event-driven and scheduled automations orchestrated with Prefect retries, linking Gemini models directly to Gmail (RFC 2822 threading), Google Calendar, Google Sheets, DuckDuckGo search, and asynchronous python-telegram-bot services.",
     projects: [
       { name: "Daily Agenda Broadcaster", github: "https://github.com/viochris/auto-daily-scheduler.git" },
       { name: "NovaMail AI (Autoresponder)", github: "https://github.com/viochris/NovaMail-AI-Autoresponder.git" },
@@ -231,26 +241,31 @@ const interestData = [
   {
     title: "Vibe Coding",
     icon: <Code2 className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Rapidly pairing systems engineering intuition with AI coding assistants to ship complete apps.",
-    details: "Using AI-assisted iteration to build clean, interactive web and mobile prototypes on top of Python and FastAPI AI backends.",
+    desc: "Pairing systems engineering architecture with AI-assisted full-stack velocity to ship responsive React 19, Next.js, TypeScript, and Express web apps atop containerized Python AI backends.",
+    details:
+      "Accelerating end-to-end delivery from architecture diagram to deployed interactive UI without sacrificing type safety, accessibility, or API boundaries—building production Next.js portfolios, multimodal Gemini Vision apps, and Supabase dashboards.",
     projects: [
       { name: "Silvio.AI Portfolio", github: "https://github.com/viochris/silvio-ai-portfolio" },
+      { name: "Botanica AI", github: "https://github.com/viochris/botanica-ai" },
     ],
   },
   {
     title: "Custom Data Sourcing & Pipelines",
     icon: <Globe className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Aggregating clean datasets through third-party APIs and automated extraction pipelines.",
-    details: "Designing focused ETL and ELT workflows to harvest, clean, and structure raw web or API data into model-ready datasets.",
+    desc: "Building clean automated extraction and transformation workflows across live web scrapers, PDF/Excel parsers, and third-party APIs to curate structured, model-ready datasets and vector stores.",
+    details:
+      "Engineering repeatable ETL pipelines with TrafilaturaWebReader, PyPDF2, nbformat, yt-dlp, OpenCV, and Google Sheets gspread batch syncs to clean raw multi-format documents, web articles, and video transcripts before chunking or ML training.",
     projects: [
       { name: "Daily AI News Digest", github: "https://github.com/viochris/daily-ai-news-digest" },
+      { name: "Website Reader RAG Chatbot", github: "https://github.com/viochris/website-reader-rag-chatbot" },
     ],
   },
   {
     title: "Deployment & Interfaces",
     icon: <Rocket className="w-8 h-8 text-primary" aria-hidden="true" />,
-    desc: "Delivering backend intelligence through FastAPI endpoints, Streamlit apps, and bots.",
-    details: "Bridging model code and end-user accessibility with containerized REST APIs, interactive Streamlit dashboards, and Telegram bots.",
+    desc: "Delivering production machine learning intelligence to end users through containerized FastAPI/Flask microservices, Hugging Face Spaces, Streamlit/Gradio apps, and Next.js interfaces.",
+    details:
+      "Bridging research notebooks and real-world accessibility by packaging encoders, scalers, and ML/NLP models into Dockerized REST APIs with CORS, schema validation, lazy model loading, and interactive dashboards deployed on Vercel and Streamlit Cloud.",
     projects: [
       { name: "Resume Scanner API", github: "https://github.com/viochris/resume-scanner-api" },
       { name: "SpendSense (Financial AI)", github: "https://github.com/viochris/Streamlit-SpendSense" },
@@ -290,10 +305,12 @@ KEY PROOF-OF-WORK (65+ PUBLIC REPOSITORIES):
 4. Botanica AI: Full-stack React 19 + Express multimodal Gemini Vision application with 3-tier model fallback (https://github.com/viochris/botanica-ai)
 5. Resume Scanner API: Dual-engine FastAPI microservice combining TF-IDF and SBERT semantic similarity (https://github.com/viochris/resume-scanner-api)
 
-VERIFIED CERTIFICATIONS (22+ CREDENTIALS):
+VERIFIED CERTIFICATIONS & INTELLECTUAL PROPERTY:
+- Registered Copyright (No. 001072491, Dec 2025): Co-creator of StuntiFy toddler stunting detection application (community health post field-validated)
 - Oracle AI Vector Search Certified Professional
 - Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
 - Oracle Cloud Infrastructure 2025 Certified Data Science Professional
+- IBM AI Engineering Specialization (Specialization & V3 Credly Credential)
 - IBM Machine Learning Specialization (6-Course Credential)
 
 LINKS & CONTACT:
@@ -469,22 +486,22 @@ LINKS & CONTACT:
             <Carousel opts={{ align: "start", loop: false }} className="w-full">
               <CarouselContent className="-ml-4 items-stretch">
                 {technicalMilestones.map((m, i) => (
-                  <CarouselItem key={m.title} className="pl-4 basis-full md:basis-1/2 flex">
+                  <CarouselItem key={m.title} className="pl-4 basis-full md:basis-1/2 flex flex-col">
                     <button
                       type="button"
                       onClick={() => setOpenMilestoneIdx(i)}
-                      className="p-7 bg-card rounded-2xl border border-border/80 flex flex-col items-center text-center group hover:border-primary/40 transition-colors h-full w-full"
+                      className="p-7 bg-card rounded-2xl border border-border/80 flex flex-col items-center text-center group hover:border-primary/40 transition-colors flex-1 w-full"
                     >
                       <div className="text-2xl font-headline font-black text-primary/40 group-hover:text-primary transition-colors mb-3">
                         {m.year}
                       </div>
-                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider">
+                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider sm:min-h-[3.25rem] flex items-center justify-center">
                         {m.title}
                       </h3>
-                      <p className="text-sm text-zinc-400 leading-relaxed">
+                      <p className="text-sm text-zinc-400 leading-relaxed flex-1">
                         {m.shortSummary}
                       </p>
-                      <span className="mt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
+                      <span className="mt-auto pt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
                         View Details
                       </span>
                     </button>
@@ -575,22 +592,22 @@ LINKS & CONTACT:
             <Carousel opts={{ align: "start", loop: false }} className="w-full">
               <CarouselContent className="-ml-4 items-stretch">
                 {interestData.map((item, i) => (
-                  <CarouselItem key={item.title} className="pl-4 basis-full md:basis-1/2 flex">
+                  <CarouselItem key={item.title} className="pl-4 basis-full md:basis-1/2 flex flex-col">
                     <button
                       type="button"
                       onClick={() => setOpenInterestIdx(i)}
-                      className="p-7 bg-card rounded-2xl border border-border/80 hover:border-primary/40 transition-colors group flex flex-col items-center text-center h-full w-full"
+                      className="p-7 bg-card rounded-2xl border border-border/80 hover:border-primary/40 transition-colors group flex flex-col items-center text-center flex-1 w-full"
                     >
                       <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 shrink-0">
                         {item.icon}
                       </div>
-                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider group-hover:text-primary transition-colors">
+                      <h3 className="text-lg font-headline font-bold text-white mb-2 uppercase tracking-wider group-hover:text-primary transition-colors sm:min-h-[3.25rem] flex items-center justify-center">
                         {item.title}
                       </h3>
                       <p className="text-sm text-zinc-400 leading-relaxed flex-1">
                         {item.desc}
                       </p>
-                      <span className="mt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
+                      <span className="mt-auto pt-4 text-[11px] font-bold uppercase tracking-wider text-primary">
                         Inspect Projects
                       </span>
                     </button>

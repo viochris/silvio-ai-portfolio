@@ -19,6 +19,7 @@ import {
   Github,
   CheckCircle2,
   Workflow,
+  ShieldCheck,
 } from 'lucide-react';
 import { RadarChart } from '@/components/RadarChart';
 import { ParallaxLayer } from '@/components/Parallax';
@@ -27,7 +28,7 @@ import { IssuerLogo } from '@/components/IssuerLogo';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
+import { professionalCertifications, courseBadges, registeredCopyright } from '@/lib/credentials-data';
 import { AllCredentialsPage } from '@/components/AllCredentialsPage';
 import { useNavigation } from '@/context/NavigationContext';
 
@@ -457,11 +458,11 @@ export default function SkillsPage() {
   }
 
   const diverseCertifications = [
-    professionalCertifications[0],
-    professionalCertifications[4],
-    professionalCertifications[16],
-    professionalCertifications[1],
-  ];
+    professionalCertifications.find((c) => c.id === 1),
+    professionalCertifications.find((c) => c.id === 5),
+    professionalCertifications.find((c) => c.id === 22),
+    professionalCertifications.find((c) => c.id === 2),
+  ].filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
     <div className="pt-28 lg:pt-36 pb-20 px-4 sm:px-6 lg:px-12 min-h-screen">
@@ -779,7 +780,7 @@ export default function SkillsPage() {
               Verified industry credentials from Oracle, IBM, and Dicoding.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch md:auto-rows-fr">
             {diverseCertifications.map((c) => (
               <div
                 key={c.id}
@@ -807,6 +808,42 @@ export default function SkillsPage() {
               </div>
             ))}
           </div>
+
+          {/* Registered Intellectual Property Highlight */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-card border border-primary/35 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="flex items-start gap-4 sm:gap-5">
+              <div className="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-7 h-7 text-emerald-300" aria-hidden="true" />
+              </div>
+              <div className="space-y-1.5 min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center rounded-md border border-emerald-500/30 bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold uppercase text-emerald-300 tracking-wider">
+                    Registered Copyright · No. {registeredCopyright.regNumber}
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                    {registeredCopyright.publishedDate}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-headline font-bold text-white leading-snug">
+                  {registeredCopyright.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-3xl">
+                  {registeredCopyright.summary}
+                </p>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              className="h-11 px-5 rounded-xl border-primary/35 bg-primary/10 hover:bg-primary/20 text-primary font-headline font-bold uppercase tracking-wider text-xs shrink-0 gap-2"
+              asChild
+            >
+              <a href={registeredCopyright.certificateUrl} target="_blank" rel="noopener noreferrer">
+                <span>View Certificate</span>
+                <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              </a>
+            </Button>
+          </div>
+
           <div className="flex justify-center pt-2">
             <button
               type="button"
@@ -835,7 +872,7 @@ export default function SkillsPage() {
               Specialized coursework badges earned through Coursera and IBM.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch md:auto-rows-fr">
             {courseBadges.slice(0, 4).map((b) => (
               <div
                 key={b.id}

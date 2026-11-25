@@ -257,6 +257,11 @@ export default function RootLayout({
           },
           {
             "@type": "EducationalOccupationalCredential",
+            name: "IBM AI Engineering Specialization",
+            recognizedBy: { "@type": "Organization", name: "IBM" },
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
             name: "IBM Machine Learning Specialization",
             recognizedBy: { "@type": "Organization", name: "IBM" },
           },

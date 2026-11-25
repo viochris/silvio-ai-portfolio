@@ -22,6 +22,7 @@
   - Oracle Cloud Infrastructure 2025 Certified Generative AI Professional
   - Oracle AI Vector Search Certified Professional
   - Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate
+  - IBM AI Engineering Specialization (Coursera)
   - IBM Machine Learning Specialization (Coursera)
 - **Published Technical Articles (Medium)**:
   - [Before You Use AI, Understand This First](https://medium.com/@silviochristian/before-you-use-ai-understand-this-first-875525807755): AI literacy and Prompt Engineering foundations covering LLM next-token prediction, input/output and reasoning tokens, context windows, hallucinations, temperature tuning, and knowledge cutoffs.

@@ -9,6 +9,7 @@
 - **Degree**: Bachelor of Informatics Engineering (Computer Science), 2023-2027
 - **Academic Standing**: Currently in 7th Semester (3.96 / 4.00 Cumulative GPA through 6th Semester)
 - **Location**: Semarang, Central Java, Indonesia
+- **Intellectual Property**: Co-creator of **StuntiFy** (toddler stunting detection application, Registered Copyright No. `001072491`, first published December 2025; tested using field data collected while volunteering at a local community health post). Official Certificate: `https://drive.google.com/file/d/1Zsa2xKClU8iNys6snr1Kuuk8nJT2i_wn/view?usp=sharing`
 - **Availability**: Open for Data Science, AI Engineering, ML/NLP Internships, Freelance Projects, and Full-Time Roles.
 
 ## 2. Core Technical Stack
@@ -98,7 +99,7 @@
 
 ### G. Experimental & Fun Projects (2 Projects)
 64. **Conversational Persona** (`https://github.com/viochris/Simple-AI-Girlfriend`)
-65. **Real-time Chat Socket** (`https://github.com/viochris/chat-group`)
+65. **AI Group Chat Simulator** (`https://github.com/viochris/chat-group`)
 
 ## 4. Published Technical Writing (Medium - @silviochristian)
 1. **Before You Use AI, Understand This First** (`https://medium.com/@silviochristian/before-you-use-ai-understand-this-first-875525807755`)

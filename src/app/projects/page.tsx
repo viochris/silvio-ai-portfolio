@@ -17,12 +17,15 @@ import {
   DollarSign,
   Cpu,
   Github,
+  ShieldCheck,
+  Award,
 } from 'lucide-react';
 import { ParallaxLayer, ParallaxImageFrame } from '@/components/Parallax';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { registeredCopyright } from '@/lib/credentials-data';
 import Link from 'next/link';
 
 const featuredProjects = [
@@ -30,7 +33,7 @@ const featuredProjects = [
     id: 1,
     title: "InsightSQL (LangGraph Engine)",
     impact: "State-of-the-Art",
-    desc: "Graph-based SQL agent architecture with real-time query execution, schema validation, and cyclic error self-correction.",
+    desc: "AI SQL analyst powered by Gemini 2.5 Flash and LangGraph cyclic reasoning that validates SQLite schemas, executes read-only queries, automatically repairs failed SQL through self-correcting graph loops, and surfaces transparent glass-box traces.",
     tech: ["LANGGRAPH", "GEMINI 2.5 FLASH", "PYTHON", "SQL"],
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
     demo: "https://insightsql-langgraph-engine-web.streamlit.app/",
@@ -52,7 +55,7 @@ const featuredProjects = [
     id: 2,
     title: "SpendSense (Financial AI)",
     impact: "Utility Pro",
-    desc: "Conversational personal finance app with OCR receipt scanning and natural-language expense querying via Pandas Agent.",
+    desc: "Conversational personal finance app combining Google Gemini Vision OCR receipt scanning with a LangChain Pandas DataFrame Agent, allowing users to review extracted expenses, explore Plotly KPI trends, and query spending in plain language.",
     tech: ["STREAMLIT", "LANGCHAIN", "GEMINI VISION", "PANDAS"],
     link: "https://github.com/viochris/Streamlit-SpendSense",
     demo: "https://app-spend-sense.streamlit.app/",
@@ -74,7 +77,7 @@ const featuredProjects = [
     id: 3,
     title: "Resume Scanner API",
     impact: "Research Oriented",
-    desc: "Stateless ATS optimization API combining hybrid TF-IDF keyword matching and SBERT semantic similarity.",
+    desc: "Stateless, Dockerized FastAPI ATS optimization microservice pairing Scikit-Learn TF-IDF strict keyword checks with multilingual SBERT semantic similarity, complete with PyPDF2 page diagnostics and top-5 critical skill gap alerts.",
     tech: ["FASTAPI", "SBERT", "TF-IDF", "NLP"],
     link: "https://github.com/viochris/resume-scanner-api",
     demo: "https://silvio0-resume-scanner.hf.space/docs",
@@ -96,7 +99,7 @@ const featuredProjects = [
     id: 4,
     title: "InsightData (AI Analyst)",
     impact: "Automation Pro",
-    desc: "Automated data scientist agent that ingests CSV, Excel, and spreadsheet files to run analysis and generate charts.",
+    desc: "ReAct-powered Pandas AI data analyst using Gemini 2.5 Flash to inspect uploaded CSV/Excel files or Google Sheets URLs, automatically clean empty rows and duplicates, run correlation checks, and export downloadable Matplotlib charts.",
     tech: ["PANDAS AGENT", "GEMINI 2.5 FLASH", "PYTHON", "MATPLOTLIB"],
     link: "https://github.com/viochris/insight-data-ai-analyst",
     demo: "https://insight-data-ai-analyst.streamlit.app/",
@@ -118,7 +121,7 @@ const featuredProjects = [
     id: 5,
     title: "Auto-README Generator (CrewAI)",
     impact: "Multi-Agent Pro",
-    desc: "Multi-agent documentation generator that parses Python scripts and Jupyter Notebooks (.py and .ipynb) into industry-standard GitHub README files.",
+    desc: "Autonomous two-agent CrewAI documentation pipeline pairing a Lead Code Analyzer and Senior Technical Writer to parse raw Python scripts (.py) and Jupyter Notebooks (.ipynb) into structured, production-ready GitHub README files.",
     tech: ["CREWAI", "GEMINI", "STREAMLIT", "NBFORMAT"],
     link: "https://github.com/viochris/auto-readme-generator",
     demo: "https://crewai-auto-readme-generator.streamlit.app/",
@@ -140,7 +143,7 @@ const featuredProjects = [
     id: 6,
     title: "Botanica AI (Plant Care Companion)",
     impact: "Full-Stack AI",
-    desc: "Full-stack botanical web app that identifies plants and diagnoses leaf health from photos, generates care plans, tracks watering, and hosts an AI botanist chat.",
+    desc: "Full-stack React 19, TypeScript, and Express web app powered by cascaded Google Gemini Vision models that identifies plant species, diagnoses leaf health from photos, tracks watering schedules, and hosts an AI horticulturist chat.",
     tech: ["REACT 19", "TYPESCRIPT", "EXPRESS", "GEMINI VISION"],
     link: "https://github.com/viochris/botanica-ai",
     demo: "https://botanica-ai-mu.vercel.app/",
@@ -296,7 +299,7 @@ export default function ProjectsPage() {
             </div>
           </ParallaxLayer>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch md:auto-rows-fr">
             {featuredProjects.map((p, index) => (
               <article key={p.id} className="flex flex-col h-full group">
                 <div className="bg-card border border-border/80 rounded-2xl p-6 flex flex-col h-full hover:border-primary/40 transition-colors">
@@ -331,10 +334,10 @@ export default function ProjectsPage() {
                   </div>
 
                   <div className="flex-1 space-y-2.5">
-                    <h2 className="text-2xl font-headline font-bold text-white tracking-tight leading-snug group-hover:text-primary transition-colors">
+                    <h2 className="text-2xl font-headline font-bold text-white tracking-tight leading-snug group-hover:text-primary transition-colors md:min-h-[4rem]">
                       {p.title}
                     </h2>
-                    <p className="text-zinc-400 text-sm sm:text-base leading-relaxed line-clamp-3">
+                    <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
                       {p.desc}
                     </p>
                   </div>
@@ -468,6 +471,103 @@ export default function ProjectsPage() {
             ))}
           </div>
         </div>
+
+        {/* Registered Intellectual Property Spotlight */}
+        <section id="intellectual-property" aria-labelledby="ip-spotlight-heading" className="scroll-mt-28">
+          <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-card border border-primary/35 shadow-xl relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-7 space-y-5">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <Badge variant="outline" className="text-primary tracking-[0.2em] uppercase px-3 py-1 border-primary/35 bg-primary/10 text-[11px] font-bold">
+                    <ShieldCheck className="w-3.5 h-3.5 mr-1.5" aria-hidden="true" />
+                    {registeredCopyright.issuer}
+                  </Badge>
+                  <Badge className="bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold uppercase tracking-wider text-[11px] px-3 py-1">
+                    Reg. No. {registeredCopyright.regNumber} · {registeredCopyright.publishedDate}
+                  </Badge>
+                </div>
+
+                <div className="space-y-3">
+                  <h2 id="ip-spotlight-heading" className="text-2xl sm:text-3xl lg:text-4xl font-headline font-black uppercase tracking-tight text-white">
+                    {registeredCopyright.title}
+                  </h2>
+                  <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+                    {registeredCopyright.summary}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {registeredCopyright.tech.map((t) => (
+                    <Badge
+                      key={t}
+                      variant="outline"
+                      className="text-[11px] uppercase font-bold tracking-wider border-primary/30 text-primary bg-primary/5 px-2.5 py-1 rounded-lg"
+                    >
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 p-5 sm:p-6 rounded-2xl bg-background/70 border border-border/80 space-y-4">
+                <div className="flex items-center gap-2 text-xs font-headline font-bold uppercase tracking-wider text-primary">
+                  <Award className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  <span>Verification &amp; Field Evidence</span>
+                </div>
+
+                <dl className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="p-3 rounded-xl bg-card border border-border/60">
+                    <dt className="text-zinc-400 uppercase tracking-wider font-bold text-[10px]">Registration No.</dt>
+                    <dd className="text-white font-mono font-bold text-sm mt-0.5">{registeredCopyright.regNumber}</dd>
+                  </div>
+                  <div className="p-3 rounded-xl bg-card border border-border/60">
+                    <dt className="text-zinc-400 uppercase tracking-wider font-bold text-[10px]">First Published</dt>
+                    <dd className="text-white font-semibold text-sm mt-0.5">{registeredCopyright.publishedDate}</dd>
+                  </div>
+                  <div className="col-span-2 p-3 rounded-xl bg-card border border-border/60">
+                    <dt className="text-zinc-400 uppercase tracking-wider font-bold text-[10px]">Community Validation</dt>
+                    <dd className="text-zinc-200 font-medium mt-0.5">{registeredCopyright.fieldValidation}</dd>
+                  </div>
+                </dl>
+
+                <div className="flex flex-col gap-2.5 pt-1">
+                  <Button
+                    className="w-full h-11 rounded-xl font-headline font-bold uppercase tracking-wider text-xs gap-2"
+                    asChild
+                  >
+                    <a href={registeredCopyright.certificateUrl} target="_blank" rel="noopener noreferrer">
+                      <ShieldCheck className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <span>View Copyright Certificate</span>
+                      <ExternalLink className="w-3.5 h-3.5 ml-auto shrink-0" aria-hidden="true" />
+                    </a>
+                  </Button>
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <Button
+                      variant="outline"
+                      className="h-10 rounded-xl border-border hover:bg-white/5 text-white font-headline font-bold uppercase tracking-wider text-[11px] gap-1.5"
+                      asChild
+                    >
+                      <a href={registeredCopyright.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        <span>Stuntify-API</span>
+                      </a>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="h-10 rounded-xl border-primary/35 bg-primary/10 hover:bg-primary/20 text-primary font-headline font-bold uppercase tracking-wider text-[11px] gap-1.5"
+                      asChild
+                    >
+                      <a href={registeredCopyright.apiUrl} target="_blank" rel="noopener noreferrer">
+                        <span>Live API Docs</span>
+                        <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Interactive RAG Architecture & Cost Benchmark Lab */}
         <div id="rag-benchmark" className="scroll-mt-28 space-y-8 pt-4">

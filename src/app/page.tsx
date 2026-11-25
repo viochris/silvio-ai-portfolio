@@ -16,12 +16,14 @@ import {
   ExternalLink,
   Workflow,
   Languages,
+  ShieldCheck,
 } from 'lucide-react';
 import { TypewriterEffect } from '@/components/TypewriterEffect';
 import { TechMarquee } from '@/components/TechMarquee';
 import { ParallaxLayer } from '@/components/Parallax';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { registeredCopyright } from '@/lib/credentials-data';
 import Link from 'next/link';
 import {
   Carousel,
@@ -35,15 +37,15 @@ const featuredProjects = [
     title: "InsightSQL: LangGraph Engine",
     type: "GenAI / Graph Agent",
     impact: "State-of-the-Art",
-    desc: "Graph-based SQL agent using cyclic reasoning to query, validate, and self-correct errors in real time with transparent execution traces.",
+    desc: "Graph-based SQL agent powered by Gemini 2.5 Flash and LangGraph cyclic reasoning that validates SQLite schemas, runs read-only queries, self-corrects failed SQL loops, and exposes live traces with EN/ID support.",
     tech: "LangGraph • Gemini 2.5 Flash",
     link: "https://github.com/viochris/InsightSQL-LangGraph-Engine-Web",
   },
   {
     title: "DocuTalk-AI: Smart RAG",
-    type: "GenAI / Document Intelligence",
+    type: "GenAI / Smart RAG",
     impact: "High Precision",
-    desc: "Intelligent document assistant using ReAct agents to choose between vector retrieval and live web search for grounded answers.",
+    desc: "Agentic RAG assistant combining Gemini 2.5 Flash, incremental FAISS indexing over uploaded PDF/CSV/TXT/MD files, ConversationSummaryMemory, and a ReAct priority router with DuckDuckGo web search fallback.",
     tech: "LangChain • FAISS • Gemini",
     link: "https://github.com/viochris/DocuTalk-AI",
   },
@@ -51,7 +53,7 @@ const featuredProjects = [
     title: "NovaCal AI: Stateful Assistant",
     type: "GenAI / Automation",
     impact: "Stateful Design",
-    desc: "Conversational scheduling assistant backed by SQL memory architecture to preserve context across multi-turn dialogues.",
+    desc: "Single-user-locked Telegram scheduling assistant powered by Gemini 2.5 Flash and LangChain Tool-Calling agents with SQL-backed conversational memory (MySQL/SQLite), CRUD calendar tools, and intrusion alerts.",
     tech: "LangChain • SQL Memory • Gemini",
     link: "https://github.com/viochris/telegram-calendar-ai-bot",
   },
@@ -59,7 +61,7 @@ const featuredProjects = [
     title: "SpendSense: Financial AI",
     type: "Data Science / Vision",
     impact: "Utility Pro",
-    desc: "Conversational finance app with OCR receipt scanning and natural-language expense queries for personal money tracking.",
+    desc: "Streamlit personal finance platform powered by Gemini 2.5 Flash and a LangChain Pandas DataFrame Agent with OCR receipt scanning, natural-language spending Q&A, Plotly KPI dashboards, and Google Sheets auto-backup.",
     tech: "Streamlit • Vision • Gemini",
     link: "https://github.com/viochris/Streamlit-SpendSense",
   },
@@ -67,7 +69,7 @@ const featuredProjects = [
     title: "Resume Scanner API",
     type: "Backend / NLP",
     impact: "Research Oriented",
-    desc: "Dual-engine ATS API combining TF-IDF and SBERT embeddings for accurate resume-to-job semantic matching.",
+    desc: "Stateless, Dockerized FastAPI ATS optimizer pairing Scikit-Learn TF-IDF strict keyword checks with multilingual SBERT semantic similarity, PyPDF2 length diagnostics, and top-5 critical skill gap alerts.",
     tech: "FastAPI • SBERT • Docker",
     link: "https://github.com/viochris/resume-scanner-api",
   },
@@ -75,7 +77,7 @@ const featuredProjects = [
     title: "Insightify API: Sentiment",
     type: "NLP / Analytics",
     impact: "Dual-Lingual",
-    desc: "Sentiment analytics API supporting both English and Indonesian text using RoBERTa transformer models.",
+    desc: "Asynchronous FastAPI sentiment and N-Gram microservice routing English and Indonesian text to specialized RoBERTa Transformers, supporting real-time inference as well as CSV/Excel batch analytics and complexity stats.",
     tech: "FastAPI • RoBERTa • Transformers",
     link: "https://github.com/viochris/Insightify-Sentiment-API",
   },
@@ -83,7 +85,7 @@ const featuredProjects = [
     title: "Daily Agenda Broadcaster",
     type: "Automation / Workflow",
     impact: "Efficiency Pro",
-    desc: "Automated pipeline that fetches upcoming Google Calendar events and sends structured daily briefings to Telegram.",
+    desc: "Prefect-orchestrated daily schedule workflow with 3x retry policies that pulls primary Google Calendar events alongside Indonesian public holidays via OAuth2, formats schedules (UTC+7), and delivers async Telegram briefings.",
     tech: "Python • GCalendar • Telegram",
     link: "https://github.com/viochris/auto-daily-scheduler.git",
   },
@@ -91,7 +93,7 @@ const featuredProjects = [
     title: "NovaMail AI: Autoresponder",
     type: "Automation / LLMOps",
     impact: "Autonomous Inbox",
-    desc: "Inbox automation assistant that parses incoming emails and drafts context-aware replies via Gmail API.",
+    desc: "Automated Gmail inbox assistant powered by Gemini 2.5 Flash and Gmail API that polls unread threads, sends RFC 2822-compliant MIME replies preserving original Message-ID and References headers, and notifies Telegram.",
     tech: "Gmail API • Gemini • Python",
     link: "https://github.com/viochris/NovaMail-AI-Autoresponder.git",
   },
@@ -99,7 +101,9 @@ const featuredProjects = [
     title: "Stuntify API: MLOps",
     type: "Backend / MLOps",
     impact: "Production Ready",
-    desc: "Inference API for real-time stunting risk prediction grounded in reproducible health analytics modeling.",
+    ipBadge: `Copyright #${registeredCopyright.regNumber}`,
+    certificateUrl: registeredCopyright.certificateUrl,
+    desc: "Asynchronous FastAPI and Pydantic inference microservice orchestrating four synchronized Scikit-Learn artifacts—gender encoder, scaler, classifier, and target decoder—for real-time toddler stunting risk assessment.",
     tech: "FastAPI • Scikit-Learn • Docker",
     link: "https://github.com/viochris/Stuntify-API",
   },
@@ -107,7 +111,7 @@ const featuredProjects = [
     title: "InsightData: AI Analyst",
     type: "GenAI / Analytics",
     impact: "Automation Pro",
-    desc: "Automated data analyst agent that inspects CSV and Excel files to generate clean charts and statistical summaries.",
+    desc: "ReAct-based Pandas AI data analyst using Gemini 2.5 Flash to inspect local CSV/Excel files or Google Sheets URLs, auto-clean empty records, run statistical correlations, and render downloadable Matplotlib/Seaborn charts.",
     tech: "Pandas Agent • Gemini • Python",
     link: "https://github.com/viochris/insight-data-ai-analyst",
   },
@@ -376,7 +380,7 @@ export default function Home() {
               <div className="text-xs font-semibold text-zinc-400 uppercase tracking-[0.2em]">Projects Shipped</div>
             </div>
             <div className="flex flex-col items-center sm:border-x sm:border-border/60">
-              <div className="text-3xl sm:text-4xl font-headline font-black text-primary mb-1">20+</div>
+              <div className="text-3xl sm:text-4xl font-headline font-black text-primary mb-1">29+</div>
               <div className="text-xs font-semibold text-zinc-400 uppercase tracking-[0.2em]">Verified Certifications</div>
             </div>
             <div className="flex flex-col items-center">
@@ -409,26 +413,26 @@ export default function Home() {
             >
               <CarouselContent className="-ml-4 items-stretch">
                 {infrastructurePulseData.map((m, i) => (
-                  <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex">
-                    <div className="p-6 bg-card border border-border/80 rounded-2xl flex flex-col justify-between w-full h-full hover:border-primary/40 transition-colors">
+                  <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex flex-col">
+                    <div className="p-6 bg-card border border-border/80 rounded-2xl flex flex-col flex-1 w-full hover:border-primary/40 transition-colors">
                       <div>
                         <div className="flex justify-between items-center mb-5">
-                          <div className="w-11 h-11 rounded-xl bg-white/[0.04] flex items-center justify-center border border-border/70">
+                          <div className="w-11 h-11 rounded-xl bg-white/[0.04] flex items-center justify-center border border-border/70 shrink-0">
                             {m.icon}
                           </div>
-                          <div className="flex items-center gap-1.5 bg-background/80 px-2.5 py-1 rounded-full border border-border/80">
+                          <div className="flex items-center gap-1.5 bg-background/80 px-2.5 py-1 rounded-full border border-border/80 shrink-0">
                             <span className="w-1.5 h-1.5 rounded-full bg-green-500" aria-hidden="true" />
-                            <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">{m.status}</span>
+                            <span className="text-[10px] font-bold text-zinc-300 uppercase tracking-wider whitespace-nowrap">{m.status}</span>
                           </div>
                         </div>
-                        <h3 className="text-lg font-headline font-bold text-white leading-snug mb-1.5">
+                        <h3 className="text-lg font-headline font-bold text-white leading-snug mb-1.5 sm:min-h-[3.1rem]">
                           {m.title}
                         </h3>
-                        <div className="text-[10px] font-bold text-primary/80 uppercase tracking-wider mb-3">
+                        <div className="text-[10px] font-bold text-primary/80 uppercase tracking-wider mb-3 sm:min-h-[2rem]">
                           {m.subtitle}
                         </div>
                       </div>
-                      <p className="text-sm text-zinc-400 leading-relaxed">{m.desc}</p>
+                      <p className="text-sm text-zinc-400 leading-relaxed flex-1">{m.desc}</p>
                     </div>
                   </CarouselItem>
                 ))}
@@ -451,19 +455,19 @@ export default function Home() {
           </ParallaxLayer>
 
           <ParallaxLayer offsetY={16} mobileOffsetY={8}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch sm:auto-rows-fr">
               {specializations.map((skill) => (
                 <div
                   key={skill.title}
                   className="p-7 bg-card border border-border/80 hover:border-primary/40 rounded-2xl transition-colors flex flex-col h-full"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 shrink-0">
                     {skill.icon}
                   </div>
                   <Badge className="bg-primary/10 text-primary border-none uppercase text-[10px] font-bold tracking-wider w-fit mb-3">
                     {skill.label}
                   </Badge>
-                  <h3 className="text-xl font-headline font-bold text-white mb-3 leading-snug">
+                  <h3 className="text-xl font-headline font-bold text-white mb-3 leading-snug sm:min-h-[3.5rem]">
                     {skill.title}
                   </h3>
                   <p className="text-sm text-zinc-400 leading-relaxed flex-1">
@@ -518,40 +522,61 @@ export default function Home() {
             >
               <CarouselContent className="-ml-4 items-stretch">
                 {featuredProjects.map((p, i) => (
-                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3 flex">
-                    <a
-                      href={p.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full h-full group"
-                    >
-                      <div className="p-7 bg-card border border-border/80 rounded-2xl flex flex-col justify-between h-full hover:border-primary/50 transition-colors">
-                        <div>
-                          <div className="flex items-center justify-between gap-2 mb-4">
-                            <span className="text-[11px] font-bold text-primary uppercase tracking-wider">
-                              {p.type}
-                            </span>
-                            <Badge className="bg-primary/15 text-primary font-bold uppercase tracking-wider text-[10px] px-2.5 py-0.5 border-none">
-                              {p.impact}
-                            </Badge>
-                          </div>
-                          <h3 className="text-xl font-headline font-bold text-white mb-2.5 group-hover:text-primary transition-colors leading-snug">
+                  <CarouselItem key={i} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3 flex flex-col">
+                    <div className="p-7 bg-card border border-border/80 rounded-2xl flex flex-col flex-1 w-full hover:border-primary/50 transition-colors group">
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-4 min-h-[24px]">
+                          <span className="text-[11px] font-bold text-primary uppercase tracking-wider truncate">
+                            {p.type}
+                          </span>
+                          <Badge className="bg-primary/15 text-primary font-bold uppercase tracking-wider text-[10px] px-2.5 py-0.5 border-none whitespace-nowrap shrink-0">
+                            {p.impact}
+                          </Badge>
+                        </div>
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <h3 className="text-xl font-headline font-bold text-white mb-2.5 group-hover:text-primary transition-colors leading-snug sm:min-h-[3.5rem]">
                             {p.title}
                           </h3>
-                          <p className="text-sm text-zinc-400 leading-relaxed mb-6 line-clamp-3">
-                            {p.desc}
-                          </p>
-                        </div>
-                        <div className="flex items-center justify-between pt-4 border-t border-border/60 mt-auto">
-                          <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+                        </a>
+                        <p className="text-sm text-zinc-400 leading-relaxed">
+                          {p.desc}
+                        </p>
+                      </div>
+                      <div className="mt-auto pt-5">
+                        {"ipBadge" in p && p.ipBadge && (
+                          <div className="mb-3">
+                            <a
+                              href={p.certificateUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 font-bold uppercase tracking-wider text-[10px] px-2.5 py-1 transition-colors"
+                            >
+                              <ShieldCheck className="w-3 h-3 shrink-0" aria-hidden="true" />
+                              <span>{p.ipBadge}</span>
+                            </a>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between gap-2 pt-4 border-t border-border/60">
+                          <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider truncate">
                             {p.tech}
                           </span>
-                          <span className="w-9 h-9 rounded-full bg-white/[0.04] flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          <a
+                            href={p.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${p.title} on GitHub`}
+                            className="w-9 h-9 rounded-full bg-white/[0.04] flex items-center justify-center shrink-0 hover:bg-primary hover:text-primary-foreground transition-colors"
+                          >
                             <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                          </span>
+                          </a>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>

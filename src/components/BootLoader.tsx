@@ -12,7 +12,7 @@ const fullLogs = [
   "Memory Check: OK",
   "Secure Boot: ENABLED",
   "Release: 2026.01.18",
-  "Updated: 2026.11.24",
+  "Updated: 2026.11.25",
   "",
   "MWBIOS (C)2026 Silvio Christian, Joe",
   "",

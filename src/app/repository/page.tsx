@@ -14,6 +14,7 @@ import {
   Check,
   X,
   Rocket,
+  ShieldCheck,
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -302,7 +303,7 @@ export default function RepositoryPage() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch sm:auto-rows-fr">
           {filteredRepos.length > 0 ? (
             filteredRepos.map((repo) => {
               const isCompared = compareNames.includes(repo.name);
@@ -350,17 +351,28 @@ export default function RepositoryPage() {
                       </div>
                     </div>
 
-                    <div>
-                      <Badge className="bg-primary/15 text-primary border-none text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md">
+                    <div className="flex flex-wrap items-center gap-1.5 min-h-[26px]">
+                      <Badge className="bg-primary/15 text-primary border-none text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md whitespace-nowrap">
                         {repo.impact}
                       </Badge>
+                      {repo.proof && (
+                        <a
+                          href={repo.proof.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 transition-colors whitespace-nowrap"
+                        >
+                          <ShieldCheck className="w-3 h-3 shrink-0" aria-hidden="true" />
+                          <span>{repo.proof.label}</span>
+                        </a>
+                      )}
                     </div>
 
-                    <CardTitle className="text-xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words leading-snug pt-1">
+                    <CardTitle className="text-xl font-headline font-bold text-white group-hover:text-primary transition-colors break-words leading-snug pt-1 sm:min-h-[3.75rem]">
                       {repo.name}
                     </CardTitle>
 
-                    <div className="flex flex-wrap gap-1.5" aria-label="Tech stack tags">
+                    <div className="flex flex-wrap gap-1.5 content-start sm:min-h-[3.5rem]" aria-label="Tech stack tags">
                       {getRepoTags(repo.tech).map((tag) => {
                         const isSelectedTag = activeTech?.toLowerCase() === tag.toLowerCase();
                         return (
@@ -390,7 +402,7 @@ export default function RepositoryPage() {
                       })}
                     </div>
 
-                    <CardDescription className="text-sm text-zinc-400 leading-relaxed line-clamp-3 pt-1">
+                    <CardDescription className="text-sm text-zinc-400 leading-relaxed pt-1">
                       {repo.desc}
                     </CardDescription>
                   </CardHeader>
@@ -600,7 +612,7 @@ export default function RepositoryPage() {
                 </div>
 
                 {/* Row 6: Actions Footer */}
-                <div className="flex items-center gap-2 pt-3 border-t border-border/60 mt-auto">
+                <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border/60 mt-auto">
                   <Button
                     variant="outline"
                     size="sm"
@@ -621,6 +633,20 @@ export default function RepositoryPage() {
                       <a href={repo.demo} target="_blank" rel="noopener noreferrer">
                         <span className="truncate">{repo.demoLabel || 'Live Demo'}</span>
                         <ExternalLink className="w-3.5 h-3.5 ml-1 shrink-0" aria-hidden="true" />
+                      </a>
+                    </Button>
+                  )}
+                  {repo.proof && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full h-9 rounded-xl text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                      asChild
+                    >
+                      <a href={repo.proof.url} target="_blank" rel="noopener noreferrer">
+                        <ShieldCheck className="w-3.5 h-3.5 mr-1.5 shrink-0" aria-hidden="true" />
+                        <span className="truncate">{repo.proof.label}</span>
+                        <ExternalLink className="w-3 h-3 ml-1 shrink-0" aria-hidden="true" />
                       </a>
                     </Button>
                   )}

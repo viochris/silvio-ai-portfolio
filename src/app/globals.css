@@ -51,8 +51,8 @@
   }
 
   /* Luminous multi-tone jewel gradient for accented heading words */
-  h1 > span.text-primary,
-  h2 > span.text-primary {
+  h1 > span[class~="text-primary"],
+  h2 > span[class~="text-primary"] {
     background-image: linear-gradient(
       125deg,
       hsl(var(--primary)) 0%,

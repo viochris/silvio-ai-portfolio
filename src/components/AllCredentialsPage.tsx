@@ -12,7 +12,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { IssuerLogo } from '@/components/IssuerLogo';
-import { professionalCertifications, courseBadges } from '@/lib/credentials-data';
+import { professionalCertifications, courseBadges, registeredCopyright } from '@/lib/credentials-data';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -138,6 +138,41 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
           </div>
         </div>
 
+        {credentialTab === 'Certifications' && (
+          <div className="mb-8 p-6 rounded-2xl bg-card border border-primary/35 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-6 h-6 text-emerald-300" aria-hidden="true" />
+              </div>
+              <div className="space-y-1.5 min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center rounded-md border border-emerald-500/30 bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold uppercase text-emerald-300 tracking-wider">
+                    Official Intellectual Property · No. {registeredCopyright.regNumber}
+                  </span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+                    {registeredCopyright.publishedDate}
+                  </span>
+                </div>
+                <h2 className="text-lg font-headline font-bold text-white leading-snug">
+                  {registeredCopyright.title}
+                </h2>
+                <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-3xl">
+                  {registeredCopyright.summary}
+                </p>
+              </div>
+            </div>
+            <a
+              href={registeredCopyright.certificateUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/35 bg-primary/10 hover:bg-primary/20 text-primary font-headline font-bold uppercase tracking-wider text-[11px] h-11 px-5 shrink-0 transition-colors"
+            >
+              <span>Verify Copyright Certificate</span>
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+            </a>
+          </div>
+        )}
+
         {/* Search & Filters Bar */}
         <div className="flex flex-col xl:flex-row gap-3 mb-6 bg-card p-3.5 rounded-2xl border border-border/80 items-stretch">
           <div className="relative flex-1">
@@ -246,7 +281,7 @@ export const AllCredentialsPage: React.FC<AllCredentialsPageProps> = ({
         </div>
 
         {filteredData.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch md:auto-rows-fr">
             {filteredData.map((item) => (
               <div
                 key={`${credentialTab}-${item.id}`}
